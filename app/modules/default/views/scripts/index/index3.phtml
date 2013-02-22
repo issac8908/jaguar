@@ -1,0 +1,43 @@
+<?php
+
+$mark = "\n";
+$togetfile = "/medias/REVOL-zh-new.csv";
+
+$buff = file_get_contents("F:\wamp\www\jaguar\medias\REVOL-zh-new.csv", true);
+$buff = str_replace("\0", "", $buff);
+
+if ($buff!="") {
+	
+        $i = 0;
+	$lines = explode($mark,$buff);
+	foreach($lines as $k => $v) {
+		$cols = explode(',',$v);
+
+		foreach($cols as $c => $vv) {
+			if (trim($vv)!="") {
+				if ($i == 0) {
+					$legend[$c] = trim($vv);
+				} else {
+					$data[$i][$legend[$c]] = trim($vv);
+				}
+			}
+		}
+		$i++;
+	}
+	
+ }
+
+foreach ($data as $columns => $row) {
+    
+	$m = array();
+	foreach($row as $k => $v) {
+		$m[trim($k)] = trim($v);
+	}
+	
+	if ($columns < 3) {
+		echo "> ".$m['ref_product']." <";
+	} else {
+		die();
+	}
+
+}

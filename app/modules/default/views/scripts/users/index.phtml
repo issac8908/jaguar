@@ -1,0 +1,46 @@
+<div class="users">
+    
+    <div id="navigation">
+        <ul>
+            <li class="active first">My Profile</li>
+            <li><a href="/event/venue">Venue Information</a></li>
+            <li><a href="/event/conf-lib">Conference Library</a></li>
+            <li><a href="/event/gallery">Gallery</a></li>
+            <li><a href="/event/survey">Survey</a></li>
+        </ul>
+    </div>
+    
+    <div id="profile">
+        <div class="left">
+            <div class="block">
+                    <label>First Name</label>
+                    <div><?php echo $this->user->first_name ?></div>
+            </div>
+            
+            <div class="block">
+                <label>Last Name</label>
+                    <div><?php echo $this->user->last_name ?></div>
+            </div>
+            
+            <div class="block">
+                    <label>Email</label>
+                    <div><?php echo $this->user->email ?></div>
+            </div>
+            
+            <div class="block">
+                    <label>Gender</label>
+                    <div><?php echo $this->user->gender ?></div>
+            </div>
+            
+            <div class="block">
+                    <label>Attending the event?</label>
+                    <div><?php echo $this->user->is_attending ? 'Yes' : 'No'; ?></div>
+            </div>
+            
+        </div>
+        
+        <div class="right">
+            
+        </div>
+    </div>
+</div>

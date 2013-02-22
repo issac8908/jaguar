@@ -1,0 +1,349 @@
+<div id="register">
+
+        <div id="register-upper">
+            <ul>
+                <li id="about" class="active">1. About you</li>
+                <li id="trans"><span>></span> 2. Transportation</li>
+                <li id="accomodation"><span>></span> 3. Accomodation</li>
+            </ul>
+        </div>
+    
+        <form action="<?php echo $this->url(array('controller' => 'users', 'action' => 'register'), 'default'); ?>" method="post" enctype="application/x-www-form-urlencoded" >
+            <div id="step-one">
+                <div class="form">
+
+                            <div class="section clearfix">
+
+                                    <div class="left">
+                                            <div class="row clearfix">
+                                                    <label>First name</label>
+                                                    <div><?php echo $this->stepOneForm->first_name; ?></div>
+                                            </div>
+
+                                            <div class="row clearfix">
+                                                    <label>Last name</label>
+                                                    <div><?php echo $this->stepOneForm->last_name; ?></div>
+                                            </div>
+
+                                            <div class="row clearfix">
+                                                    <label>Email</label>
+                                                    <div><?php echo $this->stepOneForm->email; ?></div>
+                                            </div>
+
+                                            <div class="row clearfix">
+                                                    <label>Email Confirmation</label>
+                                                    <div><?php echo $this->stepOneForm->confirm_email; ?></div>
+                                            </div>
+
+                                            <div class="row clearfix">
+                                                    <label>Password</label>
+                                                    <div><?php echo $this->stepOneForm->password; ?></div>
+                                            </div>
+
+                                            <div class="row clearfix">
+                                                    <label>Password Confirmation</label>
+                                                    <div><?php echo $this->stepOneForm->confirm_password; ?></div>
+                                            </div>
+                                    </div>
+
+                                    <div class="right">
+                                            <div class="row clearfix">
+                                                    <label> <span class="label">Gender</span>
+                                                            <span class="field"><?php echo $this->stepOneForm->gender; ?></span>
+                                                    </label>
+                                            </div>
+
+                                            <div class="row clearfix">
+                                                    <label>Dealership name</label>
+                                                    <div><?php echo $this->stepOneForm->dealership_name; ?></div>
+                                            </div>
+
+                                            <div class="row clearfix">
+                                                    <label>Dealership Address</label>
+                                                    <div><?php echo $this->stepOneForm->dealership_addr; ?></div>
+                                            </div>
+
+                                            <div class="row clearfix">
+                                                    <label>Dealership Region</label>
+                                                    <div><?php echo $this->stepOneForm->dealership_region; ?></div>
+                                            </div>
+                                    </div>
+
+                            </div>
+                            <div class="section clearfix">
+                                    <span id="stepOneSubmitBtn"><?php echo $this->stepOneForm->step_one_next; ?></span>
+                            </div>
+
+                </div>
+
+            </div>
+            
+            <div id="step-two" style="display:none;">
+                <div class="form">
+                    <div class="section clearfix">
+                        <div class="left">
+                            <div class="row clearfix">
+                                    <label>Arrival date </label>
+                                    <div><?php echo $this->stepTwoForm->arrival_date; ?></div>
+                            </div>
+
+                            <div class="row clearfix">
+                                    <label>Mean of transportation</label>
+                                    <div><?php echo $this->stepTwoForm->arrival_transportation; ?></div>
+                            </div>
+                            
+                            <div class="row clearfix">
+                                <label>From</label>
+                                <div><?php echo $this->stepTwoForm->arrival_from ?></div>
+                            </div>
+                            
+                            <div class="row clearfix">
+                                <label>To</label>
+                                <div>Shanghai</div>
+                            </div>
+                            
+                            <div class="row clearfix">
+                                 <label>Estimated Arrival Time</label>
+                                 <div><?php echo $this->stepTwoForm->arrival_time; ?></div>
+                            </div>
+                        </div>
+
+                        <div class="right">
+                            <div class="row clearfix">
+                                    <label>Departure date </label>
+                                    <div><?php echo $this->stepTwoForm->departure_date; ?></div>
+                            </div>
+
+                            <div class="row clearfix">
+                                    <label>Mean of transportation</label>
+                                    <div><?php echo $this->stepTwoForm->departure_transportation; ?></div>
+                            </div>
+                            
+                            <div class="row clearfix">
+                                <label>From</label>
+                                <div>Shanghai</div>
+                            </div>
+                            
+                            <div class="row clearfix">
+                                <label>To</label>
+                                <div><?php echo $this->stepTwoForm->departure_to ?></div>
+                            </div>
+                            
+                            <div class="row clearfix">
+                                 <label>Estimated Departure Time</label>
+                                 <div><?php echo $this->stepTwoForm->departure_time; ?></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="section clearfix">
+                        <span id="stepTwoSkipBtn"><button>Skip</button></span>
+                        <span id="stepTwoNextBtn"><button>Next</button></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="step-three" style="display:none;">
+                <p>IMPORTANT NOTICE: All attendees are to stay at this event hotel Intercontinental Shanghai Expo hotel on April 8th if  hotel accommodation is required. 
+Guaranteed is a number of rooms available at a special rate of 1,100 RMB net per night.
+Please make your reservation through: _________
+Hotel accommodation and transportation to and from the hotel is to be arranged by attendees at their own expense.</p>
+                <div class="form">
+                    <div class="section clearfix">
+                        <div class="left">
+                            <div class="row clearfix">
+                                    <label>Arrival date </label>
+                                    <div><?php echo $this->stepTwoForm->arrival_date; ?></div>
+                            </div>
+
+                            <div class="row clearfix">
+                                    <label>Mean of transportation</label>
+                                    <div><?php echo $this->stepTwoForm->arrival_transportation; ?></div>
+                            </div>
+                            
+                            <div class="row clearfix">
+                                <label>From</label>
+                                <div><?php echo $this->stepTwoForm->arrival_from ?></div>
+                            </div>
+                            
+                            <div class="row clearfix">
+                                <label>To</label>
+                                <div>Shanghai</div>
+                            </div>
+                            
+                            <div class="row clearfix">
+                                 <label>Estimated Arrival Time</label>
+                                 <div><?php echo $this->stepTwoForm->arrival_time; ?></div>
+                            </div>
+                        </div>
+
+                    
+
+                    </div>
+                    <div class="section clearfix">
+                        <span id="stepTwoSkipBtn"><button>Skip</button></span>
+                        <span id="stepTwoNextBtn"><button>Next</button></span>
+                    </div>
+                </div>
+            </div>
+        </form>
+</div>
+
+<script type="text/javascript">
+$(function() {
+    $('#step-two', '#step-three').hide();
+    
+    $('#stepOneSubmitBtn').click(function(e) {
+        e.preventDefault();
+        $('#step-one .errors').remove();
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            url: "/users/validate-step-one", 
+            data: {
+                'first_name':   $('#first_name').val(),
+           //     'last_name':    $('#last_name').val(),
+         //       'email':    $('#email').val(),
+         //       'confirm_email': $('#confirm_email').val(),
+          //      'password': $('#password').val(),
+          //      'confirm_password': $('#confirm_password').val()
+                
+            },
+            success: function(response) {
+                
+                if (response.success == true) {
+                    $('#step-one').hide();
+                    $('#step-two').show();
+                } else {
+                    outputFormErrorMessages(response);
+                }
+              
+            }
+        });
+    });
+    
+    $('#stepTwoSkipBtn, #stepTwoNextBtn').click(function(e) {
+        e.preventDefault();
+        $('#step-two').hide();
+        $('#step-three').show();
+    });
+});
+
+function outputFormErrorMessages(response) {
+    $.each(response, function (k, v) {
+        $.each(v, function(k1, v1) {
+            
+                $('<ul class="errors"><li>' + v1 + '</li></ul>').insertAfter('#' + k);
+        });
+    });
+}
+</script>
+<!--
+<script type="text/javascript">
+$(function() {
+	<?php if($this->facebook): ?>
+	displayStepTwo();
+	<?php endif; ?>
+	
+	$('#step_one').ajaxForm({dataType: 'json', success : function(res) {
+		if(res === true) {
+			displayStepTwo();
+			$.fancybox.update();
+		} else {
+			$('#register span.errors').remove();
+			checkErrors(res);
+		}
+    }});
+
+	$('#step_two').ajaxForm({dataType: 'json', success : function(res) {
+		if(res === true) {
+			location.reload();
+		} else {
+			checkErrors(res);
+		}
+    }});
+
+	$('#car_brand').change(function() {
+		$.post('<?php //echo $this->url(array('controller' => 'ajax', 'action' => 'models'), 'default', true); ?>', {brand:$(this).val()}, function(res) {
+			var models = $('#car_model');
+			models.find('option').remove();
+			
+			$.each(res, function(value, label) {
+				models.append('<option value="' + value + '">' + label + '</option>');
+			});
+		});
+    });
+
+	function displayStepTwo() {
+		$('#register .step-one').hide();
+		$('#register .step-two').show();
+	}
+	
+    function checkErrors(res) {
+		$('input').removeClass('error');
+		$.each(res, function(i, j) {
+			var field = $('#' + i);
+			field.addClass('error');
+			if (typeof j == "object") {
+				$.each(j, function(k, l) {
+					field.after('<span class="errors">' + l + '</span>');
+				});
+			}
+		});
+    }
+
+    var Login = {
+    	    status : '',
+    	    
+    	    initialize : function()
+    	    {
+    	        this.checkLogin();
+    	        this.submitForm();
+    	    },
+    	    
+    	    submitForm : function()
+    	    {
+    	        var self = this;
+    	        $('button.facebook').click(function() {
+    	            self.checkLogin()
+    	            
+    	            if (self.status != 'connected') {
+    	                FB.login(function(data) {
+    	                	self.me();
+    		            }, {scope: 'email,user_relationships'});
+    	
+    	              return false;
+    	            } else {
+    		            self.me();
+    	            }
+    	        });
+    	    },
+    	    
+    	    checkLogin : function()
+    	    {
+    	        var self = this;
+    	        FB.getLoginStatus(function(response) {
+    	            self.status = response.status;
+    	        });
+    	    },
+
+    	    me : function(data)
+    	    {
+    	    	FB.api('/me', function(res) {
+    		    	$.post('<?php //echo $this->url(array('controller' => 'people', 'action' => 'facebook'), 'default'); ?>', res, function(data) {
+    			    	if(data === true) {
+    			    		location.reload();
+    			    	} else {
+    			    		$('.fancybox.register').trigger('click');
+    			    	}
+    				}, 'json');
+    			});
+    	    }
+    	    
+    	};
+
+        Login.initialize();
+});
+</script>
+
+-->

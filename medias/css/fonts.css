@@ -1,0 +1,55 @@
+@font-face {
+    font-family: "RotisReg";
+    src: url('fonts/rotisreg-webfont.eot');
+    src: url('fonts/rotisreg-webfont.eot') format('embedded-opentype'),
+         url('fonts/rotisreg-webfont.woff') format('woff'),
+         url('fonts/rotisreg-webfont.ttf') format('truetype'),
+         url('fonts/rotisreg-webfont.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "RotisExBold";
+    src: url('fonts/rotisextbol-webfont.eot');
+    src: url('fonts/rotisextbol-webfont.eot') format('embedded-opentype'),
+         url('fonts/rotisextbol-webfont.woff') format('woff'),
+         url('fonts/rotisextbol-webfont.ttf') format('truetype'),
+         url('fonts/rotisextbol-webfont.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "HelveticaNeue";
+    src: url('fonts/helvetica_neue.eot');
+    src: url('fonts/helvetica_neue.eot') format('embedded-opentype'),
+         url('fonts/helvetica_neue.woff') format('woff'),
+         url('fonts/helvetica_neue.ttf') format('truetype'),
+         url('fonts/helvetica_neue.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "HelveticaNeueBold";
+    src: url('fonts/helveneubol-webfont.eot');
+    src: url('fonts/helveneubol-webfont.eot') format('embedded-opentype'),
+         url('fonts/helveneubol-webfont.woff') format('woff'),
+         url('fonts/helveneubol-webfont.ttf') format('truetype'),
+         url('fonts/helveneubol-webfont.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "HelveticaNeueLight";
+    src: url('fonts/helveneulig-webfont.eot');
+    src: url('fonts/helveneulig-webfont.eot') format('embedded-opentype'),
+         url('fonts/helveneulig-webfont.woff') format('woff'),
+         url('fonts/helveneulig-webfont.ttf') format('truetype'),
+         url('fonts/helveneulig-webfont.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
