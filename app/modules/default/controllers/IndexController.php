@@ -21,6 +21,7 @@ class IndexController extends Zend_Controller_Action
 	
 	public function indexAction()
 	{
+         
                 $auth = Zend_Auth::getInstance();
                 
                 if ($auth->hasIdentity()) {
@@ -58,7 +59,20 @@ class IndexController extends Zend_Controller_Action
              */
 	}
 
-	
+        /*
+	public function addGeneralMangerAction()
+        {
+            $buff = file_get_contents("F:/wamp/www/jaguar/medias/fields.csv", true);
+            mb_convert_encoding( $buff, 'UTF-8', 'UTF-8,GBK,GB2312,BIG5' );
+            $lines = explode("\n",$buff);
+            $table = new Model_DbTable_GroupOne();
+            foreach ($lines as $row) {
+                $table->addGeneralManager($row);
+            }
+            die();
+        }
+        */
+        
 	private function _getLoginForm()
         {
             $loginForm = new Form_User_Login(array('method' => 'post'));

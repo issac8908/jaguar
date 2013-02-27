@@ -1,55 +1,56 @@
 <div id="message">
     
-    <div id="title">
-        Unattending the conference
-    </div>
+    <div id="main-top-border"></div>
     
-    <div id="msg-content">
-        
-        <form method="post" action="/message/unattending">
-            <div class="left">
-                <div class="block">
-                        <label>First Name</label>
-                        <div><?php echo $this->form->first_name ?></div>
-                </div>
+    <div id="main-content">
+        <div id="main-content-title">NOT ATTENDING THE CONFERENCE</div>
+        <div id="unattending">
+                <form method="post" action="/message/unattending">
+                        <div class="left">
+                            <div class="block">
+                                    <label>First Name</label>
+                                    <div><?php echo $this->form->first_name ?></div>
+                            </div>
 
-                <div class="block">
-                    <label>Last Name</label>
-                        <div><?php echo $this->form->last_name ?></div>
-                </div>
+                            <div class="block">
+                                <label>Last Name</label>
+                                    <div><?php echo $this->form->last_name ?></div>
+                            </div>
 
-                <div class="block">
-                        <label>Email</label>
-                        <div><?php echo $this->form->email ?></div>
-                </div>
+                            <div class="block">
+                                    <label>Email</label>
+                                    <div><?php echo $this->form->email ?></div>
+                            </div>
 
-                <div class="block">
-                        <label>Dealership name</label>
-                        <div><?php echo $this->form->dealership_name ?></div>
-                </div>
+                            <div class="block">
+                                    <label>Dealership name</label>
+                                    <div><?php echo $this->form->dealership_name ?></div>
+                            </div>
 
-                <div class="block">
-                        <label>Dealership Address</label>
-                        <div><?php echo $this->form->dealership_addr ?></div>
-                </div>
+                            <div class="block">
+                                    <label>Dealership Address</label>
+                                    <div><?php echo $this->form->dealership_addr ?></div>
+                            </div>
 
-                <div class="block">
-                        <label>Dealership Region</label>
-                        <div><?php echo $this->form->dealership_region ?></div>
-                </div>
+                            <div class="block">
+                                    <label>Dealership Region</label>
+                                    <div><?php echo $this->form->dealership_region ?></div>
+                            </div>
 
-            </div>
+                        </div>
 
-            <div class="right">
-                <div class="block">
-                    <label>Message</label>
-                    <div><?php echo $this->form->message ?></div>
-                </div>
-            </div>
+                        <div class="right">
+                            <div class="block">
+                                <label>Message</label>
+                                <div><?php echo $this->form->message ?></div>
+                            </div>
+                        </div>
+
+                        <div class="bottom clearfix">
+                            <span id="btnSubmit"><?php echo $this->form->submit; ?></span>
+                        </div>
+                    </form>
             
-            <div class="bottom clearfix">
-                <span id="btnSubmit"><?php echo $this->form->submit; ?></span>
-            </div>
-        </form>
+        </div>
     </div>
 </div>

@@ -1,3 +1,4 @@
+
 div#account_info {
     position: absolute;
     top: 10px;
@@ -11,8 +12,7 @@ div#login_register_block
     background: #E5E5E5;
 }
 
-div#login_register_block div#login, 
-div#login_register_block div#register 
+div#login_register_block div#login
 {
     float: left;
     width: 478px;
@@ -25,103 +25,4 @@ div#login_register_block div#register
 div#login_register_block div#register 
 {
     border-left: 1px solid #333333;
-}
-
-div#register-upper 
-{
-    height: 50px;
-}
-
-div#register-upper ul
-{
-    padding-left: 150px;
-    padding-right: 150px;
-}
-
-div#register-upper ul li
-{
-    list-style: none;
-    float: left;
-}
-
-div#register-upper ul li.active
-{
-    font-weight: bold;
-}
-
-div#register-upper ul li > span
-{
-    padding: 0 50px ;
-}
-
-div#step-one 
-{
-    width: 900px;
-    height: 350px;
-    margin: 0 auto;
-}
-
-div#step-one .section
-{
-    display: block;
-    clear: both;
-}
-
-div#step-one .left
-{
-    width: 440px;
-    float: left;
-    
-    padding-left: 10px;
-}
-
-div#step-one .right
-{
-    width: 438px;
-    float: left;
-    padding-left: 10px;
-}
-
-div#step-one #stepOneSubmitBtn
-{
-    float: right;
-}
-
-div#navigation ul 
-{
-    width: 920px;
-    height: 30px;
-    border: 1px solid grey;
-    margin: 0 auto;
-    text-align: center;
-    list-style: none;
-}
-
-div#navigation ul li 
-{
-    float: left;
-    padding: 0 40px;
-    margin: 5px 0;
-    text-align: center;
-    vertical-align: middle;
-    display: inline-block;
-    border-left: 1px solid #333333;
-}
-
-div#navigation ul li.first 
-{
-    border-left: none;
-}
-
-div#navigation ul li > a 
-{
-    text-decoration: none;
-    color: black;
-}
-
-div#navigation ul li.active, 
-div#navigation ul li.active > a
-{
-    color: red;
-    font-weight: bold;
 }

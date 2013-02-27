@@ -6,7 +6,7 @@ class Form_User_StepThree extends Zend_Form
     public function init()
     {
         
-        $room_type = new Zend_Form_Element_Select('room_type');
+        $room_type = new Zend_Form_Element_Radio('room_type');
         $room_type->addMultiOptions(array(
         	'single' => 'Single',
         	'twin' => 'Twin'
@@ -16,7 +16,8 @@ class Form_User_StepThree extends Zend_Form
         
         $not_staying = new Zend_Form_Element_Checkbox('not_staying');
         
-        $not_staying_reason = new Zend_Form_Element_Text('not_staying_reason');
+        $not_staying_reason = new Zend_Form_Element_Textarea('not_staying_reason');
+        $not_staying_reason->setAttribs(array('rows'=>'5', 'cols'=> '40'));
         
         $is_joining_lunch = new Zend_Form_Element_Radio('is_joining_lunch');
         $is_joining_lunch->addMultiOptions(array(

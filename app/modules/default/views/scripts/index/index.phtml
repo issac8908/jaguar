@@ -1,58 +1,61 @@
-<div id="login_register_block">
-    
-    
-    <div id="login">
-        <h2>Already Registerd</h2>
-        <div class="form">
-            <form action="<?php echo $this->url(array('controller' => 'users', 'action' => 'login'), 'default'); ?>" method="post" enctype="application/x-www-form-urlencoded" name="login">
+<div id="index">
+    <div id="main-top-border"></div>
+    <div id="main-content">
+        <div class="left">
+               <div id="login">
+                    <h2>Already Registerd</h2>
+                    <div class="form">
+                        <form action="<?php echo $this->url(array('controller' => 'users', 'action' => 'login'), 'default'); ?>" method="post" enctype="application/x-www-form-urlencoded" name="login">
 
-                <div class="section clearfix">
-                    <div class="block">
-                            <label><span class="label">Login</span></label>
-                            <div><span class="field"><?php echo $this->loginForm->email; ?></span></div>
-                    </div>
-                    <div class="block">
-                            <label><span class="label">Password</span></label>
-                            <div><span class="field"><?php echo $this->loginForm->password; ?></span></div>
-                    </div>
-                    <div class="block submit">
-                        <?php echo $this->loginForm->submit; ?>
-                    </div>
-                </div>
-
-            </form>
-	</div>
-    </div>
-
-
-    <div id="register">
-        <h2>Register here</h2>
-        <div class="form">
-            <form>
-
-                <div class="section clearfix">
-                    <div class="block">
-                            <label><span class="label">Registration Code</span></label>
-                            <div>
-                                <span class="field">
-                                    <input type="text" value="<?php echo $this->code; ?>">
-                                </span>
+                            <div class="section clearfix">
+                                <div class="block">
+                                        <label><span class="label">Login</span></label>
+                                        <div><span class="field"><?php echo $this->loginForm->email; ?></span></div>
+                                </div>
+                                <div class="block">
+                                        <label><span class="label">Password</span></label>
+                                        <div><span class="field"><?php echo $this->loginForm->password; ?></span></div>
+                                </div>
+                                <div class="block submit">
+                                    <?php echo $this->loginForm->submit; ?>
+                                </div>
                             </div>
-                    </div>
-                    <div class="block submit">
-                        <input type="submit" name="submit2" id="btnSubmitCode" value="SUBMIT" tabindex="10"> 
-                    </div>
-                    <div id="popupDiag" style="display:none;">
-                        Will you attend the event? 
+
+                        </form>
                     </div>
                 </div>
 
-            </form>
-	</div>
+        </div>
+        <div class="right">
+             <div id="register">
+                <h2>Register here</h2>
+                <div class="form">
+                    <form>
+
+                        <div class="section clearfix">
+                            <div class="block">
+                                    <label><span class="label">Registration Code</span></label>
+                                    <div>
+                                        <span class="field">
+                                            <input type="text" value="<?php echo $this->code; ?>">
+                                        </span>
+                                    </div>
+                            </div>
+                            <div class="block submit">
+                                <input type="submit" name="submit2" id="btnSubmitCode" value="SUBMIT" tabindex="10"> 
+                            </div>
+                            <div id="popupDiag" style="display:none;">
+                                Will you attend the event? 
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    
-    
 </div>
+
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -60,7 +63,7 @@ $(document).ready(function(){
         e.preventDefault();
         
         $('#popupDiag').dialog({
-            title: 'Confirmation',
+            title: 'REGISTER',
             buttons: {
                 "Yes": function() {
                     
@@ -76,12 +79,4 @@ $(document).ready(function(){
         });
     });
 });
-
-function popupDiag() {
-    if (confirm("Will you attend the event?")) {
-        
-    } else {
-    
-    }
-}
 </script>

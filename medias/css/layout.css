@@ -1,25 +1,307 @@
+body 
+{
+    margin: auto auto;
+    font-family: arial;
+    background-color: rgb(247, 247, 247);
+    width: 100%;
+    height: 100%;
+}
 /*wrap*/
-#wrap { width: 1000px; margin: 0 auto; border:1px solid grey;}
+#wrap { margin: 0 auto; width: 100%;}
 
 /*header*/
-#header {height: 120px; background: grey;}
-#logo {float: left;}
-#nav {height:30px; float: right; margin-top: 60px;}
+#header {height:80px; background: #ffffff;  width: 100%;}
+#header #header-wrapper {
+    width: 990px;
+    height: 80px;
+    margin: 0 auto;
+    display: block;
+    font-size: 12px;
+}
+
+#header-title 
+{
+    float: left;
+    margin-top: 16px;
+}
+#title-one
+{
+    color: #807f83;
+    font-weight: bold;
+}
+
+#title-two 
+{
+    color: #cac2b8;
+    font-weight: bold;
+}
+
+#title-calque
+{
+    width: 450px;
+    height: 3px;
+    border-top: 1px solid #807f83;
+}
+
+#title-three
+{
+    color: #807f83;
+}
+
+#logo { float: right; margin-right: 20px; margin-top: 16px;}
+#logo img { width: 175px; }
 
 /*main*/
-#main { padding: 10px 0; min-height: 400px; background: whitesmoke;}
+#main {
+    /*background-color: rgb(247, 247, 247); */
+}
 
-/*sidebar*/
-#sidebar { height: 400px; width: 160px; float: left; padding: 10px; border: 1px #CCC solid; background: #EEE;}
+#main-wrapper {
+    margin: 0 auto;
+    display: block;
+}
 
-/*content*/
-#content { min-height: 400px; background: #FFF;  padding: 10px; margin-left: 190px; border: 1px #CCC solid;}
-#contentCommunity {border: 1px #CCC solid; padding: 10px;}
-#contentAdmin { min-height: 400px; border: 1px #CCC solid; padding: 20px 10px;}
+#main-top-border {
+    background-color: rgb(202, 194, 185);
+    height: 5px;
+    margin-top: 0px;
+}
 
-/*footer*/
-#footer { height: 50px; background: #000; color: #FFF; line-height: 50px; padding: 0 10px; clear: both;}
+#breadcrumb, #menu
+{
+    background-color: rgb(202, 194, 185);
+    height: 30px;
+    font-size: 14px;
+    margin-top: 0px;
+}
 
-/*admin*/
-#adminHeader { height: 20px; line-height: 20px; background: #769dc0; font-size: 18px; color: #FFF; padding: 10px;}
-#adminNav { height: 30px; line-height: 30px; background: #CCC;}
+#breadcrumb #breadcrumb-wrapper, #menu #menu-wrapper
+{
+    color: #e3dad1;
+    width: 1000px;
+    height: 30px;
+    margin: 0 auto;
+    display: block;
+}
+
+#breadcrumb #breadcrumb-wrapper ul, #menu #menu-wrapper ul {
+    margin-left: -40px;
+    margin-top: 0px;
+    height: 30px;
+}
+
+#breadcrumb #breadcrumb-wrapper ul li, #menu #menu-wrapper ul li
+{
+    list-style: none;
+    float: left;
+    margin-right: 50px;
+    margin-top: 7px;
+    font-size: 14px;
+    font-weight: bold;
+    padding-left: 3px;
+}
+#menu #menu-wrapper ul li a { text-decoration: none; color: #e3dad1;}
+
+#breadcrumb #breadcrumb-wrapper ul li.active, #menu #menu-wrapper ul li.active a
+{
+    color: #ffffff;
+}
+
+#register-form, #main-content
+{
+    width: 1000px;
+    margin: 0 auto;
+}
+#register-form-title, #main-content-title
+{
+    font-size: 18px;
+    border-bottom: 2px solid black;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    padding-bottom: 3px;
+}
+
+div#step-one, 
+div#step-two,
+div#step-three
+{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+div#step-one .section,
+div#step-two .section,
+div#step-three .section
+{
+    display: block;
+    clear: both;
+    height: auto;
+    width: 100%;
+    margin-top: 0px;
+}
+
+div#step-one select,
+div#step-two select,
+div#step-three select
+{
+    width: 200px;
+    height: 30px;
+    font-size: 16px;
+    -webkit-border-radius: 2px;
+    vertical-align: central;
+}
+
+div#step-one .left, 
+div#step-two .left 
+{ 
+    width: 500px; float: left; 
+}
+
+div#step-three .left 
+{
+    width: 1000px;float:left;
+}
+
+div#step-one .right,
+div#step-two .right,
+div#step-three .right
+{
+    width: 500px;
+    float: right;
+}
+
+div#step-one .row,
+div#step-two .row,
+div#step-three .row 
+{
+    display: block;
+    clear: both;
+    padding-top: 10px;
+    width: 100%;
+    height: auto;
+}
+
+div#step-one .row > label,
+div#step-two .row > label,
+div#step-three .row > label
+{
+    width: 170px;
+    float: left;
+    text-align: right;
+    vertical-align: central;
+    padding-top: 8px;
+    padding-right: 2px;
+    font-size: 14px;
+    color: #4c4c4c;
+    font-weight: bold;
+}
+
+div#step-three .row > label {width: 220px; text-align: center;}
+
+div#step-one .right .row > label
+{
+    width: 120px;
+}
+
+div#step-one .row .field,
+div#step-two .row .field,
+div#step-three .row .field
+{
+    width: 300px;
+    float: left;
+    text-align: left;
+    padding-left: 5px;
+}
+
+div#step-three .row .field {padding-top: 7px;}
+
+div#step-one .row .field > label,
+div#step-three .row .field > label
+{
+    float: left;
+    text-align: right;
+    vertical-align: central;
+    padding: 5px 4px 4px 4px;
+    font-size: 14px;
+    color: #4c4c4c;
+}
+
+div#step-one .row .field > .erorrs
+{
+    padding-left: -20px;
+}
+
+div#step-one .row .field > .erorrs li { padding-left: -20px;}
+
+div#step-one .row #position {
+    width: 350px;
+    float: right;
+}
+
+textarea,
+div#step-one input[type='text'], div#step-one input[type='password'],
+div#step-two input[type='text'],
+div#step-three input[type='text']
+{
+    padding: 4px;
+    border-radius: 4px;
+    text-indent: 3px;
+    font-size: 16px;
+}
+
+input[type='text'].error,
+input[type='password'].error,
+div#step-one .row #position.error
+{
+    border: 1px solid rgb(181, 4, 4);
+}
+
+div#step-one .row .positions
+{
+    display: block;
+    float: right;
+    width: 350px;
+}
+
+div#step-one .row .positions .row2 
+{
+    display: block;
+    float: left;
+    width: 400px;
+}
+
+div#step-one .row .positions .row2 span,
+div#step-one .row .positions .row2 label
+{
+    color: #4c4c4c;
+    font-size: 14px;
+    float: left;
+    width: 110px;
+    text-align: right;
+    padding-top: 10px;
+}
+div#step-one .row .positions .row2 span{width: 300px; text-align: left; padding-top: 3px;}
+div#step-one .row .positions .field 
+{
+    padding-left: 5px;
+    color: #4c4c4c;
+    font-size: 14px;
+    margin-top: 5px;
+    float: left;
+    width: 200px;
+}
+    
+div#stepOneSubmitBtn,
+div#stepTwoNextBtn,
+div#stepTwoSkipBtn,
+div#stepThreeSubmitBtn
+{
+    float: right;
+}
+
+#step-three-notice { color: rgb(181, 4, 4); font-size: 14px;}
+
+#profile table 
+{
+    
+}

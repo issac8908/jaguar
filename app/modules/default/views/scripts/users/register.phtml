@@ -1,77 +1,131 @@
-<div id="register">
-
-        <div id="register-upper">
+<div id="register">    
+    
+    <div id="breadcrumb">
+        <div id="breadcrumb-wrapper">
             <ul>
-                <li id="about" class="active">1. About you</li>
-                <li id="trans"><span>></span> 2. Transportation</li>
-                <li id="accomodation"><span>></span> 3. Accomodation</li>
+                <li id="about" class="active">1. ABOUT YOU</li>
+                <li id="trans">2. TRANSPORTATION</li>
+                <li id="accomodation">3. ACCOMODATION</li>
             </ul>
         </div>
+    </div>
     
-        <form action="<?php echo $this->url(array('controller' => 'users', 'action' => 'register'), 'default'); ?>" method="post" enctype="application/x-www-form-urlencoded" >
-            <div id="step-one">
+    <div id="register-form">
+        <div id="register-form-title">REGISTER</div>
+        <div id="register-form-content">
+            <form action="<?php echo $this->url(array('controller' => 'users', 'action' => 'register'), 'default'); ?>" method="post" enctype="application/x-www-form-urlencoded" >
+            <div id="step-one" style="display: none;">
                 <div class="form">
-
+                        
                             <div class="section clearfix">
 
                                     <div class="left">
-                                            <div class="row clearfix">
-                                                    <label>First name</label>
-                                                    <div><?php echo $this->stepOneForm->first_name; ?></div>
-                                            </div>
+                                        <div class="row clearfix">
+                                            <label>First Name </label>
+                                            <div class="field"><?php echo $this->stepOneForm->first_name; ?></div>
+                                        </div>
 
-                                            <div class="row clearfix">
-                                                    <label>Last name</label>
-                                                    <div><?php echo $this->stepOneForm->last_name; ?></div>
-                                            </div>
+                                        <div class="row clearfix">
+                                            <label>Last Name </label>
+                                            <div class="field"><?php echo $this->stepOneForm->last_name; ?></div>
+                                        </div>
+                                        
+                                        <div class="row clearfix">
+                                            <label>Gender</label>
+                                            <div class="field"><?php echo $this->stepOneForm->gender ?></div>
+                                        </div>
 
-                                            <div class="row clearfix">
-                                                    <label>Email</label>
-                                                    <div><?php echo $this->stepOneForm->email; ?></div>
-                                            </div>
-
-                                            <div class="row clearfix">
-                                                    <label>Email Confirmation</label>
-                                                    <div><?php echo $this->stepOneForm->confirm_email; ?></div>
-                                            </div>
-
-                                            <div class="row clearfix">
-                                                    <label>Password</label>
-                                                    <div><?php echo $this->stepOneForm->password; ?></div>
-                                            </div>
-
-                                            <div class="row clearfix">
-                                                    <label>Password Confirmation</label>
-                                                    <div><?php echo $this->stepOneForm->confirm_password; ?></div>
-                                            </div>
+                                        <div class="row clearfix">
+                                            <label>ID/Passport Number</label>
+                                            <div class="field"><?php echo $this->stepOneForm->id_passport_number ?></div>
+                                        </div>
+                                        
+                                        <div class="row clearfix">
+                                            <label>Telephone Number</label>
+                                            <div class="field"><?php echo $this->stepOneForm->tel; ?></div>
+                                        </div>
+                                        
+                                        <div class="row clearfix">
+                                            <label>Mobile Number</label>
+                                            <div class="field"><?php echo $this->stepOneForm->mobile; ?></div>
+                                        </div>
+                                        
+                                        <div class="row clearfix">
+                                            <label>Email </label>
+                                            <div class="field"><?php echo $this->stepOneForm->email; ?></div>
+                                        </div>
+                                        
+                                        <div class="row clearfix">
+                                            <label>Email Confirmation</label>
+                                            <div class="field"><?php echo $this->stepOneForm->confirm_email; ?></div>
+                                        </div>
+                                        
+                                        <div class="row clearfix">
+                                            <label>Password</label>
+                                            <div class="field"><?php echo $this->stepOneForm->password; ?></div>
+                                        </div>
+                                        
+                                        <div class="row clearfix">
+                                            <label>Password Confirmation</label>
+                                            <div class="field"><?php echo $this->stepOneForm->confirm_password; ?></div>
+                                        </div>
+                                        
+                                        <div class="row clearfix">
+                                            <label>City</label>
+                                            <div class="field"><?php echo $this->stepOneForm->city_id; ?></div>
+                                        </div>
+                                        
                                     </div>
 
                                     <div class="right">
-                                            <div class="row clearfix">
-                                                    <label> <span class="label">Gender</span>
-                                                            <span class="field"><?php echo $this->stepOneForm->gender; ?></span>
-                                                    </label>
+                                        
+                                        <div class="row clearfix">
+                                            <label>Position</label>
+                                            <div id="position">
+                                                
+                                                <div class="positions">
+                                                    <div class="row2">
+                                                        <span><input type="radio" name="position" id="position-group_head" value="group_head">Group Head</span>
+                                                    </div>
+                                                    <div class="row2">
+                                                        <label>Group Name</label>
+                                                        <div class="field"><?php echo $this->stepOneForm->group_name; ?></div>
+                                                    </div>
+                                                    <div class="row2">
+                                                        <label>Title</label>
+                                                        <div class="field"><?php echo $this->stepOneForm->group_title; ?></div>
+                                                    </div>
+                                                </div>
+                                                <div class="positions">   
+                                                    <div class="row2">
+                                                        <span><input type="radio" name="position" id="position-general_manager" value="general_manager">General Manager</span>
+                                                    </div>
+                                                    <div class="row2">
+                                                        <label>DMS CODE</label>
+                                                        <div class="field"><?php echo $this->stepOneForm->dms_code ?></div>
+                                                    </div>
+                                                </div>
+                                                <div class="positions">
+                                                    <div class="row2">
+                                                        <span><input type="radio" name="position" id="position-partner" value="partner">Partner</span>
+                                                    </div>
+                                                    <div class="row2">
+                                                        <label>Company name</label>
+                                                        <div class="field"><?php echo $this->stepOneForm->company_name ?></div>
+                                                    </div>
+                                                    <div class="row2">
+                                                        <label>Title</label>
+                                                        <div class="field"><?php echo $this->stepOneForm->company_title ?></div>
+                                                    </div>
+                                                </div>
                                             </div>
-
-                                            <div class="row clearfix">
-                                                    <label>Dealership name</label>
-                                                    <div><?php echo $this->stepOneForm->dealership_name; ?></div>
-                                            </div>
-
-                                            <div class="row clearfix">
-                                                    <label>Dealership Address</label>
-                                                    <div><?php echo $this->stepOneForm->dealership_addr; ?></div>
-                                            </div>
-
-                                            <div class="row clearfix">
-                                                    <label>Dealership Region</label>
-                                                    <div><?php echo $this->stepOneForm->dealership_region; ?></div>
-                                            </div>
+                                        </div>
+                                        
                                     </div>
 
                             </div>
                             <div class="section clearfix">
-                                    <span id="stepOneSubmitBtn"><?php echo $this->stepOneForm->step_one_next; ?></span>
+                                <div id="stepOneSubmitBtn"><?php echo $this->stepOneForm->step_one_next; ?></div>
                             </div>
 
                 </div>
@@ -84,117 +138,130 @@
                         <div class="left">
                             <div class="row clearfix">
                                     <label>Arrival date </label>
-                                    <div><?php echo $this->stepTwoForm->arrival_date; ?></div>
+                                    <div class="field"><?php echo $this->stepTwoForm->arrival_date; ?></div>
                             </div>
 
                             <div class="row clearfix">
                                     <label>Mean of transportation</label>
-                                    <div><?php echo $this->stepTwoForm->arrival_transportation; ?></div>
+                                    <div class="field"><?php echo $this->stepTwoForm->arrival_transportation; ?></div>
                             </div>
                             
                             <div class="row clearfix">
                                 <label>From</label>
-                                <div><?php echo $this->stepTwoForm->arrival_from ?></div>
+                                <div class="field"><?php echo $this->stepTwoForm->arrival_from ?></div>
                             </div>
                             
                             <div class="row clearfix">
                                 <label>To</label>
-                                <div>Shanghai</div>
+                                <div class="field">Shanghai</div>
                             </div>
                             
                             <div class="row clearfix">
                                  <label>Estimated Arrival Time</label>
-                                 <div><?php echo $this->stepTwoForm->arrival_time; ?></div>
+                                 <div class="field"><?php echo $this->stepTwoForm->arrival_time; ?></div>
                             </div>
                         </div>
 
                         <div class="right">
                             <div class="row clearfix">
                                     <label>Departure date </label>
-                                    <div><?php echo $this->stepTwoForm->departure_date; ?></div>
+                                    <div class="field"><?php echo $this->stepTwoForm->departure_date; ?></div>
                             </div>
 
                             <div class="row clearfix">
                                     <label>Mean of transportation</label>
-                                    <div><?php echo $this->stepTwoForm->departure_transportation; ?></div>
+                                    <div class="field"><?php echo $this->stepTwoForm->departure_transportation; ?></div>
                             </div>
                             
                             <div class="row clearfix">
                                 <label>From</label>
-                                <div>Shanghai</div>
+                                <div class="field">Shanghai</div>
                             </div>
                             
                             <div class="row clearfix">
                                 <label>To</label>
-                                <div><?php echo $this->stepTwoForm->departure_to ?></div>
+                                <div class="field"><?php echo $this->stepTwoForm->departure_to ?></div>
                             </div>
                             
                             <div class="row clearfix">
                                  <label>Estimated Departure Time</label>
-                                 <div><?php echo $this->stepTwoForm->departure_time; ?></div>
+                                 <div class="field"><?php echo $this->stepTwoForm->departure_time; ?></div>
                             </div>
                         </div>
 
                     </div>
                     <div class="section clearfix">
-                        <span id="stepTwoSkipBtn"><button>Skip</button></span>
-                        <span id="stepTwoNextBtn"><button>Next</button></span>
+                        <div id="stepTwoNextBtn"><button>Next</button></div>
+                        <div id="stepTwoSkipBtn"><button>Skip</button></div>
                     </div>
                 </div>
             </div>
             
             <div id="step-three" style="display:none;">
-                <p>IMPORTANT NOTICE: All attendees are to stay at this event hotel Intercontinental Shanghai Expo hotel on April 8th if  hotel accommodation is required. 
-Guaranteed is a number of rooms available at a special rate of 1,100 RMB net per night.
-Please make your reservation through: _________
-Hotel accommodation and transportation to and from the hotel is to be arranged by attendees at their own expense.</p>
+                <p id="step-three-notice">IMPORTANT NOTICE: All attendees are to stay at this event hotel Intercontinental Shanghai Expo hotel on April 8th if  hotel accommodation is required.
+                    Guaranteed is a number of rooms available at a special rate of 1,100 RMB net per night.
+                    Please make your reservation through: _________
+                    Hotel accommodation and transportation to and from the hotel is to be arranged by attendees at their own expense.</p>
                 <div class="form">
                     <div class="section clearfix">
                         <div class="left">
                             <div class="row clearfix">
-                                    <label>Arrival date </label>
-                                    <div><?php echo $this->stepTwoForm->arrival_date; ?></div>
+                                    <label>Intercontinental Shanghai Expo Hotel room type</label>
+                                    <div class="field">
+                                        <?php //echo $this->stepThreeForm->room_type; ?>
+                                        <input type="radio" name="room_type" id="room_type-single" value="single">  Single
+                                        <input type="radio" name="room_type" id="room_type-twin" value="twin"> Twin
+                                    </div>
                             </div>
 
                             <div class="row clearfix">
-                                    <label>Mean of transportation</label>
-                                    <div><?php echo $this->stepTwoForm->arrival_transportation; ?></div>
+                                    <label>If twin room shared with another guest, please precise guest name</label>
+                                    <div class="field"><?php echo $this->stepThreeForm->guest_name; ?></div>
                             </div>
                             
                             <div class="row clearfix">
-                                <label>From</label>
-                                <div><?php echo $this->stepTwoForm->arrival_from ?></div>
+                                <label>I will not stay at Intecontinental Shanghai Expo Hotel</label>
+                                <div class="field"><?php echo $this->stepThreeForm->not_staying ?></div>
                             </div>
                             
                             <div class="row clearfix">
-                                <label>To</label>
-                                <div>Shanghai</div>
+                                <label>Please explain why.</label>
+                                <div class="field"><?php echo $this->stepThreeForm->not_staying_reason ?></div>
                             </div>
                             
                             <div class="row clearfix">
-                                 <label>Estimated Arrival Time</label>
-                                 <div><?php echo $this->stepTwoForm->arrival_time; ?></div>
+                                 <label>Complimentary lunch is offered at the Intercontinental Shanghai Expo Hotel between 11:30am - 12:20pm on April 8th, will you join?</label>
+                                 <div class="field">
+                                     <?php //echo $this->stepThreeForm->is_joining_lunch; ?>
+                                     <input type="radio" name="is_joining_lunch" id="is_joining_lunch-1" value="1"> Yes
+                                     <input type="radio" name="is_joining_lunch" id="is_joining_lunch-0" value="0"> No
+                                 </div>
                             </div>
                         </div>
-
-                    
-
                     </div>
                     <div class="section clearfix">
-                        <span id="stepTwoSkipBtn"><button>Skip</button></span>
-                        <span id="stepTwoNextBtn"><button>Next</button></span>
+                        <div id="stepThreeSubmitBtn"><input type="submit" value="Register"/></div>
                     </div>
                 </div>
             </div>
         </form>
+        </div>
+    </div>
+    
+    
+        
 </div>
-
+<div id="reg-form-errors"><ul><ul></div>
 <script type="text/javascript">
 $(function() {
+    $("#reg-form-errors").hide().fadeIn(4000)
+    $('#step-one').show();
     $('#step-two', '#step-three').hide();
     
     $('#stepOneSubmitBtn').click(function(e) {
         e.preventDefault();
+        var gender = $('input[name="gender"]:checked').val();
+        var position = $(".positions input[type='radio']:checked").val();
         $('#step-one .errors').remove();
         $.ajax({
             type: "post",
@@ -202,22 +269,23 @@ $(function() {
             url: "/users/validate-step-one", 
             data: {
                 'first_name':   $('#first_name').val(),
-           //     'last_name':    $('#last_name').val(),
-         //       'email':    $('#email').val(),
-         //       'confirm_email': $('#confirm_email').val(),
-          //      'password': $('#password').val(),
-          //      'confirm_password': $('#confirm_password').val()
-                
+                'last_name':    $('#last_name').val(),
+                'gender': (typeof(gender) == 'undefined') ? '' : gender,
+                'email':    $('#email').val(),
+                'confirm_email': $('#confirm_email').val(),
+                'password': $('#password').val(),
+                'confirm_password': $('#confirm_password').val(),
+                'position': (typeof(position) == 'undefined') ? '' : position,
             },
             success: function(response) {
-                
                 if (response.success == true) {
                     $('#step-one').hide();
+                    $('ul li#about').removeClass('active');
+                    $('ul li#trans').addClass('active');
                     $('#step-two').show();
                 } else {
                     outputFormErrorMessages(response);
                 }
-              
             }
         });
     });
@@ -225,125 +293,48 @@ $(function() {
     $('#stepTwoSkipBtn, #stepTwoNextBtn').click(function(e) {
         e.preventDefault();
         $('#step-two').hide();
+        $('ul li#trans').removeClass('active');
+        $('ul li#accomodation').addClass('active');
         $('#step-three').show();
     });
+
+    $('#reg-form-errors').dialog({
+                autoOpen: false,
+                modal: true,
+                title: 'Register',
+                width: 500,
+                show: { effect: 'fade', duration: 500 },
+                hide: { effect: 'hide', duration: 500 },
+                buttons: {
+                    'Close': function(){
+                        $(this).dialog("close");
+                    }
+                }
+    });
+    
+    $('#arrival_date, #departure_date').datepicker({ dateFormat: 'yy-mm-dd', minDate: new Date(2013, 4 - 1, 1), maxDate: new Date(2013, 4 - 1, 8)});
+    
+    $('#arrival_time, #departure_time').timepicker({'timeFormat': 'H:i' });
+
 });
 
 function outputFormErrorMessages(response) {
+    $('#reg-form-errors ul').empty();
+
+    $('input').removeClass('error');
+    $('#' + 'gender-m').parent().parent().css('border', 'none');
     $.each(response, function (k, v) {
         $.each(v, function(k1, v1) {
-            
-                $('<ul class="errors"><li>' + v1 + '</li></ul>').insertAfter('#' + k);
+            $('#reg-form-errors ul').append('<li>' + k + ': ' + v1 + '</li>');
+            if (k == 'gender') {
+               $('#' + 'gender-m').parent().parent().css('border', '1px solid #B50404');
+            } 
+            else {
+                $('#' + k).addClass('error');
+            }
         });
     });
+    
+    $('#reg-form-errors').dialog('open');
 }
 </script>
-<!--
-<script type="text/javascript">
-$(function() {
-	<?php if($this->facebook): ?>
-	displayStepTwo();
-	<?php endif; ?>
-	
-	$('#step_one').ajaxForm({dataType: 'json', success : function(res) {
-		if(res === true) {
-			displayStepTwo();
-			$.fancybox.update();
-		} else {
-			$('#register span.errors').remove();
-			checkErrors(res);
-		}
-    }});
-
-	$('#step_two').ajaxForm({dataType: 'json', success : function(res) {
-		if(res === true) {
-			location.reload();
-		} else {
-			checkErrors(res);
-		}
-    }});
-
-	$('#car_brand').change(function() {
-		$.post('<?php //echo $this->url(array('controller' => 'ajax', 'action' => 'models'), 'default', true); ?>', {brand:$(this).val()}, function(res) {
-			var models = $('#car_model');
-			models.find('option').remove();
-			
-			$.each(res, function(value, label) {
-				models.append('<option value="' + value + '">' + label + '</option>');
-			});
-		});
-    });
-
-	function displayStepTwo() {
-		$('#register .step-one').hide();
-		$('#register .step-two').show();
-	}
-	
-    function checkErrors(res) {
-		$('input').removeClass('error');
-		$.each(res, function(i, j) {
-			var field = $('#' + i);
-			field.addClass('error');
-			if (typeof j == "object") {
-				$.each(j, function(k, l) {
-					field.after('<span class="errors">' + l + '</span>');
-				});
-			}
-		});
-    }
-
-    var Login = {
-    	    status : '',
-    	    
-    	    initialize : function()
-    	    {
-    	        this.checkLogin();
-    	        this.submitForm();
-    	    },
-    	    
-    	    submitForm : function()
-    	    {
-    	        var self = this;
-    	        $('button.facebook').click(function() {
-    	            self.checkLogin()
-    	            
-    	            if (self.status != 'connected') {
-    	                FB.login(function(data) {
-    	                	self.me();
-    		            }, {scope: 'email,user_relationships'});
-    	
-    	              return false;
-    	            } else {
-    		            self.me();
-    	            }
-    	        });
-    	    },
-    	    
-    	    checkLogin : function()
-    	    {
-    	        var self = this;
-    	        FB.getLoginStatus(function(response) {
-    	            self.status = response.status;
-    	        });
-    	    },
-
-    	    me : function(data)
-    	    {
-    	    	FB.api('/me', function(res) {
-    		    	$.post('<?php //echo $this->url(array('controller' => 'people', 'action' => 'facebook'), 'default'); ?>', res, function(data) {
-    			    	if(data === true) {
-    			    		location.reload();
-    			    	} else {
-    			    		$('.fancybox.register').trigger('click');
-    			    	}
-    				}, 'json');
-    			});
-    	    }
-    	    
-    	};
-
-        Login.initialize();
-});
-</script>
-
--->

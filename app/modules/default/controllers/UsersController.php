@@ -75,41 +75,41 @@ class UsersController extends Zend_Controller_Action
         private function _authenticate($form)
         {
                 $db = Zend_Db_Table::getDefaultAdapter();
-                        $authAdapter = new Zend_Auth_Adapter_DbTable($db);
-                        
-                        $authAdapter->setTableName('user');
-                        $authAdapter->setIdentityColumn('email');
-                        $authAdapter->setCredentialColumn('password');
-                        $authAdapter->setCredentialTreatment('MD5(?)');
-                        
-                        $authAdapter->setIdentity($form->getValue('email'));
-                        $authAdapter->setCredential($form->getValue('password'));
-                        
-                        $auth = Zend_Auth::getInstance();
-                        $result = $auth->authenticate($authAdapter);
-                        
-                        // Did the user successfully login?
-                        if ($result->isValid()) {
-                            
-                            $user_table = new Model_DbTable_Users();
-                            
-                            $user = $user_table->getUserByEmail($form->getValue('email'));
-                            
-                            $user->last_login_ts = date('Y-m-d H:i:s');
-                            
-                            $user->save();
-                            
-                            $storage = $auth->getStorage();
-                            $storage->write($authAdapter->getResultRowObject(array('uid', 'first_name', 'last_name', 'email', 'last_login_ts')));
-                            
-                            Zend_Session::rememberMe(1209600);
-                            
-                            $this->_helper->flashMessenger->addMessage('You are logged in');
-                            $this->_helper->redirector('index', 'index');
-                            
-                        } else {
-                            $this->view->error['form'] = array('Login failed');
-                        }
+                    $authAdapter = new Zend_Auth_Adapter_DbTable($db);
+
+                    $authAdapter->setTableName('user');
+                    $authAdapter->setIdentityColumn('email');
+                    $authAdapter->setCredentialColumn('password');
+                    $authAdapter->setCredentialTreatment('MD5(?)');
+
+                    $authAdapter->setIdentity($form->getValue('email'));
+                    $authAdapter->setCredential($form->getValue('password'));
+
+                    $auth = Zend_Auth::getInstance();
+                    $result = $auth->authenticate($authAdapter);
+
+                    // Did the user successfully login?
+                    if ($result->isValid()) {
+
+                        $user_table = new Model_DbTable_Users();
+
+                        $user = $user_table->getUserByEmail($form->getValue('email'));
+
+                        $user->last_login_ts = date('Y-m-d H:i:s');
+
+                        $user->save();
+
+                        $storage = $auth->getStorage();
+                        $storage->write($authAdapter->getResultRowObject(array('uid', 'first_name', 'last_name', 'email', 'last_login_ts')));
+
+                        Zend_Session::rememberMe(1209600);
+
+                        $this->_helper->flashMessenger->addMessage('You are logged in');
+                        $this->_helper->redirector('index', 'index');
+
+                    } else {
+                        $this->view->error['form'] = array('Login failed');
+                    }
         }
 	
 	/**
@@ -161,7 +161,6 @@ class UsersController extends Zend_Controller_Action
                     
                     $data = $this->_request->getPost();
                     
-
                     // If the form data is valid, process it
                     if ($form->isValid($this->_request->getPost())) {
                         
@@ -170,14 +169,10 @@ class UsersController extends Zend_Controller_Action
                         
                         try {
                             $user_table = new Model_DbTable_Users();
-                          //  die(print_r($data));
-                            $user_table->addUser(array(
-                                'email' => $data['email'], 
-                                'first_name' => $data['first_name'],
-                                'last_name' => $data['last_name'],
-                                'password' => md5($data['password']),
-                                'gender' => $data['gender']['0']
-                            ));
+                            unset($data['confirm_password']);
+                            unset($data['confirm_email']);
+                            $data['password'] = md5($data['password']);
+                            $user_table->addUser($data);
                             
                             // Authenticate user
                             $this->_authenticate($form);
