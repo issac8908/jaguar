@@ -51,7 +51,7 @@ class UsersController extends Zend_Controller_Action
                     } else {
                         $this->view->errors = $form->getErrors();
                     }
-                }
+                } 
                 
                 $this->view->loginForm = $form;
 	
@@ -72,45 +72,7 @@ class UsersController extends Zend_Controller_Action
 	}
         
         
-        private function _authenticate($form)
-        {
-                $db = Zend_Db_Table::getDefaultAdapter();
-                    $authAdapter = new Zend_Auth_Adapter_DbTable($db);
-
-                    $authAdapter->setTableName('user');
-                    $authAdapter->setIdentityColumn('email');
-                    $authAdapter->setCredentialColumn('password');
-                    $authAdapter->setCredentialTreatment('MD5(?)');
-
-                    $authAdapter->setIdentity($form->getValue('email'));
-                    $authAdapter->setCredential($form->getValue('password'));
-
-                    $auth = Zend_Auth::getInstance();
-                    $result = $auth->authenticate($authAdapter);
-
-                    // Did the user successfully login?
-                    if ($result->isValid()) {
-
-                        $user_table = new Model_DbTable_Users();
-
-                        $user = $user_table->getUserByEmail($form->getValue('email'));
-
-                        $user->last_login_ts = date('Y-m-d H:i:s');
-
-                        $user->save();
-
-                        $storage = $auth->getStorage();
-                        $storage->write($authAdapter->getResultRowObject(array('uid', 'first_name', 'last_name', 'email', 'last_login_ts')));
-
-                        Zend_Session::rememberMe(1209600);
-
-                        $this->_helper->flashMessenger->addMessage('You are logged in');
-                        $this->_helper->redirector('index', 'index');
-
-                    } else {
-                        $this->view->error['form'] = array('Login failed');
-                    }
-        }
+        
 	
 	/**
 	 * Validate user process action
@@ -226,7 +188,6 @@ class UsersController extends Zend_Controller_Action
         
         public function validateStepOneAction()
         {
-                /* disable auto rendering */
                 $this->_helper->getHelper('layout')->disableLayout();
                 $this->_helper->viewRenderer->setNoRender();
                 
@@ -242,18 +203,77 @@ class UsersController extends Zend_Controller_Action
                 }
         }
 	
+	public function validateLoginAction()
+        {
+                $this->_helper->getHelper('layout')->disableLayout();
+                $this->_helper->viewRenderer->setNoRender();
+                
+                if ($this->_request->isXmlHttpRequest()) {
+                        
+                    $data = $this->_request->getPost();
+                    $form = new Form_User_Login();
+                    
+                    if ($form->isValid($data)) {  
+                        if ($this->_authenticate($form)) {
+                            //$this->_helper->redirector('index', 'index');
+                            echo json_encode(array('success' => true));
+                        } else {
+                            echo json_encode(array(
+                                'success' => false, 
+                                'message' => 'We do not recognize your sign in information. Please try again. Please note the password field is case sensitive.'
+                            ));
+                        }
+                    } else 
+                        echo $form->processAjax($data);
+                }
+        }
 	
-	
-        /**
-         * Get a login form.
-         *
-         * @return Zend_Form
-         */
         private function _getLoginForm()
         {
-            $loginForm = new Form_User_Login(array('method' => 'post'));
-            $this->view->loginForm = $loginForm;
-            return $loginForm;
+                $loginForm = new Form_User_Login(array('method' => 'post'));
+                $this->view->loginForm = $loginForm;
+                return $loginForm;
+        }
+        
+        private function _authenticate($form)
+        {
+                $db = Zend_Db_Table::getDefaultAdapter();
+                    $authAdapter = new Zend_Auth_Adapter_DbTable($db);
+
+                    $authAdapter->setTableName('user');
+                    $authAdapter->setIdentityColumn('email');
+                    $authAdapter->setCredentialColumn('password');
+                    $authAdapter->setCredentialTreatment('MD5(?)');
+
+                    $authAdapter->setIdentity($form->getValue('email'));
+                    $authAdapter->setCredential($form->getValue('password'));
+
+                    $auth = Zend_Auth::getInstance();
+                    $result = $auth->authenticate($authAdapter);
+
+                    // Did the user successfully login?
+                    if ($result->isValid()) {
+
+                        $user_table = new Model_DbTable_Users();
+
+                        $user = $user_table->getUserByEmail($form->getValue('email'));
+
+                        $user->last_login_ts = date('Y-m-d H:i:s');
+
+                        $user->save();
+
+                        $storage = $auth->getStorage();
+                        $storage->write($authAdapter->getResultRowObject(array('uid', 'first_name', 'last_name', 'email', 'last_login_ts')));
+
+                        Zend_Session::rememberMe(1209600);
+
+                        $this->_helper->flashMessenger->addMessage('You are logged in');
+                        //$this->_helper->redirector('index', 'index');
+                        return true;
+                    } else {
+                        //$this->view->error['form'] = array('Login failed');
+                        return false;
+                    }
         }
 }
 

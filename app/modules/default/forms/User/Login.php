@@ -16,7 +16,7 @@ class Form_User_Login extends Zend_Form
                         ->addValidator('StringLength', true, array('min' => 6));
 
                 $submit = new Zend_Form_Element_Submit('submit');
-                $submit->setAttrib('tabindex', 10)->setLabel('SUBMIT');
+                $submit->setLabel('SUBMIT');
 
                 $this->addElements(array($email, $password, $submit));
 

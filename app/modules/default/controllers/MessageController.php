@@ -14,12 +14,11 @@ class MessageController extends Zend_Controller_Action
   
         public function unattendingAction()
         {
-                $form = new Form_Message_Unattending(array('method'=>'post'));
+                $form = new Form_Message_Unattending();
 
                 if ($this->_request->isPost()) {
                     
                     $data = $this->_request->getPost();
-                    
                     if ($form->isValid($data)) {
 
                         $user_table = new Model_DbTable_Users();
@@ -34,7 +33,6 @@ class MessageController extends Zend_Controller_Action
                         )); 
 
                         if ($uid) {
-
                             $msg_table = new Model_DbTable_Messages();
                             if ($msg_table->addMessage(array('uid' => $uid, 'msg' => $data['message']))) {
 
@@ -44,12 +42,43 @@ class MessageController extends Zend_Controller_Action
                             }
                         }
                     } else {
-
-
                     }
                 }
 
                 $this->view->form = $form;
+        }
+        
+        public function validateAction()
+        {
+            
+                $this->_helper->getHelper('layout')->disableLayout();
+                $this->_helper->viewRenderer->setNoRender();
+                
+                if ($this->_request->isXmlHttpRequest()) {
+                        
+                    $data = $this->_request->getPost();
+                    $form = new Form_Message_Unattending();
+                    
+                    if ($form->isValidPartial($data)) {  
+                        
+                        if ($this->_isExistingEmail($form->getValue('email'))) {
+                            echo json_encode(array('success' => false));
+                        } else {
+                            echo json_encode(array('success' => true));
+                        }
+                    } else 
+                        echo $form->processAjax($data);
+                }
+                
+        }
+        
+        private function _isExistingEmail($email) 
+        {
+                $user_table = new Model_DbTable_Users();
+                if ($user_table->getUserByEmail($email))
+                    return true;
+                else 
+                    return false;
         }
         
         /**
@@ -60,8 +89,7 @@ class MessageController extends Zend_Controller_Action
          */
 	private function _sendMail($data)
 	{
-		$this->view->login = '111111';
-		$this->view->password = '2222222';
+		$this->view->data = $data;
 		
                 $config = array(
                     'ssl' => 'tls',
@@ -74,8 +102,10 @@ class MessageController extends Zend_Controller_Action
                 Zend_Mail::setDefaultTransport($transport);
                 
 		$mail = new Zend_Mail('utf-8');
-		$mail->addTo($data['email']);
-		$mail->setSubject('Unattending User Detail');
+		//$mail->addTo($data['email']);
+                $mail->addBcc(array('commaille@gmail.com', 'dilin110@gmail.com'));
+                $mail->setFrom('dilin@carburant.fr', '2013-jlrc-conference');
+		$mail->setSubject($data['first_name'] . ' ' . $data['last_name'] . ' Is Not Attending The Conference');
 		$mail->setBodyHtml($this->view->render('message/mail/unattending.phtml'));
 		
 		if($mail->send()) {

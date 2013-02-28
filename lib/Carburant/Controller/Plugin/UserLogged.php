@@ -19,9 +19,9 @@ class Carburant_Controller_Plugin_UserLogged extends Zend_Controller_Plugin_Abst
                         $view->isLogged = true;
         	} else {
                     /*
-        		if($controller != 'login') {
+                        if($controller != 'index' && $controller != 'users' ) {
         			$redirector = Zend_Controller_Action_HelperBroker::getStaticHelper('redirector');
-        			$redirector->setGotoSimple('index', 'login', 'admin');
+        			$redirector->setGotoSimple('index', 'index', 'default');
         		}
                      * 
                      */

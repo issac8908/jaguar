@@ -1,61 +1,39 @@
 <div id="index">
     <div id="main-top-border"></div>
     <div id="main-content">
+        
         <div class="left">
-               <div id="login">
-                    <h2>Already Registerd</h2>
-                    <div class="form">
-                        <form action="<?php echo $this->url(array('controller' => 'users', 'action' => 'login'), 'default'); ?>" method="post" enctype="application/x-www-form-urlencoded" name="login">
-
-                            <div class="section clearfix">
-                                <div class="block">
-                                        <label><span class="label">Login</span></label>
-                                        <div><span class="field"><?php echo $this->loginForm->email; ?></span></div>
-                                </div>
-                                <div class="block">
-                                        <label><span class="label">Password</span></label>
-                                        <div><span class="field"><?php echo $this->loginForm->password; ?></span></div>
-                                </div>
-                                <div class="block submit">
-                                    <?php echo $this->loginForm->submit; ?>
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
+            <div class="left-wrapper">
+            <div class="left-title">ALREADY REGISTERED</div>
+                <div class="form">
+                    <form id="login-form" action="<?php echo $this->url(array('controller' => 'users', 'action' => 'login'), 'default'); ?>" method="post" enctype="application/x-www-form-urlencoded" name="login">
+                        <div class="section clearfix">
+                            <div class="row"><label>Login</label><div class="field"><?php echo $this->loginForm->email; ?></div></div>
+                            <div class="row"><label><span class="label">PASSWORD</span></label><div class="field"><?php echo $this->loginForm->password; ?></div></div>
+                            <div class="row submit"><input type="submit" name="submit" id="btnSignIn" class="submit" value="SIGN IN"></div>
+                        </div>
+                    </form>
                 </div>
-
+            </div>
         </div>
+        
         <div class="right">
-             <div id="register">
-                <h2>Register here</h2>
+            <div class="right-wrapper">
+                <div class="right-title">REGISTER HERE</div>
                 <div class="form">
                     <form>
-
                         <div class="section clearfix">
-                            <div class="block">
-                                    <label><span class="label">Registration Code</span></label>
-                                    <div>
-                                        <span class="field">
-                                            <input type="text" value="<?php echo $this->code; ?>">
-                                        </span>
-                                    </div>
-                            </div>
-                            <div class="block submit">
-                                <input type="submit" name="submit2" id="btnSubmitCode" value="SUBMIT" tabindex="10"> 
-                            </div>
-                            <div id="popupDiag" style="display:none;">
-                                Will you attend the event? 
-                            </div>
+                            <div class="row"><label>REGISTRATION CODE</label><div class="field"><input type="text" value="<?php echo $this->code; ?>"></div></div>
+                            <div class="row submit"><input type="submit" name="submit2" id="btnSubmitCode" value="SIGN UP"></div>
+                            <div id="popupDiag" style="display:none;">Will you attend the event?</div>
                         </div>
-
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+<div id="login-errors"><ul><ul></div>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -78,5 +56,55 @@ $(document).ready(function(){
             }
         });
     });
+    $("#login-errors").hide().fadeIn(4000)
+    
+    $('#btnSignIn').click(function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            url: "/users/validate-login", 
+            data: {'email': $('#email').val(), 'password': $('#password').val()},
+            success: function(response) {
+                if (response.success == true) {
+                    //$('#login-form').submit();
+                    window.location.href="<?php echo $this->url(array('controller'=>'users', 'action'=>'index')) ?>";
+                } else if (response.success == false) {
+                    $('input').removeClass('error');
+                    $('#login-errors ul').html('<li>' + response.message + '</li>');
+                    $('#login-errors').dialog('open');
+                } else {
+                    outputFormErrorMessages(response);
+                }
+            }
+        });
+    });
+
+    $('#login-errors').dialog({
+        autoOpen: false,
+        modal: true,
+        title: 'SIGN IN',
+        width: 500,
+        show: { effect: 'fade', duration: 500 },
+        hide: { effect: 'hide', duration: 500 },
+        buttons: {
+            'Close': function(){
+                $(this).dialog("close");
+            }
+        }
+    });
 });
+
+function outputFormErrorMessages(response) {
+    $('#login-errors ul').empty();
+    $('input').removeClass('error');
+    $.each(response, function (k, v) {
+        $.each(v, function(k1, v1) {
+            $('#login-errors ul').append('<li>' + k + ': ' + v1 + '</li>');
+            $('#' + k).addClass('error');
+        });
+    });
+    
+    $('#login-errors').dialog('open');
+}
 </script>

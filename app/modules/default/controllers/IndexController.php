@@ -4,75 +4,22 @@ class IndexController extends Zend_Controller_Action
 {	
 	public function init()
 	{	
-	/*	$actionStack = Zend_Controller_Action_HelperBroker::getStaticHelper('actionStack');	
-		$actionStack->actionToStack('slideshow', 'component');
-		$actionStack->actionToStack('menu', 'component');
-		$actionStack->actionToStack('footermenu', 'component');
-
-		$actionStack->actionToStack('pub', 'sidebar');
-		$actionStack->actionToStack('follow', 'sidebar');
-		$actionStack->actionToStack('tags', 'sidebar');
-		$actionStack->actionToStack('newsletter', 'sidebar');
-		$actionStack->actionToStack('recommanded', 'sidebar');
-		$actionStack->actionToStack('register', 'sidebar');
-         * 
-         */
 	}
 	
 	public function indexAction()
 	{
-         
-                $auth = Zend_Auth::getInstance();
-                
-                if ($auth->hasIdentity()) {
-                    
-                    $identity = $auth->getIdentity();
-                    
-                    if (isset($identity)) {
-                        $this->_helper->redirector('index', 'users');
-                    }
+            $auth = Zend_Auth::getInstance();
+            if ($auth->hasIdentity()) {
+                $identity = $auth->getIdentity();
+                if (isset($identity)) {
+                    $this->_helper->redirector('index', 'users');
                 }
-                
-                $loginForm = $this->_getLoginForm();
-                $this->view->code = substr(number_format(time() * rand(),0,'',''),0,20);
-            /*	$highlightTable = new Model_DbTable_Highlight();
-                    $tagsTable = new Model_DbTable_Tags();
+            }
 
-                    $this->view->focus = $highlightTable->getHighlightByHpbloc();
-                    $this->view->articles = $highlightTable->getHighlightByHplist();
-
-                    $tagsRowset = $tagsTable->getTags(array('status' => 'enabled'));
-                    if($tagsRowset) {
-                            $tags = array();
-                            foreach($tagsRowset as $value) {
-                                    $tags[] = $value['title'];
-                            }
-
-                            $this->view->seo_keyword = implode(', ', $tags);
-                    }
-
-                    $this->view->ogTitle = 'Citoyens de la Route';
-                    $this->view->ogDescription = $this->view->seo_description = 'Automobilistes et utilisateurs de 2 roues, ensemble, imaginons une route plus juste, plus sûre, plus libre et plus sereine.';
-                    $this->view->ogImage = $this->view->getHttpHost(true) .  '/medias/images/app_pic.jpg';
-                    $this->view->ogUrl = $this->view->getHttpHost(true);
-             * 
-             */
+            $loginForm = $this->_getLoginForm();
+            $this->view->code = substr(number_format(time() * rand(),0,'',''),0,20);
 	}
 
-        /*
-	public function addGeneralMangerAction()
-        {
-            $buff = file_get_contents("F:/wamp/www/jaguar/medias/fields.csv", true);
-            mb_convert_encoding( $buff, 'UTF-8', 'UTF-8,GBK,GB2312,BIG5' );
-            $lines = explode("\n",$buff);
-            $table = new Model_DbTable_GroupOne();
-            foreach ($lines as $row) {
-                $table->addGeneralManager($row);
-            }
-            die();
-        }
-        */
-        
 	private function _getLoginForm()
         {
             $loginForm = new Form_User_Login(array('method' => 'post'));

@@ -1,17 +1,9 @@
-Veuillez trouver ci-dessous le rappel de vos identifiants :
-<br>
-<br>
-
-Login : <?php echo $this->login; ?><br>
-Mot de passe : <?php echo $this->password; ?><br>
-<br>
-
-ou bien
-<br>
-<br>
-
-Vous pouvez vous connecter via votre compte Facebook.
-<br>
-<br>
-
-L'équipe Citoyens de la Route
+<table id="unattending-mail" width="60%">
+    <tr><td>First Name</td><td><?php echo $this->data['first_name'] ?></td></tr>
+    <tr><td>Last Name</td><td><?php echo $this->data['last_name'] ?></td></tr>
+    <tr><td>Email</td><td><?php echo $this->data['email'] ?></td></tr>
+    <tr><td>Dealership name</td><td><?php echo $this->data['dealership_name'] ?></td></tr>
+    <tr><td>Dealership address</td><td><?php echo $this->data['dealership_addr'] ?></td></tr>
+    <tr><td>Dealership region</td><td><?php echo $this->data['dealership_region'] ?></td></tr>
+    <tr><td>Message</td><td><?php echo $this->data['message'] ?></td></tr>
+</table>
