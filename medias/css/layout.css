@@ -53,7 +53,11 @@ body
     color: #807f83;
 }
 
-#logo { float: right; margin-right: 20px; margin-top: 16px;}
+#logo { 
+    float: right; 
+    margin-right: 20px; 
+    margin-top: 16px;
+}
 #logo img { width: 175px; }
 
 /*main*/
@@ -126,17 +130,9 @@ body
     padding-bottom: 3px;
 }
 
-div#step-one, 
-div#step-two,
-div#step-three
-{
-    width: 1000px;
-    margin: 0 auto;
-}
 
-div#step-one .section,
-div#step-two .section,
-div#step-three .section
+
+div#step-one .section, div#step-two .section, div#step-three .section
 {
     display: block;
     clear: both;
@@ -145,30 +141,22 @@ div#step-three .section
     margin-top: 0px;
 }
 
-div#step-one select,
-div#step-two select,
-div#step-three select
+select
 {
-    width: 200px;
+    float:right; 
+    width: 210px;
     height: 30px;
     font-size: 16px;
     -webkit-border-radius: 2px;
     vertical-align: central;
 }
 
-.left
-{ 
-    width: 500px; float: left; 
+.left 
+{  
+    width: 500px; 
+    float: left; 
 }
 
-div#step-three .left 
-{
-    width: 1000px;float:left;
-}
-
-div#step-one .right, 
-div#step-two .right,
-div#step-three .right,
 .right
 {
     width: 500px;
@@ -189,9 +177,6 @@ div#step-three .right,
     height: auto;
 }
 
-div#step-one .row > label,
-div#step-two .row > label,
-div#step-three .row > label,
 .row > label
 {
     width: 170px;
@@ -204,43 +189,33 @@ div#step-three .row > label,
     color: #4c4c4c;
     font-weight: bold;
 }
-
 div#index .left .row > label {width: 80px;}
 div#index .right .row > label {width: 80px;}
+div#step-one .left .row > label {width: 250px;}
+div#step-one .right .row > label {width: 130px; }
+div#step-two .row > label { width: 250px; text-align: right; }
+div#step-three .row > label {width: 250px; text-align: center;}
+div#step-three .row > label.small {width: 130px;}
 
-div#step-three .row > label {width: 220px; text-align: center;}
-
-div#step-one .right .row > label
-{
-    width: 120px;
-}
-
-div#step-one .row .field,
-div#step-two .row .field,
-div#step-three .row .field
 .row .field 
 {
     width: 300px;
     float: left;
     text-align: left;
-    padding-left: 5px;
 }
+.row .field > .text { float: right; font-weight: bold; padding-right: 90px; padding-top: 7px;}
+div#step-one .left .row .field {width: 230px;}
+div#step-two .row > .field {width: 240px;}
+div#step-three .row .field { padding-top: 7px; width: auto;}
 div#index .row .field {width: 210px; float: right;}
-
-div#step-three .row .field {padding-top: 7px;}
-
 div#step-one .row .field > label,
-div#step-three .row .field > label
-{
-    float: left;
+div#step-three .row .field > label {     
     text-align: right;
-    vertical-align: central;
     padding: 5px 4px 4px 4px;
     font-size: 14px;
     color: #4c4c4c;
 }
-
-
+div#step-one .row .field input[type='radio'] {margin-top: 7px;}
 div#step-one .row .field > .erorrs
 {
     padding-left: -20px;
@@ -263,7 +238,11 @@ div#step-three input[type='text']
     text-indent: 3px;
     font-size: 16px;
 }
-
+textarea { float:right; }
+div#step-one .left input[type='text'], div#step-one .left input[type='password'] { float:right; width: 210px; }
+div#step-one .right input[type='text'], div#step-one .right input[type='password'] { float:right; width: 180px; }
+div#step-two input[type='text'] { float:right; width: 200px; }
+div#step-three input[type='text'] { float:right; width: 225px; }
 div#index .left input[type='text'], div#index .left input[type='password']
 {
     width: 96%;
@@ -281,59 +260,32 @@ input[type='password'].error,
 div#step-one .row #position.error
 {
     border: 1px solid rgb(181, 4, 4);
+    border-radius: 5px;;
 }
 
-div#step-one .row .positions
-{
-    display: block;
-    float: right;
-    width: 350px;
-}
-
-div#step-one .row .positions .row2
-{
-    display: block;
-    float: left;
-    width: 400px;
-}
-
-div#step-one .row .positions .row2 span,
-div#step-one .row .positions .row2 label
-{
-    color: #4c4c4c;
-    font-size: 14px;
-    float: left;
-    width: 110px;
-    text-align: right;
-    padding-top: 10px;
-}
-
-div#step-one .row .positions .row2 span{width: 300px; text-align: left; padding-top: 3px;}
-div#step-one .row .positions .field 
-{
-    padding-left: 5px;
-    color: #4c4c4c;
-    font-size: 14px;
-    margin-top: 5px;
-    float: left;
-    width: 200px;
-}
-    
-div#stepOneSubmitBtn,
-div#stepTwoNextBtn,
-div#stepTwoSkipBtn,
-div#stepThreeSubmitBtn,
-.submit, #submit,
-#btnSubmitCode,
 .btn
 {
     float: right;
 }
 
-input[type='submit']
+input[type='submit'], .btn
 {
    background-color: rgb(206,198,189);
    padding: 8px 50px;
+   border-radius: 3px;
+   -moz-border-radius: 3px;
+   -webkit-border-radius: 3px;
+   text-transform: uppercase;
+   color: white;
+   font-weight: bold;
+   font-size: 14px;
+   float:right;
+}
+
+.small-btn
+{
+    background-color: rgb(206,198,189);
+    padding: 5px 10px;
    border-radius: 3px;
    -moz-border-radius: 3px;
    -webkit-border-radius: 3px;
@@ -341,9 +293,20 @@ input[type='submit']
    text-transform: uppercase;
    color: white;
    font-weight: bold;
+   font-size: 12px;
 }
 
-#step-three-notice { color: rgb(181, 4, 4); font-size: 14px;}
+.important-notice 
+{ 
+    color: rgb(181, 4, 4); 
+    font-size: 14px;
+    text-align: center;
+}
+.gengeral-notice 
+{
+    font-size: 14px;
+    text-align: center;
+}
 
 #unattending .right label 
 {
@@ -357,4 +320,108 @@ input[type='submit']
     height: 150px;
     margin-top: 5px;
     margin-bottom: 10px;
+}
+
+
+div#profile table, div#venue table
+{
+    width: 100%;
+}
+
+div#profile table tr, div#venue table tr
+{
+}
+
+div#profile table tr td, div#venue table tr td
+{
+    font-size: 12px;
+    font-weight: normal;
+    padding-top: 5px;
+    padding-right: 30px;
+}
+
+div#profile table tr td:first-child, div#venue table tr td:first-child
+{
+    text-align: right;
+    width: 30%;
+    font-weight: bold;
+}
+
+div#conf-lib
+{
+    width: 100%;
+    font-size: 12px;
+}
+
+div#conf-lib .block 
+{
+    display: block;
+    float: left;
+    margin-top: 10px;
+}
+
+div#conf-lib .block > label 
+{
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+div#conf-lib ul 
+{
+    margin-top: 0px;
+}
+
+div#conf-lib ul li
+{
+    list-style: none;
+}
+
+div#conf-lib ul li > span
+{
+    width: 200px;
+    float: left;
+    margin-top: 10px;
+}
+
+div#conf-lib ul li > span:first-child
+{
+    width: 400px;
+}
+
+div#register .one-fourth 
+{
+    width: 250px;
+}
+
+#step-one .positions {display: block; float:left;}
+.col-left
+{
+    float:left;
+    display: block;
+    width: 150px;
+    margin-top: 8px;
+}
+
+.col-right, .col-right select
+{
+    float:right;
+    display: block;
+    width: 188px;
+    margin-top: 8px;
+}
+
+
+.col-right > label
+{
+    text-align: right;
+    padding-top: 8px;
+    padding-right: 2px;
+    font-size: 14px;
+    color: #4c4c4c;
+    font-weight: bold;
+}
+
+.col-right .field {
+    float: right;
 }

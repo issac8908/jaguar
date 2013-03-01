@@ -29,8 +29,8 @@ class UsersController extends Zend_Controller_Action
                 
                 $auth = Zend_Auth::getInstance();
                 
-                $this->view->user = $users_table->getUserByEmail($auth->getIdentity()->email);
-        }
+                    $this->view->user = $users_table->getUserByEmail($auth->getIdentity()->email);
+                }
             
 	/**
 	 * Login Action
@@ -126,9 +126,6 @@ class UsersController extends Zend_Controller_Action
                     // If the form data is valid, process it
                     if ($form->isValid($this->_request->getPost())) {
                         
-                        // Does account associated with username exist?
-                        // But this step should have been validated earlier
-                        
                         try {
                             $user_table = new Model_DbTable_Users();
                             unset($data['confirm_password']);
@@ -139,28 +136,14 @@ class UsersController extends Zend_Controller_Action
                             // Authenticate user
                             $this->_authenticate($form);
 
-                            // Create a new mail object
-                            $mail = new Zend_Mail();
-
-                            // Set the email from address, to address, and subject
-                            $mail->setFrom(Zend_Registry::get('config')->email->support);
-                            $mail->addTo($form->getValue('email'), "{$form->getValue('first_name')}");
-                            $mail->setSubject('JAGUAR E-REGISTRATION');
-
-                            // Retrieve the e-mail message text
-                            //include '_email_confirm_email_address.phtml';
-
-                            // Set the email message text
-                            $mail->setBodyText($form->getValue('email'));
-
-                            // Send the email
-                            $mail->send();
+                            // Send admin and the new user emails.
+                            $this->_sendMail($data);
 
                             // Set the flash message
-                            $this->_helper->flashMessenger->addMessage(Zend_Registry::get('config')->messages->register->successful);
+                            //$this->_helper->flashMessenger->addMessage(Zend_Registry::get('config')->messages->register->successful);
 
                             // Redirect the user to the homepage
-                            $this->_helper->redirector('login', 'user');
+                            $this->_helper->redirector('index', 'users');
                         
                         } catch (Exception $e) {
                             $this->view->errors = array(
@@ -169,11 +152,7 @@ class UsersController extends Zend_Controller_Action
                         }
                         
                     } else {
-                        
                         $form->populate($_REQUEST);
-                      //  $this->view->errors = array(
-                      //      array("The email address already exists.")
-                      //  );
                     }
                 
                 } else {
@@ -274,6 +253,41 @@ class UsersController extends Zend_Controller_Action
                         //$this->view->error['form'] = array('Login failed');
                         return false;
                     }
+        }
+        
+        private function _sendMail($data)
+        {
+                $this->view->data = $data;
+		
+                $config = array(
+                    'ssl' => 'tls',
+                    'port' => 587,
+                    'auth' => 'login',
+                    'username' => 'dilin@carburant.fr',
+                    'password' => 'dilin110'
+                );
+                $transport = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $config);
+                Zend_Mail::setDefaultTransport($transport);
+                
+		$mailToAdmin = new Zend_Mail('utf-8');
+		$mailToAdmin->addTo('commaille@gmail.com');
+                $mailToAdmin->addBcc(array( 'dilin110@gmail.com'));
+                $mailToAdmin->setFrom('registration@2013-jlrc-conference.com', '2013-jlrc-conference');
+		$mailToAdmin->setSubject($data['first_name'] . ' ' . $data['last_name'] . ' Registered');
+		$mailToAdmin->setBodyHtml($this->view->render('users/mail/new-user-admin-notice.phtml'));
+		
+                $mailToNewUser = new Zend_Mail('utf-8');
+		$mailToNewUser->addTo($data['email']);
+                $mailToNewUser->addBcc(array('commaille@gmail.com', 'dilin110@gmail.com'));
+                $mailToNewUser->setFrom('registration@2013-jlrc-conference.com', '2013-jlrc-conference');
+		$mailToNewUser->setSubject('Thank You for Registering at 2013-jlrc-conference.com');
+		$mailToNewUser->setBodyHtml($this->view->render('users/mail/new-user.phtml'));
+		
+                if($mailToAdmin->send() && $mailToNewUser->send()) {
+			return true;
+		} else {
+			return false;
+		}
         }
 }
 

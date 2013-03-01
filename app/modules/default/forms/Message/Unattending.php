@@ -16,7 +16,8 @@ class Form_Message_Unattending extends Zend_Form
 
                 $email = new Zend_Form_Element_Text('email');
                 $email->setRequired(true)
-                        ->addValidator('EmailAddress', true, array('mx' => true, 'deep' => true));
+                        ->addValidator('EmailAddress', true, array('mx' => true, 'deep' => true))
+                        ->addValidator('Db_NoRecordExists', true, array('table' => 'user', 'field' => 'email'));
                 
                 $dealership_name = new Zend_Form_Element_Text('dealership_name');
                 

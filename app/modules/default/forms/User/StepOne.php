@@ -25,7 +25,7 @@ class Form_User_StepOne extends Zend_Form
                 ))->setSeparator('  ')->setRequired(true);
                 
                 $id_passport_number = new Zend_Form_Element_Text('id_passport_number');
-                $id_passport_number->setAttrib('size', '30');
+                $id_passport_number->setAttrib('size', '30')->setRequired(true);
                 
                 
                 $email = new Zend_Form_Element_Text('email');
@@ -53,10 +53,10 @@ class Form_User_StepOne extends Zend_Form
                 
                 
                 $tel = new Zend_Form_Element_Text('tel');
-                $tel->setAttrib('size', '30');
+                $tel->setAttrib('size', '30')->setRequired(true);;
                 
                 $mobile = new Zend_Form_Element_Text('mobile');
-                $mobile->setAttrib('size', '30');
+                $mobile->setAttrib('size', '30')->setRequired(true);;
                 
                 $position = new Zend_Form_Element_Radio('position');
                 $position->addMultiOptions(array(

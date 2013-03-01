@@ -3,7 +3,7 @@
     <div id="breadcrumb">
         <div id="breadcrumb-wrapper">
             <ul>
-                <li id="about" class="active">1. ABOUT YOU</li>
+                <li id="about" class="active">1. GUEST INFORMATION (Mandatory)</li>
                 <li id="trans">2. TRANSPORTATION</li>
                 <li id="accomodation">3. ACCOMODATION</li>
             </ul>
@@ -15,8 +15,9 @@
         <div id="register-form-content">
             <form action="<?php echo $this->url(array('controller' => 'users', 'action' => 'register'), 'default'); ?>" method="post" enctype="application/x-www-form-urlencoded" >
             <div id="step-one" style="display: none;">
+                <p class="important-notice">YOUR PERSONAL INFORMATION WILL NOT BE DISPLAYED FOR ANY COMMERCIAL OR PUBLIC USE.</p>
+                <p class="gengeral-notice">NOTE: IF YOU WANT TO INVITE ADDITIONAL GUEST, PLEASE CONTACT DIRECTLY WITH YOUR AREA BUSINESS MANAGER .</p>
                 <div class="form">
-                        
                             <div class="section clearfix">
 
                                     <div class="left">
@@ -84,39 +85,23 @@
                                             <div id="position">
                                                 
                                                 <div class="positions">
-                                                    <div class="row2">
-                                                        <span><input type="radio" name="position" id="position-group_head" value="group_head">Group Head</span>
-                                                    </div>
-                                                    <div class="row2">
+                                                    <div class="col-left"><span><input type="radio" name="position" id="position-group_head" value="group_head">Group Head</span></div>
+                                                    <div class="col-right">
                                                         <label>Group Name</label>
                                                         <div class="field"><?php echo $this->stepOneForm->group_name; ?></div>
                                                     </div>
-                                                    <div class="row2">
-                                                        <label>Title</label>
-                                                        <div class="field"><?php echo $this->stepOneForm->group_title; ?></div>
-                                                    </div>
+                                                    <div class="col-right"><label>Title</label><div class="field"><?php echo $this->stepOneForm->group_title; ?></div></div>
                                                 </div>
                                                 <div class="positions">   
-                                                    <div class="row2">
-                                                        <span><input type="radio" name="position" id="position-general_manager" value="general_manager">General Manager</span>
-                                                    </div>
-                                                    <div class="row2">
-                                                        <label>DMS CODE</label>
-                                                        <div class="field"><?php echo $this->stepOneForm->dms_code ?></div>
-                                                    </div>
+                                                    <div class="col-left"><span><input type="radio" name="position" id="position-general_manager" value="general_manager">General Manager</span></div>
+                                                    <div class="col-right"><label>DMS CODE</label><div class="field"><?php echo $this->stepOneForm->dms_code ?></div></div>
                                                 </div>
                                                 <div class="positions">
-                                                    <div class="row2">
+                                                    <div class="col-left">
                                                         <span><input type="radio" name="position" id="position-partner" value="partner">Partner</span>
                                                     </div>
-                                                    <div class="row2">
-                                                        <label>Company name</label>
-                                                        <div class="field"><?php echo $this->stepOneForm->company_name ?></div>
-                                                    </div>
-                                                    <div class="row2">
-                                                        <label>Title</label>
-                                                        <div class="field"><?php echo $this->stepOneForm->company_title ?></div>
-                                                    </div>
+                                                    <div class="col-right"><label>Company name</label><div class="field"><?php echo $this->stepOneForm->company_name ?></div></div>
+                                                    <div class="col-right"><label>Title</label><div class="field"><?php echo $this->stepOneForm->company_title ?></div></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -133,6 +118,9 @@
             </div>
             
             <div id="step-two" style="display:none;">
+                <p class="important-notice">
+                    IMPORTANT NOTICE: GUESTS ARE IN CHARGE OF THEIR OWN TRANSFERS
+                </p>
                 <div class="form">
                     <div class="section clearfix">
                         <div class="left">
@@ -153,7 +141,7 @@
                             
                             <div class="row clearfix">
                                 <label>To</label>
-                                <div class="field">Shanghai</div>
+                                <div class="field"><span class="text">Shanghai</span></div>
                             </div>
                             
                             <div class="row clearfix">
@@ -175,7 +163,7 @@
                             
                             <div class="row clearfix">
                                 <label>From</label>
-                                <div class="field">Shanghai</div>
+                                <div class="field"><span class="text">Shanghai</span></div>
                             </div>
                             
                             <div class="row clearfix">
@@ -191,57 +179,42 @@
 
                     </div>
                     <div class="section clearfix">
-                        <div id="stepTwoNextBtn"><button>Next</button></div>
-                        <div id="stepTwoSkipBtn"><button>Skip</button></div>
+                        <div id="stepTwoNextBtn"><button class="btn">Next</button></div>
+                        <div id="stepTwoSkipBtn"><button class="btn">Skip</button></div>
                     </div>
                 </div>
             </div>
             
             <div id="step-three" style="display:none;">
-                <p id="step-three-notice">IMPORTANT NOTICE: All attendees are to stay at this event hotel Intercontinental Shanghai Expo hotel on April 8th if  hotel accommodation is required.
-                    Guaranteed is a number of rooms available at a special rate of 1,100 RMB net per night.
-                    Please make your reservation through: _________
-                    Hotel accommodation and transportation to and from the hotel is to be arranged by attendees at their own expense.</p>
+                <p class="important-notice">
+                    IMPORTANT NOTICE: ALL ATTENDEES MUST STAY AT THE INTERCONTINENTAL SHANGHAI EXPO HOTEL ON APRIL 8TH (IF HOTEL ACCOMMODATION IS REQUIRED).<br>
+                    A LIMITED NUMBER OF ROOMS ARE GUARANTEED AT A SPECIAL RATE OF 1,100 RMB NET PER NIGHT (BREAKFAST INCLUDED).
+                    ACCOMMODATION AND TRANSFERS TO AND FROM THE HOTEL MUST BE ARRANGED BY ATTENDEES AT THEIR OWN EXPENSE.
+                    IF YOU NEED ANY OTHER INFORMATION, PLEASE CONTACT OUR TEAM: + 86 (21) 62585325 OR + 86 (21) 62585320
+                </p>
                 <div class="form">
-                    <div class="section clearfix">
                         <div class="left">
-                            <div class="row clearfix">
-                                    <label>Intercontinental Shanghai Expo Hotel room type</label>
-                                    <div class="field">
-                                        <?php //echo $this->stepThreeForm->room_type; ?>
-                                        <input type="radio" name="room_type" id="room_type-single" value="single">  Single
-                                        <input type="radio" name="room_type" id="room_type-twin" value="twin"> Twin
-                                    </div>
+                            <div class="row">
+                                <label>Will you stay at the Intercontinental Shanghai Expo Hotel?</label>
+                                <div class="field"><?php echo $this->stepThreeForm->is_staying ?></div>
                             </div>
-
-                            <div class="row clearfix">
-                                    <label>If twin room shared with another guest, please precise guest name</label>
-                                    <div class="field"><?php echo $this->stepThreeForm->guest_name; ?></div>
-                            </div>
-                            
-                            <div class="row clearfix">
-                                <label>I will not stay at Intecontinental Shanghai Expo Hotel</label>
-                                <div class="field"><?php echo $this->stepThreeForm->not_staying ?></div>
-                            </div>
-                            
-                            <div class="row clearfix">
-                                <label>Please explain why.</label>
-                                <div class="field"><?php echo $this->stepThreeForm->not_staying_reason ?></div>
-                            </div>
-                            
-                            <div class="row clearfix">
+                            <div class="row">
                                  <label>Complimentary lunch is offered at the Intercontinental Shanghai Expo Hotel between 11:30am - 12:20pm on April 8th, will you join?</label>
-                                 <div class="field">
-                                     <?php //echo $this->stepThreeForm->is_joining_lunch; ?>
-                                     <input type="radio" name="is_joining_lunch" id="is_joining_lunch-1" value="1"> Yes
-                                     <input type="radio" name="is_joining_lunch" id="is_joining_lunch-0" value="0"> No
-                                 </div>
+                                 <div class="field"><?php echo $this->stepThreeForm->is_joining_lunch; ?></div>
                             </div>
+                            
                         </div>
+                    <div class="right staying_at_hotel" style="display:none;">
+                        <div class="row"><label>Intercontinental Shanghai Expo Hotel room type</label><div class="field"><?php echo $this->stepThreeForm->room_type; ?></div></div>
+                        <div class="row"><label>If twin room shared with another guest, please precise guest name</label><div class="field"><?php echo $this->stepThreeForm->guest_name; ?></div></div>
+                    </div>
+                    <div class="right not_staying_at_hotel" style="display:none;">
+                        <div class="row"><label class="small">Please explain why.</label><div class="field"><?php echo $this->stepThreeForm->not_staying_reason ?></div></div>
                     </div>
                     <div class="section clearfix">
-                        <div id="stepThreeSubmitBtn"><input type="submit" value="Register"/></div>
+                        <div id="stepThreeSubmitBtn"><input type="submit" value="Register" class="btn"/></div>
                     </div>
+                    
                 </div>
             </div>
         </form>
@@ -252,6 +225,7 @@
         
 </div>
 <div id="reg-form-errors"><ul><ul></div>
+<div id="skip-step"></div>
 <script type="text/javascript">
 $(function() {
     $("#reg-form-errors").hide().fadeIn(4000)
@@ -272,6 +246,8 @@ $(function() {
                 'last_name':    $('#last_name').val(),
                 'gender': (typeof(gender) == 'undefined') ? '' : gender,
                 'id_passport_number': $('#id_passport_number').val(),
+                'tel':   $('#tel').val(),
+                'mobile':    $('#mobile').val(),
                 'email':    $('#email').val(),
                 'confirm_email': $('#confirm_email').val(),
                 'password': $('#password').val(),
@@ -291,7 +267,12 @@ $(function() {
         });
     });
     
-    $('#stepTwoSkipBtn, #stepTwoNextBtn').click(function(e) {
+    $('#stepTwoSkipBtn').click(function(e) {
+        e.preventDefault();
+        $('#skip-step').html('Are you Sure You Want to Skip This Step?');
+        $('#skip-step').dialog('open');
+    });
+    $('#stepTwoNextBtn').click(function(e) {
         e.preventDefault();
         $('#step-two').hide();
         $('ul li#trans').removeClass('active');
@@ -299,10 +280,31 @@ $(function() {
         $('#step-three').show();
     });
 
+    $('#skip-step').dialog({
+                autoOpen: false,
+                modal: true,
+                title: 'REGISTER',
+                width: 500,
+                show: { effect: 'fade', duration: 500 },
+                hide: { effect: 'hide', duration: 500 },
+                buttons: {
+                    'YES': function() {
+                        $(this).dialog("close");
+                        $('#step-two').hide();
+                        $('ul li#trans').removeClass('active');
+                        $('ul li#accomodation').addClass('active');
+                        $('#step-three').show();
+                    },
+                    'NO': function(){
+                        $(this).dialog("close");
+                    }
+                }
+    });
+    
     $('#reg-form-errors').dialog({
                 autoOpen: false,
                 modal: true,
-                title: 'Register',
+                title: 'REGISTER',
                 width: 500,
                 show: { effect: 'fade', duration: 500 },
                 hide: { effect: 'hide', duration: 500 },
@@ -317,6 +319,15 @@ $(function() {
     
     $('#arrival_time, #departure_time').timepicker({'timeFormat': 'H:i' });
 
+    $('#is_staying-1').click(function(e) {
+        $('.staying_at_hotel').show();
+        $('.not_staying_at_hotel').hide();
+    }); 
+
+    $('#is_staying-0').click(function(e) {
+        $('.staying_at_hotel').hide();
+        $('.not_staying_at_hotel').show();
+    });
 });
 
 function outputFormErrorMessages(response) {
@@ -329,6 +340,7 @@ function outputFormErrorMessages(response) {
             $('#reg-form-errors ul').append('<li>' + k + ': ' + v1 + '</li>');
             if (k == 'gender') {
                $('#' + 'gender-m').parent().parent().css('border', '1px solid #B50404');
+               $('#' + 'gender-m').parent().parent().css('border-radius', '5px');
             } 
             else {
                 $('#' + k).addClass('error');

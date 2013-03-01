@@ -50,12 +50,6 @@ $(document).ready(function(){
                 if (response.success == true) {
                     $('#btnSubmit').unbind('click');
                     $('#message-form').submit();
-                } else if (response.success == false) {
-                    $('#form-errors ul').empty();
-                    $('input').removeClass('error');
-                    $('#form-errors ul').append('<li>' + 'Our records indicate that you have an account with that email address. ' + '</li>');
-                    $('#email').addClass('error');
-                    $('#form-errors').dialog('open');
                 } else {
                     outputFormErrorMessages(response);
                 }

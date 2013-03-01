@@ -103,8 +103,8 @@ class MessageController extends Zend_Controller_Action
                 
 		$mail = new Zend_Mail('utf-8');
 		//$mail->addTo($data['email']);
-                $mail->addBcc(array('commaille@gmail.com', 'dilin110@gmail.com'));
-                $mail->setFrom('dilin@carburant.fr', '2013-jlrc-conference');
+                $mail->addBcc(array( 'dilin110@gmail.com', 'commaille@gmail.com'));
+                $mail->setFrom('registration@2013-jlrc-conference.com', '2013-jlrc-conference');
 		$mail->setSubject($data['first_name'] . ' ' . $data['last_name'] . ' Is Not Attending The Conference');
 		$mail->setBodyHtml($this->view->render('message/mail/unattending.phtml'));
 		
