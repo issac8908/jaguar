@@ -6,23 +6,35 @@ class Carburant_Controller_Plugin_LangSelector extends Zend_Controller_Plugin_Ab
 	public function dispatchLoopStartup(Zend_Controller_Request_Abstract $request)
 	{
 		
-		$front = Zend_Controller_Front::getInstance();
-		
-		$translate = $front->getParam('bootstrap')->getResource('translate');
-		$locale = $front->getParam('bootstrap')->getResource('locale');
-
-		switch($locale) {
-			case 'zh_CN' : $lang = 'en'; break;
-			case 'en_US' : $lang = 'en'; break;
-			case 'fr_FR' : $lang = 'fr'; break;
-			default : $lang = 'fr'; break;
-		}
-		
-		if($translate->isAvailable($lang)) {
-			$translate->setLocale($lang);
+                $lang = '';
+		$locale = new Zend_Locale();
+                
+		if (isset($_COOKIE['locale']) && Zend_Locale::isLocale($_COOKIE['locale'], true, false)) {
+                    $locale->setLocale($_COOKIE['locale']);
 		} else {
-			$translate->setLocale('fr');
+                    $brower_lang_arr = explode(',', $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
+                    $locale->setLocale($brower_lang_arr[0]);
+                    $_COOKIE['locale'] = $brower_lang_arr[0];
 		}
+
+		if ($locale == 'en_US') {
+			$lang = 'en';
+		} else { 
+			$lang = 'zh';
+		}
+		
+		$translate = new Zend_Translate('Array', APP_PATH . '/languages/'. $lang . '.php' , $lang);
+		Zend_Registry::set('Zend_Translate', $translate);
+                
+                $translator = new Zend_Translate(
+                    array(
+                        'adapter' => 'array',
+                        'content' => RESOURCES_LANGUAGES, 
+                        'locale'  => $lang,
+                        'scan' => Zend_Translate::LOCALE_DIRECTORY
+                    )
+                );
+                Zend_Validate_Abstract::setDefaultTranslator($translator);
 
     }
 

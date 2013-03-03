@@ -9,14 +9,14 @@ class Form_User_StepOne extends Zend_Form
                 $first_name = new Zend_Form_Element_Text('first_name');
                 $first_name->setAttrib('tabindex', 1)
                         ->setAttrib('size', '30')
-                        ->setRequired(true)
-                        ->addValidator('NotEmpty', true, array('messages' => array('isEmpty' => 'First name cannot be empty')));
+                        ->setRequired(true);
+                        //->addValidator('NotEmpty', true, array('messages' => array('isEmpty' => 'First name cannot be empty')));
                 
                 $last_name = new Zend_Form_Element_Text('last_name');
                 $last_name->setAttrib('tabindex', 2)
                         ->setAttrib('size', '30')
-                        ->setRequired(true)
-                        ->addValidator('NotEmpty', true, array('messages' => array('isEmpty' => 'Last name cannot be empty')));
+                        ->setRequired(true);
+                        //->addValidator('NotEmpty', true, array('messages' => array('isEmpty' => 'Last name cannot be empty')));
 
                 $gender = new Zend_Form_Element_Radio('gender');
                 $gender->setAttrib('tabindex', 3)->setLabel('Gender :')->addMultiOptions(array(
@@ -61,10 +61,9 @@ class Form_User_StepOne extends Zend_Form
                 $position = new Zend_Form_Element_Radio('position');
                 $position->addMultiOptions(array(
                     'group_head' => 'Group Head',
-                    'general_manager' => 'General Manager',
+                    'manager' => 'General Manager',
                     'partner' => 'Partner'
-                ));
-                $position->setRequired(true);
+                ))->setSeparator('  ')->setRequired(true);
 
                 $group_one_table = new Model_DbTable_GroupOne();
                 

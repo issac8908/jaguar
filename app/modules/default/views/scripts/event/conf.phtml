@@ -3,17 +3,18 @@
     <div id="menu">
         <div id="menu-wrapper">
             <ul>
-                <li><a href="/users">My Profile</a></li>
-                <li><a href="/event/venue">Venue Information</a></li>
-                <li class="active"><a href="/event/conf-lib">Conference Library</a></li>
-                <li><a href="/event/gallery">Gallery</a></li>
-                <li><a href="/event/survey">Survey</a></li>
+                <li><a href="/users">My PROFILE</a></li>
+                <li><a href="/event/agenda">AGENDA</a></li>
+                <li class="active"><a href="/event/conf">CONFERENCE Speakers & Venue</a></li>
+                <li><a href="/event/hospitality">HOSPITALITY</a></li>
+                <li><a href="/event/contact">CONTACT & RSVP</a></li>
+                <li class="logout"><a href="<?php echo $this->url(array('controller' => 'users','action' => 'logout'), 'default', true); ?>">Logout</a></li>
             </ul>
         </div>
     </div>
     
     <div id="main-content">
-        <div id="main-content-title">Conference Library</div>
+        <div id="main-content-title">CONFERENCE Speakers & Venue</div>
         <div id="conf-lib">
         
             <div class="block">

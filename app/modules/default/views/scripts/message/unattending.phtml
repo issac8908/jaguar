@@ -16,10 +16,7 @@
                 </div>
                 
                 <div class="right">
-                    <div class="row">
-                        <label>MESSAGE</label>
-                        <div class="row2"><?php echo $this->form->message ?></div>
-                    </div>
+                    <div class="row"><label>MESSAGE</label><div class="row2"><?php echo $this->form->message ?></div></div>
                 </div>
 
                 <div class="bottom clearfix">
@@ -60,7 +57,7 @@ $(document).ready(function(){
     $('#form-errors').dialog({
         autoOpen: false,
         modal: true,
-        title: 'SIGN IN',
+        title: 'NOT ATTENDING THE CONFERENCE',
         width: 500,
         show: { effect: 'fade', duration: 500 },
         hide: { effect: 'hide', duration: 500 },
@@ -78,7 +75,7 @@ function outputFormErrorMessages(response)
     $('input').removeClass('error');
     $.each(response, function (k, v) {
         $.each(v, function(k1, v1) {
-            $('#form-errors ul').append('<li>' + k + ': ' + v1 + '</li>');
+            $('#form-errors ul').append('<li>' + $('#'+k).parent().siblings("label").html() + ': ' + v1 + '</li>');
             $('#' + k).addClass('error');
         });
     });

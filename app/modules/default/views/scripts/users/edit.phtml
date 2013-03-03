@@ -1,0 +1,198 @@
+<div class="users">
+    
+    <div id="menu">
+        <div id="menu-wrapper">
+            <ul>
+                <li class="active"><a href="/users">MY PROFILE</a></li>
+                <li><a href="/event/agenda">AGENDA</a></li>
+                <li><a href="/event/conf">CONFERENCE Speakers & Venue</a></li>
+                <li><a href="/event/hospitality">HOSPITALITY</a></li>
+                <li><a href="/event/contact">CONTACT & RSVP</a></li>
+                <li class="logout"><a href="<?php echo $this->url(array('controller' => 'users','action' => 'logout'), 'default', true); ?>">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div id="main-content">
+        <div id="main-content-title">MY PROFILE</div>
+        <div id="profile">
+            <form action="<?php echo $this->url(array('controller' => 'users', 'action' => 'edit'), 'default'); ?>"
+				method="post" enctype="application/x-www-form-urlencoded"
+				name="profile-form" id="profile-form">
+                <div id="step-one">
+                        <div class="left">
+                            <?php echo $this->form->uid ?>
+                            <div class="row clearfix"><label>FIRST NAME</label><div class="field"><?php echo $this->form->first_name; ?></div></div>
+                            <div class="row clearfix"><label>LAST NAME</label><div class="field"><?php echo $this->form->last_name; ?></div></div>
+                            <div class="row clearfix"><label>GENDER</label><div class="field"><div id="gender"><?php echo $this->form->gender ?></div></div></div>
+                            <div class="row clearfix"><label>ID/PASSPORT NUMBER</label><div class="field"><?php echo $this->form->id_passport_number ?></div></div>
+                            <div class="row clearfix"><label>TELEPHONE NUMBER</label><div class="field"><?php echo $this->form->tel; ?></div></div>
+                            <div class="row clearfix"><label>MOBILE NUMBER</label><div class="field"><?php echo $this->form->mobile; ?></div></div>
+                            <div class="row clearfix"><label>EMAIL</label><div class="field"><?php echo $this->form->email; ?></div></div>
+                            <div class="row clearfix"><label>PASSWORD</label><div class="field"><?php echo $this->form->password; ?></div></div>
+                            <div class="row clearfix"><label>CITY</label><div class="field"><?php echo $this->form->city_id; ?></div></div>
+                        </div>
+                        
+                        <div class="right">
+                            <div class="row clearfix">
+                                <label>POSITION</label>
+                                <div class="field">
+                                    <?php echo $this->form->position; ?>
+                                    <div class="row" style="display: none;"><label>GROUP NAME</label><div class="field"><?php echo $this->form->group_name ?></div></div>
+                                    <div class="row" style="display: none;"><label>TITLE</label><div class="field"><?php echo $this->form->group_title ?></div></div>
+                                    <div class="row" style="display: none;"><label>DMS CODE</label><div class="field"><?php echo $this->form->dms_code ?></div></div>
+                                    <div class="row" style="display: none;"><label>COMPANY NAME</label><div class="field"><?php echo $this->form->company_name ?></div></div>
+                                    <div class="row" style="display: none;"><label>COMPANY TITLE</label><div class="field"><?php echo $this->form->company_title ?></div></div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                
+                <div id="step-two">
+                    <div class="left">
+                        <div class="row"><label>ARRIVAL DATE</label><div class="field"><?php echo $this->form->arrival_date; ?></div></div>
+                        <div class="row"><label>MEAN OF TRANSPORTATION</label><div class="field"><?php echo $this->form->arrival_transportation; ?></div></div>
+                        <div class="row"><label>FROM</label><div class="field"><?php echo $this->form->arrival_from ?></div></div>
+                        <div class="row"><label>TO</label><div class="field"><span class="text">Shanghai</span></div></div>
+                        <div class="row"><label>ESTIMATED ARRIVAL TIME</label><div class="field"><?php echo $this->form->arrival_time; ?></div></div>
+                    </div>
+
+                    <div class="right">
+                        <div class="row"><label>DEPARTURE DATE</label><div class="field"><?php echo $this->form->departure_date; ?></div></div>
+                        <div class="row"><label>MEAN OF TRANSPORTATION</label><div class="field"><?php echo $this->form->departure_transportation; ?></div></div>
+                        <div class="row"><label>FROM</label><div class="field"><span class="text">Shanghai</span></div></div>
+                        <div class="row"><label>TO</label><div class="field"><?php echo $this->form->departure_to ?></div></div>
+                        <div class="row"><label>ESTIMATED DEPARTURE TIME</label><div class="field"><?php echo $this->form->departure_time; ?></div></div>
+                    </div>
+                </div>
+                
+                <div id="step-three">
+                    <div class="left">
+                        <div class="row"><label>Will you stay at the Intercontinental Shanghai Expo Hotel?</label><div class="field"><?php echo $this->form->is_staying ?></div></div>
+                        <div class="row"><label>Complimentary lunch is offered at the Intercontinental Shanghai Expo Hotel between 11:30am - 12:20pm on April 8th, will you join?</label><div class="field"><?php echo $this->form->is_joining_lunch; ?></div></div>
+                    </div>
+                    <div class="right">
+                        <div class="row" style="display:none;"><label>Intercontinental Shanghai Expo Hotel room type</label><div class="field"><?php echo $this->form->room_type; ?></div></div>
+                        <div class="row" style="display:none;"><label>If twin room shared with another guest, please precise guest name</label><div class="field"><?php echo $this->form->guest_name; ?></div></div>
+                        <div class="row" style="display:none;"><label class="small">Please explain why.</label><div class="field"><?php echo $this->form->not_staying_reason ?></div></div>
+                    </div>
+                </div>
+                
+                <div class="section clearfix">
+                    <input type="submit" value="SUBMIT" name="submit" class="btn" id="btnSubmit">
+                    <a href="/users" class="btn" style="margin-top:2px;">BACK</a>
+                </div>
+                
+                <div class="clear"></div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="error-form"><ul></ul></div>
+<script type="text/javascript">
+$(function() {
+    showPosition();
+    showIsStaying();
+    
+    //$('#btnSubmit').click(function(){
+        //$('editPorfileForm').ajaxSubmit(function(){  
+        //  }); 
+    //});
+    $('input[name="position"]').click(function(){
+        showPosition();
+    });
+    $('input[name="is_staying"]').click(function(){
+        showIsStaying();
+    });
+
+    $('#email').blur(function() {
+         $.ajax({
+                type: "post",
+                dataType: "json",
+                url: "/users/validate-email", 
+                data: {'email': $('#email').val(), 'uid': $('#uid').val()},
+                success: function(res) {
+                    if (res.success == true) {
+                        $('#btnSubmit').removeAttr('disabled');
+                        $('#btnSubmit').css('background-color', '#43555F');
+                    } else {
+                        $('#btnSubmit').attr('disabled', 'disabled');
+                        $('#btnSubmit').css('background-color', '#5F6163');
+                        
+                        alert('This email address has been taken. Please choose another one. 这个邮箱地址已经被注册。请选择其它地址。');
+                    }
+                }
+            
+        });
+    });
+    
+    $('#arrival_date, #departure_date').datepicker({ dateFormat: 'yy-mm-dd', minDate: new Date(2013, 4 - 1, 1), maxDate: new Date(2013, 4 - 1, 8)});
+    
+    $('#arrival_time, #departure_time').timepicker({'timeFormat': 'H:i'});
+    
+    $('#is_staying-1').click(function(e) {
+        $('.staying_at_hotel').show();
+        $('.not_staying_at_hotel').hide();
+    }); 
+
+    $('#is_staying-0').click(function(e) {
+        $('.staying_at_hotel').hide();
+        $('.not_staying_at_hotel').show();
+    });
+    
+});
+
+function showPosition()
+{
+    var value = $('input[name="position"]:checked').val();
+    if (value === 'group_head') {
+        $('#group_name').parent().parent().show();
+        $('#group_title').parent().parent().show();
+        $('#dms_code').parent().parent().hide();
+        $('#company_name').parent().parent().hide();
+        $('#company_title').parent().parent().hide();
+    } else if (value === 'manager') {
+        $('#group_name').parent().parent().hide();
+        $('#group_title').parent().parent().hide();
+        $('#dms_code').parent().parent().show();
+        $('#company_name').parent().parent().hide();
+        $('#company_title').parent().parent().hide();
+    } else if (value === 'partner') {
+        $('#group_name').parent().parent().hide();
+        $('#group_title').parent().parent().hide();
+        $('#dms_code').parent().parent().hide();
+        $('#company_name').parent().parent().show();
+        $('#company_title').parent().parent().show();
+    }
+}
+
+function showIsStaying()
+{
+    var value = $('input[name="is_staying"]:checked').val();
+    if (value === '1') {
+        $('input[name="room_type"]').parent().parent().parent().show();
+        $('#guest_name').parent().parent().show();
+        $('#not_staying_reason').parent().parent().hide();
+    } else if (value === '0') {
+        $('input[name="room_type"]').parent().parent().parent().hide();
+        $('#guest_name').parent().parent().hide();
+        $('#not_staying_reason').parent().parent().show();
+    } else {
+    }
+
+}
+
+function outputFormErrorMessages(response) {
+    $('#error-form ul').empty();
+    $(".error").removeClass("error");
+       
+    $.each(response, function (k, v) {
+        $.each(v, function(k1, v1) {
+            $('#error-form ul').append('<li>' + $('#'+k).parent().siblings("label").html() + ': ' + v1 + '</li>');
+            $('#' + k).addClass('error');
+        });
+    });
+    
+    $('#error-form').dialog('open');
+}
+</script>
