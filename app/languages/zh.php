@@ -74,6 +74,12 @@ return array(
     'skip' => '跳过',
     'skip_this_step' => '您确定您要跳过此步骤吗？',
     
+    'conference_speakers' => '大会演讲嘉宾',
+    'program' => '会议日程',
+    'hospitality' => '特色服务',
+//    'conference_speakers_and_venue' => '',
+//    'agenda' => '',
+    
     'Anshan' => '鞍山',
     'Baoding' => '保定',
     'Baotou' => '包头',

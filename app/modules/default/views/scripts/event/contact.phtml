@@ -15,8 +15,35 @@
     
     <div id="main-content">
         <div id="main-content-title">CONTACT</div>
-        <div id="survey">
-       
+        <div id="contact">
+            <?php if (Zend_Registry::get('Zend_Translate')->getLocale() == 'en') { ?>
+
+                <div class="block"><p>If you need any information regarding this event, please contact our team:</p></div>
+                <div class="block">
+                    <p>Email: registration@2013-jlrc-conference.com</p>
+                    <p>Hotline number: 021 6258 5325 // 62585320   Working hours: 09:30 – 18:30</p>
+                    <p>Emergency number：135 5015 6344  (Available from April 7th to April 9th / 24hours service)</p>
+                </div>
+                <div class="block">
+                    <p>A maximum of 2 guests per dealership will be attend the conference and gala dinner.</p>
+                    <p>If you want to invite an additional guest, please directly contact your respective area business manager.</p>
+                </div>
+            </div>
+        
+            <?php } else { ?>
+        
+                <div class="block"><p>若您对有任何疑问，请及时联系我们：</p></div>
+                <div class="block">
+                    <p>Email: registration@2013-jlrc-conference.com</p>
+                    <p>热线电话：021 6258 5325 // 62585320   工作时间：09:30 – 18:30</p>
+                    <p>紧急电话：135 5015 6344  从4月7日至4月9日 24小时服务</p>
+                </div>
+                <div class="block">
+                    <p>每位经销商最多限2人参加此次大会和晚宴。</p>
+                    <p>如果你想邀请更多人员，请向捷豹路虎中国相关人员申请。</p>
+                </div>
+
+            <?php } ?>
         </div>
     </div>
 </div>

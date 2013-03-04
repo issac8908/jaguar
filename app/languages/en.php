@@ -6,7 +6,7 @@ return array(
     'login' => 'LOGIN',
     'password' => 'PASSWORD',
     'registration_code' => 'REGISTRATION CODE',
-    'register_here' => 'REGISTER HRER',
+    'register_here' => 'REGISTER HERE',
     'already_registered' =>'ALREADY REGISTERED',
     'will_you_attend_event' => 'Will you attend the event?',
     'registration_code_is_required' => 'Registration Code is Required.',
@@ -76,4 +76,10 @@ return array(
     'skip' => 'SKIP',
     'shanghai' => 'Shanghai',
     'skip_this_step' => 'Are you sure you want to skip this step?',
+    
+    'conference_speakers' => 'CONFERENCE SPEAKERS',
+    'program' => 'PROGRAM',
+    'hospitality' => 'HOSPITALITY',
+    'conference_speakers_and_venue' => 'CONFERENCE SPEAKERS & VENUE',
+    'agenda' =>'AGENDA',
 );

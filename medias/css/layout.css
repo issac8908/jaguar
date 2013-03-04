@@ -3,6 +3,9 @@ a
     text-decoration: none;
 }
 
+html {
+    height: 100%;
+}
 body 
 {
     margin: 0 auto;
@@ -31,7 +34,7 @@ body
 
 #footer-wrapper 
 {
-    color: white;
+    color: #666666;
     width: 1000px;
     text-align: center;
     position: fixed;
@@ -40,7 +43,7 @@ body
 
 #footer-wrapper a 
 {
-    color: white;
+    color: #666666;
     font-size: 12px;
 }
 #header #header-wrapper {
@@ -100,7 +103,7 @@ body
     display: block;
 }
 
-#main-wrapper-wrapper { background: url('/medias/images/kv-login.jpg') rgb(32, 42, 51) repeat center center; }
+#main-wrapper-wrapper { background: url('/medias/images/kv-login.jpg') rgb(32, 42, 51) repeat center center; min-height: 100%;}
 
 #main-top-border {
     background-color: #43555f;
@@ -521,3 +524,27 @@ div#register .one-fourth
     display: block;
     float: left;
 }
+
+.event .title { font-size: 18px; margin-top: 15px; font-weight: bold;}
+div#contact, div#speakers, div#agenda, 
+div#hotel-info { font-size: 12px; color: #4c4c4c; }
+div#contact .block, div#speakers .block, div#agenda .block { display: block; float: left; margin-top:10px; width: 100%;}
+div#contact .block > p, div#speakers .block > p { margin: 3px; }
+div#agenda .title { font-weight: bold; font-size: 18px; margin: 10px auto; float: left; width: 100%; padding-top: 10px;}
+div#agenda .block > label {border-bottom: 1px solid;margin-top: 5px;}
+div#agenda .block > label > span { font-weight: bold;}
+div#agenda ul { width: 100%; padding: 0; margin: 10px 0px 0px 0px; display: block; float: left;}
+div#agenda ul > li { width: 100%; float: left; list-style: none; margin-left: 0px; padding-top: 3px; text-align: left;}
+div#agenda ul > li > span { font-weight: bold;}
+
+div#hotel-info { float:left; width: 100%; }
+div#hotel-info span { font-weight: bold; }
+div#hotel-info-left {float:left; width: 500px;} 
+div#hotel-info-left ul { width: 100%; padding: 0; display: block; float: left; }
+div#hotel-info-left ul > li { width: 100%; float: left; list-style: none; margin-left: 0px; padding-top: 3px; text-align: left;}
+div#hotel-info-right{ float: right; width:500px; } 
+div#hotel-info-right img {width: 500px; padding-top: 20px;}
+div#hotel-name { position: absolute; margin-top: -320px; color: white; margin-left: 150px; font-size: 14px;}
+div#hotel-addr { position: absolute; margin-top: -60px; color: white; margin-left: 150px; font-size: 14px;}
+div#about-nearby { margin-top: 20px;}
+div#about-nearby ul li{ font-weight: bold;}

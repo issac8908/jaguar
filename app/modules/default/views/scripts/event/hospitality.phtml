@@ -4,8 +4,8 @@
             <ul>
                 <li><a href="/users">My PROFILE</a></li>
                 <li><a href="/event/agenda">AGENDA</a></li>
-                <li><a href="/event/conf">CONFERENCE Speakers & Venue</a></li>
-                <li class="active"><a href="/event/hospitality">HOSPITALITY</a></li>
+                <li><a href="/event/conf"><?php echo $this->translate('conference_speakers_and_venue') ?></a></li>
+                <li class="active"><a href="/event/hospitality"><?php echo $this->translate('hospitality') ?></a></li>
                 <li><a href="/event/contact">CONTACT & RSVP</a></li>
                 <li class="logout"><a href="<?php echo $this->url(array('controller' => 'users','action' => 'logout'), 'default', true); ?>">Logout</a></li>
             </ul>
@@ -13,9 +13,120 @@
     </div>
     
     <div id="main-content">
-        <div id="main-content-title">HOSPITALITY</div>
-        <div id="gallery">
-       
+        <div id="main-content-title"><?php echo $this->translate('hospitality') ?></div>
+        <div id="hospitality">
+            <?php if (Zend_Registry::get('Zend_Translate')->getLocale() == 'en') { ?>
+            <div id="hotel-info">
+                <div id="hotel-info-left">
+                    <div id="about-hotel">
+                        <div class="title">HOTEL INFORMATION</div>
+                        <ul>
+                            <li>InterContinental Shanghai Expo is Shanghai’s newest luxury hotel</li>
+                            <li>Located on the Pudong side of the Nanpu Bridge</li>
+                            <li>40 minutes by car from Pudong International Airport</li>
+                            <li>30 minutes from Hongqiao Airport</li>
+                            <li>8 minutes to Lujiazui, Shanghai business centre</li>
+                            <li>10 minutes to Xintiandi</li>
+                            <li>Spectacular views of Shanghai Expo China Pavilion, Huangpu River and the city skyline</li>
+                            <li>Metro stations 4, 6, 7 and 8 are nearby</li>
+                            <li>Hotel is close to all city attractions in Puxi and Pudong</li>
+                        </ul>
+                    </div>
+                    
+                    <div id="about-nearby">
+                        <label>WHAT'S NEARBY</label>
+                        <ul>
+                            <li>China Pavilion </li>
+                            <li>World Expo Centre</li>
+                            <li>Mercedes Benz Arena </li>
+                            <li>The Bund</li>		
+                            <li>Yu Yuan Gardens</li>
+                            <li>Old French Concession</li>
+                            <li>Oriental Pearl Tower </li>
+                            <li>Gift Market </li>	
+                            <li>Fabric Market</li>
+                            <li>People’s Square </li>
+                            <li>Century Park</li>		
+                            <li>Shanghai New International Expo Centre </li>
+                            <li>Shanghai Museum</li>
+                            <li>Xintiandi </li>
+                            <li>Shanghai Science & Technology Museum</li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="hotel-info-right">
+                    <img src="/medias/images/hotel.jpg">
+                    <div id="hotel-name">Shanghai Intercontinental Expo</div>
+                    <div id="hotel-addr"><span>1188 Xueye Road, Pudong Shanghai</span> <br/><span>Telephone：+86 (0)21 3858 1188</span></div>
+                </div>
+            </div>
+            <div id="hotel-room">
+                <label><span>Hotel rooms</span></label>
+                <div id="hotel-room-img">
+                    <div id="hotel-room-img-left">
+                        <img src="/medias/images/hotel_single_room.jpg">
+                        Single Room
+                    </div>
+                    <div id="hotel-room-img-right">
+                        <img src="/medias/images/hotel_twin_room.jpg">
+                        Twin Room
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="block">
+                <label></label>
+            </div>
+            
+            <?php } else { ?>
+            
+            <div id="hotel-info">
+                <div id="hotel-info-left">
+                    <div id="about-hotel">
+                        <div class="title"><span>酒店信息</span></div>
+                        <ul>
+                            <li>上海世博洲际酒店是上海最新的奢华型五星级酒店 </li>
+                            <li>酒店座落于南浦大桥堍，黄浦江畔，拥有极佳的地理位置 </li>
+                            <li>距离浦东国际机场仅需40分钟车程</li>
+                            <li>距离虹桥机场仅需30分钟车程</li>
+                            <li>距离陆家嘴商圈仅需8分钟车程</li>
+                            <li>到达新天地仅需10分钟车程</li>
+                            <li>从酒店您可以欣赏中国馆和文化中心，无与伦比的城市天际线及流光溢彩的浦江美景</li>
+                            <li>酒店附近有4号线、6号线、7号线和8号线</li>
+                            <li>从酒店前往浦西和浦东的各城市景点均十分便捷</li>
+                        </ul>
+                    </div>
+                    <div id="about-nearby">
+                        <div class="title">酒店附近</div>
+                        <ul>
+                            <li>中国馆</li>
+                            <li>世博中心  </li>
+                            <li>梅赛德斯奔驰文化中心</li>
+                            <li>外滩</li>		
+                            <li>豫园</li>
+                            <li>法租界</li>
+                            <li>东方明珠</li>
+                            <li>礼品市场	</li>	
+                            <li>面料市场</li>
+                            <li>人民广场	</li>
+                            <li>世纪公园	</li>		
+                            <li>上海新国际博览中心</li>
+                            <li>上海博物馆</li>
+                            <li>新天地</li>
+                            <li>上海科技馆</li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="hotel-info-right">
+                    <img src="/medias/images/hotel.jpg">
+                    <div id="hotel-name">上海世博洲际酒店</div>
+                    <div id="hotel-addr"><span>上海浦东新区雪野路1188号</span> <br/><span>电话：+86 (0)21 3858 1188</span></div>
+                </div>
+            </div>
+            <div class="block">
+                <label></label>
+            </div>
+            <?php } ?>
         </div>
     </div>
 </div>

@@ -5,8 +5,8 @@
             <ul>
                 <li><a href="/users">My PROFILE</a></li>
                 <li><a href="/event/agenda">AGENDA</a></li>
-                <li class="active"><a href="/event/conf">CONFERENCE Speakers & Venue</a></li>
-                <li><a href="/event/hospitality">HOSPITALITY</a></li>
+                <li class="active"><a href="/event/conf"><?php echo $this->translate('conference_speakers_and_venue') ?></a></li>
+                <li><a href="/event/hospitality"><?php echo $this->translate('hospitality') ?></a></li>
                 <li><a href="/event/contact">CONTACT & RSVP</a></li>
                 <li class="logout"><a href="<?php echo $this->url(array('controller' => 'users','action' => 'logout'), 'default', true); ?>">Logout</a></li>
             </ul>
@@ -14,58 +14,43 @@
     </div>
     
     <div id="main-content">
-        <div id="main-content-title">CONFERENCE Speakers & Venue</div>
-        <div id="conf-lib">
+        <div id="main-content-title"><?php echo $this->translate('conference_speakers_and_venue') ?></div>
+        <?php if (Zend_Registry::get('Zend_Translate')->getLocale() == 'en') { ?>
         
-            <div class="block">
-                <label>Sales</label>
-                <ul>
-                    <li>
-                        <span>Lorem 2 ipsum world sales PDF doc</span>
-                        <span>April 1st 2013</span>
-                        <span><a href="" class="small-btn">Download</a></span>
-                    </li>
-                    <li>
-                        <span>Lorem 2 ipsum world sales PDF doc</span>
-                        <span>April 1st 2013</span>
-                        <span><a href="" class="small-btn">Download</a></span>
-                    </li>
-                    <li>
-                        <span>Lorem 2 ipsum world sales PDF doc</span>
-                        <span>April 1st 2013</span>
-                        <span><a href="" class="small-btn">Download</a></span>
-                    </li>
-                </ul>
+            <div id="speakers">
+                <div class="title">CONFERENCE SPEAKERS</div>
+                <div class="block"><p>Bob Grace,</p><p>President</p></div>
+                <div class="block"><p>Nick Wang,</p><p>Chief Financial Officer, Executive Vice President</p></div>
+                <div class="block"><p>Bruce Robertson,</p><p>Executive Vice President Operations</p></div>
+                <div class="block"><p>Anthony Bradbury,</p><p>Executive Vice President Land Rover Brand China</p></div>
+                <div class="block"><p>May Che,</p><p>Executive Vice President Jaguar Brand China</p></div>
+                <div class="block"><p>Wendy Zhang,</p><p>Executive Vice President Business Development China </p></div>
+                <div class="block"><p>Ricardo Viana,</p><p>Executive Vice President After Sales</p></div>
             </div>
         
-            <div class="block">
-                <label>Marketing</label>
-                <ul>
-                    <li>
-                        <span>Lorem 2 ipsum world sales PDF doc</span>
-                        <span>April 1st 2013</span>
-                        <span><a href="" class="small-btn">Download</a></span>
-                    </li>
-                    <li>
-                        <span>Lorem 2 ipsum world sales PDF doc</span>
-                        <span>April 1st 2013</span>
-                        <span><a href="" class="small-btn">Download</a></span>
-                    </li>
-                </ul>
+
+
+
+ 
+
+        
+            <?php } else { ?>
+            <div id="speakers">
+                    <div class="title">CONFERENCE SPEAKERS</div>
+                    <div class="block"><p>高博</p><p>总裁</p></div>
+                    <div class="block"><p>汪冬宁</p><p>首席财务官 执行副总裁</p></div>
+                    <div class="block"><p>罗伯逊</p><p>运营执行副总裁</p></div>
+                    <div class="block"><p>柏睿安</p><p>路虎中国市场执行副总裁</p></div>
+                    <div class="block"><p>车艳华</p><p>捷豹中国市场执行副总裁</p></div>
+                    <div class="block"><p>张雯</p><p>中国区商业发展执行副总裁</p></div>
+                    <div class="block"><p>维嘉德</p><p>售后服务执行副总裁</p></div>
             </div>
         
-            <div class="block">
-                <label>Guidelines</label>
-                <ul>
-                    <li>
-                        <span>Lorem 2 ipsum world sales PDF doc</span>
-                        <span>April 1st 2013</span>
-                        <span><a href="" class="small-btn">Download</a></span>
-                    </li>
-                </ul>
-            </div>
-       
-        </div>
+            
+        <?php } ?>
+
+        
+        
+                
     </div>
-    
 </div>

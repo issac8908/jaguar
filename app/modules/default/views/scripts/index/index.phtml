@@ -84,8 +84,7 @@ $(document).ready(function(){
                             data: {'email': $('#email').val(), 'password': $('#password').val()},
                             success: function(response) {
                                 if (response.success == true) {
-                    //$('#login-form').submit();
-                                    window.location.href="<?php echo $this->url(array('controller'=>'users', 'action'=>'index')) ?>";
+                                    window.location.href="<?php echo $this->url(array('controller'=>'event', 'action'=>'agenda')) ?>";
                                 } else if (response.success == false) {
                                     $('input').removeClass('error');
                                     $('#login-errors ul').html('<li>' + response.message + '</li>');
