@@ -520,12 +520,15 @@ div#register .one-fourth
 .clear 
 {
     width: 1000px;
-    margin-top: 30px;
+    height: 20px;
     display: block;
     float: left;
+    clear: both;
 }
 
+
 .event .title { font-size: 18px; margin-top: 15px; font-weight: bold;}
+div#hospitality {font-size: 12px;}
 div#contact, div#speakers, div#agenda, 
 div#hotel-info { font-size: 12px; color: #4c4c4c; }
 div#contact .block, div#speakers .block, div#agenda .block { display: block; float: left; margin-top:10px; width: 100%;}
@@ -537,14 +540,24 @@ div#agenda ul { width: 100%; padding: 0; margin: 10px 0px 0px 0px; display: bloc
 div#agenda ul > li { width: 100%; float: left; list-style: none; margin-left: 0px; padding-top: 3px; text-align: left;}
 div#agenda ul > li > span { font-weight: bold;}
 
-div#hotel-info { float:left; width: 100%; }
+div#hotel-info, div#hotel-transfer { float:left; width: 100%; }
 div#hotel-info span { font-weight: bold; }
-div#hotel-info-left {float:left; width: 500px;} 
-div#hotel-info-left ul { width: 100%; padding: 0; display: block; float: left; }
+div#hotel-info-left, .hotel-transfer-block-left {float:left; width: 500px; } 
+.hotel-transfer-block-left, .hotel-transfer-block-right { margin-top: 10px;} 
+div#hotel-info-left ul, .otel-transfer-block-left ul { width: 100%; padding: 0; display: block; float: left; }
 div#hotel-info-left ul > li { width: 100%; float: left; list-style: none; margin-left: 0px; padding-top: 3px; text-align: left;}
-div#hotel-info-right{ float: right; width:500px; } 
-div#hotel-info-right img {width: 500px; padding-top: 20px;}
-div#hotel-name { position: absolute; margin-top: -320px; color: white; margin-left: 150px; font-size: 14px;}
-div#hotel-addr { position: absolute; margin-top: -60px; color: white; margin-left: 150px; font-size: 14px;}
+div#hotel-info-right, .hotel-transfer-block-right{ float: right; width:500px; } 
+div#hotel-info-right img {width: 500px; margin-top: 20px; border: 1px solid #4c4c4c;}
+div#hotel-name { width: 500px; position: absolute; margin-top: -320px; color: white; margin-left: 150px; font-size: 14px;}
+div#hotel-addr { width: 500px; position: absolute; margin-top: -60px; color: white; margin-left: 150px; font-size: 14px;}
 div#about-nearby { margin-top: 20px;}
 div#about-nearby ul li{ font-weight: bold;}
+div#hotel-room, div#hotel-info { width: 100%; float: left;}
+div#hotel-room-img { width: 100%; float: left; }
+div#hotel-room-img-left, div#hotel-room-img-right, div#hotel-transfer-to-airport, div#hotel-transfer-from-airport{ width: 500px; float: left; }
+div#hotel-room-img-left img  {width: 490px; height: 260px; float: left; border: 1px solid #4c4c4c;}
+div#hotel-room-img-right img  {width: 490px; height: 260px; float: right; border: 1px solid #4c4c4c;}
+div#hotel-room-img-left > div{width: 500px; float: left; font-size: 12px; }
+div#hotel-room-img-right > div {width: 500px; text-align: right; font-size: 12px;}
+
+
