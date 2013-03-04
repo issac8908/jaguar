@@ -8,8 +8,8 @@ class Form_User_StepThree extends Zend_Form
         
         $room_type = new Zend_Form_Element_Radio('room_type');
         $room_type->addMultiOptions(array(
-        	'single' => 'Single',
-        	'twin' => 'Twin'
+        	'single' => $this->getView()->translate('single'),
+        	'twin' => $this->getView()->translate('twin')
         ))->setSeparator('  ');
         
         $guest_name = new Zend_Form_Element_Text('guest_name');
@@ -17,8 +17,8 @@ class Form_User_StepThree extends Zend_Form
         //$not_staying = new Zend_Form_Element_Checkbox('not_staying');
         $is_staying = new Zend_Form_Element_Radio('is_staying');
         $is_staying->addMultiOptions(array(
-            '1' => 'YES',
-            '0' => 'NO'
+            '1' => $this->getView()->translate('yes'),
+            '0' => $this->getView()->translate('no')
         ))->setSeparator('  ');
         
         $not_staying_reason = new Zend_Form_Element_Textarea('not_staying_reason');
@@ -26,8 +26,8 @@ class Form_User_StepThree extends Zend_Form
         
         $is_joining_lunch = new Zend_Form_Element_Radio('is_joining_lunch');
         $is_joining_lunch->addMultiOptions(array(
-            '1' => 'YES',
-            '0' => 'NO'
+            '1' => $this->getView()->translate('yes'),
+            '0' => $this->getView()->translate('no')
         ))->setSeparator('  ');
         
         $this->addElements(array($room_type, $guest_name, $is_staying, $not_staying_reason, $is_joining_lunch));

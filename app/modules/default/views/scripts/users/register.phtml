@@ -3,125 +3,100 @@
     <div id="breadcrumb">
         <div id="breadcrumb-wrapper">
             <ul>
-                <li id="about" class="active">1. GUEST INFORMATION (Mandatory)</li>
-                <li id="trans">2. TRANSPORTATION</li>
-                <li id="accomodation">3. ACCOMODATION</li>
+                <li id="about" class="active"><?php echo $this->translate('menu_bar_guest_information') ?></li>
+                <li id="trans"><?php echo $this->translate('menu_bar_transportation') ?></li>
+                <li id="accomodation"><?php echo $this->translate('menu_bar_accomodation') ?></li>
             </ul>
         </div>
     </div>
     
     <div id="register-form">
-        <div id="register-form-title">REGISTER</div>
+        <div id="register-form-title"><?php echo $this->translate('register') ?></div>
         <div id="register-form-content">
             <form action="<?php echo $this->url(array('controller' => 'users', 'action' => 'register'), 'default'); ?>" method="post" enctype="application/x-www-form-urlencoded" >
             <div id="step-one" style="display: none;">
-                <p class="important-notice">YOUR PERSONAL INFORMATION WILL NOT BE DISPLAYED FOR ANY COMMERCIAL OR PUBLIC USE.</p>
-                <p class="gengeral-notice">NOTE: IF YOU WANT TO INVITE ADDITIONAL GUEST, PLEASE CONTACT DIRECTLY WITH YOUR AREA BUSINESS MANAGER .</p>
+                <p class="general-notice"><?php echo $this->translate('menu_bar_guest_information') ?></p>
+                <p class="important-notice"><?php echo $this->translate('important_notice_step_one') ?></p>
+                <p class="general-notice"><?php echo $this->translate('general_notice_step_one') ?></p>
                 
 
                 <div class="left">
-                    <div class="row clearfix"><label>FIRST NAME</label><div class="field"><?php echo $this->stepOneForm->first_name; ?></div></div>
-                    <div class="row clearfix"><label>LAST NAME</label><div class="field"><?php echo $this->stepOneForm->last_name; ?></div></div>
-                    <div class="row clearfix"><label>GENDER</label><div class="field"><div id="gender"><?php echo $this->stepOneForm->gender ?></div></div></div>
-                    <div class="row clearfix"><label>ID/PASSPORT NUMBER</label><div class="field"><?php echo $this->stepOneForm->id_passport_number ?></div></div>
-                    <div class="row clearfix"><label>TELEPHONE NUMBER</label><div class="field"><?php echo $this->stepOneForm->tel; ?></div></div>
-                    <div class="row clearfix"><label>MOBILE NUMBER</label><div class="field"><?php echo $this->stepOneForm->mobile; ?></div></div>
-                    <div class="row clearfix"><label>EMAIL</label><div class="field"><?php echo $this->stepOneForm->email; ?></div></div>
-                    <div class="row clearfix"><label>EMAIL CONFIRMATION</label><div class="field"><?php echo $this->stepOneForm->confirm_email; ?></div></div>
-                    <div class="row clearfix"><label>PASSWORD</label><div class="field"><?php echo $this->stepOneForm->password; ?></div></div>
-                    <div class="row clearfix"><label>PASSWORD CONFIRMATION</label><div class="field"><?php echo $this->stepOneForm->confirm_password; ?></div></div>
-                    <div class="row clearfix"><label>CITY</label><div class="field"><?php echo $this->stepOneForm->city_id; ?></div></div>
+                    <div class="row clearfix"><label><?php echo $this->translate('first_name') ?></label><div class="field"><?php echo $this->stepOneForm->first_name; ?></div></div>
+                    <div class="row clearfix"><label><?php echo $this->translate('last_name') ?></label><div class="field"><?php echo $this->stepOneForm->last_name; ?></div></div>
+                    <div class="row clearfix"><label><?php echo $this->translate('gender') ?></label><div class="field"><div id="gender"><?php echo $this->stepOneForm->gender ?></div></div></div>
+                    <div class="row clearfix"><label><?php echo $this->translate('id_passport_number') ?></label><div class="field"><?php echo $this->stepOneForm->id_passport_number ?></div></div>
+                    <div class="row clearfix"><label><?php echo $this->translate('tel') ?></label><div class="field"><?php echo $this->stepOneForm->tel; ?></div></div>
+                    <div class="row clearfix"><label><?php echo $this->translate('mobile') ?></label><div class="field"><?php echo $this->stepOneForm->mobile; ?></div></div>
+                    <div class="row clearfix"><label><?php echo $this->translate('email') ?></label><div class="field"><?php echo $this->stepOneForm->email; ?></div></div>
+                    <div class="row clearfix"><label><?php echo $this->translate('confirm_email') ?></label><div class="field"><?php echo $this->stepOneForm->confirm_email; ?></div></div>
+                    <div class="row clearfix"><label><?php echo $this->translate('password') ?></label><div class="field"><?php echo $this->stepOneForm->password; ?></div></div>
+                    <div class="row clearfix"><label><?php echo $this->translate('confirm_password') ?></label><div class="field"><?php echo $this->stepOneForm->confirm_password; ?></div></div>
+                    <div class="row clearfix"><label><?php echo $this->translate('city') ?></label><div class="field"><?php echo $this->stepOneForm->city_id; ?></div></div>
                 </div>
                 
                 <div class="right">
                     <div class="row clearfix">
-                        <label>POSITION</label>
+                        <label><?php echo $this->translate('position') ?></label>
                         <div class="field">
                             <div id='position'><?php echo $this->stepOneForm->position; ?></div>
-                            <div class="row" style="display: none;"><label>GROUP NAME</label><div class="field"><?php echo $this->stepOneForm->group_name ?></div></div>
-                            <div class="row" style="display: none;"><label>TITLE</label><div class="field"><?php echo $this->stepOneForm->group_title ?></div></div>
-                            <div class="row" style="display: none;"><label>DMS CODE</label><div class="field"><?php echo $this->stepOneForm->dms_code ?></div></div>
-                            <div class="row" style="display: none;"><label>COMPANY NAME</label><div class="field"><?php echo $this->stepOneForm->company_name ?></div></div>
-                            <div class="row" style="display: none;"><label>COMPANY TITLE</label><div class="field"><?php echo $this->stepOneForm->company_title ?></div></div>
+                            <div class="row" style="display: none;"><label><?php echo $this->translate('group_name') ?></label><div class="field"><?php echo $this->stepOneForm->group_name ?></div></div>
+                            <div class="row" style="display: none;"><label><?php echo $this->translate('title') ?></label><div class="field"><?php echo $this->stepOneForm->group_title ?></div></div>
+                            <div class="row" style="display: none;"><label><?php echo $this->translate('dms_code') ?></label><div class="field"><?php echo $this->stepOneForm->dms_code ?></div></div>
+                            <div class="row" style="display: none;"><label><?php echo $this->translate('company_name') ?></label><div class="field"><?php echo $this->stepOneForm->company_name ?></div></div>
+                            <div class="row" style="display: none;"><label><?php echo $this->translate('company_title') ?></label><div class="field"><?php echo $this->stepOneForm->company_title ?></div></div>
                         </div>
                     </div>
                 </div>
                 <div class="section clearfix">
-                    <div id="stepOneSubmitBtn"><?php echo $this->stepOneForm->step_one_next; ?></div>
+                    <div id="stepOneSubmitBtn"><?php //echo $this->stepOneForm->step_one_next; ?>
+                        <input type="submit" name="step_one_next" id="step_one_next" value="<?php echo $this->translate('next') ?>">
+                    </div>
                 </div>
             </div>
             
             <div id="step-two" style="display:none;">
-                <p class="important-notice">IMPORTANT NOTICE: GUESTS ARE IN CHARGE OF THEIR OWN TRANSFERS</p>
+                <p class="important-notice"><?php echo $this->translate('important_notice_step_two') ?></p>
                 <div class="form">
                     <div class="section clearfix">
                         <div class="left">
-                            <div class="row clearfix"><label>ARRIVAL DATE</label><div class="field"><?php echo $this->stepTwoForm->arrival_date; ?></div></div>
-                            <div class="row clearfix"><label>MEAN OF TRANSPORTATION</label><div class="field"><?php echo $this->stepTwoForm->arrival_transportation; ?></div></div>
-                            <div class="row clearfix"><label>FROM</label><div class="field"><?php echo $this->stepTwoForm->arrival_from ?></div></div>
-                            <div class="row clearfix"><label>TO</label><div class="field"><span class="text">Shanghai</span></div></div>
-                            <div class="row clearfix"><label>ESTIMATED ARRIVAL TIME</label><div class="field"><?php echo $this->stepTwoForm->arrival_time; ?></div></div>
+                            <div class="row clearfix"><label><?php echo $this->translate('arrival_date') ?></label><div class="field"><?php echo $this->stepTwoForm->arrival_date; ?></div></div>
+                            <div class="row clearfix"><label><?php echo $this->translate('mean_of_transportation') ?></label><div class="field"><?php echo $this->stepTwoForm->arrival_transportation; ?></div></div>
+                            <div class="row clearfix"><label><?php echo $this->translate('from') ?></label><div class="field"><?php echo $this->stepTwoForm->arrival_from ?></div></div>
+                            <div class="row clearfix"><label><?php echo $this->translate('to') ?></label><div class="field"><span class="text"><?php echo $this->translate('shanghai') ?></span></div></div>
+                            <div class="row clearfix"><label><?php echo $this->translate('estimated_arrival_time') ?></label><div class="field"><?php echo $this->stepTwoForm->arrival_time; ?></div></div>
                         </div>
 
                         <div class="right">
-                            <div class="row clearfix">
-                                    <label>DEPARTURE DATE</label>
-                                    <div class="field"><?php echo $this->stepTwoForm->departure_date; ?></div>
-                            </div>
-
-                            <div class="row clearfix">
-                                    <label>MEAN OF TRANSPORTATION</label>
-                                    <div class="field"><?php echo $this->stepTwoForm->departure_transportation; ?></div>
-                            </div>
-                            
-                            <div class="row clearfix">
-                                <label>FROM</label>
-                                <div class="field"><span class="text">Shanghai</span></div>
-                            </div>
-                            
-                            <div class="row clearfix">
-                                <label>TO</label>
-                                <div class="field"><?php echo $this->stepTwoForm->departure_to ?></div>
-                            </div>
-                            
-                            <div class="row clearfix">
-                                 <label>ESTIMATED DEPARTURE TIME</label>
-                                 <div class="field"><?php echo $this->stepTwoForm->departure_time; ?></div>
-                            </div>
+                            <div class="row clearfix"><label><?php echo $this->translate('departure_date') ?></label><div class="field"><?php echo $this->stepTwoForm->departure_date; ?></div></div>
+                            <div class="row clearfix"><label><?php echo $this->translate('mean_of_transportation') ?></label><div class="field"><?php echo $this->stepTwoForm->departure_transportation; ?></div></div>
+                            <div class="row clearfix"><label><?php echo $this->translate('from') ?></label><div class="field"><span class="text"><?php echo $this->translate('shanghai') ?></span></div></div>
+                            <div class="row clearfix"><label><?php echo $this->translate('to') ?></label><div class="field"><?php echo $this->stepTwoForm->departure_to ?></div></div>
+                            <div class="row clearfix"><label><?php echo $this->translate('estimated_departure_time') ?></label><div class="field"><?php echo $this->stepTwoForm->departure_time; ?></div></div>
                         </div>
-
                     </div>
                     <div class="section clearfix">
-                        <div id="stepTwoNextBtn"><button class="btn">NEXT</button></div>
-                        <div id="stepTwoSkipBtn"><button class="btn">SKIP</button></div>
+                        <div id="stepTwoNextBtn"><button class="btn"><?php echo $this->translate('next') ?></button></div>
+                        <div id="stepTwoSkipBtn"><button class="btn"><?php echo $this->translate('skip') ?></button></div>
                     </div>
                 </div>
             </div>
             
             <div id="step-three" style="display:none;">
-                <p class="important-notice">
-                    IMPORTANT NOTICE: ALL ATTENDEES MUST STAY AT THE INTERCONTINENTAL SHANGHAI EXPO HOTEL ON APRIL 8TH (IF HOTEL ACCOMMODATION IS REQUIRED).<br>
-                    A LIMITED NUMBER OF ROOMS ARE GUARANTEED AT A SPECIAL RATE OF 1,100 RMB NET PER NIGHT (BREAKFAST INCLUDED).
-                    ACCOMMODATION AND TRANSFERS TO AND FROM THE HOTEL MUST BE ARRANGED BY ATTENDEES AT THEIR OWN EXPENSE.
-                    IF YOU NEED ANY OTHER INFORMATION, PLEASE CONTACT OUR TEAM: + 86 (21) 62585325 OR + 86 (21) 62585320
-                </p>
+                <p class="important-notice"><?php echo $this->translate('important_notice_step_three') ?></p>
                 <div class="form">
                         <div class="left">
-                            <div class="row"><label>Will you stay at the Intercontinental Shanghai Expo Hotel?</label><div class="field"><?php echo $this->stepThreeForm->is_staying ?></div></div>
-                            <div class="row">
-                                 <label>Complimentary lunch is offered at the Intercontinental Shanghai Expo Hotel between 11:30am - 12:20pm on April 8th, will you join?</label>
-                                 <div class="field"><?php echo $this->stepThreeForm->is_joining_lunch; ?></div>
-                            </div>
+                            <div class="row"><label><?php echo $this->translate('is_staying') ?></label><div class="field"><?php echo $this->stepThreeForm->is_staying ?></div></div>
+                            <div class="row"><label><?php echo $this->translate('is_joining_lunch') ?></label><div class="field"><?php echo $this->stepThreeForm->is_joining_lunch; ?></div></div>
                         </div>
                     <div class="right staying_at_hotel" style="display:none;">
-                        <div class="row"><label>Intercontinental Shanghai Expo Hotel room type</label><div class="field"><?php echo $this->stepThreeForm->room_type; ?></div></div>
-                        <div class="row"><label>If twin room shared with another guest, please precise guest name</label><div class="field"><?php echo $this->stepThreeForm->guest_name; ?></div></div>
+                        <div class="row"><label><?php echo $this->translate('room_type') ?></label><div class="field"><?php echo $this->stepThreeForm->room_type; ?></div></div>
+                        <div class="row"><label><?php echo $this->translate('guest_name') ?></label><div class="field"><?php echo $this->stepThreeForm->guest_name; ?></div></div>
                     </div>
                     <div class="right not_staying_at_hotel" style="display:none;">
-                        <div class="row"><label class="small">Please explain why.</label><div class="field"><?php echo $this->stepThreeForm->not_staying_reason ?></div></div>
+                        <div class="row"><label class="small"><?php echo $this->translate('not_staying_reason') ?></label><div class="field"><?php echo $this->stepThreeForm->not_staying_reason ?></div></div>
                     </div>
                     <div class="section clearfix">
-                        <div id="stepThreeSubmitBtn"><input type="submit" value="Register" class="btn"/></div>
+                        <div id="stepThreeSubmitBtn"><input type="submit" value="<?php echo $this->translate('register') ?>" class="btn"/></div>
                     </div>
                 </div>
             </div>
@@ -181,7 +156,7 @@ $(function() {
     
     $('#stepTwoSkipBtn').click(function(e) {
         e.preventDefault();
-        $('#skip-step').html('Are you Sure You Want to Skip This Step?');
+        $('#skip-step').html('<?php echo $this->translate('skip_this_step') ?>');
         $('#skip-step').dialog('open');
     });
     $('#stepTwoNextBtn').click(function(e) {
@@ -195,19 +170,19 @@ $(function() {
     $('#skip-step').dialog({
                 autoOpen: false,
                 modal: true,
-                title: 'REGISTER',
+                title: '<?php echo $this->translate('register') ?>',
                 width: 500,
                 show: { effect: 'fade', duration: 500 },
                 hide: { effect: 'hide', duration: 500 },
                 buttons: {
-                    'YES': function() {
+                    '<?php echo $this->translate('yes') ?>': function() {
                         $(this).dialog("close");
                         $('#step-two').hide();
                         $('ul li#trans').removeClass('active');
                         $('ul li#accomodation').addClass('active');
                         $('#step-three').show();
                     },
-                    'NO': function(){
+                    '<?php echo $this->translate('no') ?>': function(){
                         $(this).dialog("close");
                     }
                 }
@@ -216,7 +191,7 @@ $(function() {
     $('#reg-form-errors').dialog({
                 autoOpen: false,
                 modal: true,
-                title: 'REGISTER',
+                title: '<?php echo $this->translate('register') ?>',
                 width: 500,
                 show: { effect: 'fade', duration: 500 },
                 hide: { effect: 'hide', duration: 500 },

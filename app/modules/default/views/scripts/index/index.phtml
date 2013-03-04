@@ -7,7 +7,7 @@
 
                  <div class="left-login">
                 <div class="left-wrapper">
-                <div class="left-title">ALREADY REGISTERED</div>
+                <div class="left-title"><?php echo $this->translate('already_registered') ?></div>
                     <div class="form">
                         <form id="login-form" action="<?php echo $this->url(array('controller' => 'users', 'action' => 'login'), 'default'); ?>" method="post" enctype="application/x-www-form-urlencoded" name="login">
                             <div class="section clearfix">
@@ -22,13 +22,13 @@
 
             <div class="right-login">
                 <div class="right-wrapper">
-                    <div class="right-title">REGISTER HERE</div>
+                    <div class="right-title"><?php echo $this->translate('register_here') ?></div>
                     <div class="form">
                         <form>
                             <div class="section clearfix">
                                 <div class="row"><label><?php echo $this->translate('registration_code'); ?></label><div class="field"><input type="text" value="<?php echo $this->code; ?>" name="rcode" id="rcode" ></div></div>
                                 <div class="row submit"><input type="submit" name="submit2" id="btnSubmitCode" value="<?php echo $this->translate('sign_up') ?>"></div>
-                                <div id="popupDiag" style="display:none;">Will you attend the event?</div>
+                                <div id="popupDiag" style="display:none;"><?php echo $this->translate('will_you_attend_event') ?></div>
                             </div>
                         </form>
                     </div>
@@ -53,24 +53,24 @@ $(document).ready(function(){
                 success: function(res) {
                     if (res.success == true) {
                         $('#popupDiag').dialog({
-                            title: 'REGISTER',
+                            title: '<?php echo $this->translate('register') ?>',
                             buttons: {
-                                "Yes": function() {
+                                "<?php echo $this->translate('yao') ?>": function() {
                                     window.location.href="/users/register";
                                 },
-                                "No": function() {
+                                "<?php echo $this->translate('bu_yao') ?>": function() {
                                     window.location.href="<?php echo $this->url(array('controller'=>'message', 'action'=>'unattending')) ?>";
                                 }
                             }
                         });  
                                 
                     } else {
-                        alert('We do not recognize your registration code. ');
+                        alert('<?php echo $this->translate('do_not_recognzie_code') ?>');
                     }
                 }
             });
         } else {
-            alert('Registration Code is Required.');
+            alert('<?php echo $this->translate('registration_code_is_required') ?>');
         } 
     });
     $("#login-errors").hide().fadeIn(4000);
@@ -100,7 +100,7 @@ $(document).ready(function(){
     $('#login-errors').dialog({
         autoOpen: false,
         modal: true,
-        title: 'SIGN IN',
+        title: '<?php echo $this->translate('sign_in') ?>',
         width: 500,
         show: { effect: 'fade', duration: 500 },
         hide: { effect: 'hide', duration: 500 },

@@ -20,8 +20,8 @@ class Form_User_StepOne extends Zend_Form
 
                 $gender = new Zend_Form_Element_Radio('gender');
                 $gender->setAttrib('tabindex', 3)->setLabel('Gender :')->addMultiOptions(array(
-                    'm' => 'Male',
-                    'f' => 'Female'
+                    'm' => $this->getView()->translate('male'),
+                    'f' => $this->getView()->translate('female'),
                 ))->setSeparator('  ')->setRequired(true);
                 
                 $id_passport_number = new Zend_Form_Element_Text('id_passport_number');
@@ -60,9 +60,9 @@ class Form_User_StepOne extends Zend_Form
                 
                 $position = new Zend_Form_Element_Radio('position');
                 $position->addMultiOptions(array(
-                    'group_head' => 'Group Head',
-                    'manager' => 'General Manager',
-                    'partner' => 'Partner'
+                    'group_head' => $this->getView()->translate('group_head'),
+                    'manager' => $this->getView()->translate('general_manager'),
+                    'partner' => $this->getView()->translate('partner'),
                 ))->setSeparator('  ')->setRequired(true);
 
                 $group_one_table = new Model_DbTable_GroupOne();
@@ -96,7 +96,7 @@ class Form_User_StepOne extends Zend_Form
                 $cities = $city_table->getCities();
                 if ($cities) {
                     foreach ($cities as $c) {
-                        $city_id->addMultiOption($c['cid'], $c['ch_name']);
+                        $city_id->addMultiOption($c['cid'], $this->getView()->translate(trim($c['en_name'])));
                     }
                 }
                 
