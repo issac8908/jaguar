@@ -10,7 +10,7 @@ class Form_User_StepThree extends Zend_Form
         $room_type->addMultiOptions(array(
         	'single' => 'Single',
         	'twin' => 'Twin'
-        ));
+        ))->setSeparator('  ');
         
         $guest_name = new Zend_Form_Element_Text('guest_name');
         
@@ -19,7 +19,7 @@ class Form_User_StepThree extends Zend_Form
         $is_staying->addMultiOptions(array(
             '1' => 'YES',
             '0' => 'NO'
-        ));
+        ))->setSeparator('  ');
         
         $not_staying_reason = new Zend_Form_Element_Textarea('not_staying_reason');
         $not_staying_reason->setAttribs(array('rows'=>'5', 'cols'=> '40'));
@@ -28,7 +28,7 @@ class Form_User_StepThree extends Zend_Form
         $is_joining_lunch->addMultiOptions(array(
             '1' => 'YES',
             '0' => 'NO'
-        ));
+        ))->setSeparator('  ');
         
         $this->addElements(array($room_type, $guest_name, $is_staying, $not_staying_reason, $is_joining_lunch));
         

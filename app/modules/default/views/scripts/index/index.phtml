@@ -1,35 +1,40 @@
-<div id="index">
-    <div id="main-top-border"></div>
-    <div id="main-content">
-        
-        <div class="left">
-            <div class="left-wrapper">
-            <div class="left-title">ALREADY REGISTERED</div>
-                <div class="form">
-                    <form id="login-form" action="<?php echo $this->url(array('controller' => 'users', 'action' => 'login'), 'default'); ?>" method="post" enctype="application/x-www-form-urlencoded" name="login">
-                        <div class="section clearfix">
-                            <div class="row"><label>Login</label><div class="field"><?php echo $this->loginForm->email; ?></div></div>
-                            <div class="row"><label><span class="label">PASSWORD</span></label><div class="field"><?php echo $this->loginForm->password; ?></div></div>
-                            <div class="row submit"><input type="submit" name="submit" id="btnSignIn" class="submit" value="SIGN IN"></div>
-                        </div>
-                    </form>
+<div id="main-wrapper-wrapper">
+    <div id="index">
+        <div id="main-top-border"></div>
+        <div id="main-content-login">
+
+           <div id="login-text"></div>
+
+                 <div class="left-login">
+                <div class="left-wrapper">
+                <div class="left-title">ALREADY REGISTERED</div>
+                    <div class="form">
+                        <form id="login-form" action="<?php echo $this->url(array('controller' => 'users', 'action' => 'login'), 'default'); ?>" method="post" enctype="application/x-www-form-urlencoded" name="login">
+                            <div class="section clearfix">
+                                <div class="row"><label><?php echo $this->translate('login') ?></label><div class="field"><?php echo $this->loginForm->email; ?></div></div>
+                                <div class="row"><label><span class="label">PASSWORD</span></label><div class="field"><?php echo $this->loginForm->password; ?></div></div>
+                                <div class="row submit"><input type="submit" name="submit" id="btnSignIn" class="submit" value="SIGN IN"></div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="right">
-            <div class="right-wrapper">
-                <div class="right-title">REGISTER HERE</div>
-                <div class="form">
-                    <form>
-                        <div class="section clearfix">
-                            <div class="row"><label>REGISTRATION CODE</label><div class="field"><input type="text" value="<?php echo $this->code; ?>"></div></div>
-                            <div class="row submit"><input type="submit" name="submit2" id="btnSubmitCode" value="SIGN UP"></div>
-                            <div id="popupDiag" style="display:none;">Will you attend the event?</div>
-                        </div>
-                    </form>
+
+            <div class="right-login">
+                <div class="right-wrapper">
+                    <div class="right-title">REGISTER HERE</div>
+                    <div class="form">
+                        <form>
+                            <div class="section clearfix">
+                                <div class="row"><label>REGISTRATION CODE</label><div class="field"><input type="text" value="<?php echo $this->code; ?>" name="rcode" id="rcode" ></div></div>
+                                <div class="row submit"><input type="submit" name="submit2" id="btnSubmitCode" value="SIGN UP"></div>
+                                <div id="popupDiag" style="display:none;">Will you attend the event?</div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
@@ -39,46 +44,62 @@
 $(document).ready(function(){
     $('#btnSubmitCode').click(function(e) {
         e.preventDefault();
-        
-        $('#popupDiag').dialog({
-            title: 'REGISTER',
-            buttons: {
-                "Yes": function() {
-                    
-                    // validate vip code
-                    // ... 
-                    
-                    window.location.href="<?php echo $this->url(array('controller'=>'users', 'action'=>'register')) ?>";
-                },
-                "No": function() {
-                    window.location.href="<?php echo $this->url(array('controller'=>'message', 'action'=>'unattending')) ?>";
+        if ($('#rcode').val()) {
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: "/users/validate-code", 
+                data: {'code': $('#rcode').val()},
+                success: function(res) {
+                    if (res.success == true) {
+                        $('#popupDiag').dialog({
+                            title: 'REGISTER',
+                            buttons: {
+                                "Yes": function() {
+                                    if (res.vip == true) {
+                                        window.location.href="/users/login-vip/c/" + $('#rcode').val();
+                                    } else {
+                                        window.location.href="/users/register";
+                                    }
+                                },
+                                "No": function() {
+                                    window.location.href="<?php echo $this->url(array('controller'=>'message', 'action'=>'unattending')) ?>";
+                                }
+                            }
+                        });  
+                                
+                    } else {
+                        alert('We do not recognize your registration code. ');
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            alert('Registration Code is Required.');
+        } 
     });
-    $("#login-errors").hide().fadeIn(4000)
+    $("#login-errors").hide().fadeIn(4000);
     
     $('#btnSignIn').click(function(e) {
         e.preventDefault();
-        $.ajax({
-            type: "post",
-            dataType: "json",
-            url: "/users/validate-login", 
-            data: {'email': $('#email').val(), 'password': $('#password').val()},
-            success: function(response) {
-                if (response.success == true) {
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                            url: "/users/validate-login", 
+                            data: {'email': $('#email').val(), 'password': $('#password').val()},
+                            success: function(response) {
+                                if (response.success == true) {
                     //$('#login-form').submit();
-                    window.location.href="<?php echo $this->url(array('controller'=>'users', 'action'=>'index')) ?>";
-                } else if (response.success == false) {
-                    $('input').removeClass('error');
-                    $('#login-errors ul').html('<li>' + response.message + '</li>');
-                    $('#login-errors').dialog('open');
-                } else {
-                    outputFormErrorMessages(response);
-                }
-            }
-        });
-    });
+                                    window.location.href="<?php echo $this->url(array('controller'=>'users', 'action'=>'index')) ?>";
+                                } else if (response.success == false) {
+                                    $('input').removeClass('error');
+                                    $('#login-errors ul').html('<li>' + response.message + '</li>');
+                                    $('#login-errors').dialog('open');
+                                } else {
+                                    outputFormErrorMessages(response);
+                                }
+                            }
+                        });
+            });  
 
     $('#login-errors').dialog({
         autoOpen: false,
@@ -100,7 +121,7 @@ function outputFormErrorMessages(response) {
     $('input').removeClass('error');
     $.each(response, function (k, v) {
         $.each(v, function(k1, v1) {
-            $('#login-errors ul').append('<li>' + k + ': ' + v1 + '</li>');
+            $('#login-errors ul').append('<li>' + $('#'+k).parent().siblings("label").html() + ': ' + v1 + '</li>');
             $('#' + k).addClass('error');
         });
     });

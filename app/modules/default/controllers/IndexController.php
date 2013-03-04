@@ -16,10 +16,16 @@ class IndexController extends Zend_Controller_Action
                 }
             }
 
+            //$code = substr(number_format(time() * rand(),0,'',''),0,10); 
+            if ($this->_getParam('c')) {
+                $this->view->code = $this->_getParam('c');
+            } else {
+                $this->view->code = '';
+            }
             $loginForm = $this->_getLoginForm();
-            $this->view->code = substr(number_format(time() * rand(),0,'',''),0,20);
 	}
-
+        
+        
 	private function _getLoginForm()
         {
             $loginForm = new Form_User_Login(array('method' => 'post'));

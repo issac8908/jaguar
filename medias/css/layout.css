@@ -2,6 +2,7 @@ a
 {
     text-decoration: none;
 }
+
 body 
 {
     margin: 0 auto;
@@ -15,29 +16,56 @@ body
 #wrap { margin: 0 auto; width: 100%;}
 
 /*header*/
-#header {height:80px; background: #ffffff;  width: 100%;}
+#header {
+	background: #ffffff;
+	height: 80px;
+  width: 100%;
+}
+
+#footer 
+{
+    bottom: 5px;
+    width: 1000px;
+    margin: 0 auto;
+}
+
+#footer-wrapper 
+{
+    color: white;
+    width: 1000px;
+    text-align: center;
+    position: fixed;
+    bottom: 5px;
+}
+
+#footer-wrapper a 
+{
+    color: white;
+    font-size: 12px;
+}
 #header #header-wrapper {
-    width: 990px;
+    background-color:#ffffff;
+    width: 1000px;
     height: 80px;
     margin: 0 auto;
     display: block;
-    font-size: 12px;
 }
 
 #header-title 
 {
-    float: left;
-    margin-top: 16px;
+    float:left;
+    margin-top:15px;
 }
 #title-one
 {
-    color: #807f83;
-    font-weight: bold;
+    font-size:13px;
+    color: #666;
+    font-weight: normal;
 }
 
 #title-two 
 {
-    color: #cac2b8;
+    color: #43555f;
     font-weight: bold;
 }
 
@@ -45,12 +73,14 @@ body
 {
     width: 450px;
     height: 3px;
-    border-top: 1px solid #807f83;
+    border-top: 1px solid #666;
 }
 
 #title-three
 {
-    color: #807f83;
+    font-weight:normal;
+    font-size:13px;
+    color: #666;
 }
 
 #logo { 
@@ -70,15 +100,17 @@ body
     display: block;
 }
 
+#main-wrapper-wrapper { background: url('/medias/images/kv-login.jpg') rgb(32, 42, 51) repeat center center; }
+
 #main-top-border {
-    background-color: rgb(202, 194, 185);
+    background-color: #43555f;
     height: 5px;
     margin-top: 0px;
 }
 
 #breadcrumb, #menu
 {
-    background-color: rgb(202, 194, 185);
+    background-color: #43555f;
     height: 30px;
     font-size: 14px;
     margin-top: 0px;
@@ -86,7 +118,7 @@ body
 
 #breadcrumb #breadcrumb-wrapper, #menu #menu-wrapper
 {
-    color: #e3dad1;
+    color: #fff;
     width: 1000px;
     height: 30px;
     margin: 0 auto;
@@ -94,26 +126,48 @@ body
 }
 
 #breadcrumb #breadcrumb-wrapper ul, #menu #menu-wrapper ul {
-    margin-left: -40px;
-    margin-top: 0px;
+    margin: 0px;
     height: 30px;
+    display: inline-block;
+    width: 100%;
+    padding: 0px;
 }
 
 #breadcrumb #breadcrumb-wrapper ul li, #menu #menu-wrapper ul li
 {
     list-style: none;
     float: left;
-    margin-right: 50px;
-    margin-top: 7px;
     font-size: 14px;
-    font-weight: bold;
-    padding-left: 3px;
+    font-weight: normal;
+    margin: 7px 50px 0 0;
 }
-#menu #menu-wrapper ul li a { text-decoration: none; color: #e3dad1;}
+
+#menu #menu-wrapper ul li a { text-decoration: none; color: #e3dad1; text-transform: uppercase;}
 
 #breadcrumb #breadcrumb-wrapper ul li.active, #menu #menu-wrapper ul li.active a
 {
+    font-weight: bold;
     color: #ffffff;
+}
+
+#menu #menu-wrapper li.logout { float:right; text-align: right; margin-right: 0;}
+
+#main-content-login
+{
+    /*background: url('/medias/images/kv-login.jpg') repeat center center;*/
+    width: 1000px;
+    height:650px;
+    margin: 0px auto 0 auto;
+    display: block;
+}
+
+#login-text {
+    background: url('/medias/images/login-text-cn.png') no-repeat center center;
+    width: 280px;
+    height:60px;
+    margin: 10px auto 0 auto;
+    padding-top:50px;
+    display: block;
 }
 
 #register-form, #main-content
@@ -121,7 +175,8 @@ body
     width: 1000px;
     margin: 0 auto;
 }
-#register-form-title, #main-content-title, #index .left-title, #index .right-title
+
+#register-form-title, #main-content-title, #login-form .left-title, #login-form .right-title
 {
     font-size: 18px;
     border-bottom: 2px solid black;
@@ -130,8 +185,7 @@ body
     padding-bottom: 3px;
 }
 
-
-
+div#step-one, div#step-two, div#step-three { display: block; float: left; margin-top: 20px; padding-bottom: 10px;}
 div#step-one .section, div#step-two .section, div#step-three .section
 {
     display: block;
@@ -143,12 +197,29 @@ div#step-one .section, div#step-two .section, div#step-three .section
 
 select
 {
-    float:right; 
+    /*float:right; */
     width: 210px;
     height: 30px;
-    font-size: 16px;
+    font-size: 14px;
     -webkit-border-radius: 2px;
     vertical-align: central;
+}
+.left-login
+{  
+  	background: url('/medias/images/login-trans-block.png') repeat center center;
+		width: 440px;
+		height:220px;
+    float: left; 
+		margin:2px 0 0 60px ;
+}
+
+.right-login
+{
+   	background: url('/medias/images/login-trans-block.png') repeat center center;
+		width: 440px;
+		height:220px;
+		float: left;
+		margin:2px 0 0 0 ;
 }
 
 .left 
@@ -165,7 +236,8 @@ select
 
 .left-wrapper, .right-wrapper 
 {
-    width: 300px
+    margin:20px;
+    width: 330px;
 }
 
 .row
@@ -181,20 +253,25 @@ select
 {
     width: 170px;
     float: left;
-    text-align: right;
+    text-align: left;
     vertical-align: central;
     padding-top: 8px;
     padding-right: 2px;
-    font-size: 14px;
+    font-size: 12px;
     color: #4c4c4c;
     font-weight: bold;
+    text-transform: uppercase;
 }
+
+div#index .left-login .row > label {width: 80px;}
+div#index .right-login .row > label {width: 80px;}
 div#index .left .row > label {width: 80px;}
 div#index .right .row > label {width: 80px;}
-div#step-one .left .row > label {width: 250px;}
-div#step-one .right .row > label {width: 130px; }
-div#step-two .row > label { width: 250px; text-align: right; }
-div#step-three .row > label {width: 250px; text-align: center;}
+div#step-one .left .row > label {width: 180px;}
+div#step-one .right .row > label {width: 100px;}
+div#step-two .left .row > label { width: 180px;}
+div#step-two .right .row > label { width: 180px;}
+div#step-three .row > label {width: 250px; }
 div#step-three .row > label.small {width: 130px;}
 
 .row .field 
@@ -205,13 +282,15 @@ div#step-three .row > label.small {width: 130px;}
 }
 .row .field > .text { float: right; font-weight: bold; padding-right: 90px; padding-top: 7px;}
 div#step-one .left .row .field {width: 230px;}
+div#step-one .right > .row > .field {width: 350px;}
+div#step-one .right > .row > .field > .row > .field { width: 230px;}
 div#step-two .row > .field {width: 240px;}
 div#step-three .row .field { padding-top: 7px; width: auto;}
 div#index .row .field {width: 210px; float: right;}
 div#step-one .row .field > label,
 div#step-three .row .field > label {     
     text-align: right;
-    padding: 5px 4px 4px 4px;
+    padding: 5px 4px 4px 0px;
     font-size: 14px;
     color: #4c4c4c;
 }
@@ -233,16 +312,20 @@ div#step-one input[type='text'], div#step-one input[type='password'],
 div#step-two input[type='text'],
 div#step-three input[type='text']
 {
-    padding: 4px;
+    padding: 5px;
     border-radius: 4px;
     text-indent: 3px;
-    font-size: 16px;
+    font-size: 14px;
+    width: 100%;
 }
-textarea { float:right; }
-div#step-one .left input[type='text'], div#step-one .left input[type='password'] { float:right; width: 210px; }
-div#step-one .right input[type='text'], div#step-one .right input[type='password'] { float:right; width: 180px; }
-div#step-two input[type='text'] { float:right; width: 200px; }
-div#step-three input[type='text'] { float:right; width: 225px; }
+div#step-one input[type='text'], div#step-one input[type='password'],
+div#step-two input[type='text'], 
+div#step-three input[type='text']
+{ 
+    width: 200px; 
+}
+div#step-three textarea {width: 485px; float:left;}
+
 div#index .left input[type='text'], div#index .left input[type='password']
 {
     width: 96%;
@@ -255,12 +338,10 @@ div#index .right input[type='text']
     float: right;
 }
 
-input[type='text'].error,
-input[type='password'].error,
-div#step-one .row #position.error
+.error
 {
     border: 1px solid rgb(181, 4, 4);
-    border-radius: 5px;;
+    border-radius: 5px;
 }
 
 .btn
@@ -270,21 +351,23 @@ div#step-one .row #position.error
 
 input[type='submit'], .btn
 {
-   background-color: rgb(206,198,189);
+   background-color: #43555f;
    padding: 8px 50px;
    border-radius: 3px;
-   -moz-border-radius: 3px;
-   -webkit-border-radius: 3px;
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
    text-transform: uppercase;
    color: white;
+   border:solid 1px #43555f;
    font-weight: bold;
    font-size: 14px;
    float:right;
+   margin-left: 8px;
 }
 
 .small-btn
 {
-    background-color: rgb(206,198,189);
+    background-color: #43555f;
     padding: 5px 10px;
    border-radius: 3px;
    -moz-border-radius: 3px;
@@ -342,7 +425,6 @@ div#profile table tr td, div#venue table tr td
 
 div#profile table tr td:first-child, div#venue table tr td:first-child
 {
-    text-align: right;
     width: 30%;
     font-weight: bold;
 }
@@ -394,7 +476,7 @@ div#register .one-fourth
     width: 250px;
 }
 
-#step-one .positions {display: block; float:left;}
+#step-one .pos-block {display: block; float:left;}
 .col-left
 {
     float:left;
@@ -424,4 +506,18 @@ div#register .one-fourth
 
 .col-right .field {
     float: right;
+}
+
+#edit-profile 
+{
+    float:right;
+    margin-top: -5px;
+}
+
+.clear 
+{
+    width: 1000px;
+    margin-top: 30px;
+    display: block;
+    float: left;
 }

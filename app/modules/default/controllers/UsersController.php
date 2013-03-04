@@ -17,7 +17,8 @@ class UsersController extends Zend_Controller_Action
 	public function init()
 	{
 		$this->_request = $this->getRequest();
-		//$this->_helper->getHelper('layout')->disableLayout();
+                $this->table = new Model_DbTable_Users();
+                
 	}
 	
         /** 
@@ -28,9 +29,18 @@ class UsersController extends Zend_Controller_Action
                 $users_table = new Model_DbTable_Users();
                 
                 $auth = Zend_Auth::getInstance();
-                
-                    $this->view->user = $users_table->getUserByEmail($auth->getIdentity()->email);
+                if (!$auth->hasIdentity()) {
+                    $this->_helper->redirector('login', 'users');
                 }
+                
+                if ($auth->getIdentity()->email) {
+                    $this->view->user = $users_table->getUserByEmail($auth->getIdentity()->email);
+                    $this->view->form = $users_table->getUserByEmail($auth->getIdentity()->email);
+                } else {
+                    // vip users who have not edit there profiles.
+                    $this->_redirect('/users/edit/id/' . $auth->getIdentity()->uid);
+                }
+         }
             
 	/**
 	 * Login Action
@@ -41,6 +51,11 @@ class UsersController extends Zend_Controller_Action
 	{
             
                 $form = new Form_User_Login(array('method' => 'post'));
+                if ($this->_getParam('c')) {
+                    $this->view->code = $this->_getParam('c');
+                } else {
+                    $this->view->code = '';
+                }
                 
                 if ($this->getRequest()->isPost()) {
                     
@@ -58,6 +73,23 @@ class UsersController extends Zend_Controller_Action
                 $this->renderScript('index/index.phtml');
 	}
         
+        public function loginVipAction()
+        {
+                $code = $this->_getParam('c');
+                if ($code){
+                    $code_arr = explode('_', $code);
+                    if (count($code_arr) == 3 && $code_arr['0'] == 'vip') {
+                        $user = $this->table->getUserByCode(array('code'=>$code_arr['0'] . '_' . $code_arr['1'], 'uid' => $code_arr['2']));
+                        if ($user)
+                            $this->_authenticateVIP($user);
+                        else 
+                            $this->_helper->redirector('index', 'index');
+                            
+                    } else {
+                        $this->_helper->redirector('index', 'index');
+                    }
+                }
+        }
         /**
 	 * Logout user
 	 * 
@@ -72,38 +104,58 @@ class UsersController extends Zend_Controller_Action
 	}
         
         
-        
+        public function editAction()
+        {
+                
+                $form = new Form_User_User(array('method' => 'post'));
+                    
+                    if ($this->getRequest()->isPost()) {
+                    
+                        $data = $this->_request->getPost();
+                        $data['is_attending'] = 1;
+                        unset($data['submit']);
+                        
+                        if ($form->isValid($data)) {
+                            if ($data['position'] == 'manager') {
+                                $data['group_name'] = '';
+                                $data['group_title'] = '';
+                                $data['company_name'] = '';
+                                $data['company_title'] = '';
+                            } else if ($data['position'] == 'group_head') {
+                                $data['dms_code'] = '';
+                                $data['company_name'] = '';
+                                $data['company_title'] = '';
+                            } else {
+                                $data['group_name'] = '';
+                                $data['group_title'] = '';
+                                $data['dms_code'] = '';
+                            }
+                            $data['password'] = md5($data['password']);
+                            $this->table->updateUserProfile($data['uid'], $data);
+                            $this->_authenticate($form);
+                            // Nofity admin the changes of the user profile.
+                            $this->_notifyAdminUserProfileUpdated($data);
+                            $this->_redirect('/event/agenda');
+                        } else {
+                            $this->view->errors = $form->getErrors();
+                            $form->populate($data);
+                        }
+                        
+                    } else {
+                        
+                        $id = $this->_request->getParam('id');
+                        $data = $this->table->getUserById($id)->toArray();
+                        // format time
+                        $arrival_time = $data['arrival_time'];
+                        $departure_time = $data['departure_time'];
+                        $data['arrival_time'] = date ('H:i',strtotime($arrival_time));
+                        $data['departure_time'] = date('H:i', strtotime($departure_time));
+                        $form->populate($data);
+                    }
+                
+                $this->view->form = $form;
+        }
 	
-	/**
-	 * Validate user process action
-	 *
-	 * @return JSON
-	 */
-	public function userAction()
-	{
-		$this->_helper->viewRenderer->setNoRender();
-		
-		if($this->_request->isXmlHttpRequest()) {
-			
-			$loginForm = $this->_getLoginForm();
-			$data = $this->_request->getPost();
-			$loginResult = $loginForm->processAjax($data);
-			
-			if(Zend_Json::decode($loginResult) === true) {
-				$data['password'] = $data['password'];
-				if($this->_authenticate($data)) {
-					$this->_helper->json->sendJson(true);
-				} else {
-					$this->_helper->json->sendJson(array(
-						'email_addr' => array('wrongEmail' => 'L\'adresse e-mail n\'est pas valide.'),
-						'password' =>  array('wrongPassword' => 'Le mot de passe n\'est pas correct')
-					));
-				}
-			} else {
-				echo $loginResult;
-			}
-		}
-	}
 	
 	/**
 	 * Register Action
@@ -143,7 +195,7 @@ class UsersController extends Zend_Controller_Action
                             //$this->_helper->flashMessenger->addMessage(Zend_Registry::get('config')->messages->register->successful);
 
                             // Redirect the user to the homepage
-                            $this->_helper->redirector('index', 'users');
+                            $this->_helper->redirector('agenda', 'event');
                         
                         } catch (Exception $e) {
                             $this->view->errors = array(
@@ -164,6 +216,72 @@ class UsersController extends Zend_Controller_Action
 		$this->view->stepThreeForm = $stepThreeForm;
 	}
 	
+        public function validateCodeAction()
+        {
+            $this->_helper->getHelper('layout')->disableLayout();
+            $this->_helper->viewRenderer->setNoRender();
+                
+            if ($this->_request->isXmlHttpRequest()) {
+                        
+                $data = $this->_request->getPost();
+                $code_arr = explode('_', $data['code']);
+                if (count($code_arr) != 3) {
+                    echo json_encode(array('success' => false, 'error' => '1', 'meesage' => 'wrong size of the code array'));
+                } else {
+                    if ($code_arr['0'] == 'vip' || $code_arr['0'] == 'jlr' || $code_arr['0'] == 'ds') {
+                        $user_table = new Model_DbTable_Users();
+                        if ($user_table->getUserByCode(array('code'=>$code_arr['0'] . '_' . $code_arr['1'], 'uid' => $code_arr['2']))) {
+                            if ($code_arr['0'] == 'vip')
+                                echo json_encode(array('success' => true, 'vip' => true));
+                            else 
+                                echo json_encode(array('success' => true, 'vip' => false));
+                        } else {
+                            echo json_encode(array('success' => false, 'error' => '3', 'meesage' => 'code and id do not match'));;
+                        }
+                        
+                    } else {
+                        echo json_encode(array('success' => false, 'error' => '2', 'meesage' => 'group code does not exist'));
+                    }
+                }
+            }
+        }
+
+        
+        public function validateEmailAction()
+        {
+                $this->_helper->getHelper('layout')->disableLayout();
+                $this->_helper->viewRenderer->setNoRender();
+             
+                if ($this->_request->isXmlHttpRequest()) {
+                    $data = $this->_request->getPost();
+                   
+                    $user = $this->table->getUserByEmailExcludeUid(array(
+                        'email'=>$data['email'], 
+                        'uid'=>$data['uid']
+                    ));
+                    
+                    if ($user)
+                        echo json_encode(array('success' => false));
+                    else 
+                        echo json_encode(array('success' => true));
+                }
+        }
+        
+        public function validateProfileAction()
+        {
+                $this->_helper->getHelper('layout')->disableLayout();
+                $this->_helper->viewRenderer->setNoRender();
+             
+                if ($this->_request->isXmlHttpRequest()) {
+                    $data = $this->_request->getPost();
+                    $form = new Form_User_User();
+                    
+                    if ($form->isValid($data))  
+                        echo json_encode(array('success' => true));
+                    else 
+                        echo $form->processAjax($data);
+                }
+        }
         
         public function validateStepOneAction()
         {
@@ -181,7 +299,7 @@ class UsersController extends Zend_Controller_Action
                         echo $form->processAjax($data);
                 }
         }
-	
+        
 	public function validateLoginAction()
         {
                 $this->_helper->getHelper('layout')->disableLayout();
@@ -235,7 +353,7 @@ class UsersController extends Zend_Controller_Action
 
                         $user_table = new Model_DbTable_Users();
 
-                        $user = $user_table->getUserByEmail($form->getValue('email'));
+                        $user = $user_table->getUserByEmailNoJoin($form->getValue('email'));
 
                         $user->last_login_ts = date('Y-m-d H:i:s');
 
@@ -249,6 +367,39 @@ class UsersController extends Zend_Controller_Action
                         $this->_helper->flashMessenger->addMessage('You are logged in');
                         //$this->_helper->redirector('index', 'index');
                         return true;
+                    } else {
+                        //$this->view->error['form'] = array('Login failed');
+                        return false;
+                    }
+        }
+        
+        private function _authenticateVip($user) 
+        {
+                $db = Zend_Db_Table::getDefaultAdapter();
+                $authAdapter = new Zend_Auth_Adapter_DbTable($db);
+
+                $authAdapter->setTableName('user');
+                $authAdapter->setIdentityColumn('uid');
+                $authAdapter->setCredentialColumn('code');
+                $authAdapter->setIdentity($user->uid);
+                $authAdapter->setCredential($user->code);
+
+                $auth = Zend_Auth::getInstance();
+                $result = $auth->authenticate($authAdapter);
+
+                    // Did the user successfully login?
+                    if ($result->isValid()) {
+
+                        $user->last_login_ts = date('Y-m-d H:i:s');
+
+                        $user->save();
+
+                        $storage = $auth->getStorage();
+                        $storage->write($authAdapter->getResultRowObject(array('uid', 'first_name', 'last_name', 'email', 'last_login_ts')));
+
+                        Zend_Session::rememberMe(1209600);
+
+                        $this->_helper->redirector('agenda', 'event');
                     } else {
                         //$this->view->error['form'] = array('Login failed');
                         return false;
@@ -284,6 +435,39 @@ class UsersController extends Zend_Controller_Action
 		$mailToNewUser->setBodyHtml($this->view->render('users/mail/new-user.phtml'));
 		
                 if($mailToAdmin->send() && $mailToNewUser->send()) {
+			return true;
+		} else {
+			return false;
+		}
+        }
+        
+        /**
+         * Send admin the user's new profile
+         * @param type $data
+         * @return boolean
+         */
+        private function _notifyAdminUserProfileUpdated($data)
+        {
+                $this->view->data = $data;
+		
+                $config = array(
+                    'ssl' => 'tls',
+                    'port' => 587,
+                    'auth' => 'login',
+                    'username' => 'dilin@carburant.fr',
+                    'password' => 'dilin110'
+                );
+                $transport = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $config);
+                Zend_Mail::setDefaultTransport($transport);
+                
+		$mailToAdmin = new Zend_Mail('utf-8');
+		$mailToAdmin->addTo('commaille@gmail.com');
+                $mailToAdmin->addBcc(array( 'dilin110@gmail.com'));
+                $mailToAdmin->setFrom('registration@2013-jlrc-conference.com', '2013-jlrc-conference');
+		$mailToAdmin->setSubject($data['first_name'] . ' ' . $data['last_name'] . ' Updated the Profile');
+		$mailToAdmin->setBodyHtml($this->view->render('users/mail/profile-update-notice.phtml'));
+		
+                if($mailToAdmin->send()) {
 			return true;
 		} else {
 			return false;

@@ -14,22 +14,22 @@ class EventController extends Zend_Controller_Action
         {
         }
   
-        public function venueAction()
+        public function agendaAction()
         {
             
         }
         
-        public function confLibAction()
+        public function confAction()
         {
             
         }
         
-        public function galleryAction()
+        public function hospitalityAction()
         {
             
         }
         
-        public function surveyAction()
+        public function contactAction()
         {
             
         }
