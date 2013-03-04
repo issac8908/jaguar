@@ -224,25 +224,15 @@ class UsersController extends Zend_Controller_Action
             if ($this->_request->isXmlHttpRequest()) {
                         
                 $data = $this->_request->getPost();
-                $code_arr = explode('_', $data['code']);
-                if (count($code_arr) != 3) {
-                    echo json_encode(array('success' => false, 'error' => '1', 'meesage' => 'wrong size of the code array'));
+                $code = $data['code'];
+                if ($code == Zend_Registry::get('group-one') 
+                        || $code == Zend_Registry::get('group-two') 
+                        || $code == Zend_Registry::get('group-three') ) {
+                    echo json_encode(array('success' => true));
                 } else {
-                    if ($code_arr['0'] == 'vip' || $code_arr['0'] == 'jlr' || $code_arr['0'] == 'ds') {
-                        $user_table = new Model_DbTable_Users();
-                        if ($user_table->getUserByCode(array('code'=>$code_arr['0'] . '_' . $code_arr['1'], 'uid' => $code_arr['2']))) {
-                            if ($code_arr['0'] == 'vip')
-                                echo json_encode(array('success' => true, 'vip' => true));
-                            else 
-                                echo json_encode(array('success' => true, 'vip' => false));
-                        } else {
-                            echo json_encode(array('success' => false, 'error' => '3', 'meesage' => 'code and id do not match'));;
-                        }
-                        
-                    } else {
-                        echo json_encode(array('success' => false, 'error' => '2', 'meesage' => 'group code does not exist'));
-                    }
+                    echo json_encode(array('success' => false));
                 }
+                
             }
         }
 

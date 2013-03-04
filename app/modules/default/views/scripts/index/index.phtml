@@ -12,8 +12,8 @@
                         <form id="login-form" action="<?php echo $this->url(array('controller' => 'users', 'action' => 'login'), 'default'); ?>" method="post" enctype="application/x-www-form-urlencoded" name="login">
                             <div class="section clearfix">
                                 <div class="row"><label><?php echo $this->translate('login') ?></label><div class="field"><?php echo $this->loginForm->email; ?></div></div>
-                                <div class="row"><label><span class="label">PASSWORD</span></label><div class="field"><?php echo $this->loginForm->password; ?></div></div>
-                                <div class="row submit"><input type="submit" name="submit" id="btnSignIn" class="submit" value="SIGN IN"></div>
+                                <div class="row"><label><span class="label"><?php echo $this->translate('password') ?></span></label><div class="field"><?php echo $this->loginForm->password; ?></div></div>
+                                <div class="row submit"><input type="submit" name="submit" id="btnSignIn" class="submit" value="<?php echo $this->translate('sign_in') ?>"></div>
                             </div>
                         </form>
                     </div>
@@ -26,8 +26,8 @@
                     <div class="form">
                         <form>
                             <div class="section clearfix">
-                                <div class="row"><label>REGISTRATION CODE</label><div class="field"><input type="text" value="<?php echo $this->code; ?>" name="rcode" id="rcode" ></div></div>
-                                <div class="row submit"><input type="submit" name="submit2" id="btnSubmitCode" value="SIGN UP"></div>
+                                <div class="row"><label><?php echo $this->translate('registration_code'); ?></label><div class="field"><input type="text" value="<?php echo $this->code; ?>" name="rcode" id="rcode" ></div></div>
+                                <div class="row submit"><input type="submit" name="submit2" id="btnSubmitCode" value="<?php echo $this->translate('sign_up') ?>"></div>
                                 <div id="popupDiag" style="display:none;">Will you attend the event?</div>
                             </div>
                         </form>
@@ -56,11 +56,7 @@ $(document).ready(function(){
                             title: 'REGISTER',
                             buttons: {
                                 "Yes": function() {
-                                    if (res.vip == true) {
-                                        window.location.href="/users/login-vip/c/" + $('#rcode').val();
-                                    } else {
-                                        window.location.href="/users/register";
-                                    }
+                                    window.location.href="/users/register";
                                 },
                                 "No": function() {
                                     window.location.href="<?php echo $this->url(array('controller'=>'message', 'action'=>'unattending')) ?>";
