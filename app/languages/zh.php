@@ -74,11 +74,17 @@ return array(
     'skip' => '跳过',
     'skip_this_step' => '您确定您要跳过此步骤吗？',
     
+    'my_profile' => '个人资料',
+    'agenda' =>'议程',
+    'conference_speakers_and_venue' => '大会演讲嘉宾和场地',
     'conference_speakers' => '大会演讲嘉宾',
     'program' => '会议日程',
+    'contact_rsvp' => '联系方式',
     'hospitality' => '特色服务',
-//    'conference_speakers_and_venue' => '',
-//    'agenda' => '',
+    'logout' => '退出',
+    'edit_profile' => '编辑个人资料',
+    'contact' => '联系方式',
+    
     
     'Anshan' => '鞍山',
     'Baoding' => '保定',

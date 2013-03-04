@@ -3,115 +3,121 @@
     <div id="menu">
         <div id="menu-wrapper">
             <ul>
-                <li><a href="/users">My PROFILE</a></li>
+                <li><a href="/users"><?php echo $this->translate('my_profile') ?></a></li>
                 <li class="active"><a href="/event/agenda"><?php echo $this->translate('agenda') ?></a></li>
-                <li><a href="/event/conf">CONFERENCE Speakers & Venue</a></li>
-                <li><a href="/event/hospitality">HOSPITALITY</a></li>
-                <li><a href="/event/contact">CONTACT & RSVP</a></li>
-                <li class="logout"><a href="<?php echo $this->url(array('controller' => 'users','action' => 'logout'), 'default', true); ?>">Logout</a></li>
+                <li><a href="/event/conf"><?php echo $this->translate('conference_speakers_and_venue') ?></a></li>
+                <li><a href="/event/hospitality"><?php echo $this->translate('hospitality') ?></a></li>
+                <li><a href="/event/contact"><?php echo $this->translate('contact_rsvp') ?></a></li>
+                <li class="logout"><a href="<?php echo $this->url(array('controller' => 'users','action' => 'logout'), 'default', true); ?>"><?php echo $this->translate('logout') ?></a></li>
             </ul>
         </div>
     </div>
     
     <div id="main-content">
+        
         <div id="main-content-title"><?php echo $this->translate('agenda') ?></div>
         
         <div id="agenda">
+
             <?php if (Zend_Registry::get('Zend_Translate')->getLocale() == 'en') { ?>
-            <div id="program">
-                <div class="title">PROGRAM</div>
+            
                 <div class="block">
-                    <label><span>Monday April 8th 2013</span></label>
-                    <ul>
-                        <li><span>Morning:</span></li>
-                        <li>09:00 – 11:00: Arrivals / Hotel Check-in</li>
-                        <li>11.00 – 12.00: Lunch time at Café 1188 (Hotel 1st floor)</li>
-                    </ul>
-                    <ul>
-                        <li><span>Afternoon: Shanghai Expo Centre</span> 1500 Expo Avenue Pudong  District, Shanghai, China</li>
-                        <li>12:00 – 13:00: Transfer to the Conference for Registration</li>
-                        <li>13:00 – 16:30: Conference</li>
-                        <li>16:30 – 17:00: Transfer to the Hotel</li>
-                        <li>17:00 – 18:00: Break Time</li>
-                        <li>18:00 – 18:30: Transfer to the Dinner</li>
-                    </ul>
-                    <ul>
-                        <li><span>Evening: Shanghai Expo Centre</span> 1500 Expo Avenue Pudong  District, Shanghai, China</li>
-                        <li>18:30 – 21:30: Gala Dinner</li>
-                        <li>21:30: Transfer to the Hotel</li>
-                    </ul>
-                    <ul><li><span>Overnight at Intercontinental Expo Hotel</span></li></ul>
+                     <div class="block-title">PROGRAM</div>
+                     <div class="sub-block">
+                         <label class="sub-block-title underlined">Monday April 8th 2013</label>
+                         <ul>
+                            <li><span>Morning:</span></li>
+                            <li>09:00 – 11:00: Arrivals / Hotel Check-in</li>
+                            <li>11.00 – 12.00: Lunch time at Café 1188 (Hotel 1st floor)</li>
+                        </ul>
+                        <ul>
+                            <li><span>Afternoon: Shanghai Expo Centre</span> 1500 Expo Avenue Pudong  District, Shanghai, China</li>
+                            <li>12:00 – 13:00: Transfer to the Conference for Registration</li>
+                            <li>13:00 – 16:30: Conference</li>
+                            <li>16:30 – 17:00: Transfer to the Hotel</li>
+                            <li>17:00 – 18:00: Break Time</li>
+                            <li>18:00 – 18:30: Transfer to the Dinner</li>
+                        </ul>
+                        <ul>
+                            <li><span>Evening: Shanghai Expo Centre</span> 1500 Expo Avenue Pudong  District, Shanghai, China</li>
+                            <li>18:30 – 21:30: Gala Dinner</li>
+                            <li>21:30: Transfer to the Hotel</li>
+                        </ul>
+                        <ul><li><span>Overnight at Intercontinental Expo Hotel</span></li></ul>
+                     </div>
+                     <div class="sub-block">
+                        <label class="sub-block-title underlined">Monday April 8th 2013</span></label>
+                        <ul>
+                            <li>06:30 – 10:00: Breakfast</li>
+                            <li>06:30 – 12:00: Departures</li>
+                        </ul>
+                     </div>
                 </div>
-                <div class="block">
-                    <label><span>Monday April 8th 2013</span></label>
-                    <ul>
-                        <li>06:30 – 10:00: Breakfast</li>
-                        <li>06:30 – 12:00: Departures</li>
-                    </ul>
-                </div>
-            </div>
         
-            <div id="impt-notice">
-                <div class="title">IMPORTANT NOTES</div>
-                <ul>
-                    <li>1. All attendees are to stay at this event hotel Intercontinental Shanghai Expo hotel on April 8th if hotel accommodation is required.</li>
-                    <li>2. Guaranteed are a number of rooms available at a special rate of 1,100 RMB net per night.</li>
-                    <li>3. Lunch is provided at the Intercontinental hotel on April 8th.</li>
-                    <li>4. Guests not staying at the Intercontinental Hotel are expected to arrange their break venue and transfers independently on April 8th 16:30 – 18:30, but must return the conference venue to attend the gala dinner.</li>
-                    <li>5. Your ID card or passport is required for conference access.</li>
-                    <li>6. Dress Code: Formal attire</li>
-                    <li>7. No cameras allowed during the event.</li>
-                    <li>&nbsp;</li><li>&nbsp;</li>
-                </ul>
-            </div>
+                <div class="block">
+                     <div class="block-title">IMPORTANT NOTES</div>
+                     <ul>
+                         <li>1. All attendees are to stay at this event hotel Intercontinental Shanghai Expo hotel on April 8th if hotel accommodation is required.</li>
+                         <li>2. Guaranteed are a number of rooms available at a special rate of 1,100 RMB net per night.</li>
+                         <li>3. Lunch is provided at the Intercontinental hotel on April 8th.</li>
+                         <li>4. Guests not staying at the Intercontinental Hotel are expected to arrange their break venue and transfers independently on April 8th 16:30 – 18:30, but must return the conference venue to attend the gala dinner.</li>
+                         <li>5. Your ID card or passport is required for conference access.</li>
+                         <li>6. Dress Code: Formal attire</li>
+                         <li>7. No cameras allowed during the event.</li>
+                    </ul>
+                </div>
         
             <?php } else { ?>
         
-        
-            <div id="program">
-                <div class="title">会议日程</div>
                 <div class="block">
-                    <label><span>2013年4月8日 星期一</span></label>
+                    <div class="block-title">会议日程</div>
+                    <div class="sub-block">
+                        <label class="sub-block-title underlined">2013年4月8日 星期一</label>
+                        <ul>
+                            <li><span>早晨：</span>上海世博洲际酒店</li>
+                            <li>09:00 – 11:00: 到达/酒店登记</li>
+                            <li>11.00 – 12.00: 午餐  咖啡厅1188 (酒店1楼)</li>
+                        </ul>
+                        <ul>
+                            <li><span>下午：上海世博中心</span>  浦东新区世博大道1500号</li>
+                            <li>12:00 – 13:00: 会议签到</li>
+                            <li>13:00 – 16:30: 会议</li>
+                            <li>16:30 – 17:00: 返回酒店</li>
+                            <li>17:00 – 18:00: 休息</li>
+                            <li>18:00 – 18:30: 返回会场</li>
+                        </ul>
+                        <ul>
+                            <li><span>晚上：上海世博中心</span>  浦东新区雪野路1188号</span></li>
+                            <li>18:30 – 21:30: 晚宴</li>
+                            <li>21:30: 下榻世博洲际酒店</li>
+                        </ul>
+                    </div>
+
+                    <div class="sub-block">
+                        <label class="sub-block-title underlined">2013年4月9日 星期二</label>
+                        <ul>
+                            <li>06:30 – 10:00: 早餐</li>
+                            <li>06:30 – 12:00: 返程</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="block">
+                    <div class="block-title">重要提醒</div>
                     <ul>
-                        <li><span>早晨：上海世博洲际酒店</span></li>
-                        <li>09:00 – 11:00: 到达/酒店登记</li>
-                        <li>11.00 – 12.00: 午餐  咖啡厅1188 (酒店1楼)</li>
-                    </ul>
-                    <ul>
-                        <li><span>下午：上海世博中心  浦东新区世博大道1500号</span></li>
-                        <li>12:00 – 13:00: 会议签到</li>
-                        <li>13:00 – 16:30: 会议</li>
-                        <li>16:30 – 17:00: 返回酒店</li>
-                        <li>17:00 – 18:00: 休息</li>
-                        <li>18:00 – 18:30: 返回会场</li>
-                    </ul>
-                    <ul>
-                        <li><span>晚上：上海世博中心  浦东新区雪野路1188号</span></li>
-                        <li>18:30 – 21:30: 晚宴</li>
-                        <li>21:30: 下榻世博洲际酒店</li>
+                        <li>1. 所有需要住宿的宾客必须入住本次会议指定酒店：上海世博洲际酒店</li>
+                        <li>2. 捷豹路虎中国已与酒店商定本次会议特别价，即1100元/每晚</li>
+                        <li>3. 4月8日当天在上海世博洲际酒店提供自助午餐</li>
+                        <li>4. 个别不需要住宿的宾客，须自行安排4月8日当天16：30 -18：30的休息地点和相关交通，但必须于18：30前返回会场参加晚宴。</li>
+                        <li>5. 宾客须出示身证份或护照方可允许进入会议现场</li>
+                        <li>6. 着装要求：正装</li>
+                        <li>7. 会议期间禁止摄影摄像</li>
                     </ul>
                 </div>
-                
-                <div class="block">
-                    <label><span>2013年4月9日 星期二</span></label>
-                    <ul><li>06:30 – 10:00: 早餐</li><li>06:30 – 12:00: 返程</li></ul>
-                </div>
-            </div>
-        
-            <div id="impt-notice">
-                <div class="title">重要提醒</div>
-                <ul>
-                    <li>1. 所有需要住宿的宾客必须入住本次会议指定酒店：上海世博洲际酒店</li>
-                    <li>2. 捷豹路虎中国已与酒店商定本次会议特别价，即1100元/每晚</li>
-                    <li>3. 4月8日当天在上海世博洲际酒店提供自助午餐</li>
-                    <li>4. 个别不需要住宿的宾客，须自行安排4月8日当天16：30 -18：30的休息地点和相关交通，但必须于18：30前返回会场参加晚宴。</li>
-                    <li>5. 宾客须出示身证份或护照方可允许进入会议现场</li>
-                    <li>6. 着装要求：正装</li>
-                    <li>7. 会议期间禁止摄影摄像</li>
-                </ul>
-            </div>
+      
             <?php } ?>
+
         </div>
-        <div class="clear clearfix"></div>
+        <div class="clear"></div>
     </div>
 </div>

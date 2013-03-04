@@ -77,9 +77,14 @@ return array(
     'shanghai' => 'Shanghai',
     'skip_this_step' => 'Are you sure you want to skip this step?',
     
+    'my_profile' => 'MY PROFILE',
     'conference_speakers' => 'CONFERENCE SPEAKERS',
     'program' => 'PROGRAM',
     'hospitality' => 'HOSPITALITY',
     'conference_speakers_and_venue' => 'CONFERENCE SPEAKERS & VENUE',
     'agenda' =>'AGENDA',
+    'contact_rsvp' => 'CONTACT & RSVP',
+    'logout' => 'LOGOUT',
+    'edit_profile' => 'EDIT PROFILE',
+    'contact' => 'CONTACT',
 );

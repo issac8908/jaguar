@@ -2,12 +2,12 @@
     <div id="menu">
         <div id="menu-wrapper">
             <ul>
-                <li><a href="/users">My PROFILE</a></li>
-                <li><a href="/event/agenda">AGENDA</a></li>
+                <li><a href="/users"><?php echo $this->translate('my_profile') ?></a></li>
+                <li><a href="/event/agenda"><?php echo $this->translate('agenda') ?></a></li>
                 <li><a href="/event/conf"><?php echo $this->translate('conference_speakers_and_venue') ?></a></li>
                 <li class="active"><a href="/event/hospitality"><?php echo $this->translate('hospitality') ?></a></li>
-                <li><a href="/event/contact">CONTACT & RSVP</a></li>
-                <li class="logout"><a href="<?php echo $this->url(array('controller' => 'users','action' => 'logout'), 'default', true); ?>">Logout</a></li>
+                <li><a href="/event/contact"><?php echo $this->translate('contact_rsvp') ?></a></li>
+                <li class="logout"><a href="<?php echo $this->url(array('controller' => 'users','action' => 'logout'), 'default', true); ?>"><?php echo $this->translate('logout') ?></a></li>
             </ul>
         </div>
     </div>
@@ -16,11 +16,11 @@
         <div id="main-content-title"><?php echo $this->translate('hospitality') ?></div>
         <div id="hospitality">
             <?php if (Zend_Registry::get('Zend_Translate')->getLocale() == 'en') { ?>
-            <div id="hotel-info">
-                <div id="hotel-info-left">
-                    <div id="about-hotel">
-                        <div class="title">HOTEL INFORMATION</div>
-                        <ul>
+            <div class="full">
+                <div class="half-width f-left">
+                    <div class="block">
+                        <div class="block-title">HOTEL INFORMATION</div>
+                        <ul class="disc" style="width: 400px;">
                             <li>InterContinental Shanghai Expo is Shanghai’s newest luxury hotel</li>
                             <li>Located on the Pudong side of the Nanpu Bridge</li>
                             <li>40 minutes by car from Pudong International Airport</li>
@@ -32,10 +32,10 @@
                             <li>Hotel is close to all city attractions in Puxi and Pudong</li>
                         </ul>
                     </div>
-                    
-                    <div id="about-nearby">
-                        <label>WHAT'S NEARBY</label>
-                        <ul>
+            
+                    <div class="block">
+                        <div class="block-title">WHAT'S NEARBY</div>
+                        <ul style="width: 400px;">
                             <li>China Pavilion </li>
                             <li>World Expo Centre</li>
                             <li>Mercedes Benz Arena </li>
@@ -53,52 +53,79 @@
                             <li>Shanghai Science & Technology Museum</li>
                         </ul>
                     </div>
-                </div>
-                <div id="hotel-info-right">
-                    <img src="/medias/images/hotel.jpg">
-                    <div id="hotel-name">Shanghai Intercontinental Expo</div>
-                    <div id="hotel-addr"><span>1188 Xueye Road, Pudong Shanghai</span> <br/><span>Telephone：+86 (0)21 3858 1188</span></div>
+                </div>  
+                <div class="half-width f-right">
+                    <div class="block">
+                        <div id="hotel-image"> <img src="/medias/images/hotel.jpg" width="500"/></div>
+                        <div id="hotel-name">Shanghai Intercontinental Expo</div>
+                        <div id="hotel-addr"><span>1188 Xueye Road, Pudong Shanghai</span> <br/><span>Telephone：+86 (0)21 3858 1188</span></div>
+                    </div>
                 </div>
             </div>
-            <div class="clear"></div>
-            <div id="hotel-room">
-                <label><span>HOTEL ROOMS</span></label>
-                <div id="hotel-room-img">
+           
+            
+            <div class="block">
+                <div class="block-title">HOTEL ROOMS</div>
+                <div class="sub-block">
                     <div id="hotel-room-img-left"><img src="/medias/images/hotel_single_room.jpg"><div>Single Room</div></div>
                     <div id="hotel-room-img-right"><img src="/medias/images/hotel_twin_room.jpg"><div>Twin Room</div></div>
                 </div>
-            </div>
-            <div class="clear"></div>
+            </div>     
             
-            <div id="hotel-map">
-                <label><span>HOTEL MAPS</span></label>
-                <div id="hotel-map-detail">
-                    <iframe width="1000" height="350" frameborder="1" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?oe=utf-8&amp;client=firefox-a&amp;ie=UTF8&amp;q=intercontinental+shanghai+pudong&amp;fb=1&amp;hq=intercontinental&amp;hnear=0x35ad8c73cd3952c7:0xbb190e9364c4e592,District+de+Pudong,+Shanghai,+R%C3%A9publique+populaire+de+Chine&amp;cid=0,0,17926781966426129906&amp;ll=31.229573,121.521663&amp;spn=0.006295,0.006295&amp;t=m&amp;output=embed"></iframe>
+            <div class="block">
+                <div class="block-title">HOTEL MAPS</div>
+                <div class="sub-block"><div id="hotel-map-detail"><iframe width="700" height="350" frameborder="1" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?oe=utf-8&amp;client=firefox-a&amp;ie=UTF8&amp;q=intercontinental+shanghai+pudong&amp;fb=1&amp;hq=intercontinental&amp;hnear=0x35ad8c73cd3952c7:0xbb190e9364c4e592,District+de+Pudong,+Shanghai,+R%C3%A9publique+populaire+de+Chine&amp;cid=0,0,17926781966426129906&amp;ll=31.229573,121.521663&amp;spn=0.006295,0.006295&amp;t=m&amp;output=embed"></iframe></div></div>
+            </div>  
+            
+            <div class="block">
+                <div class="block-title">TRANSFERS</div>
+                <div class="sub-block half-width"><label>From Hongqiao airport</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.fr/maps?saddr=Hongqiao+Airport+Terminal+1,+Shanghai,+Chine&amp;daddr=Intercontinental+Shanghai+Expo,+Xueye+Road,+District+de+Pudong,+Shanghai,+Chine&amp;hl=fr&amp;sll=31.191178,121.348391&amp;sspn=0.010426,0.01929&amp;geocode=FYrw2wEdJ6E7Byk1LJeAm2ayNTFH6C--ytT_Kw%3BFUYZ3AEd-gg-ByGv-84QNIDIVSmZpTQfd3qyNTGv-84QNIDIVQ&amp;oq=Intercontin&amp;mra=ls&amp;t=m&amp;ie=UTF8&amp;vpsrc=0&amp;ll=31.193605,121.432689&amp;spn=0.031161,0.169007&amp;output=embed"></iframe></div>
+                <div class="sub-block half-width"><label>From Pudong airport</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.fr/maps?saddr=Shanghai+Pudong+International+Airport,+900%E5%8F%B7+Qihang+Rd,+Pudong,+Shanghai,+Chine&amp;daddr=Intercontinental+Shanghai+Expo,+Xueye+Road,+District+de+Pudong,+Shanghai,+Chine&amp;hl=fr&amp;ie=UTF8&amp;sll=31.193605,121.432689&amp;sspn=0.166813,0.308647&amp;geocode=FeyE2wEdi39CByHku9n2TQ4s6Sn1jyGq24-tNTHku9n2TQ4s6Q%3BFUYZ3AEd-gg-ByGv-84QNIDIVSmZpTQfd3qyNTGv-84QNIDIVQ&amp;oq=Pudong&amp;mra=ls&amp;t=m&amp;vpsrc=0&amp;ll=31.17051,121.647491&amp;spn=0.166854,0.308647&amp;output=embed"></iframe></div>
+                <div class="sub-block half-width"><label>From Shanghai railway station</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.fr/maps?saddr=Shanghai+Railway+Station,+Jiaotong+Road,+Shanghai,+Chine&amp;daddr=Intercontinental+Shanghai+Expo,+Xueye+Road,+District+de+Pudong,+Shanghai,+Chine&amp;hl=fr&amp;sll=31.17051,121.647491&amp;sspn=0.166854,0.308647&amp;geocode=FYbR3AEda0I9BynNpqa9JXCyNTFqrQyVfci6oQ%3BFUYZ3AEd-gg-ByGv-84QNIDIVSmZpTQfd3qyNTGv-84QNIDIVQ&amp;oq=Shanghai+RAilwa&amp;mra=ls&amp;t=m&amp;ie=UTF8&amp;ll=31.224839,121.484413&amp;spn=0.051378,0.082397&amp;z=13&amp;output=embed"></iframe></div>
+                <div class="sub-block half-width"><label>From Shanghai south railway station</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.fr/maps?saddr=Shanghai+South+Railway+Station,+Dongli+North+1st+Road,+Shanghai,+Chine&amp;daddr=Intercontinental+Shanghai+Expo,+Xueye+Road,+District+de+Pudong,+Shanghai,+Chine&amp;hl=fr&amp;sll=31.224769,121.484426&amp;sspn=0.083379,0.154324&amp;geocode=FZZc2wEd7908BylFpsOWvGSyNTGYNitMfU3Uyw%3BFUYZ3AEd-gg-ByGv-84QNIDIVSmZpTQfd3qyNTGv-84QNIDIVQ&amp;oq=Shanghai+South+Railway+Station&amp;mra=ls&amp;t=m&amp;ie=UTF8&amp;ll=31.181819,121.473083&amp;spn=0.051401,0.072784&amp;z=13&amp;output=embed"></iframe></div>
+                <div class="sub-block half-width"><label>From Shanghai west railway station</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.fr/maps?saddr=Shanghai+West+Railway+Station,+Taopu+Road,+Shanghai,+Chine&amp;daddr=Intercontinental+Shanghai+Expo,+Xueye+Road,+District+de+Pudong,+Shanghai,+Chine&amp;hl=fr&amp;sll=31.181819,121.473083&amp;sspn=0.083417,0.154324&amp;geocode=FTMK3QEdxXI8Bylj-xSFqG-yNTH52qzqQXVCJQ%3BFUYZ3AEd-gg-ByGv-84QNIDIVSmZpTQfd3qyNTGv-84QNIDIVQ&amp;oq=Shanghai+West+Railway+Station&amp;mra=ls&amp;t=m&amp;ie=UTF8&amp;vpsrc=0&amp;ll=31.219956,121.456854&amp;spn=0.083864,0.120676&amp;output=embed"></iframe></div>
+            </div>
+            
+            <div class="block"><div class="block-title"><a href="#">PDF WITH HOTEL INFORMATION TO DOWNLOAD HERE (English version)</a></div></div>
+            
+            <div class="block">
+                    <div class="block-title">午餐</div>
+                    <div class="sub-block">
+                        <label class="sub-block-title">关于咖啡厅1188</label>
+                        <ul><li>4月8日11:30am - 12:20pm，我们专门在上海世博洲际酒店为所有宾客准备了精美午餐。</li></ul>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <div class="sub-block half-width">
+                        <label>自助午餐：</label>
+                        <ul class="two-li">
+                            <li>美味色拉</li>
+                            <li>开胃菜和芝士区</li>
+                            <li>中式热菜</li>
+                            <li>寿司生鱼片</li>
+                            <li>有机色拉吧</li>
+                            <li>海鲜区</li>
+                            <li>西餐区</li>
+                            <li>面包区</li>
+                            <li>印度料理区</li>
+                            <li>面食区</li>
+                            <li>甜点区</li>
+                        </ul>
+                    </div>
+                    <div class="sub-block">
+                        <div style="width:620px;">
+                            <img src="/medias/images/hotel_lunch_1.jpg" width="320" height="200">
+                            <img src="/medias/images/hotel_lunch_3.jpg" width="300" height="400" style="float:right;">
+                            <img src="/medias/images/hotel_lunch_2.jpg" width="320" height="200">
+                        </div>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="clear"></div>
-            
-            <div id="hotel-transfer">
-                <label>TRANSFERS</label>
-                <div class="clear"></div>
-                <div class="hotel-transfer-block-left"><label>From Hongqiao airport</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.fr/maps?saddr=Hongqiao+Airport+Terminal+1,+Shanghai,+Chine&amp;daddr=Intercontinental+Shanghai+Expo,+Xueye+Road,+District+de+Pudong,+Shanghai,+Chine&amp;hl=fr&amp;sll=31.191178,121.348391&amp;sspn=0.010426,0.01929&amp;geocode=FYrw2wEdJ6E7Byk1LJeAm2ayNTFH6C--ytT_Kw%3BFUYZ3AEd-gg-ByGv-84QNIDIVSmZpTQfd3qyNTGv-84QNIDIVQ&amp;oq=Intercontin&amp;mra=ls&amp;t=m&amp;ie=UTF8&amp;vpsrc=0&amp;ll=31.193605,121.432689&amp;spn=0.031161,0.169007&amp;output=embed"></iframe></div>
-                <div class="hotel-transfer-block-right"><label>From Pudong airport</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.fr/maps?saddr=Shanghai+Pudong+International+Airport,+900%E5%8F%B7+Qihang+Rd,+Pudong,+Shanghai,+Chine&amp;daddr=Intercontinental+Shanghai+Expo,+Xueye+Road,+District+de+Pudong,+Shanghai,+Chine&amp;hl=fr&amp;ie=UTF8&amp;sll=31.193605,121.432689&amp;sspn=0.166813,0.308647&amp;geocode=FeyE2wEdi39CByHku9n2TQ4s6Sn1jyGq24-tNTHku9n2TQ4s6Q%3BFUYZ3AEd-gg-ByGv-84QNIDIVSmZpTQfd3qyNTGv-84QNIDIVQ&amp;oq=Pudong&amp;mra=ls&amp;t=m&amp;vpsrc=0&amp;ll=31.17051,121.647491&amp;spn=0.166854,0.308647&amp;output=embed"></iframe></div>
-                <div class="hotel-transfer-block-left"><label>From Shanghai railway station</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.fr/maps?saddr=Shanghai+Railway+Station,+Jiaotong+Road,+Shanghai,+Chine&amp;daddr=Intercontinental+Shanghai+Expo,+Xueye+Road,+District+de+Pudong,+Shanghai,+Chine&amp;hl=fr&amp;sll=31.17051,121.647491&amp;sspn=0.166854,0.308647&amp;geocode=FYbR3AEda0I9BynNpqa9JXCyNTFqrQyVfci6oQ%3BFUYZ3AEd-gg-ByGv-84QNIDIVSmZpTQfd3qyNTGv-84QNIDIVQ&amp;oq=Shanghai+RAilwa&amp;mra=ls&amp;t=m&amp;ie=UTF8&amp;ll=31.224839,121.484413&amp;spn=0.051378,0.082397&amp;z=13&amp;output=embed"></iframe></div>
-                <div class="hotel-transfer-block-right"><label>From Shanghai south railway station</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.fr/maps?saddr=Shanghai+South+Railway+Station,+Dongli+North+1st+Road,+Shanghai,+Chine&amp;daddr=Intercontinental+Shanghai+Expo,+Xueye+Road,+District+de+Pudong,+Shanghai,+Chine&amp;hl=fr&amp;sll=31.224769,121.484426&amp;sspn=0.083379,0.154324&amp;geocode=FZZc2wEd7908BylFpsOWvGSyNTGYNitMfU3Uyw%3BFUYZ3AEd-gg-ByGv-84QNIDIVSmZpTQfd3qyNTGv-84QNIDIVQ&amp;oq=Shanghai+South+Railway+Station&amp;mra=ls&amp;t=m&amp;ie=UTF8&amp;ll=31.181819,121.473083&amp;spn=0.051401,0.072784&amp;z=13&amp;output=embed"></iframe></div>
-                <div class="hotel-transfer-block-left"><label>From Shanghai west railway station</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.fr/maps?saddr=Shanghai+West+Railway+Station,+Taopu+Road,+Shanghai,+Chine&amp;daddr=Intercontinental+Shanghai+Expo,+Xueye+Road,+District+de+Pudong,+Shanghai,+Chine&amp;hl=fr&amp;sll=31.181819,121.473083&amp;sspn=0.083417,0.154324&amp;geocode=FTMK3QEdxXI8Bylj-xSFqG-yNTH52qzqQXVCJQ%3BFUYZ3AEd-gg-ByGv-84QNIDIVSmZpTQfd3qyNTGv-84QNIDIVQ&amp;oq=Shanghai+West+Railway+Station&amp;mra=ls&amp;t=m&amp;ie=UTF8&amp;vpsrc=0&amp;ll=31.219956,121.456854&amp;spn=0.083864,0.120676&amp;output=embed"></iframe></div>
-            </div>
-            
-            <div class="clear"></div>
-            <div id="hotel-downoad"><a href="#">PDF WITH HOTEL INFORMATION TO DOWNLOAD HERE (English version)</a></div>
             <div class="clear"></div>
             <?php } else { ?>
-            
-            <div id="hotel-info">
-                <div id="hotel-info-left">
-                    <div id="about-hotel">
-                        <div class="title"><span>酒店信息</span></div>
-                        <ul>
+            <div class="full">
+                <div class="half-width f-left">
+                    <div class="block">
+                        <div class="block-title">酒店信息</div>
+                        <ul class="disc" style="width: 400px;">
                             <li>上海世博洲际酒店是上海最新的奢华型五星级酒店 </li>
                             <li>酒店座落于南浦大桥堍，黄浦江畔，拥有极佳的地理位置 </li>
                             <li>距离浦东国际机场仅需40分钟车程</li>
@@ -110,9 +137,10 @@
                             <li>从酒店前往浦西和浦东的各城市景点均十分便捷</li>
                         </ul>
                     </div>
-                    <div id="about-nearby">
-                        <div class="title">酒店附近</div>
-                        <ul>
+            
+                    <div class="block">
+                        <div class="block-title">酒店附近</div>
+                        <ul style="width: 400px;">
                             <li>中国馆</li>
                             <li>世博中心  </li>
                             <li>梅赛德斯奔驰文化中心</li>
@@ -130,47 +158,71 @@
                             <li>上海科技馆</li>
                         </ul>
                     </div>
-                </div>
-                <div id="hotel-info-right">
-                    <img src="/medias/images/hotel.jpg">
-                    <div id="hotel-name">上海世博洲际酒店</div>
-                    <div id="hotel-addr"><span>上海浦东新区雪野路1188号</span> <br/><span>电话：+86 (0)21 3858 1188</span></div>
+                </div>  
+                <div class="half-width f-right">
+                    <div class="block">
+                        <div id="hotel-image"> <img src="/medias/images/hotel.jpg" width="500"/></div>
+                        <div id="hotel-name">上海世博洲际酒店</div>
+                        <div id="hotel-addr"><span>上海浦东新区雪野路1188号</span> <br/><span>电话：+86 (0)21 3858 1188</span></div>
+                    </div>
                 </div>
             </div>
             
-            <div class="clear"></div>
-            
-            <div id="hotel-room">
-                <label><span>酒店客房</span></label>
-                <div id="hotel-room-img">
+            <div class="block">
+                <div class="block-title">酒店客房</div>
+                <div class="sub-block">
                     <div id="hotel-room-img-left"><img src="/medias/images/hotel_single_room.jpg"><div>单人房</div></div>
                     <div id="hotel-room-img-right"><img src="/medias/images/hotel_twin_room.jpg"><div>双人房</div></div>
                 </div>
+            </div>     
+            
+            <div class="block">
+                <div class="block-title">酒店地图</div>
+                <div class="sub-block"><div id="hotel-map-detail"><iframe width="700" height="350" frameborder="1" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?oe=utf-8&amp;client=firefox-a&amp;ie=UTF8&amp;q=intercontinental+shanghai+pudong&amp;fb=1&amp;hq=intercontinental&amp;hnear=0x35ad8c73cd3952c7:0xbb190e9364c4e592,District+de+Pudong,+Shanghai,+R%C3%A9publique+populaire+de+Chine&amp;cid=0,0,17926781966426129906&amp;ll=31.229573,121.521663&amp;spn=0.006295,0.006295&amp;t=m&amp;output=embed"></iframe></div></div>
+            </div>  
+            
+            <div class="block">
+                <div class="block-title">交通信息</div>
+                <div class="sub-block half-width"><label>从上海虹桥机场</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.fr/maps?saddr=Hongqiao+Airport+Terminal+1,+Shanghai,+Chine&amp;daddr=Intercontinental+Shanghai+Expo,+Xueye+Road,+District+de+Pudong,+Shanghai,+Chine&amp;hl=fr&amp;sll=31.191178,121.348391&amp;sspn=0.010426,0.01929&amp;geocode=FYrw2wEdJ6E7Byk1LJeAm2ayNTFH6C--ytT_Kw%3BFUYZ3AEd-gg-ByGv-84QNIDIVSmZpTQfd3qyNTGv-84QNIDIVQ&amp;oq=Intercontin&amp;mra=ls&amp;t=m&amp;ie=UTF8&amp;vpsrc=0&amp;ll=31.193605,121.432689&amp;spn=0.031161,0.169007&amp;output=embed"></iframe></div>
+                <div class="sub-block half-width"><label>从上海浦东机场</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.fr/maps?saddr=Shanghai+Pudong+International+Airport,+900%E5%8F%B7+Qihang+Rd,+Pudong,+Shanghai,+Chine&amp;daddr=Intercontinental+Shanghai+Expo,+Xueye+Road,+District+de+Pudong,+Shanghai,+Chine&amp;hl=fr&amp;ie=UTF8&amp;sll=31.193605,121.432689&amp;sspn=0.166813,0.308647&amp;geocode=FeyE2wEdi39CByHku9n2TQ4s6Sn1jyGq24-tNTHku9n2TQ4s6Q%3BFUYZ3AEd-gg-ByGv-84QNIDIVSmZpTQfd3qyNTGv-84QNIDIVQ&amp;oq=Pudong&amp;mra=ls&amp;t=m&amp;vpsrc=0&amp;ll=31.17051,121.647491&amp;spn=0.166854,0.308647&amp;output=embed"></iframe></div>
+                <div class="sub-block half-width"><label>从上海火车站</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.fr/maps?saddr=Shanghai+Railway+Station,+Jiaotong+Road,+Shanghai,+Chine&amp;daddr=Intercontinental+Shanghai+Expo,+Xueye+Road,+District+de+Pudong,+Shanghai,+Chine&amp;hl=fr&amp;sll=31.17051,121.647491&amp;sspn=0.166854,0.308647&amp;geocode=FYbR3AEda0I9BynNpqa9JXCyNTFqrQyVfci6oQ%3BFUYZ3AEd-gg-ByGv-84QNIDIVSmZpTQfd3qyNTGv-84QNIDIVQ&amp;oq=Shanghai+RAilwa&amp;mra=ls&amp;t=m&amp;ie=UTF8&amp;ll=31.224839,121.484413&amp;spn=0.051378,0.082397&amp;z=13&amp;output=embed"></iframe></div>
+                <div class="sub-block half-width"><label>从上海南站</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.fr/maps?saddr=Shanghai+South+Railway+Station,+Dongli+North+1st+Road,+Shanghai,+Chine&amp;daddr=Intercontinental+Shanghai+Expo,+Xueye+Road,+District+de+Pudong,+Shanghai,+Chine&amp;hl=fr&amp;sll=31.224769,121.484426&amp;sspn=0.083379,0.154324&amp;geocode=FZZc2wEd7908BylFpsOWvGSyNTGYNitMfU3Uyw%3BFUYZ3AEd-gg-ByGv-84QNIDIVSmZpTQfd3qyNTGv-84QNIDIVQ&amp;oq=Shanghai+South+Railway+Station&amp;mra=ls&amp;t=m&amp;ie=UTF8&amp;ll=31.181819,121.473083&amp;spn=0.051401,0.072784&amp;z=13&amp;output=embed"></iframe></div>
+                <div class="sub-block half-width"><label>从上海西站</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.fr/maps?saddr=Shanghai+West+Railway+Station,+Taopu+Road,+Shanghai,+Chine&amp;daddr=Intercontinental+Shanghai+Expo,+Xueye+Road,+District+de+Pudong,+Shanghai,+Chine&amp;hl=fr&amp;sll=31.181819,121.473083&amp;sspn=0.083417,0.154324&amp;geocode=FTMK3QEdxXI8Bylj-xSFqG-yNTH52qzqQXVCJQ%3BFUYZ3AEd-gg-ByGv-84QNIDIVSmZpTQfd3qyNTGv-84QNIDIVQ&amp;oq=Shanghai+West+Railway+Station&amp;mra=ls&amp;t=m&amp;ie=UTF8&amp;vpsrc=0&amp;ll=31.219956,121.456854&amp;spn=0.083864,0.120676&amp;output=embed"></iframe></div>
             </div>
             
-            <div class="clear"></div>
-            
-            <div id="hotel-map">
-                <label><span>酒店地图</span></label>
-                <div id="hotel-map-detail">
-                    <iframe width="490" height="350" frameborder="1" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?oe=utf-8&amp;client=firefox-a&amp;ie=UTF8&amp;q=intercontinental+shanghai+pudong&amp;fb=1&amp;hq=intercontinental&amp;hnear=0x35ad8c73cd3952c7:0xbb190e9364c4e592,District+de+Pudong,+Shanghai,+R%C3%A9publique+populaire+de+Chine&amp;cid=0,0,17926781966426129906&amp;ll=31.229573,121.521663&amp;spn=0.006295,0.006295&amp;t=m&amp;output=embed"></iframe>
+            <div class="block"><div class="block-title"><a href="#">请在这里下载酒店信息PDF (英文版)</a></div></div>
+                    
+                <div class="block">
+                    <div class="block-title">午餐</div>
+                    <div class="sub-block">
+                        <label class="sub-block-title">关于咖啡厅1188</label>
+                        <ul><li>4月8日11:30am - 12:20pm，我们专门在上海世博洲际酒店为所有宾客准备了精美午餐。</li></ul>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <div class="sub-block half-width">
+                        <label>自助午餐：</label>
+                        <ul class="two-li">
+                            <li>美味色拉</li>
+                            <li>开胃菜和芝士区</li>
+                            <li>中式热菜</li>
+                            <li>寿司生鱼片</li>
+                            <li>有机色拉吧</li>
+                            <li>海鲜区</li>
+                            <li>西餐区</li>
+                            <li>面包区</li>
+                            <li>印度料理区</li>
+                            <li>面食区</li>
+                            <li>甜点区</li>
+                        </ul>
+                    </div>
+                    <div class="sub-block">
+                        <div style="width:620px;">
+                            <img src="/medias/images/hotel_lunch_1.jpg" width="320" height="200">
+                            <img src="/medias/images/hotel_lunch_3.jpg" width="300" height="400" style="float:right;">
+                            <img src="/medias/images/hotel_lunch_2.jpg" width="320" height="200">
+                        </div>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="clear"></div>
-            
-            <div id="hotel-transfer">
-                <label>交通信息</label>
-                <div class="clear"></div>
-                <div class="hotel-transfer-block-left"><label>从上海虹桥机场</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.fr/maps?saddr=Hongqiao+Airport+Terminal+1,+Shanghai,+Chine&amp;daddr=Intercontinental+Shanghai+Expo,+Xueye+Road,+District+de+Pudong,+Shanghai,+Chine&amp;hl=fr&amp;sll=31.191178,121.348391&amp;sspn=0.010426,0.01929&amp;geocode=FYrw2wEdJ6E7Byk1LJeAm2ayNTFH6C--ytT_Kw%3BFUYZ3AEd-gg-ByGv-84QNIDIVSmZpTQfd3qyNTGv-84QNIDIVQ&amp;oq=Intercontin&amp;mra=ls&amp;t=m&amp;ie=UTF8&amp;vpsrc=0&amp;ll=31.193605,121.432689&amp;spn=0.031161,0.169007&amp;output=embed"></iframe></div>
-                <div class="hotel-transfer-block-right"><label>从上海浦东机场</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.fr/maps?saddr=Shanghai+Pudong+International+Airport,+900%E5%8F%B7+Qihang+Rd,+Pudong,+Shanghai,+Chine&amp;daddr=Intercontinental+Shanghai+Expo,+Xueye+Road,+District+de+Pudong,+Shanghai,+Chine&amp;hl=fr&amp;ie=UTF8&amp;sll=31.193605,121.432689&amp;sspn=0.166813,0.308647&amp;geocode=FeyE2wEdi39CByHku9n2TQ4s6Sn1jyGq24-tNTHku9n2TQ4s6Q%3BFUYZ3AEd-gg-ByGv-84QNIDIVSmZpTQfd3qyNTGv-84QNIDIVQ&amp;oq=Pudong&amp;mra=ls&amp;t=m&amp;vpsrc=0&amp;ll=31.17051,121.647491&amp;spn=0.166854,0.308647&amp;output=embed"></iframe></div>
-                <div class="hotel-transfer-block-left"><label>从上海火车站</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.fr/maps?saddr=Shanghai+Railway+Station,+Jiaotong+Road,+Shanghai,+Chine&amp;daddr=Intercontinental+Shanghai+Expo,+Xueye+Road,+District+de+Pudong,+Shanghai,+Chine&amp;hl=fr&amp;sll=31.17051,121.647491&amp;sspn=0.166854,0.308647&amp;geocode=FYbR3AEda0I9BynNpqa9JXCyNTFqrQyVfci6oQ%3BFUYZ3AEd-gg-ByGv-84QNIDIVSmZpTQfd3qyNTGv-84QNIDIVQ&amp;oq=Shanghai+RAilwa&amp;mra=ls&amp;t=m&amp;ie=UTF8&amp;ll=31.224839,121.484413&amp;spn=0.051378,0.082397&amp;z=13&amp;output=embed"></iframe></div>
-                <div class="hotel-transfer-block-right"><label>从上海南站</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.fr/maps?saddr=Shanghai+South+Railway+Station,+Dongli+North+1st+Road,+Shanghai,+Chine&amp;daddr=Intercontinental+Shanghai+Expo,+Xueye+Road,+District+de+Pudong,+Shanghai,+Chine&amp;hl=fr&amp;sll=31.224769,121.484426&amp;sspn=0.083379,0.154324&amp;geocode=FZZc2wEd7908BylFpsOWvGSyNTGYNitMfU3Uyw%3BFUYZ3AEd-gg-ByGv-84QNIDIVSmZpTQfd3qyNTGv-84QNIDIVQ&amp;oq=Shanghai+South+Railway+Station&amp;mra=ls&amp;t=m&amp;ie=UTF8&amp;ll=31.181819,121.473083&amp;spn=0.051401,0.072784&amp;z=13&amp;output=embed"></iframe></div>
-                <div class="hotel-transfer-block-left"><label>从上海西站</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.fr/maps?saddr=Shanghai+West+Railway+Station,+Taopu+Road,+Shanghai,+Chine&amp;daddr=Intercontinental+Shanghai+Expo,+Xueye+Road,+District+de+Pudong,+Shanghai,+Chine&amp;hl=fr&amp;sll=31.181819,121.473083&amp;sspn=0.083417,0.154324&amp;geocode=FTMK3QEdxXI8Bylj-xSFqG-yNTH52qzqQXVCJQ%3BFUYZ3AEd-gg-ByGv-84QNIDIVSmZpTQfd3qyNTGv-84QNIDIVQ&amp;oq=Shanghai+West+Railway+Station&amp;mra=ls&amp;t=m&amp;ie=UTF8&amp;vpsrc=0&amp;ll=31.219956,121.456854&amp;spn=0.083864,0.120676&amp;output=embed"></iframe></div>
-            </div>
-            
-            <div class="clear"></div>
-            <div id="hotel-downoad"><a href="#">请在这里下载酒店信息PDF (英文版)</a></div>
             <div class="clear"></div>
             <?php } ?>
         </div>

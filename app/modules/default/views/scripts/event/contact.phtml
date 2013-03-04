@@ -3,19 +3,21 @@
     <div id="menu">
         <div id="menu-wrapper">
             <ul>
-                <li><a href="/users">My PROFILE</a></li>
-                <li><a href="/event/agenda">AGENDA</a></li>
-                <li><a href="/event/conf">CONFERENCE Speakers & Venue</a></li>
-                <li><a href="/event/hospitality">HOSPITALITY</a></li>
-                <li class="active"><a href="/event/contact">CONTACT & RSVP</a></li>
-                <li class="logout"><a href="<?php echo $this->url(array('controller' => 'users','action' => 'logout'), 'default', true); ?>">Logout</a></li>
+                <li><a href="/users"><?php echo $this->translate('my_profile') ?></a></li>
+                <li><a href="/event/agenda"><?php echo $this->translate('agenda') ?></a></li>
+                <li><a href="/event/conf"><?php echo $this->translate('conference_speakers_and_venue') ?></a></li>
+                <li><a href="/event/hospitality"><?php echo $this->translate('hospitality') ?></a></li>
+                <li class="active"><a href="/event/contact"><?php echo $this->translate('contact_rsvp') ?></a></li>
+                <li class="logout"><a href="<?php echo $this->url(array('controller' => 'users','action' => 'logout'), 'default', true); ?>"><?php echo $this->translate('logout') ?></a></li>
             </ul>
         </div>
     </div>
     
     <div id="main-content">
-        <div id="main-content-title">CONTACT</div>
+        <div id="main-content-title"><?php echo $this->translate('contact') ?></div>
+        
         <div id="contact">
+            
             <?php if (Zend_Registry::get('Zend_Translate')->getLocale() == 'en') { ?>
 
                 <div class="block"><p>If you need any information regarding this event, please contact our team:</p></div>
@@ -28,7 +30,7 @@
                     <p>A maximum of 2 guests per dealership will be attend the conference and gala dinner.</p>
                     <p>If you want to invite an additional guest, please directly contact your respective area business manager.</p>
                 </div>
-            </div>
+            
         
             <?php } else { ?>
         

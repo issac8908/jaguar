@@ -3,54 +3,95 @@
     <div id="menu">
         <div id="menu-wrapper">
             <ul>
-                <li><a href="/users">My PROFILE</a></li>
-                <li><a href="/event/agenda">AGENDA</a></li>
+                <li><a href="/users"><?php echo $this->translate('my_profile') ?></a></li>
+                <li><a href="/event/agenda"><?php echo $this->translate('agenda') ?></a></li>
                 <li class="active"><a href="/event/conf"><?php echo $this->translate('conference_speakers_and_venue') ?></a></li>
                 <li><a href="/event/hospitality"><?php echo $this->translate('hospitality') ?></a></li>
-                <li><a href="/event/contact">CONTACT & RSVP</a></li>
-                <li class="logout"><a href="<?php echo $this->url(array('controller' => 'users','action' => 'logout'), 'default', true); ?>">Logout</a></li>
+                <li><a href="/event/contact"><?php echo $this->translate('contact_rsvp') ?></a></li>
+                <li class="logout"><a href="<?php echo $this->url(array('controller' => 'users','action' => 'logout'), 'default', true); ?>"><?php echo $this->translate('logout') ?></a></li>
             </ul>
         </div>
     </div>
     
     <div id="main-content">
         <div id="main-content-title"><?php echo $this->translate('conference_speakers_and_venue') ?></div>
+        
         <?php if (Zend_Registry::get('Zend_Translate')->getLocale() == 'en') { ?>
-        
-            <div id="speakers">
-                <div class="title">CONFERENCE SPEAKERS</div>
-                <div class="block"><p>Bob Grace,</p><p>President</p></div>
-                <div class="block"><p>Nick Wang,</p><p>Chief Financial Officer, Executive Vice President</p></div>
-                <div class="block"><p>Bruce Robertson,</p><p>Executive Vice President Operations</p></div>
-                <div class="block"><p>Anthony Bradbury,</p><p>Executive Vice President Land Rover Brand China</p></div>
-                <div class="block"><p>May Che,</p><p>Executive Vice President Jaguar Brand China</p></div>
-                <div class="block"><p>Wendy Zhang,</p><p>Executive Vice President Business Development China </p></div>
-                <div class="block"><p>Ricardo Viana,</p><p>Executive Vice President After Sales</p></div>
-            </div>
-        
-
-
-
- 
-
-        
-            <?php } else { ?>
-            <div id="speakers">
-                    <div class="title">CONFERENCE SPEAKERS</div>
-                    <div class="block"><p>高博</p><p>总裁</p></div>
-                    <div class="block"><p>汪冬宁</p><p>首席财务官 执行副总裁</p></div>
-                    <div class="block"><p>罗伯逊</p><p>运营执行副总裁</p></div>
-                    <div class="block"><p>柏睿安</p><p>路虎中国市场执行副总裁</p></div>
-                    <div class="block"><p>车艳华</p><p>捷豹中国市场执行副总裁</p></div>
-                    <div class="block"><p>张雯</p><p>中国区商业发展执行副总裁</p></div>
-                    <div class="block"><p>维嘉德</p><p>售后服务执行副总裁</p></div>
-            </div>
-        
-            
-        <?php } ?>
-
-        
-        
                 
+                <div class="block">
+                     <div class="block-title">CONFERENCE SPEAKERS</div>
+                     <div class="sub-block full">Bob Grace,<br/>President</div>
+                     <div class="sub-block full">Nick Wang,<br/>Chief Financial Officer, Executive Vice President</div>
+                     <div class="sub-block full">Bruce Robertson,<br/>Executive Vice President Operations</div>
+                     <div class="sub-block full">Anthony Bradbury,<br/>Executive Vice President Land Rover Brand China</div>
+                     <div class="sub-block full">May Che,<br/>Executive Vice President Jaguar Brand China</div>
+                     <div class="sub-block full">Wendy Zhang,<br/>Executive Vice President Business Development China </div>
+                     <div class="sub-block full">Ricardo Viana,<br/>Executive Vice President After Sales</div>
+                </div>
+        
+                <div class="block">
+                     <div class="block-title">CONFERENCE & GALA DINER VENUE</div>
+                     <div class="sub-block">
+                         <label class="sub-block-title">SHANGHAI EXPO CENTRE</label>
+                         <ul>
+                             <li>SHANGHAI EXPO CENTRE CO., LTD.</li>
+                             <li>website：http://www.secc.com.cn</li>
+                             <li>1500 Expo Avenue Pudong District, Shanghai, China</li>
+                         </ul>
+                     </div>
+                     <div class="sub-block">
+                         <img src="/medias/images/sh_expo_center_1.jpg" width="500" height="400"/>
+                         <img src="/medias/images/sh_expo_center_2.jpg" width="500" height="400"/>
+                         <img src="/medias/images/sh_expo_center_3.jpg" width="1000" />
+                     </div>
+                     
+                     <div class="sub-block full"><label class="sub-block-title" style="font-size: 18px;">TRANSFERS</label></div>
+                     <div class="sub-block half-width"><label class="sub-block-title">From Shanghai Pudong  International Airport</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.de/maps?saddr=Shanghai+Pudong+International+Airport,+Shanghai+Pudong+International+Airport,+900%E5%8F%B7+Qihang+Rd,+Pudong,+Shanghai,+China&amp;daddr=Expo+Center,+1500%E5%8F%B7+Shibo+Avenue,+Pudong,+Shanghai,+China&amp;hl=en&amp;ie=UTF8&amp;sll=31.178735,121.642685&amp;sspn=0.280219,0.617294&amp;geocode=FeyE2wEdi39CByn1jyGq24-tNTHku9n2TQ4s6Q%3BFUPd2wEd88Y9BynNRAgt9XqyNTGMMoGKtQCDVQ&amp;mra=prev&amp;t=m&amp;vpsrc=0&amp;ll=31.171391,121.69487&amp;spn=0.140121,0.308647&amp;output=embed"></iframe></div>
+                     <div class="sub-block half-width"><label class="sub-block-title">From Shanghai Hongqiao airport </label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.de/maps?saddr=SHANGHAI+hongqiao+airport&amp;daddr=Expo+Center,+1500%E5%8F%B7+Shibo+Avenue,+Pudong,+Shanghai,+China&amp;hl=en&amp;ie=UTF8&amp;sll=31.171391,121.69487&amp;sspn=0.140121,0.308647&amp;geocode=FWgL3AEdRXI7ByH22byHt5bV0in_6aLljWayNTH22byHt5bV0g%3BFUPd2wEd88Y9BynNRAgt9XqyNTGMMoGKtQCDVQ&amp;mra=ls&amp;t=m&amp;vpsrc=0&amp;ll=31.186959,121.409569&amp;spn=0.140098,0.308647&amp;output=embed"></iframe></div>
+                     <div class="sub-block half-width"><label class="sub-block-title">From Shanghai railway station</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.de/maps?saddr=Shanghai+Railway+Station,+Shanghai,+China&amp;daddr=Expo+Center,+1500%E5%8F%B7+Shibo+Avenue,+Pudong,+Shanghai,+China&amp;hl=en&amp;ie=UTF8&amp;sll=31.186959,121.409569&amp;sspn=0.140098,0.308647&amp;geocode=FbTT3AEdOFA9BykdnRW0MXCyNTHSWXJ8JS2UxA%3BFUPd2wEd88Y9BynNRAgt9XqyNTGMMoGKtQCDVQ&amp;oq=SHANGHAI+RAILWAY+STAION&amp;mra=ls&amp;t=m&amp;vpsrc=0&amp;ll=31.211921,121.475143&amp;spn=0.140061,0.308647&amp;output=embed"></iframe></div>
+                     <div class="sub-block half-width"><label class="sub-block-title">From Shanghai south railway station</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.de/maps?saddr=Shanghai+South+Railway+Station,+Shanghai,+China&amp;daddr=Expo+Center,+1500%E5%8F%B7+Shibo+Avenue,+Pudong,+Shanghai,+China&amp;hl=en&amp;ie=UTF8&amp;sll=31.211921,121.475143&amp;sspn=0.140061,0.308647&amp;geocode=FeBh2wEd_OA8BymJo4e7u2SyNTGMmy4R-UwOfA%3BFUPd2wEd88Y9BynNRAgt9XqyNTGMMoGKtQCDVQ&amp;oq=Shanghai+SOUTH+Railway+Station,+Shanghai,+China&amp;mra=ls&amp;t=m&amp;vpsrc=0&amp;ll=31.174503,121.461754&amp;spn=0.040003,0.064661&amp;output=embed"></iframe></div>
+                     <div class="sub-block half-width"><label class="sub-block-title">From Shanghai west railway station</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.de/maps?saddr=Shanghai+West+Railway+Station,+Shanghai,+Taopu+Road,+China&amp;daddr=Expo+Center,+1500%E5%8F%B7+Shibo+Avenue,+Pudong,+Shanghai,+China&amp;hl=en&amp;ie=UTF8&amp;sll=31.174503,121.461754&amp;sspn=0.070058,0.154324&amp;geocode=FTMK3QEdxXI8Bylj-xSFqG-yNTH52qzqQXVCJQ%3BFUPd2wEd88Y9BynNRAgt9XqyNTGMMoGKtQCDVQ&amp;oq=Shanghai+WEST+Railway+Station,+Shanghai,+China&amp;mra=ls&amp;t=m&amp;vpsrc=0&amp;ll=31.219924,121.4453&amp;spn=0.08393,0.097568&amp;output=embed"></iframe></div>
+                </div>
+                     
+        <?php } else { ?>
+                
+                <div class="block">
+                     <div class="block-title">大会演讲嘉宾</div>
+                     <div class="sub-block full">高博<br/>总裁</div>
+                     <div class="sub-block full">汪冬宁<br/>首席财务官 执行副总裁</div>
+                     <div class="sub-block full">罗伯逊<br/>运营执行副总裁</div>
+                     <div class="sub-block full">柏睿安<br/>路虎中国市场执行副总裁</div>
+                     <div class="sub-block full">车艳华<br/>捷豹中国市场执行副总裁</div>
+                     <div class="sub-block full">张雯<br/>中国区商业发展执行副总裁</div>
+                     <div class="sub-block full">维嘉德<br/>售后服务执行副总裁</div>
+                </div>
+        
+                <div class="block">
+                     <div class="block-title">会议和晚宴地点</div>
+                     <div class="sub-block">
+                         <label class="sub-block-title">上海世博中心</label>
+                         <ul>
+                             <li>上海世博中心有限公司</li>
+                             <li>网址：http://www.secc.com.cn</li>
+                             <li>上海市浦东新区世博大道1500号</li>
+                         </ul>
+                     </div>
+
+                     <div class="sub-block">
+                         <img src="/medias/images/sh_expo_center_1.jpg" width="500" height="400"/>
+                         <img src="/medias/images/sh_expo_center_2.jpg" width="500" height="400"/>
+                         <img src="/medias/images/sh_expo_center_3.jpg" width="1000" />
+                     </div>
+
+                     <div class="sub-block full"><label class="sub-block-title">交通信息</label></div>
+                     <div class="sub-block half-width"><label class="sub-block-title">从上海浦东国际机场</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.de/maps?saddr=Shanghai+Pudong+International+Airport,+Shanghai+Pudong+International+Airport,+900%E5%8F%B7+Qihang+Rd,+Pudong,+Shanghai,+China&amp;daddr=Expo+Center,+1500%E5%8F%B7+Shibo+Avenue,+Pudong,+Shanghai,+China&amp;hl=en&amp;ie=UTF8&amp;sll=31.178735,121.642685&amp;sspn=0.280219,0.617294&amp;geocode=FeyE2wEdi39CByn1jyGq24-tNTHku9n2TQ4s6Q%3BFUPd2wEd88Y9BynNRAgt9XqyNTGMMoGKtQCDVQ&amp;mra=prev&amp;t=m&amp;vpsrc=0&amp;ll=31.171391,121.69487&amp;spn=0.140121,0.308647&amp;output=embed"></iframe></div>
+                     <div class="sub-block half-width"><label class="sub-block-title">从上海虹桥机场</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.de/maps?saddr=SHANGHAI+hongqiao+airport&amp;daddr=Expo+Center,+1500%E5%8F%B7+Shibo+Avenue,+Pudong,+Shanghai,+China&amp;hl=en&amp;ie=UTF8&amp;sll=31.171391,121.69487&amp;sspn=0.140121,0.308647&amp;geocode=FWgL3AEdRXI7ByH22byHt5bV0in_6aLljWayNTH22byHt5bV0g%3BFUPd2wEd88Y9BynNRAgt9XqyNTGMMoGKtQCDVQ&amp;mra=ls&amp;t=m&amp;vpsrc=0&amp;ll=31.186959,121.409569&amp;spn=0.140098,0.308647&amp;output=embed"></iframe></div>
+                     <div class="sub-block half-width"><label class="sub-block-title">从上海火车站</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.de/maps?saddr=Shanghai+Railway+Station,+Shanghai,+China&amp;daddr=Expo+Center,+1500%E5%8F%B7+Shibo+Avenue,+Pudong,+Shanghai,+China&amp;hl=en&amp;ie=UTF8&amp;sll=31.186959,121.409569&amp;sspn=0.140098,0.308647&amp;geocode=FbTT3AEdOFA9BykdnRW0MXCyNTHSWXJ8JS2UxA%3BFUPd2wEd88Y9BynNRAgt9XqyNTGMMoGKtQCDVQ&amp;oq=SHANGHAI+RAILWAY+STAION&amp;mra=ls&amp;t=m&amp;vpsrc=0&amp;ll=31.211921,121.475143&amp;spn=0.140061,0.308647&amp;output=embed"></iframe></div>
+                     <div class="sub-block half-width"><label class="sub-block-title">从上海南站</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.de/maps?saddr=Shanghai+South+Railway+Station,+Shanghai,+China&amp;daddr=Expo+Center,+1500%E5%8F%B7+Shibo+Avenue,+Pudong,+Shanghai,+China&amp;hl=en&amp;ie=UTF8&amp;sll=31.211921,121.475143&amp;sspn=0.140061,0.308647&amp;geocode=FeBh2wEd_OA8BymJo4e7u2SyNTGMmy4R-UwOfA%3BFUPd2wEd88Y9BynNRAgt9XqyNTGMMoGKtQCDVQ&amp;oq=Shanghai+SOUTH+Railway+Station,+Shanghai,+China&amp;mra=ls&amp;t=m&amp;vpsrc=0&amp;ll=31.174503,121.461754&amp;spn=0.040003,0.064661&amp;output=embed"></iframe></div>
+                     <div class="sub-block half-width"><label class="sub-block-title">从上海西站</label><iframe width="480" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.de/maps?saddr=Shanghai+West+Railway+Station,+Shanghai,+Taopu+Road,+China&amp;daddr=Expo+Center,+1500%E5%8F%B7+Shibo+Avenue,+Pudong,+Shanghai,+China&amp;hl=en&amp;ie=UTF8&amp;sll=31.174503,121.461754&amp;sspn=0.070058,0.154324&amp;geocode=FTMK3QEdxXI8Bylj-xSFqG-yNTH52qzqQXVCJQ%3BFUPd2wEd88Y9BynNRAgt9XqyNTGMMoGKtQCDVQ&amp;oq=Shanghai+WEST+Railway+Station,+Shanghai,+China&amp;mra=ls&amp;t=m&amp;vpsrc=0&amp;ll=31.219924,121.4453&amp;spn=0.08393,0.097568&amp;output=embed"></iframe></div>
+                </div>
+                     
+        <?php } ?>
+        <div class="clear"></div>
     </div>
 </div>
