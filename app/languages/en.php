@@ -103,5 +103,6 @@ return array(
     'delearship_name' => 'DELEARSHIP NAME',
     'message' => 'MESSAGE',
     'submit' => 'SUBMIT',
+    'please explain why' => 'PLEASE EXPLAIN WHY',
     
 );

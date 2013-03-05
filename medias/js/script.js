@@ -29,6 +29,12 @@ $(document).ready(function () {
     $('#is_staying-1').click(function(e) {
         $('.staying_at_hotel').show();
         $('.not_staying_at_hotel').hide();
+        
+        $('#room_type-single').parent().parent().click(function(){
+             initPopupImportantNotice('IMPORTANT NOTICES / 重要提醒');
+
+        });
+       
     }); 
 
     $('#is_staying-0').click(function(e) {
@@ -67,6 +73,30 @@ function initPopupReminder(title)
     );
     //$('#popup-reminder').css({top:'50%',left:'50%',margin:'-'+($('##popup-reminder').height() / 2)+'px 0 0 -'+($('#myDiv').width() / 2)+'px'});
     $('#popup-reminder').dialog('open');
+}
+
+function initPopupImportantNotice(title)
+{
+    $('#popup-important-notice').dialog({
+        autoOpen: false,
+        modal: true,
+        title: title,
+        width: 700,
+        show: { effect: 'fade', duration: 500 },
+        hide: { effect: 'hide', duration: 500 },
+        buttons: {
+            'Close': function(){
+                $(this).dialog("close");
+            }
+        }
+    });
+    $('#popup-important-notice').html(
+            '<div>Important Notes:</div>\n\
+            <div>- Jaguar Land Rover China has collaborated with Intercontinental Hotel to guarantee you a number of rooms available at a special rate of 1,100RMB net per night. In the case you want to book with Intercontinental Hotel, our team will contact you individually via phone call within a couple of days to help you in the booking process, therefore we need you to provide us with your bank account number to secure your room availability.</div>\n\
+            <div>- Please inform the RSVP person for hotel cancellation in 2 days advance, otherwise your room rate will be automatically deducted from your bank account.</div>\n\
+            <div>- Privacy Statement: Your bank account information is ONLY for this hotel book and JLR will definitely not put them on the website or apply for any other intentions.</div>'
+    );
+    $('#popup-important-notice').dialog('open');
 }
 
 function showPosition()

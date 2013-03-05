@@ -174,7 +174,7 @@ class UsersController extends Zend_Controller_Action
                 if ($this->getRequest()->isPost()) {
                     
                     $data = $this->_request->getPost();
-
+                    die(print_r($data));
                     // If the form data is valid, process it
                     if ($form->isValid($this->_request->getPost())) {
                         

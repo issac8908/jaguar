@@ -6,21 +6,19 @@
         <div id="main-content-title"><?php echo $this->translate('not_attending_the_conference') ?></div>
         <div id="unattending">
             <form method="post" action="<?php echo $this->url(array('controller' => 'message', 'action' => 'unattending'), 'default'); ?>" id="message-form" enctype="application/x-www-form-urlencoded">
-                <div class="left">
+                <div class="left" style="padding-top:25px !important;">
                     <div class="row"><label><?php echo $this->translate('first_name') ?></label><div class="field"><?php echo $this->form->first_name ?></div></div>
                     <div class="row"><label><?php echo $this->translate('last_name') ?></label><div class="field"><?php echo $this->form->last_name ?></div></div>
                     <div class="row"><label><?php echo $this->translate('email') ?></label><div class="field"><?php echo $this->form->email ?></div></div>
-                    <div class="row"><label><?php echo $this->translate('delearship_name') ?></label><div class="field"><?php echo $this->form->dealership_name ?></div></div>    
-                    <div class="row"><label><?php echo $this->translate('delearship_addr') ?></label><div class="field"><?php echo $this->form->dealership_addr ?></div></div>    
-                    <div class="row"><label><?php echo $this->translate('delearship_region') ?></label><div class="field"><?php echo $this->form->dealership_region ?></div></div>    
                 </div>
                 
-                <div class="right">
-                    <div class="row"><label><?php echo $this->translate('message') ?></label><div class="row2"><?php echo $this->form->message ?></div></div>
+                <div class="right" style="vertical-align:top !important;">
+                    <div class="row"><label><?php echo $this->translate('please explain why') ?></label><div class="row2"><?php echo $this->form->message ?></div></div>
                 </div>
 
-                <div class="bottom clearfix">
-                    <input type="submit" id="btnSubmit" class="btn" value="<?php echo $this->translate('submit') ?>">
+                <div class="bottom clearfix" style="float:left;margin:20px !important;">
+	                  <input type="submit" id="btnSubmit" class="btn" value="<?php echo $this->translate('submit') ?>">
+                    <a href="/" class="btn" style="margin-top:2px;"><?php echo $this->translate('back') ?></a>
                 </div>
             </form>
         </div>

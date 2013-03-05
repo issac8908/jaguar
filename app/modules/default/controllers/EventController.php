@@ -12,6 +12,7 @@ class EventController extends Zend_Controller_Action
          */
         public function indexAction()
         {
+            //die(print_r(Zend_Session::));
         }
   
         public function agendaAction()

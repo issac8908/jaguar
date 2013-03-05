@@ -27,9 +27,9 @@ class MessageController extends Zend_Controller_Action
                             'last_name' => $data['last_name'],
                             'email' => $data['email'],
                             'is_attending' => '0',
-                            'dealership_name' => $data['dealership_name'],
-                            'dealership_addr' => $data['dealership_addr'],
-                            'dealership_region' => $data['dealership_region']
+                            //'dealership_name' => $data['dealership_name'],
+                            //'dealership_addr' => $data['dealership_addr'],
+                            //'dealership_region' => $data['dealership_region']
                         )); 
 
                         if ($uid) {

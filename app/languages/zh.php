@@ -100,6 +100,7 @@ return array(
     'delearship_name' => '经销商名字',
     'message' => '消息',
     'submit' => '提交',
+    'please explain why' => '请解释原因',
     
     'Anshan' => '鞍山',
     'Baoding' => '保定',

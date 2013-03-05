@@ -112,6 +112,7 @@
 <div id="skip-step"></div>
 <div id="popup-form"><ul></ul></div>
 <div id="popup-reminder"></div>
+<div id="popup-important-notice"></div>
 <script type="text/javascript">
 $(function() {
     
@@ -159,12 +160,14 @@ $(function() {
     });
     
     $('#stepThreeSubmitBtn').click(function() {
+    
         if ($('#popup-reminder').html() === '') {
             initPopupReminder('<?php echo $this->translate('popup_reminder') ?>');
         } else {
             $('#popup-reminder').dialog('open');
         }
     });
+    
     $('#skip-step').dialog({
                 autoOpen: false,
                 modal: true,
