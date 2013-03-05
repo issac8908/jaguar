@@ -3,6 +3,7 @@ a
     text-decoration: none;
 }
 
+.ajax-loader { background: url(/medias/images/ajax-loader.gif) center no-repeat !important }
 html {
     height: 100%;
 }
@@ -103,7 +104,7 @@ body
     display: block;
 }
 
-#main-wrapper-wrapper { background: url('/medias/images/kv-login.jpg') rgb(32, 42, 51) repeat center center; min-height: 100%;}
+#main-wrapper-wrapper { background: url('/medias/images/kv-login.jpg')  repeat center center; min-height: 100%;}
 
 #main-top-border {
     background-color: #43555f;
@@ -159,7 +160,7 @@ body
 {
     /*background: url('/medias/images/kv-login.jpg') repeat center center;*/
     width: 1000px;
-    height:650px;
+    height:562px;
     margin: 0px auto 0 auto;
     display: block;
 }
@@ -306,9 +307,11 @@ div#step-one .row .field > .erorrs
 div#step-one .row .field > .erorrs li { padding-left: -20px;}
 
 div#step-one .row #position {
-    width: 350px;
+    width: 360px;
     float: right;
+    font-size: 14px;
 }
+div#gender {font-size: 14px; width: 210px;}
 
 textarea, input[type='text'], input[type='password'],
 div#step-one input[type='text'], div#step-one input[type='password'],
@@ -363,7 +366,7 @@ input[type='submit'], .btn
    color: white;
    border:solid 1px #43555f;
    font-weight: bold;
-   font-size: 14px;
+   font-size: 16px;
    float:right;
    margin-left: 8px;
 }
@@ -629,3 +632,10 @@ div#register .one-fourth
 div#hotel-image img {width: 500px; margin-top: 20px; border: 1px solid #4c4c4c;}
 div#hotel-name { width: 500px; position: absolute; margin-top: 40px; color: white;  font-size: 16px; margin-left: 155px; font-weight: bold;}
 div#hotel-addr { width: 500px; position: absolute; margin-top: 300px; color: white; margin-left: 150px; font-size: 16px; font-weight: bold;}
+
+div#popup-reminder
+{
+    text-align: center;
+    font-size: 12px;
+    color: rgb(181, 4, 4);
+}

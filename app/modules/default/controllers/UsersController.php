@@ -164,7 +164,7 @@ class UsersController extends Zend_Controller_Action
 	 */
 	public function registerAction()
 	{
-                
+            
 		// Instantiate the registration form model
                 $form = new Form_User_StepOne();
                 $stepTwoForm = new Form_User_StepTwo();
@@ -174,7 +174,7 @@ class UsersController extends Zend_Controller_Action
                 if ($this->getRequest()->isPost()) {
                     
                     $data = $this->_request->getPost();
-                    
+
                     // If the form data is valid, process it
                     if ($form->isValid($this->_request->getPost())) {
                         
@@ -283,7 +283,7 @@ class UsersController extends Zend_Controller_Action
                     $data = $this->_request->getPost();
                     $form = new Form_User_StepOne();
                     
-                    if ($form->isValidPartial($data))  
+                    if ($form->isValid($data))  
                         echo json_encode(array('success' => true));
                     else 
                         echo $form->processAjax($data);
@@ -302,7 +302,6 @@ class UsersController extends Zend_Controller_Action
                     
                     if ($form->isValid($data)) {  
                         if ($this->_authenticate($form)) {
-                            //$this->_helper->redirector('index', 'index');
                             echo json_encode(array('success' => true));
                         } else {
                             echo json_encode(array(

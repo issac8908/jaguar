@@ -14,16 +14,16 @@ class Form_User_StepTwo extends Zend_Form
                 
                 $arrival_transportation = new Zend_Form_Element_Select('arrival_transportation');
                 $arrival_transportation->addMultiOptions(array(
-                        'airplane' => 'Airplane',
-                        'train' => 'Train',
-                        'car' => 'Car'
+                        'airplane' => $this->getView()->translate('airplane'),
+                        'train' => $this->getView()->translate('train'),
+                        'car' => $this->getView()->translate('car'),
                 ));
 
                 $departure_transportation = new Zend_Form_Element_Select('departure_transportation');
                 $departure_transportation->addMultiOptions(array(
-                        'airplane' => 'Airplane',
-                        'train' => 'Train',
-                        'car' => 'Car'
+                        'airplane' => $this->getView()->translate('airplane'),
+                        'train' => $this->getView()->translate('train'),
+                        'car' => $this->getView()->translate('car'),
                 ));
 
                 $arrival_from = new Zend_Form_Element_Select('arrival_from');
@@ -33,8 +33,8 @@ class Form_User_StepTwo extends Zend_Form
                 $cities = $city_table->getCities();
                 if ($cities) {
                     foreach ($cities as $c) {
-                        $arrival_from->addMultiOption($c['cid'], $c['ch_name']);
-                        $departure_to->addMultiOption($c['cid'], $c['ch_name']);
+                        $arrival_from->addMultiOption($c['cid'], $this->getView()->translate(trim($c['en_name'])));
+                        $departure_to->addMultiOption($c['cid'], $this->getView()->translate(trim($c['en_name'])));
                     }
                 }
                 

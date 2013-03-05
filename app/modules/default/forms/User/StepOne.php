@@ -7,56 +7,41 @@ class Form_User_StepOne extends Zend_Form
         {
 
                 $first_name = new Zend_Form_Element_Text('first_name');
-                $first_name->setAttrib('tabindex', 1)
-                        ->setAttrib('size', '30')
-                        ->setRequired(true);
-                        //->addValidator('NotEmpty', true, array('messages' => array('isEmpty' => 'First name cannot be empty')));
+                $first_name->setRequired(true);
                 
                 $last_name = new Zend_Form_Element_Text('last_name');
-                $last_name->setAttrib('tabindex', 2)
-                        ->setAttrib('size', '30')
-                        ->setRequired(true);
-                        //->addValidator('NotEmpty', true, array('messages' => array('isEmpty' => 'Last name cannot be empty')));
+                $last_name->setRequired(true);
 
                 $gender = new Zend_Form_Element_Radio('gender');
-                $gender->setAttrib('tabindex', 3)->setLabel('Gender :')->addMultiOptions(array(
+                $gender->addMultiOptions(array(
                     'm' => $this->getView()->translate('male'),
                     'f' => $this->getView()->translate('female'),
                 ))->setSeparator('  ')->setRequired(true);
                 
                 $id_passport_number = new Zend_Form_Element_Text('id_passport_number');
-                $id_passport_number->setAttrib('size', '30')->setRequired(true);
-                
+                $id_passport_number->setRequired(true);
                 
                 $email = new Zend_Form_Element_Text('email');
-                $email->setAttrib('size', '30')
-                        ->setLabel('Adresse e-mail* :')
-                        ->setRequired(true)
+                $email->setRequired(true)
                         ->addValidator('EmailAddress', true, array('mx' => true, 'deep' => true))
-                        ->addValidator('Db_NoRecordExists', true, array('table' => 'user', 'field' => 'email'));//->addErrorMessages(array('Email address cannot be empty'));
+                        ->addValidator('Db_NoRecordExists', true, array('table' => 'user', 'field' => 'email'));
 
                 $confirm_email = new Zend_Form_Element_Text('confirm_email');
-                $confirm_email->setAttrib('size', '30')->setRequired(true)
-                      //  ->addValidator('NotEmpty', true, array('messages' => array('isEmpty' => 'Ce champ est obliatoire')))
-                                ->addValidator('identical', true, array('token' => 'email'));
+                $confirm_email->setRequired(true)->addValidator('identical', true, array('token' => 'email'));
                 
                 $password = new Zend_Form_Element_Password('password');
-                $password->setAttrib('size', '30')->setLabel('Mot de passe* :')->setRequired(true)
-                      //  ->addValidator('NotEmpty', true, array('messages' => array('isEmpty' => 'Ce champ est obliatoire')))
-                                ->addValidator('StringLength', true, array('min' => 6));
+                $password->setRequired(true)->addValidator('StringLength', true, array('min' => 6));
 
 
                 $confirm_password = new Zend_Form_Element_Password('confirm_password');
-                $confirm_password->setAttrib('size', '30')->setLabel('Confirmer le mot de passe* :')->setRequired(true)
-                     //   ->addValidator('NotEmpty', true, array('messages' => array('isEmpty' => 'Ce champ est obliatoire')))
+                $confirm_password->setRequired(true)
                                 ->addValidator('identical', true, array('token' => 'password'));
                 
-                
                 $tel = new Zend_Form_Element_Text('tel');
-                $tel->setAttrib('size', '30')->setRequired(true);;
+                $tel->setRequired(true);;
                 
                 $mobile = new Zend_Form_Element_Text('mobile');
-                $mobile->setAttrib('size', '30')->setRequired(true);;
+                $mobile->setRequired(true);;
                 
                 $position = new Zend_Form_Element_Radio('position');
                 $position->addMultiOptions(array(
@@ -65,6 +50,7 @@ class Form_User_StepOne extends Zend_Form
                     'partner' => $this->getView()->translate('partner'),
                 ))->setSeparator('  ')->setRequired(true);
 
+                
                 $group_one_table = new Model_DbTable_GroupOne();
                 
                 $group_name = new Zend_Form_Element_Select('group_name');
@@ -100,14 +86,11 @@ class Form_User_StepOne extends Zend_Form
                     }
                 }
                 
-                $submit = new Zend_Form_Element_Submit('step_one_next');
-                $submit->setLabel('NEXT');
-
                 $this->addElements(array(
                     $first_name, $last_name, $gender, $id_passport_number, 
                     $email, $confirm_email, $password, $confirm_password, 
                     $tel, $mobile, $position, $group_name, $group_title, $dms_code, $company_name, $company_title, 
-                    $city_id, $submit
+                    $city_id
                 ));
 
                 foreach($this->getElements() as $element) {

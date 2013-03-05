@@ -59,7 +59,7 @@ class MessageController extends Zend_Controller_Action
                     $data = $this->_request->getPost();
                     $form = new Form_Message_Unattending();
                     
-                    if ($form->isValidPartial($data)) {  
+                    if ($form->isValid($data)) {  
                         
                         if ($this->_isExistingEmail($form->getValue('email'))) {
                             echo json_encode(array('success' => false));

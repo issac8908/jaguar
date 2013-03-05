@@ -15,10 +15,9 @@
         <div id="register-form-content">
             <form action="<?php echo $this->url(array('controller' => 'users', 'action' => 'register'), 'default'); ?>" method="post" enctype="application/x-www-form-urlencoded" >
             <div id="step-one" style="display: none;">
-                <p class="general-notice"><?php echo $this->translate('menu_bar_guest_information') ?></p>
+                <p class="general-notice"><?php echo $this->translate('step_1') . ': ' . $this->translate('menu_bar_guest_information') ?></p>
                 <p class="important-notice"><?php echo $this->translate('important_notice_step_one') ?></p>
                 <p class="general-notice"><?php echo $this->translate('general_notice_step_one') ?></p>
-                
 
                 <div class="left">
                     <div class="row clearfix"><label><?php echo $this->translate('first_name') ?></label><div class="field"><?php echo $this->stepOneForm->first_name; ?></div></div>
@@ -47,14 +46,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="section clearfix">
-                    <div id="stepOneSubmitBtn"><?php //echo $this->stepOneForm->step_one_next; ?>
-                        <input type="submit" name="step_one_next" id="step_one_next" value="<?php echo $this->translate('next') ?>">
-                    </div>
+                <div class="section clearfix" style="margin-top: 30px; display: block; float: left;">
+                    <a href="#" id="stepOneNextBtn" class="btn"><?php echo $this->translate('next') ?></a>
+                    <a href="/" class="btn"><?php echo $this->translate('back') ?></a>
                 </div>
             </div>
             
             <div id="step-two" style="display:none;">
+                <p class="general-notice"><?php echo $this->translate('step_2') . ': ' . $this->translate('menu_bar_transportation') ?></p>
                 <p class="important-notice"><?php echo $this->translate('important_notice_step_two') ?></p>
                 <div class="form">
                     <div class="section clearfix">
@@ -74,14 +73,16 @@
                             <div class="row clearfix"><label><?php echo $this->translate('estimated_departure_time') ?></label><div class="field"><?php echo $this->stepTwoForm->departure_time; ?></div></div>
                         </div>
                     </div>
-                    <div class="section clearfix">
-                        <div id="stepTwoNextBtn"><button class="btn"><?php echo $this->translate('next') ?></button></div>
-                        <div id="stepTwoSkipBtn"><button class="btn"><?php echo $this->translate('skip') ?></button></div>
+                    <div class="section clearfix" style="margin-top: 30px; display: block; float: left;">
+                        <a href="#" id="stepTwoNextBtn" class="btn"><?php echo $this->translate('next') ?></a>
+                        <a href="#" id="stepTwoSkipBtn" class="btn"><?php echo $this->translate('skip') ?></a>
+                        <a href="#" id="stepTwoBackBtn" class="btn"><?php echo $this->translate('back') ?></a>
                     </div>
                 </div>
             </div>
             
             <div id="step-three" style="display:none;">
+                <p class="general-notice"><?php echo $this->translate('step_3') . ': ' . $this->translate('menu_bar_accomodation') ?></p>
                 <p class="important-notice"><?php echo $this->translate('important_notice_step_three') ?></p>
                 <div class="form">
                         <div class="left">
@@ -95,8 +96,9 @@
                     <div class="right not_staying_at_hotel" style="display:none;">
                         <div class="row"><label class="small"><?php echo $this->translate('not_staying_reason') ?></label><div class="field"><?php echo $this->stepThreeForm->not_staying_reason ?></div></div>
                     </div>
-                    <div class="section clearfix">
-                        <div id="stepThreeSubmitBtn"><input type="submit" value="<?php echo $this->translate('register') ?>" class="btn"/></div>
+                    <div class="section clearfix clear" >
+                        <a href="#" id="stepThreeSubmitBtn" class="btn"><?php echo $this->translate('register') ?></a>
+                        <a href="#" id="stepThreeBackBtn" class="btn"><?php echo $this->translate('back') ?></a>
                     </div>
                 </div>
             </div>
@@ -107,20 +109,13 @@
     
         
 </div>
-<div id="reg-form-errors"><ul><ul></div>
 <div id="skip-step"></div>
+<div id="popup-form"><ul></ul></div>
+<div id="popup-reminder"></div>
 <script type="text/javascript">
 $(function() {
-    $("#reg-form-errors").hide().fadeIn(4000);
-    $('#step-one').show();
-    $('#step-two', '#step-three').hide();
     
-    $('input[name="position"]').click(function(){
-        showPosition();
-    });
-    
-    $('#stepOneSubmitBtn').click(function(e) {
-        e.preventDefault();
+    $('#stepOneNextBtn').click(function() {
         var gender = $('input[name="gender"]:checked').val();
         var position = $('input[name="position"]:checked').val();
         $('#step-one .errors').remove();
@@ -152,21 +147,24 @@ $(function() {
                 }
             }
         });
+        return false;
     });
     
+    
+
     $('#stepTwoSkipBtn').click(function(e) {
         e.preventDefault();
         $('#skip-step').html('<?php echo $this->translate('skip_this_step') ?>');
         $('#skip-step').dialog('open');
     });
-    $('#stepTwoNextBtn').click(function(e) {
-        e.preventDefault();
-        $('#step-two').hide();
-        $('ul li#trans').removeClass('active');
-        $('ul li#accomodation').addClass('active');
-        $('#step-three').show();
+    
+    $('#stepThreeSubmitBtn').click(function() {
+        if ($('#popup-reminder').html() === '') {
+            initPopupReminder('<?php echo $this->translate('popup_reminder') ?>');
+        } else {
+            $('#popup-reminder').dialog('open');
+        }
     });
-
     $('#skip-step').dialog({
                 autoOpen: false,
                 modal: true,
@@ -176,11 +174,16 @@ $(function() {
                 hide: { effect: 'hide', duration: 500 },
                 buttons: {
                     '<?php echo $this->translate('yes') ?>': function() {
-                        $(this).dialog("close");
-                        $('#step-two').hide();
-                        $('ul li#trans').removeClass('active');
-                        $('ul li#accomodation').addClass('active');
-                        $('#step-three').show();
+                        //$(this).dialog("close");
+                        //$('#step-two').hide();
+                        //$('ul li#trans').removeClass('active');
+                        //$('ul li#accomodation').addClass('active');
+                        //$('#step-three').show();
+                        if ($('#popup-reminder').html() === '') {
+                            initPopupReminder('<?php echo $this->translate('popup_reminder') ?>');
+                        } else {
+                            $('#popup-reminder').dialog('open');
+                        }
                     },
                     '<?php echo $this->translate('no') ?>': function(){
                         $(this).dialog("close");
@@ -188,7 +191,7 @@ $(function() {
                 }
     });
     
-    $('#reg-form-errors').dialog({
+    $('#popup-form').dialog({
                 autoOpen: false,
                 modal: true,
                 title: '<?php echo $this->translate('register') ?>',
@@ -206,52 +209,20 @@ $(function() {
     
     $('#arrival_time, #departure_time').timepicker({'timeFormat': 'H:i' });
 
-    $('#is_staying-1').click(function(e) {
-        $('.staying_at_hotel').show();
-        $('.not_staying_at_hotel').hide();
-    }); 
-
-    $('#is_staying-0').click(function(e) {
-        $('.staying_at_hotel').hide();
-        $('.not_staying_at_hotel').show();
-    });
 });
 
 function outputFormErrorMessages(response) {
-    $('#reg-form-errors ul').empty();
+    $('#popup-form ul').empty();
     $(".error").removeClass("error");
        
     $.each(response, function (k, v) {
         $.each(v, function(k1, v1) {
-            $('#reg-form-errors ul').append('<li>' + $('#'+k).parent().siblings("label").html() + ': ' + v1 + '</li>');
+            $('#popup-form ul').append('<li>' + $('#'+k).parent().siblings("label").html() + ': ' + v1 + '</li>');
             $('#' + k).addClass('error');
         });
     });
     
-    $('#reg-form-errors').dialog('open');
+    $('#popup-form').dialog('open');
 }
 
-function showPosition()
-{
-    var value = $('input[name="position"]:checked').val();
-    if (value === 'group_head') {
-        $('#group_name').parent().parent().show();
-        $('#group_title').parent().parent().show();
-        $('#dms_code').parent().parent().hide();
-        $('#company_name').parent().parent().hide();
-        $('#company_title').parent().parent().hide();
-    } else if (value === 'manager') {
-        $('#group_name').parent().parent().hide();
-        $('#group_title').parent().parent().hide();
-        $('#dms_code').parent().parent().show();
-        $('#company_name').parent().parent().hide();
-        $('#company_title').parent().parent().hide();
-    } else if (value === 'partner') {
-        $('#group_name').parent().parent().hide();
-        $('#group_title').parent().parent().hide();
-        $('#dms_code').parent().parent().hide();
-        $('#company_name').parent().parent().show();
-        $('#company_title').parent().parent().show();
-    }
-}
 </script>
