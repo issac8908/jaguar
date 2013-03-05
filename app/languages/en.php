@@ -87,4 +87,6 @@ return array(
     'logout' => 'LOGOUT',
     'edit_profile' => 'EDIT PROFILE',
     'contact' => 'CONTACT',
+    'basic_information' => 'BASIC INFORMATION',
+    'is_attending' => 'ATTENDING THE EVENT',
 );

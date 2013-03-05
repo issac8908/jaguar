@@ -84,6 +84,8 @@ return array(
     'logout' => '退出',
     'edit_profile' => '编辑个人资料',
     'contact' => '联系方式',
+    'basic_information' => '基本资料',
+    'is_attending' => '出席会议',
     
     
     'Anshan' => '鞍山',
