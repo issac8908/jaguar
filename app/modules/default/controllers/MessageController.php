@@ -5,7 +5,9 @@ class MessageController extends Zend_Controller_Action
 	
 	public function init()
 	{
-                if (!$this->view->isLogged && !isset($_SESSION['valid_registration_code']) ) {
+                $session = Zend_Registry::get('session');
+                
+                if (!$this->view->isLogged && !($session->code)) {
                     $this->_helper->redirector('index', 'index');
                 }
 	}
@@ -29,10 +31,7 @@ class MessageController extends Zend_Controller_Action
                             'first_name' => $data['first_name'],
                             'last_name' => $data['last_name'],
                             'email' => $data['email'],
-                            'is_attending' => '0',
-                            //'dealership_name' => $data['dealership_name'],
-                            //'dealership_addr' => $data['dealership_addr'],
-                            //'dealership_region' => $data['dealership_region']
+                            'is_attending' => '0'
                         )); 
 
                         if ($uid) {
@@ -94,9 +93,7 @@ class MessageController extends Zend_Controller_Action
 	{
 		$this->view->data = $data;
 		
-                $this->view->data = $data;
-		
-                 $config = array(
+                $config = array(
                     'ssl' => 'ssl',
                     'port' => 465,
                     'auth' => 'login',
@@ -107,8 +104,8 @@ class MessageController extends Zend_Controller_Action
                 Zend_Mail::setDefaultTransport($transport);
                 
 		$mail = new Zend_Mail('utf-8');
-		$mail->addTo('commaille@gmail.com');
-                $mail->addBcc(array( 'dilin110@gmail.com'));
+		$mail->addTo('registration@2013-jlrc-conference.com');
+                $mail->addBcc(array('dilin110@gmail.com', 'commaille@gmail.com'));
                 $mail->setFrom('registration@2013-jlrc-conference.com', '2013 JRL Conference');
 		$mail->setSubject($data['first_name'] . ' ' . $data['last_name'] . ' is Not Attending The Conference');
 		$mail->setBodyHtml($this->view->render('message/mail/unattending.phtml'));
