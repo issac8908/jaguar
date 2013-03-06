@@ -343,6 +343,7 @@ div#step-three input[type='text']
     text-indent: 3px;
     font-size: 12px;
     width: 100%;
+		border:solid 1px #a9a9a9;
 }
 div#step-one input[type='text'], div#step-one input[type='password'],
 div#step-two input[type='text'], 
@@ -366,7 +367,8 @@ div#index .right input[type='text']
 
 .error
 {
-    border: 1px solid rgb(181, 4, 4);
+		background-color:#ffbdbd;
+		border:solid 1px #cc0000 !important;
     border-radius: 5px;
 }
 
@@ -662,3 +664,7 @@ div#register .one-fourth
 div#hotel-image img {width: 500px; margin-top: 20px; border: 1px solid #4c4c4c;}
 div#hotel-name { width: 500px; position: absolute; margin-top: 40px; color: white;  font-size: 16px; margin-left: 155px; font-weight: bold;}
 div#hotel-addr { width: 500px; position: absolute; margin-top: 300px; color: white; margin-left: 150px; font-size: 16px; font-weight: bold;}
+
+div#gender {
+		font-size:12px;
+}

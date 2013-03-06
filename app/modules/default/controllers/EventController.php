@@ -5,6 +5,9 @@ class EventController extends Zend_Controller_Action
 	
 	public function init()
 	{
+            if (!$this->view->isLogged) {
+                $this->_helper->redirector('index', 'index');
+            }
 	}
 	
         /** 
@@ -12,7 +15,6 @@ class EventController extends Zend_Controller_Action
          */
         public function indexAction()
         {
-            //die(print_r(Zend_Session::));
         }
   
         public function agendaAction()
@@ -31,6 +33,11 @@ class EventController extends Zend_Controller_Action
         }
         
         public function contactAction()
+        {
+            
+        }
+        
+        public function venueAction()
         {
             
         }

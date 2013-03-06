@@ -38,7 +38,7 @@ return array(
     'mobile' => 'MOBILE',
     'position' => 'POSITION',
     'city' => 'CITY',
-    'group_head' => 'Group Head',
+    'group_head' => 'Group Head (Including Taiwan & Hong Kong dealerships)',
     'general_manager' => 'General Manager',
     'partner' => 'Partner',
     'group_name' => 'GROUP NAME',
@@ -60,9 +60,9 @@ return array(
     'important_notice_step_two' => 'IMPORTANT NOTICE: GUESTS ARE IN CHARGE OF THEIR OWN TRANSFERS',
     'accomodation' => 'ACCOMODATION',
     
-    'important_notice_step_three' => 'IMPORTANT NOTICE: ALL ATTENDEES MUST STAY AT THE INTERCONTINENTAL SHANGHAI EXPO HOTEL ON APRIL 8TH (IF HOTEL ACCOMMODATION IS REQUIRED).
-                                        A LIMITED NUMBER OF ROOMS ARE GUARANTEED AT A SPECIAL RATE OF 1,100 RMB NET PER NIGHT (BREAKFAST INCLUDED).
-                                        ACCOMMODATION AND TRANSFERS TO AND FROM THE HOTEL MUST BE ARRANGED BY ATTENDEES AT THEIR OWN EXPENSE.
+    'important_notice_step_three' => 'IMPORTANT NOTICE: ALL ATTENDEES MUST STAY AT THE INTERCONTINENTAL SHANGHAI EXPO HOTEL ON APRIL 8TH (IF HOTEL ACCOMMODATION IS REQUIRED).<br><br>
+                                        A LIMITED NUMBER OF ROOMS ARE GUARANTEED AT A SPECIAL RATE OF 1,100 RMB NET PER NIGHT (BREAKFAST INCLUDED).<br><br>
+                                        ACCOMMODATION AND TRANSFERS TO AND FROM THE HOTEL MUST BE ARRANGED BY ATTENDEES AT THEIR OWN EXPENSE.<br><br>
                                         IF YOU NEED ANY OTHER INFORMATION, PLEASE CONTACT OUR TEAM: + 86 (21) 62585325 OR + 86 (21) 62585320',
     
     
@@ -78,7 +78,7 @@ return array(
     'next' => 'NEXT',
     'skip' => 'SKIP',
     'shanghai' => 'Shanghai',
-    'skip_this_step' => 'Are you sure you want to skip this step?',
+    'skip_this_step' => 'Are you sure you want to skip this step? <br/><br/> Please be remember to register the following two steps before 31st March 2013, thank you!',
     
     'my_profile' => 'MY PROFILE',
     'conference_speakers' => 'CONFERENCE SPEAKERS',
@@ -104,5 +104,6 @@ return array(
     'message' => 'MESSAGE',
     'submit' => 'SUBMIT',
     'please explain why' => 'PLEASE EXPLAIN WHY',
+    'venue' => 'VENUE',
     
 );

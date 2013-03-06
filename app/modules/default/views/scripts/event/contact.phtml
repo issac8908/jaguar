@@ -5,7 +5,8 @@
             <ul>
                 <li><a href="/users"><?php echo $this->translate('my_profile') ?></a></li>
                 <li><a href="/event/agenda"><?php echo $this->translate('agenda') ?></a></li>
-                <li><a href="/event/conf"><?php echo $this->translate('conference_speakers_and_venue') ?></a></li>
+                <li><a href="/event/conf"><?php echo $this->translate('conference_speakers') ?></a></li>
+                <li><a href="/event/venue"><?php echo $this->translate('venue') ?></a></li>
                 <li><a href="/event/hospitality"><?php echo $this->translate('hospitality') ?></a></li>
                 <li class="active"><a href="/event/contact"><?php echo $this->translate('contact_rsvp') ?></a></li>
                 <li class="logout"><a href="<?php echo $this->url(array('controller' => 'users','action' => 'logout'), 'default', true); ?>"><?php echo $this->translate('logout') ?></a></li>

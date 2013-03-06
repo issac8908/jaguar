@@ -1,0 +1,94 @@
+<div class="event">
+    
+    <div id="menu">
+        <div id="menu-wrapper">
+            <ul>
+                <li><a href="/users"><?php echo $this->translate('my_profile') ?></a></li>
+                <li><a href="/event/agenda"><?php echo $this->translate('agenda') ?></a></li>
+                <li><a href="/event/conf"><?php echo $this->translate('conference_speakers') ?></a></li>
+                <li class="active"><a href="/event/venue"><?php echo $this->translate('venue') ?></a></li>
+                <li><a href="/event/hospitality"><?php echo $this->translate('hospitality') ?></a></li>
+                <li><a href="/event/contact"><?php echo $this->translate('contact_rsvp') ?></a></li>
+                <li class="logout"><a href="<?php echo $this->url(array('controller' => 'users','action' => 'logout'), 'default', true); ?>"><?php echo $this->translate('logout') ?></a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div id="main-content">
+        <div id="main-content-title"><?php echo $this->translate('venue') ?></div>
+        
+        <?php if (Zend_Registry::get('Zend_Translate')->getLocale() == 'en') { ?>
+                
+																																						
+
+               
+        
+                <div class="block">
+                     <div class="block-title">CONFERENCE & GALA DINER VENUE</div>
+                     <div class="sub-block">
+                         <label class="sub-block-title">SHANGHAI EXPO CENTRE</label>
+                         <ul>
+                             <li>SHANGHAI EXPO CENTRE CO., LTD.</li>
+                             <li>website：<a href="http://www.secc.com.cn">http://www.secc.com.cn</a></li>
+                             <li>1500 Expo Avenue Pudong District, Shanghai, China</li>
+                         </ul>
+                     </div>
+                     <div class="sub-block">
+                         <img src="/medias/images/sh_expo_center_1.jpg" width="500" height="400"/>
+                         <img src="/medias/images/sh_expo_center_2.jpg" width="500" height="400"/>
+                         <img src="/medias/images/sh_expo_center_3.jpg" width="1000" />
+                     </div>
+                     
+                     <div class="sub-block full">
+                         <label class="sub-block-title" style="font-size: 18px; width:100%;">VENUE MAPS</label>
+                         <iframe width="700" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://ditu.google.cn/maps?ie=UTF8&amp;q=%E4%B8%8A%E6%B5%B7%E4%B8%96%E5%8D%9A%E4%B8%AD%E5%BF%83&amp;fb=1&amp;hq=%E4%B8%96%E5%8D%9A%E4%B8%AD%E5%BF%83&amp;hnear=0x35b27040b1f53c33:0x295129423c364a1,%E4%B8%8A%E6%B5%B7&amp;cid=0,0,6161769494885773964&amp;t=m&amp;brcurrent=3,0x35b27aa1b75f5a7d:0x33a77a770ab63b1b,0,0x35b27a9c437d5d51:0xeced90439ee1369a%3B5,0,0&amp;z=16&amp;iwloc=A&amp;output=embed"></iframe>
+                     </div>
+                
+                     <div class="sub-block full"><label class="sub-block-title" style="font-size: 18px;">TRANSFERS</label></div>
+                     <div class="sub-block half-width"><label class="sub-block-title"><a href="https://maps.google.de/maps?saddr=Shanghai+Pudong+International+Airport,+Shanghai+Pudong+International+Airport,+900%E5%8F%B7+Qihang+Rd,+Pudong,+Shanghai,+China&daddr=Expo+Center,+1500%E5%8F%B7+Shibo+Avenue,+Pudong,+Shanghai,+China&hl=en&ie=UTF8&ll=31.171391,121.69487&spn=0.140121,0.308647&sll=31.178735,121.642685&sspn=0.280219,0.617294&geocode=FeyE2wEdi39CByn1jyGq24-tNTHku9n2TQ4s6Q%3BFUPd2wEd88Y9BynNRAgt9XqyNTGMMoGKtQCDVQ&mra=prev&t=m&z=12">From Shanghai Pudong  International Airport</a></label></div>
+                     <div class="sub-block half-width"><label class="sub-block-title"><a href="https://maps.google.de/maps?saddr=SHANGHAI+hongqiao+airport&daddr=Expo+Center,+1500%E5%8F%B7+Shibo+Avenue,+Pudong,+Shanghai,+China&hl=en&ie=UTF8&ll=31.186959,121.409569&spn=0.140098,0.308647&sll=31.171391,121.69487&sspn=0.140121,0.308647&geocode=FWgL3AEdRXI7ByH22byHt5bV0in_6aLljWayNTH22byHt5bV0g%3BFUPd2wEd88Y9BynNRAgt9XqyNTGMMoGKtQCDVQ&mra=ls&t=m&z=12">From Shanghai Hongqiao airport </label></a></div>
+                     <div class="sub-block half-width"><label class="sub-block-title"><a href="https://maps.google.de/maps?saddr=Shanghai+Railway+Station,+Shanghai,+China&daddr=Expo+Center,+1500%E5%8F%B7+Shibo+Avenue,+Pudong,+Shanghai,+China&hl=en&ie=UTF8&ll=31.211921,121.475143&spn=0.140061,0.308647&sll=31.186959,121.409569&sspn=0.140098,0.308647&geocode=FbTT3AEdOFA9BykdnRW0MXCyNTHSWXJ8JS2UxA%3BFUPd2wEd88Y9BynNRAgt9XqyNTGMMoGKtQCDVQ&oq=SHANGHAI+RAILWAY+STAION&mra=ls&t=m&z=12">From Shanghai railway station</label></a></div>
+                     <div class="sub-block half-width"><label class="sub-block-title"><a href="https://maps.google.de/maps?saddr=Shanghai+South+Railway+Station,+Shanghai,+China&daddr=Expo+Center,+1500%E5%8F%B7+Shibo+Avenue,+Pudong,+Shanghai,+China&hl=en&ie=UTF8&sll=31.211921,121.475143&sspn=0.140061,0.308647&geocode=FeBh2wEd_OA8BymJo4e7u2SyNTGMmy4R-UwOfA%3BFUPd2wEd88Y9BynNRAgt9XqyNTGMMoGKtQCDVQ&oq=Shanghai+SOUTH+Railway+Station,+Shanghai,+China&mra=ls&t=m&z=13">From Shanghai south railway station</label></a></div>
+                     <div class="sub-block half-width"><label class="sub-block-title"><a href="https://maps.google.de/maps?saddr=Shanghai+West+Railway+Station,+Shanghai,+Taopu+Road,+China&daddr=Expo+Center,+1500%E5%8F%B7+Shibo+Avenue,+Pudong,+Shanghai,+China&hl=en&ie=UTF8&sll=31.174503,121.461754&sspn=0.070058,0.154324&geocode=FTMK3QEdxXI8Bylj-xSFqG-yNTH52qzqQXVCJQ%3BFUPd2wEd88Y9BynNRAgt9XqyNTGMMoGKtQCDVQ&oq=Shanghai+WEST+Railway+Station,+Shanghai,+China&mra=ls&t=m&z=12">From Shanghai west railway station</label></a></div>
+                </div>
+                     
+        <?php } else { ?>
+                
+       																																							 <table>
+									
+
+        
+                <div class="block">
+                     <div class="block-title">会议和晚宴地点</div>
+                     <div class="sub-block">
+                         <label class="sub-block-title">上海世博中心</label>
+                         <ul>
+                             <li>上海世博中心有限公司</li>
+                             <li>网址：<a href="http://www.secc.com.cn">http://www.secc.com.cn</a></li>
+                             <li>上海市浦东新区世博大道1500号</li>
+                         </ul>
+                     </div>
+
+                     <div class="sub-block">
+                         <img src="/medias/images/sh_expo_center_1.jpg" width="500" height="400"/>
+                         <img src="/medias/images/sh_expo_center_2.jpg" width="500" height="400"/>
+                         <img src="/medias/images/sh_expo_center_3.jpg" width="1000" />
+                     </div>
+
+                     <div class="sub-block full">
+                         <label class="sub-block-title" style="font-size: 18px; width:100%;">场地地图</label>
+                         <iframe width="700" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://ditu.google.cn/maps?ie=UTF8&amp;q=%E4%B8%8A%E6%B5%B7%E4%B8%96%E5%8D%9A%E4%B8%AD%E5%BF%83&amp;fb=1&amp;hq=%E4%B8%96%E5%8D%9A%E4%B8%AD%E5%BF%83&amp;hnear=0x35b27040b1f53c33:0x295129423c364a1,%E4%B8%8A%E6%B5%B7&amp;cid=0,0,6161769494885773964&amp;t=m&amp;brcurrent=3,0x35b27aa1b75f5a7d:0x33a77a770ab63b1b,0,0x35b27a9c437d5d51:0xeced90439ee1369a%3B5,0,0&amp;z=16&amp;iwloc=A&amp;output=embed"></iframe>
+                     </div>
+                     
+                     <div class="sub-block full"><label class="sub-block-title">交通信息</label></div>
+                     <div class="sub-block half-width"><label class="sub-block-title"><a href="https://maps.google.de/maps?saddr=Shanghai+Pudong+International+Airport,+Shanghai+Pudong+International+Airport,+900%E5%8F%B7+Qihang+Rd,+Pudong,+Shanghai,+China&daddr=Expo+Center,+1500%E5%8F%B7+Shibo+Avenue,+Pudong,+Shanghai,+China&hl=en&ie=UTF8&ll=31.171391,121.69487&spn=0.140121,0.308647&sll=31.178735,121.642685&sspn=0.280219,0.617294&geocode=FeyE2wEdi39CByn1jyGq24-tNTHku9n2TQ4s6Q%3BFUPd2wEd88Y9BynNRAgt9XqyNTGMMoGKtQCDVQ&mra=prev&t=m&z=12">从上海浦东国际机场</a></label></div>
+                     <div class="sub-block half-width"><label class="sub-block-title"><a href="https://maps.google.de/maps?saddr=SHANGHAI+hongqiao+airport&daddr=Expo+Center,+1500%E5%8F%B7+Shibo+Avenue,+Pudong,+Shanghai,+China&hl=en&ie=UTF8&ll=31.186959,121.409569&spn=0.140098,0.308647&sll=31.171391,121.69487&sspn=0.140121,0.308647&geocode=FWgL3AEdRXI7ByH22byHt5bV0in_6aLljWayNTH22byHt5bV0g%3BFUPd2wEd88Y9BynNRAgt9XqyNTGMMoGKtQCDVQ&mra=ls&t=m&z=12">从上海虹桥机场</label></a></div>
+                     <div class="sub-block half-width"><label class="sub-block-title"><a href="https://maps.google.de/maps?saddr=Shanghai+Railway+Station,+Shanghai,+China&daddr=Expo+Center,+1500%E5%8F%B7+Shibo+Avenue,+Pudong,+Shanghai,+China&hl=en&ie=UTF8&ll=31.211921,121.475143&spn=0.140061,0.308647&sll=31.186959,121.409569&sspn=0.140098,0.308647&geocode=FbTT3AEdOFA9BykdnRW0MXCyNTHSWXJ8JS2UxA%3BFUPd2wEd88Y9BynNRAgt9XqyNTGMMoGKtQCDVQ&oq=SHANGHAI+RAILWAY+STAION&mra=ls&t=m&z=12">从上海火车站</label></a></div>
+                     <div class="sub-block half-width"><label class="sub-block-title"><a href="https://maps.google.de/maps?saddr=Shanghai+South+Railway+Station,+Shanghai,+China&daddr=Expo+Center,+1500%E5%8F%B7+Shibo+Avenue,+Pudong,+Shanghai,+China&hl=en&ie=UTF8&sll=31.211921,121.475143&sspn=0.140061,0.308647&geocode=FeBh2wEd_OA8BymJo4e7u2SyNTGMmy4R-UwOfA%3BFUPd2wEd88Y9BynNRAgt9XqyNTGMMoGKtQCDVQ&oq=Shanghai+SOUTH+Railway+Station,+Shanghai,+China&mra=ls&t=m&z=13">从上海南站</label></a></div>
+                     <div class="sub-block half-width"><label class="sub-block-title"><a href="https://maps.google.de/maps?saddr=Shanghai+West+Railway+Station,+Shanghai,+Taopu+Road,+China&daddr=Expo+Center,+1500%E5%8F%B7+Shibo+Avenue,+Pudong,+Shanghai,+China&hl=en&ie=UTF8&sll=31.174503,121.461754&sspn=0.070058,0.154324&geocode=FTMK3QEdxXI8Bylj-xSFqG-yNTH52qzqQXVCJQ%3BFUPd2wEd88Y9BynNRAgt9XqyNTGMMoGKtQCDVQ&oq=Shanghai+WEST+Railway+Station,+Shanghai,+China&mra=ls&t=m&z=12">从上海西站</label></a></div>
+                </div>
+                     
+        <?php } ?>
+        <div class="clear"></div>
+    </div>
+</div>

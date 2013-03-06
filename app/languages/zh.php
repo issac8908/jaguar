@@ -35,7 +35,7 @@ return array(
     'mobile' => '手机',
     'position' => '职位',
     'city' => '城市',
-    'group_head' => '集团高层',
+    'group_head' => '集团高层(包括港台地区经销商)',
     'general_manager' => '总经理',
     'partner' => '商业合作伙伴',
     'group_name' => '集团名称',
@@ -57,9 +57,9 @@ return array(
     'important_notice_step_two' => '重要告示：以下信息仅为会务组提供参考。宾客需自行安排交通事宜',
     'accomodation' => '住宿',
     
-    'important_notice_step_three' => '重要告示：所有须要于4月8日住宿的宾客必须入住本次会议指定酒店：上海世博洲际酒店
-                                        捷豹路虎已与世博洲际酒店商定本次会议特别价，即人民币1100元/每晚
-                                        宾客须自行承担酒店住宿费用，并安排往返酒店的交通事宜
+    'important_notice_step_three' => '重要告示：所有须要于4月8日住宿的宾客必须入住本次会议指定酒店：上海世博洲际酒店<br><br>
+                                        捷豹路虎已与世博洲际酒店商定本次会议特别价，即人民币1100元/每晚<br><br>
+                                        宾客须自行承担酒店住宿费用，并安排往返酒店的交通事宜<br><br>
                                         若有任何其他问题，请致电我们：＋86 (21)62585325, 62585320',
     
     
@@ -75,7 +75,7 @@ return array(
     'next' => '下一步',
     'shanghai' => '上海',
     'skip' => '跳过',
-    'skip_this_step' => '您确定您要跳过此步骤吗？',
+    'skip_this_step' => '您确定您要跳过此步骤吗？<br/><br/> 请记得在2013年3月31号前完成后两步的注册，谢谢！',
     
     'my_profile' => '个人资料',
     'agenda' =>'议程',
@@ -101,6 +101,7 @@ return array(
     'message' => '消息',
     'submit' => '提交',
     'please explain why' => '请解释原因',
+    'venue' => '场地',
     
     'Anshan' => '鞍山',
     'Baoding' => '保定',

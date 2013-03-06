@@ -5,6 +5,9 @@ class MessageController extends Zend_Controller_Action
 	
 	public function init()
 	{
+                if (!$this->view->isLogged && !isset($_SESSION['valid_registration_code']) ) {
+                    $this->_helper->redirector('index', 'index');
+                }
 	}
 	
         public function indexAction()
@@ -91,21 +94,23 @@ class MessageController extends Zend_Controller_Action
 	{
 		$this->view->data = $data;
 		
-                $config = array(
-                    'ssl' => 'tls',
-                    'port' => 587,
+                $this->view->data = $data;
+		
+                 $config = array(
+                    'ssl' => 'ssl',
+                    'port' => 465,
                     'auth' => 'login',
-                    'username' => 'dilin@carburant.fr',
-                    'password' => 'dilin110'
+                    'username' => 'registration@2013-jlrc-conference.com',
+                    'password' => 'jlrc0nf2013',
                 );
-                $transport = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $config);
+                $transport = new Zend_Mail_Transport_Smtp('mail.gandi.net', $config);
                 Zend_Mail::setDefaultTransport($transport);
                 
 		$mail = new Zend_Mail('utf-8');
-		//$mail->addTo($data['email']);
-                $mail->addBcc(array( 'dilin110@gmail.com', 'commaille@gmail.com'));
-                $mail->setFrom('registration@2013-jlrc-conference.com', '2013-jlrc-conference');
-		$mail->setSubject($data['first_name'] . ' ' . $data['last_name'] . ' Is Not Attending The Conference');
+		$mail->addTo('commaille@gmail.com');
+                $mail->addBcc(array( 'dilin110@gmail.com'));
+                $mail->setFrom('registration@2013-jlrc-conference.com', '2013 JRL Conference');
+		$mail->setSubject($data['first_name'] . ' ' . $data['last_name'] . ' is Not Attending The Conference');
 		$mail->setBodyHtml($this->view->render('message/mail/unattending.phtml'));
 		
 		if($mail->send()) {

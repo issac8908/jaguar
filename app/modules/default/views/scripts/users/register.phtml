@@ -208,7 +208,8 @@ $(function() {
                 }
     });
     
-    $('#arrival_date, #departure_date').datepicker({ dateFormat: 'yy-mm-dd', minDate: new Date(2013, 4 - 1, 1), maxDate: new Date(2013, 4 - 1, 8)});
+    $('#arrival_date').datepicker({ dateFormat: 'yy-mm-dd', minDate: new Date(2013, 4 - 1, 1), maxDate: new Date(2013, 4 - 1, 8)});
+    $('#departure_date').datepicker({ dateFormat: 'yy-mm-dd', minDate: new Date(2013, 4 - 1, 9)});
     
     $('#arrival_time, #departure_time').timepicker({'timeFormat': 'H:i' });
 

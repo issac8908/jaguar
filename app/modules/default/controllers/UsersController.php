@@ -164,17 +164,27 @@ class UsersController extends Zend_Controller_Action
 	 */
 	public function registerAction()
 	{
-            
+                // if logged in
+                if ($this->view->isLogged) 
+                    $this->_helper->redirector('index', 'users');
+                
+                if (!isset($_SESSION['valid_registration_code']))
+                    $this->_helper->redirector('index', 'users');
+                
 		// Instantiate the registration form model
                 $form = new Form_User_StepOne();
                 $stepTwoForm = new Form_User_StepTwo();
                 $stepThreeForm = new Form_User_StepThree();
                 
+                if (Zend_Registry::get('group-one') == $_SESSION['valid_registration_code']) {
+                    $this->view->isGroupOne = true;
+                    $form->position->setRequired(false);
+                }
+                
                 // Has the form ben submitted?
                 if ($this->getRequest()->isPost()) {
                     
                     $data = $this->_request->getPost();
-                    die(print_r($data));
                     // If the form data is valid, process it
                     if ($form->isValid($this->_request->getPost())) {
                         
@@ -182,12 +192,14 @@ class UsersController extends Zend_Controller_Action
                             $user_table = new Model_DbTable_Users();
                             unset($data['confirm_password']);
                             unset($data['confirm_email']);
+                            $password = $data['password'];
                             $data['password'] = md5($data['password']);
                             $user_table->addUser($data);
                             
                             // Authenticate user
                             $this->_authenticate($form);
 
+                            $data['password'] = $password;
                             // Send admin and the new user emails.
                             $this->_sendMail($data);
 
@@ -210,6 +222,9 @@ class UsersController extends Zend_Controller_Action
                 } else {
                     $this->view->errors = $form->getErrors();
                 }
+                if (isset($_SESSION['valid_registration_code']) && Zend_Registry::get('group-one') == $_SESSION['valid_registration_code']) {
+                    $this->view->isGroupOne = true;
+                }
                 
                 $this->view->stepOneForm = $form;
                 $this->view->stepTwoForm = $stepTwoForm;
@@ -228,6 +243,7 @@ class UsersController extends Zend_Controller_Action
                 if ($code == Zend_Registry::get('group-one') 
                         || $code == Zend_Registry::get('group-two') 
                         || $code == Zend_Registry::get('group-three') ) {
+                    $_SESSION['valid_registration_code'] = $code;
                     echo json_encode(array('success' => true));
                 } else {
                     echo json_encode(array('success' => false));
@@ -400,26 +416,28 @@ class UsersController extends Zend_Controller_Action
                 $this->view->data = $data;
 		
                 $config = array(
-                    'ssl' => 'tls',
-                    'port' => 587,
+                    'ssl' => 'ssl',
+                    'port' => 465,
                     'auth' => 'login',
-                    'username' => 'dilin@carburant.fr',
-                    'password' => 'dilin110'
+                    'username' => 'registration@2013-jlrc-conference.com',
+                    'password' => 'jlrc0nf2013',
                 );
-                $transport = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $config);
+                
+                $transport = new Zend_Mail_Transport_Smtp('mail.gandi.net', $config);
                 Zend_Mail::setDefaultTransport($transport);
                 
 		$mailToAdmin = new Zend_Mail('utf-8');
 		$mailToAdmin->addTo('commaille@gmail.com');
                 $mailToAdmin->addBcc(array( 'dilin110@gmail.com'));
-                $mailToAdmin->setFrom('registration@2013-jlrc-conference.com', '2013-jlrc-conference');
-		$mailToAdmin->setSubject($data['first_name'] . ' ' . $data['last_name'] . ' Registered');
+
+                $mailToAdmin->setFrom('registration@2013-jlrc-conference.com', '2013 JLR Conference');
+		$mailToAdmin->setSubject($data['first_name'] . ' ' . $data['last_name'] . ' Registered to the JLR Conference');
 		$mailToAdmin->setBodyHtml($this->view->render('users/mail/new-user-admin-notice.phtml'));
 		
                 $mailToNewUser = new Zend_Mail('utf-8');
 		$mailToNewUser->addTo($data['email']);
                 $mailToNewUser->addBcc(array('commaille@gmail.com', 'dilin110@gmail.com'));
-                $mailToNewUser->setFrom('registration@2013-jlrc-conference.com', '2013-jlrc-conference');
+                $mailToNewUser->setFrom('registration@2013-jlrc-conference.com', '2013 JLR Conference');
 		$mailToNewUser->setSubject('Thank You for Registering at 2013-jlrc-conference.com');
 		$mailToNewUser->setBodyHtml($this->view->render('users/mail/new-user.phtml'));
 		
@@ -439,20 +457,21 @@ class UsersController extends Zend_Controller_Action
         {
                 $this->view->data = $data;
 		
-                $config = array(
-                    'ssl' => 'tls',
-                    'port' => 587,
+                 $config = array(
+                    'ssl' => 'ssl',
+                    'port' => 465,
                     'auth' => 'login',
-                    'username' => 'dilin@carburant.fr',
-                    'password' => 'dilin110'
+                    'username' => 'registration@2013-jlrc-conference.com',
+                    'password' => 'jlrc0nf2013',
                 );
-                $transport = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $config);
+                $transport = new Zend_Mail_Transport_Smtp('mail.gandi.net', $config);
                 Zend_Mail::setDefaultTransport($transport);
                 
 		$mailToAdmin = new Zend_Mail('utf-8');
 		$mailToAdmin->addTo('commaille@gmail.com');
                 $mailToAdmin->addBcc(array( 'dilin110@gmail.com'));
-                $mailToAdmin->setFrom('registration@2013-jlrc-conference.com', '2013-jlrc-conference');
+                
+                $mailToAdmin->setFrom('registration@2013-jlrc-conference.com', '2013 JLR Conference');
 		$mailToAdmin->setSubject($data['first_name'] . ' ' . $data['last_name'] . ' Updated the Profile');
 		$mailToAdmin->setBodyHtml($this->view->render('users/mail/profile-update-notice.phtml'));
 		
