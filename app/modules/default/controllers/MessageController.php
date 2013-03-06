@@ -107,7 +107,7 @@ class MessageController extends Zend_Controller_Action
 		$mail->addTo('registration@2013-jlrc-conference.com');
                 $mail->addBcc(array('dilin110@gmail.com', 'commaille@gmail.com'));
                 $mail->setFrom('registration@2013-jlrc-conference.com', '2013 JRL Conference');
-		$mail->setSubject($data['first_name'] . ' ' . $data['last_name'] . ' is Not Attending The Conference');
+		$mail->setSubject($data['first_name'] . ' ' . $data['last_name'] . ' is not Attending The Conference');
 		$mail->setBodyHtml($this->view->render('message/mail/unattending.phtml'));
 		
 		if($mail->send()) {
