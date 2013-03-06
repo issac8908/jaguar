@@ -99,6 +99,9 @@ class UsersController extends Zend_Controller_Action
 	{
 		$this->_helper->viewRenderer->setNoRender();
 		
+                $session = Zend_Registry::get('session');
+                $session->code = false;
+                
 		Zend_Auth::getInstance()->clearIdentity();
 		$this->_helper->redirector('index', 'index');
 	}
@@ -164,22 +167,20 @@ class UsersController extends Zend_Controller_Action
 	 */
 	public function registerAction()
 	{
-                // if logged in
+                // if logged in, redirect to agenda page
                 if ($this->view->isLogged) 
                     $this->_helper->redirector('index', 'users');
                 
-                if (!isset($_SESSION['valid_registration_code']))
+                // if no registration code saved, redirect to login page
+                $session = Zend_Registry::get('session');
+                if (!$session->code) {
                     $this->_helper->redirector('index', 'users');
+                }
                 
 		// Instantiate the registration form model
                 $form = new Form_User_StepOne();
                 $stepTwoForm = new Form_User_StepTwo();
                 $stepThreeForm = new Form_User_StepThree();
-                
-                if (Zend_Registry::get('group-one') == $_SESSION['valid_registration_code']) {
-                    $this->view->isGroupOne = true;
-                    $form->position->setRequired(false);
-                }
                 
                 // Has the form ben submitted?
                 if ($this->getRequest()->isPost()) {
@@ -222,8 +223,13 @@ class UsersController extends Zend_Controller_Action
                 } else {
                     $this->view->errors = $form->getErrors();
                 }
-                if (isset($_SESSION['valid_registration_code']) && Zend_Registry::get('group-one') == $_SESSION['valid_registration_code']) {
+                
+                if ($session->code == Zend_Registry::get('group-one')) {
                     $this->view->isGroupOne = true;
+                    $form->getElement('position')->setRequired(true);
+                } else {
+                    $this->view->isGroupOne = false;
+                    $form->getElement('position')->setRequired(false);
                 }
                 
                 $this->view->stepOneForm = $form;
@@ -243,7 +249,9 @@ class UsersController extends Zend_Controller_Action
                 if ($code == Zend_Registry::get('group-one') 
                         || $code == Zend_Registry::get('group-two') 
                         || $code == Zend_Registry::get('group-three') ) {
-                    $_SESSION['valid_registration_code'] = $code;
+
+                    $this->_saveRegistrationCodeAction($code);
+
                     echo json_encode(array('success' => true));
                 } else {
                     echo json_encode(array('success' => false));
@@ -299,6 +307,11 @@ class UsersController extends Zend_Controller_Action
                     $data = $this->_request->getPost();
                     $form = new Form_User_StepOne();
                     
+                    $session = Zend_Registry::get('session');
+                    if ($session->code != Zend_Registry::get('group-one')) {
+                        $form->getElement('position')->setRequired(false);
+                    } 
+                    
                     if ($form->isValid($data))  
                         echo json_encode(array('success' => true));
                     else 
@@ -336,6 +349,16 @@ class UsersController extends Zend_Controller_Action
                 $this->view->loginForm = $loginForm;
                 return $loginForm;
         }
+        
+        
+        private function _saveRegistrationCodeAction($code)
+        {
+                $session = Zend_Registry::get('session');
+		
+                $session->code = $code;
+        }
+        
+        
         
         private function _authenticate($form)
         {

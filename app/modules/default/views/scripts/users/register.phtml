@@ -33,6 +33,7 @@
                     <div class="row clearfix"><label><?php echo $this->translate('city') ?></label><div class="field"><?php echo $this->stepOneForm->city_id; ?></div></div>
                 </div>
                 
+                <?php if ($this->isGroupOne == true) { ?>
                 <div class="right">
                     <div class="row clearfix">
                         <label><?php echo $this->translate('position') ?></label>
@@ -46,6 +47,7 @@
                         </div>
                     </div>
                 </div>
+                <?php } ?>
                 <div class="section clearfix" style="margin-top: 30px; display: block; float: left;">
                     <a href="#" id="stepOneNextBtn" class="btn"><?php echo $this->translate('next') ?></a>
                     <a href="/" class="btn"><?php echo $this->translate('back') ?></a>
