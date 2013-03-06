@@ -18,6 +18,13 @@ class UsersController extends Zend_Controller_Action
 	{
 		$this->_request = $this->getRequest();
                 $this->table = new Model_DbTable_Users();
+                $this->config = array(
+                    'ssl' => 'ssl',
+                    'port' => 465,
+                    'auth' => 'login',
+                    'username' => 'registration@2013-jlrc-conference.com',
+                    'password' => 'jlrc0nf2013',
+                );;
                 
 	}
 	
@@ -89,6 +96,11 @@ class UsersController extends Zend_Controller_Action
                         $this->_helper->redirector('index', 'index');
                     }
                 }
+        }
+        
+        public function forgotPwdAction()
+        {
+                $forgotPasswordForm = $this->_getForgotPasswordForm();
         }
         /**
 	 * Logout user
@@ -224,6 +236,7 @@ class UsersController extends Zend_Controller_Action
                     $this->view->errors = $form->getErrors();
                 }
                 
+                /*
                 if ($session->code == Zend_Registry::get('group-one')) {
                     $this->view->isGroupOne = true;
                     $form->getElement('position')->setRequired(true);
@@ -231,6 +244,8 @@ class UsersController extends Zend_Controller_Action
                     $this->view->isGroupOne = false;
                     $form->getElement('position')->setRequired(false);
                 }
+                 * 
+                 */
                 
                 $this->view->stepOneForm = $form;
                 $this->view->stepTwoForm = $stepTwoForm;
@@ -281,6 +296,48 @@ class UsersController extends Zend_Controller_Action
                 }
         }
         
+        public function validateExistingEmailAction()
+        {
+                $this->_helper->getHelper('layout')->disableLayout();
+                $this->_helper->viewRenderer->setNoRender();
+             
+                if ($this->_request->isXmlHttpRequest()) {
+                    $form = $this->_getForgotPasswordForm();
+                    $data = $this->_request->getPost();
+                   
+                    if ($form->isValid($data)) {
+                        
+                            $user = $this->table->getUserByEmail($data['email']);
+                            
+                            if ($user) {
+                                $password = substr(md5(mt_rand().microtime()), 0, 10);
+                                
+                                $tempLoginTable = new Model_DbTable_UserTempLogins();
+                                $tempLoginTable->addTempLogin(array(
+                                    'uid' => $user['uid'],
+                                    'password' => md5($password)
+                                ));
+                                //$this->table->updateUserByEmail(array('password' => md5($password)), $data['email']);
+                                $user['password'] = $password;
+                                $this->_sendResetAccountEmail(array(
+                                    'first_name' => $user['first_name'], 
+                                    'last_name' => $user['last_name'],
+                                    'temp_password' => $password,
+                                    'email' => $user['email']));
+
+                                echo json_encode(array('success' => true));
+
+                            } else {
+                                echo json_encode(array('success' => false));
+                            }
+                    } else {
+                        echo $form->processAjax($data);
+                    }
+                   
+                }
+        }
+        
+        
         public function validateProfileAction()
         {
                 $this->_helper->getHelper('layout')->disableLayout();
@@ -307,10 +364,12 @@ class UsersController extends Zend_Controller_Action
                     $data = $this->_request->getPost();
                     $form = new Form_User_StepOne();
                     
+                    /*
                     $session = Zend_Registry::get('session');
                     if ($session->code != Zend_Registry::get('group-one')) {
                         $form->getElement('position')->setRequired(false);
                     } 
+                     */
                     
                     if ($form->isValid($data))  
                         echo json_encode(array('success' => true));
@@ -350,6 +409,12 @@ class UsersController extends Zend_Controller_Action
                 return $loginForm;
         }
         
+        private function _getForgotPasswordForm()
+        {
+                $forgotPasswordForm = new Form_User_ForgotPassword(array('method' => 'post'));
+                $this->view->forgotPasswordForm = $forgotPasswordForm;
+                return $forgotPasswordForm;
+        }
         
         private function _saveRegistrationCodeAction($code)
         {
@@ -479,15 +544,8 @@ class UsersController extends Zend_Controller_Action
         private function _notifyAdminUserProfileUpdated($data)
         {
                 $this->view->data = $data;
-		
-                 $config = array(
-                    'ssl' => 'ssl',
-                    'port' => 465,
-                    'auth' => 'login',
-                    'username' => 'registration@2013-jlrc-conference.com',
-                    'password' => 'jlrc0nf2013',
-                );
-                $transport = new Zend_Mail_Transport_Smtp('mail.gandi.net', $config);
+                 
+                $transport = new Zend_Mail_Transport_Smtp('mail.gandi.net', $this->config);
                 Zend_Mail::setDefaultTransport($transport);
                 
 		$mailToAdmin = new Zend_Mail('utf-8');
@@ -499,6 +557,47 @@ class UsersController extends Zend_Controller_Action
 		$mailToAdmin->setBodyHtml($this->view->render('users/mail/profile-update-notice.phtml'));
 		
                 if($mailToAdmin->send()) {
+			return true;
+		} else {
+			return false;
+		}
+        }
+        
+        /**
+         * Send admin the user's new profile
+         * @param type $data
+         * @return boolean
+         */
+        private function _sendResetAccountEmail($data)
+        {
+                
+                
+                
+                $data['link'] = 'http://localhost/users/password-reset/email/' . $data['email'] . '/token/' . $data['temp_password'];
+                $this->view->data = $data;
+                
+
+                $config = array(
+                    'ssl' => 'ssl',
+                    'port' => 465,
+                    'auth' => 'login',
+                    'username' => 'registration@2013-jlrc-conference.com',
+                    'password' => 'jlrc0nf2013',
+                );
+                
+                $transport = new Zend_Mail_Transport_Smtp('mail.gandi.net', $config);
+                Zend_Mail::setDefaultTransport($transport);
+                
+		$mailToUser = new Zend_Mail('utf-8');
+	//	$mailToAdmin->addTo('commaille@gmail.com');
+          //      $mailToAdmin->addBcc(array( 'dilin110@gmail.com'));
+                $mailToUser->addTo(array( 'dilin110@gmail.com'));
+                
+                $mailToUser->setFrom('registration@2013-jlrc-conference.com', '2013 JLR Conference');
+		$mailToUser->setSubject('Reset Your 2013 JLR Conference Account');
+		$mailToUser->setBodyHtml($this->view->render('users/mail/forgot-password.phtml'));
+		
+                if($mailToUser->send()) {
 			return true;
 		} else {
 			return false;

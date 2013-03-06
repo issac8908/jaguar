@@ -78,4 +78,10 @@ class Model_DbTable_Users extends Zend_Db_Table_Abstract
             }
             return false;
         }
+        
+        public function updateUserByEmail($data, $email) 
+        {
+            $where = $this->getAdapter()->quoteInto('email = ?', $email);
+            return $this->update($data, $where);
+        }
 }

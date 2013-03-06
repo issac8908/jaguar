@@ -122,7 +122,7 @@ body
 {
     background-color: #43555f;
     height: 30px;
-    font-size: 13px;
+    font-size: 12px;
     margin-top: 0px;
 }
 
@@ -147,14 +147,15 @@ body
 {
     list-style: none;
     float: left;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: normal;
     margin: 0 50px 0 0;
 		height:23px;
 		padding:7px 10px 0 10px;
 }
 
-#menu #menu-wrapper ul li a { text-decoration: none; color: #ededed; text-transform: uppercase;}
+#menu #menu-wrapper ul li a { text-decoration: none; color: #ededed; text-transform: uppercase; font-weight: bold; font-size: 12px; }
+
 #menu #menu-wrapper ul li:hover { text-decoration: none; color: #43555f; background-color:#ededed;  text-transform: uppercase; cursor:pointer;}
 
 #breadcrumb #breadcrumb-wrapper ul li.active, #menu #menu-wrapper ul li.active a
@@ -290,7 +291,7 @@ div#index .left-login .row > label {width: 80px;}
 div#index .right-login .row > label {width: 80px;}
 div#index .left .row > label {width: 80px;}
 div#index .right .row > label {width: 80px;}
-div#step-one .left .row > label {width: 180px;}
+div#step-one .left .row > label {width: 210px;}
 div#step-one .right .row > label {width: 100px;}
 div#step-two .left .row > label { width: 180px;}
 div#step-two .right .row > label { width: 180px;}
@@ -620,6 +621,8 @@ div#register .one-fourth
     font-size: 12px; font-weight: bold; margin: 10px 0px 0px 0px; width: auto; display: block; float: left;
 }
 
+.event #hospitality .sub-block-title { font-size: 14px;}
+
 .event ul 
 {
     width: 100%; padding: 0; display: block; float: left; list-style: none;
@@ -628,6 +631,7 @@ div#register .one-fourth
 .event ul li 
 {
     list-style: none;
+    margin-top: 2px;
 }
 
 .event ul li > span
@@ -652,6 +656,10 @@ div#register .one-fourth
     margin-left: 15px;
 }
 
+.event ul.decimal > li {
+    list-style: outside; margin-left: 20px; list-style-type: decimal;
+}
+
 .event a  {
     text-decoration: none;
 		color: #43555f;
@@ -668,3 +676,12 @@ div#hotel-addr { width: 500px; position: absolute; margin-top: 300px; color: whi
 div#gender {
 		font-size:12px;
 }
+
+.iframe {
+    display: none;
+}
+
+#forgot-pwd {
+    padding-top: 8px; position:absolute; font-size: 12px; color: #4c4c4c;
+}
+

@@ -12,7 +12,7 @@ class IndexController extends Zend_Controller_Action
             if ($auth->hasIdentity()) {
                 $identity = $auth->getIdentity();
                 if (isset($identity)) {
-                    $this->_helper->redirector('index', 'users');
+                    $this->_helper->redirector('agenda', 'event');
                 }
             }
 

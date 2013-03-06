@@ -8,7 +8,8 @@ return array(
     'registration_code' => 'REGISTRATION CODE',
     'register_here' => 'REGISTER HERE',
     'already_registered' =>'ALREADY REGISTERED',
-    'will_you_attend_event' => 'Will you attend the event?',
+    'will_you_attend_event' => 'Will you attend the event? <br/><br/>A maximum of 2 guests per dealership will be attend the conference and gala dinner.
+If you want to invite an additional guest, please directly contact your respective area business manager.',
     'registration_code_is_required' => 'Registration Code is Required.',
     'do_not_recognzie_code' => 'We do not recognize your registration code. ',
     'register' => 'REGISTER',
@@ -105,5 +106,7 @@ return array(
     'submit' => 'SUBMIT',
     'please explain why' => 'PLEASE EXPLAIN WHY',
     'venue' => 'VENUE',
-    
+    'forgot_password' => 'Forgot passpword?',
+    'forgot-pwd-form-submitted-notice' => 'Please check your email. We have sent you an email that will allow you to reset your password quickly and easily.',
+    'email_as_login_note' => 'This password will be used for your future login into this website',
 );

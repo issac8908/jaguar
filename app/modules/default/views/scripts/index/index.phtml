@@ -13,7 +13,10 @@
                             <div class="section clearfix">
                                 <div class="row"><label><?php echo $this->translate('login') ?></label><div class="field"><?php echo $this->loginForm->email; ?></div></div>
                                 <div class="row"><label><span class="label"><?php echo $this->translate('password') ?></span></label><div class="field"><?php echo $this->loginForm->password; ?></div></div>
-                                <div class="row submit"><input type="submit" name="submit" id="btnSignIn" class="submit" value="<?php echo $this->translate('sign_in') ?>"></div>
+                                <div class="row submit"> 
+                                    <a href="/users/forgot-pwd" id="forgot-pwd"><?php echo $this->translate('forgot_password') ?></a>
+                                    <input type="submit" name="submit" id="btnSignIn" class="submit" value="<?php echo $this->translate('sign_in') ?>">
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -53,6 +56,7 @@ $(document).ready(function(){
                 success: function(res) {
                     if (res.success == true) {
                         $('#popupDiag').dialog({
+                            width: 700,
                             title: '<?php echo $this->translate('register') ?>',
                             buttons: {
                                 "<?php echo $this->translate('yao') ?>": function() {

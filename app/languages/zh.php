@@ -8,7 +8,7 @@ return array(
     'register_here' => '用户注册',
     'password' => '密码',
     'registration_code' => '注册码',
-    'will_you_attend_event' => '您确认出席这次会议吗？',
+    'will_you_attend_event' => '您确认出席这次会议吗？<br/><br/>每位经销商最多限2人参加此次大会和晚宴。如果你想邀请更多人员，请向捷豹路虎中国相关人员申请。<br/>',
     'registration_code_is_required' => '注册码不能为空。',
     'do_not_recognzie_code' => '请输入有效注册码.',
     'register' => '注册',
@@ -102,6 +102,8 @@ return array(
     'submit' => '提交',
     'please explain why' => '请解释原因',
     'venue' => '场地',
+    'forgot_password' => '忘记密码?',
+    'email_as_login_note' => '此密码将作为您今后的网站登录使用',
     
     'Anshan' => '鞍山',
     'Baoding' => '保定',
@@ -174,5 +176,5 @@ return array(
     'Zhuhai' => '珠海',
     'Zibo' => '淄博',
     'Other' => '其他',
-
+    'forgot-pwd-form-submitted-notice' => '我们已经把重置密码的信息发送至您的邮箱。请查收。',
 );

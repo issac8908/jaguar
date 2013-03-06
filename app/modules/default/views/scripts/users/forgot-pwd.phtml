@@ -1,0 +1,85 @@
+<div id="main-top-border"></div>
+<div id="main-wrapper-wrapper">
+    <div id="index">
+        <div id="main-content-login">
+            <div id="login-text"></div>
+
+            <div id="forgotpassword">
+                
+                <div id="forgotpassword-wrapper">
+                
+                    <div class="form">
+                        <div>Please enter an email address to help us locate your account.</div>
+
+                        <form action="<?php echo $this->url(array('controller' => 'users', 'action' => 'forgotpassword'), 'default'); ?>" method="post" enctype="application/x-www-form-urlencoded" name="forgotpassword">
+
+                            <div class="row"><?php echo $this->forgotPasswordForm->email; ?></div>
+                            <div class="row submit"><a href="#" id="btnForgotPassword" class="btn"><?php echo $this->translate('submit') ?></a></div>
+
+                        </form>
+                    </div>
+                    <div id="forgot-pwd-form-submitted-notice" style="display:none;">
+                        <div><?php echo $this->translate('forgot-pwd-form-submitted-notice') ?></div>
+                    </div>
+                
+                </div>
+                
+	
+            </div>
+        </div>
+    </div>
+</div>
+<div id="form-errors"><ul><ul></div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#form-errors").hide().fadeIn(4000);
+    $('#btnForgotPassword').click(function(e) {
+        
+        var validEmail = false;
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            url: "/users/validate-existing-email", 
+            data: {'email': $('#email').val() },
+            success: function(res) {
+                if (res.success == true) {
+                    validEmail = true;
+                    $('#forgotpassword-wrapper .form').hide();
+                    $('#forgot-pwd-form-submitted-notice').show();
+                } else {
+                    validEmail = false;
+                    outputFormErrorMessages(res);
+                }
+            }
+        });
+        return validEmail;
+    });
+    
+    $('#form-errors').dialog({
+        autoOpen: false,
+        modal: true,
+        title: '<?php echo $this->translate('forgot_password') ?>',
+        width: 500,
+        show: { effect: 'fade', duration: 500 },
+        hide: { effect: 'hide', duration: 500 },
+        buttons: {
+            '<?php echo $this->translate('close') ?>': function(){
+                $(this).dialog("close");
+            }
+        }
+    });
+});
+
+function outputFormErrorMessages(response) {
+    $('#form-errors ul').empty();
+    $('input').removeClass('error');
+    $.each(response, function (k, v) {
+        $.each(v, function(k1, v1) {
+            $('#form-errors ul').append('<li>' + '<?php echo $this->translate('email') ?>' + ': ' + v1 + '</li>');
+            $('#' + k).addClass('error');
+        });
+    });
+    $('#form-errors').dialog('open');
+}
+</script>
