@@ -106,7 +106,7 @@ If you want to invite an additional guest, please directly contact your respecti
     'submit' => 'SUBMIT',
     'please explain why' => 'PLEASE EXPLAIN WHY',
     'venue' => 'VENUE',
-    'forgot_password' => 'Forgot passpword?',
+    'forgot_password' => 'Forgot password?',
     'forgot-pwd-form-submitted-notice' => 'We have sent you a message with a web link to your email address. Please click the link to reset your password. ',
     'email_as_login_note' => 'This password will be used for your future login into this website',
     'please_click_to_reset_pwd' => 'A message with a web link will be sent to this address immediately, please click to reset your password.',
