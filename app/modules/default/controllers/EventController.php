@@ -19,7 +19,7 @@ class EventController extends Zend_Controller_Action
   
         public function agendaAction()
         {
-            
+            $this->view->success_messages = $this->_helper->getHelper('FlashMessenger')->getMessages();
         }
         
         public function confAction()

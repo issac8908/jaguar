@@ -5,33 +5,37 @@
 
            <div id="login-text"></div>
 
-                 <div class="left-login">
+              <div class="left-login">
                 <div class="left-wrapper">
-                <div class="left-title"><?php echo $this->translate('already_registered') ?></div>
-                    <div class="form">
-                        <form id="login-form" action="<?php echo $this->url(array('controller' => 'users', 'action' => 'login'), 'default'); ?>" method="post" enctype="application/x-www-form-urlencoded" name="login">
+                <div class="left-title"><?php echo $this->translate('register_here') ?></div>
+                <div class="form">
+                        <form id="signup-form" action="<?php echo $this->url(array('controller' => 'users', 'action' => 'register'), 'default'); ?>" method="post" enctype="application/x-www-form-urlencoded" name="signup">
                             <div class="section clearfix">
-                                <div class="row"><label><?php echo $this->translate('login') ?></label><div class="field"><?php echo $this->loginForm->email; ?></div></div>
-                                <div class="row"><label><span class="label"><?php echo $this->translate('password') ?></span></label><div class="field"><?php echo $this->loginForm->password; ?></div></div>
-                                <div class="row submit"> 
-                                    <a href="/users/forgot-pwd" id="forgot-pwd"><?php echo $this->translate('forgot_password') ?></a>
-                                    <input type="submit" name="submit" id="btnSignIn" class="submit" value="<?php echo $this->translate('sign_in') ?>">
+                                <div class="row"><label><?php echo $this->translate('registration_code'); ?></label><div class="field"><input type="text" value="<?php echo $this->code; ?>" name="rcode" id="rcode" ></div></div>
+                                <div class="row submit"><input type="submit" name="submit2" id="btnSubmitCode" value="<?php echo $this->translate('sign_up') ?>"></div>
+                                <div id="popupDiag" style="display:none;">
+                                    <div style="font-size: 16px;"><?php echo $this->translate('will_you_attend_event') ?></div>
+                                    <div style="font-size: 11px; margin-top: 10px;"><?php echo $this->translate('will_you_attend_event_reminder') ?></div>
                                 </div>
                             </div>
                         </form>
                     </div>
+                    
                 </div>
             </div>
 
             <div class="right-login">
                 <div class="right-wrapper">
-                    <div class="right-title"><?php echo $this->translate('register_here') ?></div>
+                    <div class="right-title"><?php echo $this->translate('already_registered') ?></div>
                     <div class="form">
-                        <form>
+                        <form id="login-form" action="<?php echo $this->url(array('controller' => 'users', 'action' => 'login'), 'default'); ?>" method="post" enctype="application/x-www-form-urlencoded" name="login">
                             <div class="section clearfix">
-                                <div class="row"><label><?php echo $this->translate('registration_code'); ?></label><div class="field"><input type="text" value="<?php echo $this->code; ?>" name="rcode" id="rcode" ></div></div>
-                                <div class="row submit"><input type="submit" name="submit2" id="btnSubmitCode" value="<?php echo $this->translate('sign_up') ?>"></div>
-                                <div id="popupDiag" style="display:none;"><?php echo $this->translate('will_you_attend_event') ?></div>
+                                <div class="row"><label><?php echo $this->translate('email') ?></label><div class="field"><?php echo $this->loginForm->email; ?></div></div>
+                                <div class="row"><label><span class="label"><?php echo $this->translate('password') ?></span></label><div class="field"><?php echo $this->loginForm->password; ?></div></div>
+                                <div class="row submit"> 
+                                    <a href="/users/forgot-pwd" id="forgot-pwd"><?php echo $this->translate('forgot_password') ?></a>
+                                    <input type="submit" name="submit" id="btnSignIn" class="submit" value="<?php echo $this->translate('sign_in') ?>">
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -45,22 +49,27 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+   
+    
     $('#btnSubmitCode').click(function(e) {
         e.preventDefault();
         if ($('#rcode').val()) {
             $.ajax({
                 type: "post",
                 dataType: "json",
-                url: "/users/validate-code", 
+                url: "/ajax/validate-code", 
                 data: {'code': $('#rcode').val()},
                 success: function(res) {
-                    if (res.success == true) {
+                     
+                    if (res.email) {
+                        
                         $('#popupDiag').dialog({
                             width: 500,
                             title: '<?php echo $this->translate('register') ?>',
                             buttons: {
                                 "<?php echo $this->translate('yao') ?>": function() {
-                                    window.location.href="/users/register";
+                                    $(this).dialog('close');
+                                    window.location.href="<?php echo $this->url(array('controller'=>'users', 'action'=>'register')) ?>";
                                 },
                                 "<?php echo $this->translate('bu_yao') ?>": function() {
                                     window.location.href="<?php echo $this->url(array('controller'=>'message', 'action'=>'unattending')) ?>";

@@ -9,49 +9,46 @@ class Form_User_User extends Zend_Form
                 $uid = new Zend_Form_Element_Hidden('uid');
                 
                 $first_name = new Zend_Form_Element_Text('first_name');
-                $first_name->setAttrib('size', '30')->setRequired(true);
+                $first_name->setRequired(true);
                 
                 $last_name = new Zend_Form_Element_Text('last_name');
-                $last_name->setAttrib('size', '30')->setRequired(true);
+                $last_name->setRequired(true);
 
                 $gender = new Zend_Form_Element_Radio('gender');
-                $gender->setLabel('Gender :')->addMultiOptions(array(
-                    'm' => 'Male',
-                    'f' => 'Female'
+                $gender->addMultiOptions(array(
+                    'm' => $this->getView()->translate('male'),
+                    'f' => $this->getView()->translate('female'),
                 ))->setSeparator('  ')->setRequired(true);
                 
                 $id_passport_number = new Zend_Form_Element_Text('id_passport_number');
-                $id_passport_number->setAttrib('size', '30')->setRequired(true);
+                $id_passport_number->setRequired(true);
                 
                 $tel = new Zend_Form_Element_Text('tel');
-                $tel->setAttrib('size', '30')->setRequired(true);
+                $tel->setRequired(true);
                 
                 $mobile = new Zend_Form_Element_Text('mobile');
-                $mobile->setAttrib('size', '30')->setRequired(true);
+                $mobile->setRequired(true);
                 
                 $email = new Zend_Form_Element_Text('email');
-                $email->setAttrib('size', '30')
-                        ->setLabel('Adresse e-mail* :')
-                        ->setRequired(true)
+                $email->setRequired(true)
                         ->addValidator('EmailAddress', true, array('mx' => true, 'deep' => true));
                         //->addValidator('Db_NoRecordExists', true, array('table' => 'user', 'field' => 'email'));//->addErrorMessages(array('Email address cannot be empty'));
 
                 $password = new Zend_Form_Element_Password('password');
-                $password->setAttrib('size', '30')->setLabel('Mot de passe* :')->setRequired(true)
-                      //  ->addValidator('NotEmpty', true, array('messages' => array('isEmpty' => 'Ce champ est obliatoire')))
+                $password->setAttrib('size', '30')->setRequired(true)
                                 ->addValidator('StringLength', true, array('min' => 6));
 
                 $is_attending = new Zend_Form_Element_Radio('is_attending');
                 $is_attending->addMultiOptions(array(
-                    '1' => 'Yes',
-                    '0' => 'No'
+                    '1' => $this->getView()->translate('yes'),
+                    '0' => $this->getView()->translate('no')
                 ))->setSeparator('  ')->setRequired(true);
                 
                 $position = new Zend_Form_Element_Radio('position');
                 $position->addMultiOptions(array(
-                    'group_head' => 'Group Head',
-                    'manager' => 'General Manager',
-                    'partner' => 'Partner'
+                    'group_head' => $this->getView()->translate('group_head'),
+                    'manager' => $this->getView()->translate('general_manager'),
+                    'partner' => $this->getView()->translate('partner')
                 ))->setSeparator('  ')->setRequired(true);
 
                 $group_one_table = new Model_DbTable_GroupOne();
@@ -90,16 +87,16 @@ class Form_User_User extends Zend_Form
                 
                 $arrival_transportation = new Zend_Form_Element_Select('arrival_transportation');
                 $arrival_transportation->addMultiOptions(array(
-                        'airplane' => 'Airplane',
-                        'train' => 'Train',
-                        'car' => 'Car'
+                        'airplane' => $this->getView()->translate('airplane'),
+                        'train' => $this->getView()->translate('train'),
+                        'car' => $this->getView()->translate('car'),
                 ));
 
                 $departure_transportation = new Zend_Form_Element_Select('departure_transportation');
                 $departure_transportation->addMultiOptions(array(
-                        'airplane' => 'Airplane',
-                        'train' => 'Train',
-                        'car' => 'Car'
+                        'airplane' => $this->getView()->translate('airplane'),
+                        'train' => $this->getView()->translate('train'),
+                        'car' => $this->getView()->translate('car'),
                 ));
 
                 $arrival_from = new Zend_Form_Element_Select('arrival_from');
@@ -133,8 +130,8 @@ class Form_User_User extends Zend_Form
 
                 $is_staying = new Zend_Form_Element_Radio('is_staying');
                 $is_staying->addMultiOptions(array(
-                    '1' => 'Yes',
-                    '0' => 'No'
+                    '1' =>  $this->getView()->translate('yes'),
+                    '0' =>  $this->getView()->translate('no'),
                 ))->setSeparator('  ');
 
                 $not_staying_reason = new Zend_Form_Element_Textarea('not_staying_reason');
@@ -142,8 +139,8 @@ class Form_User_User extends Zend_Form
 
                 $is_joining_lunch = new Zend_Form_Element_Radio('is_joining_lunch');
                 $is_joining_lunch->addMultiOptions(array(
-                    '1' => 'Yes',
-                    '0' => 'No'
+                    '1' =>  $this->getView()->translate('yes'),
+                    '0' =>  $this->getView()->translate('no'),
                 ))->setSeparator('  ');;
         
                 $submit = new Zend_Form_Element_Submit('submit');

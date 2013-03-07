@@ -19,11 +19,6 @@ class Form_User_Register extends Zend_Form
                         ->addValidator('EmailAddress', true, array('mx' => true, 'deep' => true))
                         ->addValidator('Db_NoRecordExists', true, array('table' => 'user', 'field' => 'email'));//->addErrorMessages(array('Email address cannot be empty'));
 
-                $confirm_email = new Zend_Form_Element_Text('confirm_email');
-                $confirm_email->setAttrib('tabindex', 9)->setRequired(true)
-                      //  ->addValidator('NotEmpty', true, array('messages' => array('isEmpty' => 'Ce champ est obliatoire')))
-                                ->addValidator('identical', true, array('token' => 'email'));
-                
                 $password = new Zend_Form_Element_Password('password');
                 $password->setAttrib('tabindex', 8)->setLabel('Mot de passe* :')->setRequired(true)
                       //  ->addValidator('NotEmpty', true, array('messages' => array('isEmpty' => 'Ce champ est obliatoire')))

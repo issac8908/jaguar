@@ -7,7 +7,7 @@ class MessageController extends Zend_Controller_Action
 	{
                 $session = Zend_Registry::get('session');
                 
-                if (!$this->view->isLogged && !($session->code)) {
+                if (!$this->view->isLogged && !($session->email)) {
                     $this->_helper->redirector('index', 'index');
                 }
 	}

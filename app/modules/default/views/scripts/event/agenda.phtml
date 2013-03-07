@@ -100,3 +100,11 @@
         <div class="clear"></div>
     </div>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    <?php if (count($this->success_messages)) { ?>
+            alert('<?php echo $this->success_messages['0'] ?>');
+            <?php } ?>
+});
+</script>

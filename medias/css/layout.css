@@ -304,7 +304,7 @@ div#step-one .left .row > label {width: 210px;}
 div#step-one .right .row > label {width: 100px;}
 div#step-two .left .row > label { width: 180px;}
 div#step-two .right .row > label { width: 180px;}
-div#step-three .row > label {width: 250px; }
+div#step-three .row > label {width: 260px; }
 div#step-three .row > label.small {width: 130px;}
 
 .row .field 
@@ -314,7 +314,7 @@ div#step-three .row > label.small {width: 130px;}
     text-align: left;
 }
 .row .field > .text { float: right; font-weight: bold; padding-right: 90px; padding-top: 7px;}
-div#step-one .left .row .field {width: 230px;}
+div#step-one .left .row .field {width: 210px;}
 div#step-one .right > .row > .field {width: 350px;}
 div#step-one .right > .row > .field > .row > .field { width: 230px;}
 div#step-two .row > .field {width: 240px;}
@@ -423,6 +423,7 @@ input[type='submit'], .btn
     color: rgb(181, 4, 4); 
     font-size: 12px;
     text-align: center;
+    width: 1000px;
 }
 .general-notice 
 {

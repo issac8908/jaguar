@@ -1,6 +1,9 @@
 <?php 
 return array(
-    
+    '1' => '是的',
+    '0' => '不是',
+    'f' => '女',
+    'm' => '男',
     'sign_in' => '登陆',
     'sign_up' => '注册',
     'login' => '用户名',
@@ -8,9 +11,10 @@ return array(
     'register_here' => '用户注册',
     'password' => '密码',
     'registration_code' => '注册码',
-    'will_you_attend_event' => '您确认出席这次会议吗？<br/><br/>每位经销商最多限2人参加此次大会和晚宴。如果你想邀请更多人员，请向捷豹路虎中国相关人员申请。<br/>',
+    'will_you_attend_event' => '您确认出席这次会议吗？',
+    'will_you_attend_event_reminder' => '提示：<br/>每位经销商最多限2人参加此次大会和晚宴。如果你想邀请更多人员，请向捷豹路虎中国相关人员申请。',
     'registration_code_is_required' => '注册码不能为空。',
-    'do_not_recognzie_code' => '请输入有效注册码.',
+    'do_not_recognzie_code' => '您的注册码无效。您不能注册捷豹路虎经销商大会。请联系我们: registration@2013-jlrc-conference.com',
     'register' => '注册',
     'yao' => '是',
     'bu_yao' => '不是',
@@ -37,6 +41,7 @@ return array(
     'city' => '城市',
     'group_head' => '集团高层(包括港台地区经销商)',
     'general_manager' => '总经理',
+    'manager' => '总经理',
     'partner' => '商业合作伙伴',
     'group_name' => '集团名称',
     'title' => '职位',
@@ -57,10 +62,10 @@ return array(
     'important_notice_step_two' => '重要告示：以下信息仅为会务组提供参考。宾客需自行安排交通事宜',
     'accomodation' => '住宿',
     
-    'important_notice_step_three' => '重要告示：所有须要于4月8日住宿的宾客必须入住本次会议指定酒店：上海世博洲际酒店<br><br>
-                                        捷豹路虎已与世博洲际酒店商定本次会议特别价，即人民币1100元/每晚<br><br>
+    'important_notice_step_three' => '重要告示：所有需要于4月8日住宿的宾客必须入住本次会议指定酒店：上海世博洲际酒店<br><br>
+                                        捷豹路虎中国已与世博洲际酒店商定本次会议特别价，即人民币1100元/每晚<br><br>
                                         宾客须自行承担酒店住宿费用，并安排往返酒店的交通事宜<br><br>
-                                        若有任何其他问题，请致电我们：＋86 (21)62585325, 62585320',
+                                        若有任何其他问题，请致电我们：+86 (21)62585325, 62585320',
     
     
     'is_staying' => '您会在上海世博会酒店留宿吗？',
@@ -103,7 +108,6 @@ return array(
     'please explain why' => '请解释原因',
     'venue' => '场地',
     'forgot_password' => '忘记密码?',
-    'email_as_login_note' => '此密码将作为您今后的网站登录使用',
     
     'Anshan' => '鞍山',
     'Baoding' => '保定',
@@ -176,6 +180,9 @@ return array(
     'Zhuhai' => '珠海',
     'Zibo' => '淄博',
     'Other' => '其他',
+    
+    'email_login_note' => '此用户名将作为您今后的网站登录使用',
+    'password_login_note' => '此密码将作为您今后的网站登录使用',
     'i_forgot_my_password' => '我忘记密码了',
     'forgot-pwd-form-submitted-notice' => '我们已经把重置密码的信息发送至您的邮箱。请查收。',
     'please_click_to_reset_pwd' => '一条网络链接将会立即发送至您的邮箱，点击即可重设您的密码。',
@@ -183,4 +190,27 @@ return array(
     'reset_password' => '重置密码',
     'new_password' => '新密码',
     'confirm_new_password' => '确认新密码',
+    'register_with_existing_user_email' => '我们的记录显示此邮箱已经注册过账号了。如果您忘了密码，请点击<a href="http://2013-jlrc-conference.com/users/forgot-pwd"><strong>这里</strong></a>重置.</br>',
+    'registered_successfully_msg_1' => '您成功在网站上注册了JLR! \n\ ',
+    'registered_successfully_msg_2' => '确认邮件将会发送致您邮箱，敬请查收.', 
+    'welcome_email_subject' => '感谢您确认出席2013年捷豹路虎中国经销商大会',
+    
+     'popup_reminder_text' => '\n\
+            <ul><li>在上海世博会酒店留宿的宾客要在4月8号上午11点之前办理住房登记手续.</li>\n\
+            <li>4月8日当天在上海世博洲际酒店提供自助午餐</li>\n\
+            <li>敬请宾客于中午12点半在上海世博中心办理会议签到.</li>\n\
+            <li>宾客须出示身证份或护照方可允许进入会议现场.</li>\n\
+            <li>宾客须自行承担酒店住宿费用，并安排往返酒店的交通事宜</li>\n\
+            <li>会议期间禁止摄影摄像.</li>\n\
+            <li>如果你想邀请更多人员，请于3月31号前致电RSVP : 021-62585325 62585320 (工作时间: 09:30 – 18:30) </li>\n\
+            <li>更多关于会议的疑问，请致电 Juliet Zhou: 021-61563007</li>\n\
+            <li>紧急电话 +86 135 5015 6344  从4月7日至4月9日 24小时服务</li></ul>',
+    
+    'important-notice-for-room-type' => '\n\
+            <ul><li>捷豹路虎中国已与世博洲际酒店商定本次会议特别价：1,100元/每晚。由于酒店预订需要提供信用卡或储蓄卡银行账户信息，所以我们将会在接下来的几周内通过电话联系到您本人帮助预定，敬请留意。</li>\n\
+            <li>如果您要取消酒店预订，请提前2天与我们的酒店RSVP人员联系，否则您的房间费用将自动从您的账户中扣除。</li>\n\
+            <li>隐私陈述：您的银行账户信息仅供本次酒店预订使用，我们在此担保不做其他任何用途。</li></ul>',
+                                
+    'important_notice' => '重要提醒',
+    
 );

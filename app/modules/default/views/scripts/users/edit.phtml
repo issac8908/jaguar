@@ -3,84 +3,89 @@
     <div id="menu">
         <div id="menu-wrapper">
             <ul>
-                <li class="active"><a href="/users">MY PROFILE</a></li>
-                <li><a href="/event/agenda">AGENDA</a></li>
-                <li><a href="/event/conf">CONFERENCE Speakers & Venue</a></li>
-                <li><a href="/event/hospitality">HOSPITALITY</a></li>
-                <li><a href="/event/contact">CONTACT & RSVP</a></li>
-                <li class="logout"><a href="<?php echo $this->url(array('controller' => 'users','action' => 'logout'), 'default', true); ?>">Logout</a></li>
+                <li class="active"><a href="/users"><?php echo $this->translate('my_profile') ?></a></li>
+                <li><a href="/event/agenda"><?php echo $this->translate('agenda') ?></a></li>
+                <li><a href="/event/conf"><?php echo $this->translate('conference_speakers') ?></a></li>
+                <li><a href="/event/venue"><?php echo $this->translate('venue') ?></a></li>
+                <li><a href="/event/hospitality"><?php echo $this->translate('hospitality') ?></a></li>
+                <li><a href="/event/contact"><?php echo $this->translate('contact_rsvp') ?></a></li>
+                <li class="logout"><a href="<?php echo $this->url(array('controller' => 'users','action' => 'logout'), 'default', true); ?>"><?php echo $this->translate('logout') ?></a></li>
             </ul>
         </div>
     </div>
     
     <div id="main-content">
-        <div id="main-content-title">MY PROFILE</div>
+        <div id="main-content-title"><?php echo $this->translate('my_profile') ?></div>
         <div id="profile">
             <form action="<?php echo $this->url(array('controller' => 'users', 'action' => 'edit'), 'default'); ?>"
 				method="post" enctype="application/x-www-form-urlencoded"
 				name="profile-form" id="profile-form">
+                
                 <div id="step-one">
                         <div class="left">
                             <?php echo $this->form->uid ?>
-                            <div class="row clearfix"><label>FIRST NAME</label><div class="field"><?php echo $this->form->first_name; ?></div></div>
-                            <div class="row clearfix"><label>LAST NAME</label><div class="field"><?php echo $this->form->last_name; ?></div></div>
-                            <div class="row clearfix"><label>GENDER</label><div class="field"><div id="gender"><?php echo $this->form->gender ?></div></div></div>
-                            <div class="row clearfix"><label>ID/PASSPORT NUMBER</label><div class="field"><?php echo $this->form->id_passport_number ?></div></div>
-                            <div class="row clearfix"><label>TELEPHONE NUMBER</label><div class="field"><?php echo $this->form->tel; ?></div></div>
-                            <div class="row clearfix"><label>MOBILE NUMBER</label><div class="field"><?php echo $this->form->mobile; ?></div></div>
-                            <div class="row clearfix"><label>EMAIL</label><div class="field"><?php echo $this->form->email; ?></div></div>
-                            <div class="row clearfix"><label>PASSWORD</label><div class="field"><?php echo $this->form->password; ?></div></div>
-                            <div class="row clearfix"><label>CITY</label><div class="field"><?php echo $this->form->city_id; ?></div></div>
+                            <div class="row clearfix"><label><?php echo $this->translate('first_name') ?></label><div class="field"><?php echo $this->form->first_name; ?></div></div>
+                            <div class="row clearfix"><label><?php echo $this->translate('last_name') ?></label><div class="field"><?php echo $this->form->last_name; ?></div></div>
+                            <div class="row clearfix"><label><?php echo $this->translate('gender') ?></label><div class="field"><div id="gender"><?php echo $this->form->gender ?></div></div></div>
+                            <div class="row clearfix"><label><?php echo $this->translate('id_passport_number') ?></label><div class="field"><?php echo $this->form->id_passport_number ?></div></div>
+                            <div class="row clearfix"><label><?php echo $this->translate('tel') ?></label><div class="field"><?php echo $this->form->tel; ?></div></div>
+                            <div class="row clearfix"><label><?php echo $this->translate('mobile') ?></label><div class="field"><?php echo $this->form->mobile; ?></div></div>
+                            <div class="row clearfix"><label><?php echo $this->translate('email') ?></label><div class="field"><?php echo $this->form->email; ?></div></div>
+                            <div class="row clearfix"><label><?php echo $this->translate('password') ?></label><div class="field"><?php echo $this->form->password; ?></div></div>
+                            <div class="row clearfix"><label><?php echo $this->translate('city') ?></label><div class="field"><?php echo $this->form->city_id; ?></div></div>
                         </div>
                         
                         <div class="right">
                             <div class="row clearfix">
-                                <label>POSITION</label>
+                                <label><?php echo $this->translate('position') ?></label>
                                 <div class="field">
                                     <?php echo $this->form->position; ?>
-                                    <div class="row" style="display: none;"><label>GROUP NAME</label><div class="field"><?php echo $this->form->group_name ?></div></div>
-                                    <div class="row" style="display: none;"><label>TITLE</label><div class="field"><?php echo $this->form->group_title ?></div></div>
-                                    <div class="row" style="display: none;"><label>DMS CODE</label><div class="field"><?php echo $this->form->dms_code ?></div></div>
-                                    <div class="row" style="display: none;"><label>COMPANY NAME</label><div class="field"><?php echo $this->form->company_name ?></div></div>
-                                    <div class="row" style="display: none;"><label>COMPANY TITLE</label><div class="field"><?php echo $this->form->company_title ?></div></div>
+                                    <div class="row" style="display: none;"><label><?php echo $this->translate('group_head') ?></label><div class="field"><?php echo $this->form->group_name ?></div></div>
+                                    <div class="row" style="display: none;"><label><?php echo $this->translate('title') ?></label><div class="field"><?php echo $this->form->group_title ?></div></div>
+                                    <div class="row" style="display: none;"><label><?php echo $this->translate('dms_code') ?></label><div class="field"><?php echo $this->form->dms_code ?></div></div>
+                                    <div class="row" style="display: none;"><label><?php echo $this->translate('company_name') ?></label><div class="field"><?php echo $this->form->company_name ?></div></div>
+                                    <div class="row" style="display: none;"><label><?php echo $this->translate('company_title') ?></label><div class="field"><?php echo $this->form->company_title ?></div></div>
                                 </div>
                             </div>
                         </div>
                 </div>
                 
+                <div class="clear"></div>
+                
                 <div id="step-two">
+                    
                     <div class="left">
-                        <div class="row"><label>ARRIVAL DATE</label><div class="field"><?php echo $this->form->arrival_date; ?></div></div>
-                        <div class="row"><label>MEAN OF TRANSPORTATION</label><div class="field"><?php echo $this->form->arrival_transportation; ?></div></div>
-                        <div class="row"><label>FROM</label><div class="field"><?php echo $this->form->arrival_from ?></div></div>
-                        <div class="row"><label>TO</label><div class="field"><span class="text">Shanghai</span></div></div>
-                        <div class="row"><label>ESTIMATED ARRIVAL TIME</label><div class="field"><?php echo $this->form->arrival_time; ?></div></div>
+                        <div class="row"><label><?php echo $this->translate('arrival_date') ?></label><div class="field"><?php echo $this->form->arrival_date; ?></div></div>
+                        <div class="row"><label><?php echo $this->translate('mean_of_transportation') ?></label><div class="field"><?php echo $this->translate($this->form->arrival_transportation); ?></div></div>
+                        <div class="row"><label><?php echo $this->translate('from') ?></label><div class="field"><?php echo $this->form->arrival_from ?></div></div>
+                        <div class="row"><label><?php echo $this->translate('to') ?></label><div class="field"><span class="text"><?php echo $this->translate('shanghai') ?></span></div></div>
+                        <div class="row"><label><?php echo $this->translate('estimated_arrival_time') ?></label><div class="field"><?php echo $this->form->arrival_time; ?></div></div>
                     </div>
 
                     <div class="right">
-                        <div class="row"><label>DEPARTURE DATE</label><div class="field"><?php echo $this->form->departure_date; ?></div></div>
-                        <div class="row"><label>MEAN OF TRANSPORTATION</label><div class="field"><?php echo $this->form->departure_transportation; ?></div></div>
-                        <div class="row"><label>FROM</label><div class="field"><span class="text">Shanghai</span></div></div>
-                        <div class="row"><label>TO</label><div class="field"><?php echo $this->form->departure_to ?></div></div>
-                        <div class="row"><label>ESTIMATED DEPARTURE TIME</label><div class="field"><?php echo $this->form->departure_time; ?></div></div>
+                        <div class="row"><label><?php echo $this->translate('departure_date') ?></label><div class="field"><?php echo $this->form->departure_date; ?></div></div>
+                        <div class="row"><label><?php echo $this->translate('mean_of_transportation') ?></label><div class="field"><?php echo $this->form->departure_transportation; ?></div></div>
+                        <div class="row"><label><?php echo $this->translate('from') ?></label><div class="field"><span class="text"><?php echo $this->translate('shanghai') ?></span></div></div>
+                        <div class="row"><label><?php echo $this->translate('to') ?></label><div class="field"><?php echo $this->form->departure_to ?></div></div>
+                        <div class="row"><label><?php echo $this->translate('estimated_departure_time') ?></label><div class="field"><?php echo $this->form->departure_time; ?></div></div>
                     </div>
                 </div>
                 
                 <div id="step-three">
                     <div class="left">
-                        <div class="row"><label>Will you stay at the Intercontinental Shanghai Expo Hotel?</label><div class="field"><?php echo $this->form->is_staying ?></div></div>
-                        <div class="row"><label>Complimentary lunch is offered at the Intercontinental Shanghai Expo Hotel between 11:30am - 12:20pm on April 8th, will you join?</label><div class="field"><?php echo $this->form->is_joining_lunch; ?></div></div>
+                        <div class="row"><label><?php echo $this->translate('is_staying') ?></label><div class="field"><?php echo $this->form->is_staying ?></div></div>
+                        <div class="row"><label><?php echo $this->translate('is_joining_lunch') ?></label><div class="field"><?php echo $this->form->is_joining_lunch; ?></div></div>
                     </div>
                     <div class="right">
-                        <div class="row" style="display:none;"><label>Intercontinental Shanghai Expo Hotel room type</label><div class="field"><?php echo $this->form->room_type; ?></div></div>
-                        <div class="row" style="display:none;"><label>If twin room shared with another guest, please precise guest name</label><div class="field"><?php echo $this->form->guest_name; ?></div></div>
-                        <div class="row" style="display:none;"><label class="small">Please explain why.</label><div class="field"><?php echo $this->form->not_staying_reason ?></div></div>
+                        <div class="row" style="display:none;"><label><?php echo $this->translate('room_type') ?></label><div class="field"><?php echo $this->form->room_type; ?></div></div>
+                        <div class="row" style="display:none;"><label><?php echo $this->translate('guest_name') ?></label><div class="field"><?php echo $this->form->guest_name; ?></div></div>
+                        <div class="row" style="display:none;"><label class="small"><?php echo $this->translate('please explain why') ?></label><div class="field"><?php echo $this->form->not_staying_reason ?></div></div>
                     </div>
                 </div>
                 
                 <div class="section clearfix">
-                    <input type="submit" value="SUBMIT" name="submit" class="btn" id="btnSubmit">
-                    <a href="/users" class="btn" style="margin-top:2px;">BACK</a>
+                    <input type="submit" value="<?php echo $this->translate('submit') ?>" name="submit" class="btn" id="btnSubmit">
+                    <a href="/users" class="btn" style="margin-top:2px;"><?php echo $this->translate('back') ?></a>
                 </div>
                 
                 <div class="clear"></div>
@@ -89,6 +94,14 @@
     </div>
 </div>
 <div id="error-form"><ul></ul></div>
+<style type="text/css">
+    div#step-two .left .row > label {
+        width: 210px;
+    }    
+    div#step-one .right > .row > .field {
+        width: 360px;
+    }
+</style>
 <script type="text/javascript">
 $(function() {
     showPosition();
@@ -121,7 +134,6 @@ $(function() {
             
         });
     });
-    
     $('#arrival_date, #departure_date').datepicker({ dateFormat: 'yy-mm-dd', minDate: new Date(2013, 4 - 1, 1), maxDate: new Date(2013, 4 - 1, 8)});
     
     $('#arrival_time, #departure_time').timepicker({'timeFormat': 'H:i'});
@@ -135,7 +147,7 @@ $(function() {
         $('.staying_at_hotel').hide();
         $('.not_staying_at_hotel').show();
     });
-    
+
 });
 
 function showPosition()

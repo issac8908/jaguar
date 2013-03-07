@@ -26,9 +26,8 @@
                     <div class="row clearfix"><label><?php echo $this->translate('id_passport_number') ?></label><div class="field"><?php echo $this->stepOneForm->id_passport_number ?></div></div>
                     <div class="row clearfix"><label><?php echo $this->translate('tel') ?></label><div class="field"><?php echo $this->stepOneForm->tel; ?></div></div>
                     <div class="row clearfix"><label><?php echo $this->translate('mobile') ?></label><div class="field"><?php echo $this->stepOneForm->mobile; ?></div></div>
-                    <div class="row clearfix"><label><?php echo $this->translate('email') ?><br/><span style="font-size:9px;font-weight: normal;text-transform: lowercase;"><?php echo $this->translate('email_as_login_note') ?></label><div class="field"><?php echo $this->stepOneForm->email; ?></div></div>
-                    <div class="row clearfix"><label><?php echo $this->translate('confirm_email') ?></label><div class="field"><?php echo $this->stepOneForm->confirm_email; ?></div></div>
-                    <div class="row clearfix"><label><?php echo $this->translate('password') ?></label><div class="field"><?php echo $this->stepOneForm->password; ?></div></div>
+                    <div class="row clearfix"><label><?php echo $this->translate('email') ?><br/><span style="font-size:10px;font-weight: normal;text-transform: lowercase;"><?php echo $this->translate('email_login_note') ?></span></label><div class="field"><?php echo $this->stepOneForm->email; ?></div></div>
+                    <div class="row clearfix"><label><?php echo $this->translate('password') ?><br/><span style="font-size:10px;font-weight: normal;text-transform: lowercase;"><?php echo $this->translate('password_login_note') ?></span></label><div class="field"><?php echo $this->stepOneForm->password; ?></div></div>
                     <div class="row clearfix"><label><?php echo $this->translate('confirm_password') ?></label><div class="field"><?php echo $this->stepOneForm->confirm_password; ?></div></div>
                     <div class="row clearfix"><label><?php echo $this->translate('city') ?></label><div class="field"><?php echo $this->stepOneForm->city_id; ?></div></div>
                 </div>
@@ -46,9 +45,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="section clearfix"  style="margin: 20px 0 40px 0;">
-                    <div style="float:right"><a href="#" id="stepOneNextBtn" class="btn"><?php echo $this->translate('next') ?></a></div>
-                    <div style="float:right;"><a href="/" class="btn"><?php echo $this->translate('back') ?></a></div>
+                <div class="clear"  style="margin: 20px 0 40px 0;">
+                    <a href="#" id="stepOneNextBtn" class="btn"><?php echo $this->translate('next') ?></a>
+                    <a href="/" class="btn"><?php echo $this->translate('back') ?></a>
                 </div>
             </div>
             
@@ -73,7 +72,7 @@
                             <div class="row clearfix"><label><?php echo $this->translate('estimated_departure_time') ?></label><div class="field"><?php echo $this->stepTwoForm->departure_time; ?></div></div>
                         </div>
                     </div>
-                    <div class="section clearfix" style="margin-top: 30px; display: block; float: left;">
+                    <div class="clear" style="margin-top: 30px;">
                         <a href="#" id="stepTwoNextBtn" class="btn"><?php echo $this->translate('next') ?></a>
                         <a href="#" id="stepTwoSkipBtn" class="btn"><?php echo $this->translate('skip') ?></a>
                         <a href="#" id="stepTwoBackBtn" class="btn"><?php echo $this->translate('back') ?></a>
@@ -94,15 +93,16 @@
                         <div class="row"><label><?php echo $this->translate('guest_name') ?></label><div class="field"><?php echo $this->stepThreeForm->guest_name; ?></div></div>
                     </div>
                     <div class="right not_staying_at_hotel" style="display:none;">
-                        <div class="row"><label class="small"><?php echo $this->translate('not_staying_reason') ?></label><div class="field"><?php echo $this->stepThreeForm->not_staying_reason ?></div></div>
+                        <div class="row"><label><?php echo $this->translate('not_staying_reason') ?></label><div class="field"><?php echo $this->stepThreeForm->not_staying_reason ?></div></div>
                     </div>
-                    <div class="section clearfix clear" >
+                    <div class="clear" style="margin: 30px 0; float: right;">
                         <a href="#" id="stepThreeSubmitBtn" class="btn"><?php echo $this->translate('register') ?></a>
                         <a href="#" id="stepThreeBackBtn" class="btn"><?php echo $this->translate('back') ?></a>
                     </div>
                 </div>
             </div>
         </form>
+            <div class="clear"></div>
         </div>
     </div>
     
@@ -115,6 +115,8 @@
 <div id="popup-important-notice"></div>
 <script type="text/javascript">
 $(function() {
+    $('#email').attr('disabled', 'disabled');
+    var existing_acct = false;
     
     $('#stepOneNextBtn').click(function() {
         var gender = $('input[name="gender"]:checked').val();
@@ -132,7 +134,6 @@ $(function() {
                 'tel':   $('#tel').val(),
                 'mobile':    $('#mobile').val(),
                 'email':    $('#email').val(),
-                'confirm_email': $('#confirm_email').val(),
                 'password': $('#password').val(),
                 'confirm_password': $('#confirm_password').val(),
                 'position': (typeof(position) == 'undefined') ? '' : position,
@@ -144,7 +145,13 @@ $(function() {
                     $('ul li#trans').addClass('active');
                     $('#step-two').show();
                 } else {
-                    outputFormErrorMessages(response);
+                    if (typeof(response.email) != 'undefined') {
+                        existing_acct = true;
+                        $('#popup-form').html('<br/><?php echo $this->translate('register_with_existing_user_email') ?><br/>');
+                        $('#popup-form').dialog('open');
+                    } else {
+                        outputFormErrorMessages(response);
+                    }
                 }
             }
         });
@@ -154,15 +161,14 @@ $(function() {
     
 
     $('#stepTwoSkipBtn').click(function(e) {
-        e.preventDefault();
         $('#skip-step').html('<?php echo $this->translate('skip_this_step') ?>');
         $('#skip-step').dialog('open');
     });
     
     $('#stepThreeSubmitBtn').click(function() {
-    
+        
         if ($('#popup-reminder').html() === '') {
-            initPopupReminder('<?php echo $this->translate('popup_reminder') ?>');
+            initPopupReminder('<?php echo $this->translate('popup_reminder') ?>', '<?php echo $this->translate('popup_reminder_text') ?>');
         } else {
             $('#popup-reminder').dialog('open');
         }
@@ -177,13 +183,13 @@ $(function() {
                 hide: { effect: 'hide', duration: 500 },
                 buttons: {
                     '<?php echo $this->translate('yes') ?>': function() {
-                        //$(this).dialog("close");
+                        $(this).dialog("close");
                         //$('#step-two').hide();
                         //$('ul li#trans').removeClass('active');
                         //$('ul li#accomodation').addClass('active');
                         //$('#step-three').show();
                         if ($('#popup-reminder').html() === '') {
-                            initPopupReminder('<?php echo $this->translate('popup_reminder') ?>');
+                            initPopupReminder('<?php echo $this->translate('popup_reminder') ?>', '<?php echo $this->translate('popup_reminder_text') ?>');
                         } else {
                             $('#popup-reminder').dialog('open');
                         }
@@ -203,11 +209,23 @@ $(function() {
                 hide: { effect: 'hide', duration: 500 },
                 buttons: {
                     'Close': function(){
+                        if (existing_acct) {
+                            window.location.href="<?php echo $this->url(array('controller'=>'index', 'action'=>'index')) ?>";
+                        } 
                         $(this).dialog("close");
                     }
                 }
     });
     
+    $('#is_staying-1').click(function(e) {
+        $('.staying_at_hotel').show();
+        $('.not_staying_at_hotel').hide();
+        
+        $('#room_type-single').parent().parent().click(function(){
+             initPopupImportantNotice('<?php echo $this->translate('important_notice') ?>', '<?php echo $this->translate('important-notice-for-room-type') ?>');
+        });
+    }); 
+
     $('#arrival_date').datepicker({ dateFormat: 'yy-mm-dd', minDate: new Date(2013, 4 - 1, 1), maxDate: new Date(2013, 4 - 1, 8)});
     $('#departure_date').datepicker({ dateFormat: 'yy-mm-dd', minDate: new Date(2013, 4 - 1, 9)});
     
@@ -218,10 +236,13 @@ $(function() {
 function outputFormErrorMessages(response) {
     $('#popup-form ul').empty();
     $(".error").removeClass("error");
-       
     $.each(response, function (k, v) {
         $.each(v, function(k1, v1) {
-            $('#popup-form ul').append('<li>' + $('#'+k).parent().siblings("label").html() + ': ' + v1 + '</li>');
+            if (k == 'password') {
+                $('#popup-form ul').append('<li>' + '<?php echo $this->translate('password'); ?>' + ': ' + v1 + '</li>');
+            } else {
+                $('#popup-form ul').append('<li>' + $('#'+k).parent().siblings("label").html() + ': ' + v1 + '</li>');
+            }
             $('#' + k).addClass('error');
         });
     });

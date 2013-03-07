@@ -36,10 +36,26 @@ class Model_DbTable_Users extends Zend_Db_Table_Abstract
             $select->from('user','*')
                     ->where('user.email = ?', $email)
                     ->joinLeft('city', 'city.cid = user.city_id', array('en_name as city_en_name','ch_name as city_ch_name'))
-                    ->joinLeft('city as arrival_city', 'arrival_city.cid = user.city_id', array('en_name as arrival_from_en_name','ch_name as arrival_from_ch_name'))
-                    ->joinLeft('city as departure_city', 'departure_city.cid = user.city_id', array('en_name as departure_to_en_name','ch_name as departure_to_ch_name'));
+                    ->joinLeft('city as arrival_city', 'arrival_city.cid = user.arrival_from', array('en_name as arrival_from_en_name','ch_name as arrival_from_ch_name'))
+                    ->joinLeft('city as departure_city', 'departure_city.cid = user.departure_to', array('en_name as departure_to_en_name','ch_name as departure_to_ch_name'));
                     
             return $this->fetchRow($select);
+        }
+        
+        public function getUserByEmailUsingSQL($email) 
+        {
+            $sql = "SELECT c1.en_name as city, 
+                    c2.en_name as arrival_from_city, 
+                    c3.en_name as departure_to_city, 
+                    g2.title as dms,  
+                    u.* from user as u
+                    left join city as c1 on u.city_id = c1.cid 
+                    left join city as c2 on u.arrival_from = c2.cid
+                    left join city as c3 on u.departure_to = c3.cid 
+                    left join group_one as g2 on u.dms_code = g2.gid 
+                    where `u`.`email` = '" . $email . "'";
+            
+            return $this->_db->query($sql)->fetch();
         }
         
         public function getUserByEmailNoJoin($email)
@@ -73,6 +89,15 @@ class Model_DbTable_Users extends Zend_Db_Table_Abstract
         public function addUser($data)
         {
             return $data && is_array($data) ? $this->insert($data) : false;
+        }
+        
+        public function addDataAndGetUser($data) 
+        {
+            $id = $this->addUser($data);
+            if ($id) {
+                return $this->getUserById($id);
+            }
+            return null;
         }
         
         public function updateUserProfile($id, $data)

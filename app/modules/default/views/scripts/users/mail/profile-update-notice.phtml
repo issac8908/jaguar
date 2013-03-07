@@ -1,6 +1,14 @@
-<table id="new-user-admin-notice" width="60%">
-    <tr><th width="30%"></th><th width="70%"></th></tr>
-    <tr><td>First Name</td><td><?php echo $this->data['first_name'] ?></td></tr>
+<table id="new-user-admin-notice" width="80%">
+    <tr>
+        <th width="60%"></th>
+        <th width="30%"></th>
+    </tr>
+    
+    <tr>
+        <td>First Name</td>
+        <td><?php echo $this->data['first_name'] ?></td>
+    </tr>
+
     <tr><td>Last Name</td><td><?php echo $this->data['last_name'] ?></td></tr>
     <tr><td>Email</td><td><?php echo $this->data['email'] ?></td></tr>
     
@@ -25,14 +33,33 @@
     <tr><td>To</td><td><?php echo $this->data['departure_to'] ?></td></tr>
     <tr><td>Estimated Departure Time</td><td><?php echo $this->data['departure_time'] ?></td></tr>
     
-    <tr><td>Stay at the Intercontinental Shanghai Expo Hotel?</td><td><?php $this->data->is_staying ? "Yes" : "No"; ?></td></tr>
-    <?php if ($this->data->is_staying) { ?>
+    <tr><td>&nbsp;</td><td></td></tr>
+    <tr><td>Stay at the Intercontinental Shanghai Expo Hotel?</td><td><?php if (isset($this->data['is_staying'])) { echo $this->data['is_staying'] ? "Yes" : "No"; } ?></td></tr>
+    <?php if ($this->data['is_staying']) { ?>
+    
+        <tr>
+            <td>Room Type</td>
+            <?php if ($this->data['room_type']) { ?>
+            <td><?php echo $this->data['room_type'] ?></td>
+            <?php } ?>
+        </tr>
                     
-                    <tr><td>Room Type</td><?php if ($this->data->room_type) { ?><td><?php echo $this->translate($this->data->room_type) ?></td><?php } ?></tr>
-                    
-                    <tr><td>Room Shared With</td><td><?php echo $this->data->guest_name ?></td></tr>
-                <?php } else if ($this->data->is_staying == null){ ?>
-                    <tr><td>Reason not stay</td><td><?php echo $this->data->not_staying_reason ?></td></tr>
-                <?php } ?>
-                <tr><td>Is joining Lunch</td><td><?php echo $this->data->is_joining_lunch ? 'Yes' : 'No'; ?></td></tr>
+        <tr>
+            <td>Room Shared With</td>
+            <td><?php echo $this->data['guest_name'] ?></td>
+        </tr>
+        
+    <?php } else if ($this->data['is_staying'] == null){ ?>
+        
+        <tr>
+            <td>Not Staying Reasons</td>
+            <td><?php echo $this->data['not_staying_reason'] ?></td>
+        </tr>
+        
+    <?php } ?>
+    
+    <tr>
+        <td>Is joining Lunch</td>
+        <td><td><?php if (isset($this->data['is_joining_lunch'])) { echo $this->data['is_staying'] ? "Yes" : "No"; } ?></td></td>
+    </tr>
 </table>

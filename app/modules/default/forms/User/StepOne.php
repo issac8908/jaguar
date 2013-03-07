@@ -26,8 +26,8 @@ class Form_User_StepOne extends Zend_Form
                         ->addValidator('EmailAddress', true, array('mx' => true, 'deep' => true))
                         ->addValidator('Db_NoRecordExists', true, array('table' => 'user', 'field' => 'email'));
 
-                $confirm_email = new Zend_Form_Element_Text('confirm_email');
-                $confirm_email->setRequired(true)->addValidator('identical', true, array('token' => 'email'));
+           //     $confirm_email = new Zend_Form_Element_Text('confirm_email');
+           //     $confirm_email->setRequired(true)->addValidator('identical', true, array('token' => 'email'));
                 
                 $password = new Zend_Form_Element_Password('password');
                 $password->setRequired(true)->addValidator('StringLength', true, array('min' => 6));
@@ -87,10 +87,9 @@ class Form_User_StepOne extends Zend_Form
                 }
                 
                 $this->addElements(array(
-                    $first_name, $last_name, $gender, $id_passport_number, 
-                    $email, $confirm_email, $password, $confirm_password, 
-                    $tel, $mobile, $position, $group_name, $group_title, $dms_code, $company_name, $company_title, 
-                    $city_id
+                    $first_name, $last_name, $gender, $id_passport_number, $email, 
+                    //$confirm_email, 
+                    $password, $confirm_password, $tel, $mobile, $position, $group_name, $group_title, $dms_code, $company_name, $company_title,  $city_id
                 ));
 
                 foreach($this->getElements() as $element) {

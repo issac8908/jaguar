@@ -1,22 +1,39 @@
+<?php if (Zend_Registry::get('Zend_Translate')->getLocale() == 'en') { ?>
+Dear Guest,<br/>
 <br/>
-Thank you for signing up for 2013 Jaguar Land Rover China Dealer Conference.<br/> 
-<br/>
-Please find below your account's details:<br/>
+Thank you for signing up to attend the 2013 Jaguar Land Rover China Dealer Conference, we are excited to have you here in Shanghai.<br/>
+<br/> 
+Please find the below your sign-up details:  <br/>
 <br/>
 Login: <?php echo $this->data['email'] ?><br/>
 Password: <?php echo $this->data['password'] ?> <br/>
-<br/>
-If you have not completed all  the steps, please remind your information are required before 2013 March 31st.<br/>
-<br/>
-We are looking forward to seeing you at the Jaguar Land Rover China Dealer conference & Gala dinner.<br/>
-<br/>
-Click here to get more information regarding this event: http://www.2013-jlrc-conference.com <br/>
-<br/>
-If you have any questions, please do not hesitate to contact us via email or phone.<br/>
-Email:  registration@2013-jlrc-conference.com <br/>
-Tel: 021 6258 5325 (Working hours: 09:30 – 18:30).<br/>
-<br/>
+<br/> 
+If your information is not complete or anything you need to amend, please remember to log on http://www.2013-jlrc-conference.com and complete before March 31st.<br/>
+ <br/>
+For any further inquiries, please do not hesitate to contact us:<br/>
+Email: registration@2013-jlrc-conference.com<br/>
+Phone: +86 21 62585325, 62585320  (Working hours: 09:30 – 18:30)<br/>
+<br/> 
 Best Regards,<br/>
+Jaguar Land Rover China<br/>
+http://www.2013-jlrc-conference.com<br/>
 <br/>
+<?php } else { ?>
+尊敬的贵宾：<br/>
 <br/>
-Jaguar Land Rover
+非常感谢您确认出席2013年捷豹路虎中国经销商大会，我们很高兴在上海与您相会。<br/>
+以下为您的登记信息：<br/>
+<br/>
+用户名: <?php echo $this->data['email'] ?><br/>
+密码: <?php echo $this->data['password'] ?> <br/>
+<br/>
+如果您的登记信息未填写完整或需要更改，请于3月31日前登录 http://www.2013-jlrc-conference.com完成。<br/>
+<br/>
+如果您对此次活动有其他任何疑问，请及时与我们联系：<br/>
+Email: registration@2013-jlrc-conference.com<br/>
+电话: +86 21 62585325, 62585320  (工作时间: 09:30 – 18:30)<br/>
+ <br/>
+捷豹路虎中国<br/>
+http://www.2013-jlrc-conference.com <br/>
+<br/>
+<?php } ?>

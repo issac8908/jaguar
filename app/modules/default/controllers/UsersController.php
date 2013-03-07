@@ -25,6 +25,10 @@ class UsersController extends Zend_Controller_Action
                     'username' => 'registration@2013-jlrc-conference.com',
                     'password' => 'jlrc0nf2013',
                 );;
+                $transport = new Zend_Mail_Transport_Smtp('mail.gandi.net', $this->config);
+                Zend_Mail::setDefaultTransport($transport);
+                
+                $this->translate = Zend_Registry::get('Zend_Translate');
                 
 	}
 	
@@ -41,11 +45,9 @@ class UsersController extends Zend_Controller_Action
                 }
                 
                 if ($auth->getIdentity()->email) {
-                    $this->view->user = $users_table->getUserByEmail($auth->getIdentity()->email);
-                    $this->view->form = $users_table->getUserByEmail($auth->getIdentity()->email);
+                    $this->view->user = $users_table->getUserByEmailUsingSQL($auth->getIdentity()->email);
+                    //$this->view->form = $users_table->getUserByEmail($auth->getIdentity()->email);
                 } else {
-                    // vip users who have not edit there profiles.
-                    $this->_redirect('/users/edit/id/' . $auth->getIdentity()->uid);
                 }
          }
             
@@ -56,64 +58,12 @@ class UsersController extends Zend_Controller_Action
 	 */
 	public function loginAction()
 	{
-            
-                $form = new Form_User_Login(array('method' => 'post'));
-                if ($this->_getParam('c')) {
-                    $this->view->code = $this->_getParam('c');
-                } else {
-                    $this->view->code = '';
-                }
-                
-                if ($this->getRequest()->isPost()) {
-                    
-                    $data = $this->_request->getPost();
-                    if ($form->isValid($data)) {
-                        
-                        $this->_authenticate($data);
-                        
-                    } else {
-                        $this->view->errors = $form->getErrors();
-                    }
-                } 
-                
-                $this->view->loginForm = $form;
-	
-                $this->renderScript('index/index.phtml');
+                $this->_helper->redirector('index', 'index');
 	}
-        
-        public function loginVipAction()
-        {
-                $code = $this->_getParam('c');
-                if ($code){
-                    $code_arr = explode('_', $code);
-                    if (count($code_arr) == 3 && $code_arr['0'] == 'vip') {
-                        $user = $this->table->getUserByCode(array('code'=>$code_arr['0'] . '_' . $code_arr['1'], 'uid' => $code_arr['2']));
-                        if ($user)
-                            $this->_authenticateVIP($user);
-                        else 
-                            $this->_helper->redirector('index', 'index');
-                            
-                    } else {
-                        $this->_helper->redirector('index', 'index');
-                    }
-                }
-        }
         
         public function forgotPwdAction()
         {
                 $forgotPasswordForm = $this->_getForgotPasswordForm();
-                /*
-                $captcha = new Zend_Captcha_Image();
-		$captcha->setImgDir(APP_PATH . '/medias/images/captcha');
-		$captcha->setFont(APP_PATH . '/medias/images/captcha/font.ttf');
-		$captcha->setWordlen(5);
-		$captcha->setFontSize(28);
-		$captcha->setWidth(90);
-		$captcha->setHeight(64);
-		$captcha->generate();
-		$this->view->captcha = $captcha;
-                */
-       
         }
         
         public function resetPasswordAction() 
@@ -174,7 +124,8 @@ class UsersController extends Zend_Controller_Action
                         // the new password identical to the old one.
                     }
                     $this->_authenticate(array('email'=>$user->email, 'password' => $data['password']));
-                    return $this->_helper->redirector('index');
+                    $this->_helper->flashMessenger->addMessage('You have successfully reset your JLR account password! Thank you.');
+                    return $this->_helper->redirector('agenda', 'event');
                 }
         }
                 
@@ -190,7 +141,8 @@ class UsersController extends Zend_Controller_Action
 		$this->_helper->viewRenderer->setNoRender();
 		
                 $session = Zend_Registry::get('session');
-                $session->code = false;
+                $session->email = false;
+                
                 
 		Zend_Auth::getInstance()->clearIdentity();
 		$this->_helper->redirector('index', 'index');
@@ -201,7 +153,7 @@ class UsersController extends Zend_Controller_Action
         {
                 
                 $form = new Form_User_User(array('method' => 'post'));
-                    
+                
                     if ($this->getRequest()->isPost()) {
                     
                         $data = $this->_request->getPost();
@@ -225,7 +177,7 @@ class UsersController extends Zend_Controller_Action
                             }
                             $data['password'] = md5($data['password']);
                             $this->table->updateUserProfile($data['uid'], $data);
-                            $this->_authenticate($form);
+                            $this->_authenticate($data);
                             // Nofity admin the changes of the user profile.
                             $this->_notifyAdminUserProfileUpdated($data);
                             $this->_redirect('/event/agenda');
@@ -246,7 +198,7 @@ class UsersController extends Zend_Controller_Action
                         $form->populate($data);
                     }
                 
-                $this->view->form = $form;
+                    $this->view->form = $form;
         }
 	
 	
@@ -261,42 +213,50 @@ class UsersController extends Zend_Controller_Action
                 if ($this->view->isLogged) 
                     $this->_helper->redirector('index', 'users');
                 
-                // if no registration code saved, redirect to login page
+                // if no email saved, redirect to login page 
                 $session = Zend_Registry::get('session');
-                if (!$session->code) {
-                    $this->_helper->redirector('index', 'users');
-                }
-                
-		// Instantiate the registration form model
+                if (!$session->email)
+                    $this->_helper->redirector('index', 'index');
+                    
+                // Instantiate the registration form model
                 $form = new Form_User_StepOne();
                 $stepTwoForm = new Form_User_StepTwo();
                 $stepThreeForm = new Form_User_StepThree();
+                
+                // passing email to form
+                $form->populate(array('email'=>$session->email));
                 
                 // Has the form ben submitted?
                 if ($this->getRequest()->isPost()) {
                     
                     $data = $this->_request->getPost();
+                    $data['email'] = $session->email;
+                    
                     // If the form data is valid, process it
-                    if ($form->isValid($this->_request->getPost())) {
+                    if ($form->isValid($data)) {
                         
                         try {
+                            
+                            
                             $user_table = new Model_DbTable_Users();
                             unset($data['confirm_password']);
-                            unset($data['confirm_email']);
                             $password = $data['password'];
                             $data['password'] = md5($data['password']);
-                            $user_table->addUser($data);
+                            
+                            $user = $user_table->addDataAndGetUser($data);
                             
                             // Authenticate user
                             //$this->_authenticate($form);
-                            $this->_authenticate(array('email'=>$data, 'password'=>$password));
+                            $this->_authenticate(array('email'=>$data['email'], 'password'=>$password));
                             
+                            $data = $user->toArray();
                             $data['password'] = $password;
+ 
                             // Send admin and the new user emails.
                             $this->_sendMail($data);
 
                             // Set the flash message
-                            //$this->_helper->flashMessenger->addMessage(Zend_Registry::get('config')->messages->register->successful);
+                            $this->_helper->flashMessenger->addMessage($this->translate->translate('registered_successfully_msg_1') . $this->translate->translate('registered_successfully_msg_2'));
 
                             // Redirect the user to the homepage
                             $this->_helper->redirector('agenda', 'event');
@@ -312,48 +272,16 @@ class UsersController extends Zend_Controller_Action
                     }
                 
                 } else {
+                    
                     $this->view->errors = $form->getErrors();
                 }
                 
-                /*
-                if ($session->code == Zend_Registry::get('group-one')) {
-                    $this->view->isGroupOne = true;
-                    $form->getElement('position')->setRequired(true);
-                } else {
-                    $this->view->isGroupOne = false;
-                    $form->getElement('position')->setRequired(false);
-                }
-                 * 
-                 */
                 
                 $this->view->stepOneForm = $form;
                 $this->view->stepTwoForm = $stepTwoForm;
 		$this->view->stepThreeForm = $stepThreeForm;
 	}
 	
-        public function validateCodeAction()
-        {
-            $this->_helper->getHelper('layout')->disableLayout();
-            $this->_helper->viewRenderer->setNoRender();
-                
-            if ($this->_request->isXmlHttpRequest()) {
-                        
-                $data = $this->_request->getPost();
-                $code = $data['code'];
-                if ($code == Zend_Registry::get('group-one') 
-                        || $code == Zend_Registry::get('group-two') 
-                        || $code == Zend_Registry::get('group-three') ) {
-
-                    $this->_saveRegistrationCodeAction($code);
-
-                    echo json_encode(array('success' => true));
-                } else {
-                    echo json_encode(array('success' => false));
-                }
-                
-            }
-        }
-
         
         public function validateEmailAction()
         {
@@ -461,13 +389,6 @@ class UsersController extends Zend_Controller_Action
                     $data = $this->_request->getPost();
                     $form = new Form_User_StepOne();
                     
-                    /*
-                    $session = Zend_Registry::get('session');
-                    if ($session->code != Zend_Registry::get('group-one')) {
-                        $form->getElement('position')->setRequired(false);
-                    } 
-                     */
-                    
                     if ($form->isValid($data))  
                         echo json_encode(array('success' => true));
                     else 
@@ -487,6 +408,7 @@ class UsersController extends Zend_Controller_Action
                     
                     if ($form->isValid($data)) {  
                         if ($this->_authenticate($data)) {
+                            $this->_helper->getHelper('FlashMessenger')->addMessage('You have successfully logged in.');
                             echo json_encode(array('success' => true));
                         } else {
                             echo json_encode(array(
@@ -557,7 +479,7 @@ class UsersController extends Zend_Controller_Action
 
                         Zend_Session::rememberMe(1209600);
 
-                        $this->_helper->flashMessenger->addMessage('You are logged in');
+                        //$this->_helper->flashMessenger->addMessage('You are logged in');
                         //$this->_helper->redirector('index', 'index');
                         return true;
                     } else {
@@ -571,30 +493,22 @@ class UsersController extends Zend_Controller_Action
         {
                 $this->view->data = $data;
 		
-                $config = array(
-                    'ssl' => 'ssl',
-                    'port' => 465,
-                    'auth' => 'login',
-                    'username' => 'registration@2013-jlrc-conference.com',
-                    'password' => 'jlrc0nf2013',
-                );
-                
-                $transport = new Zend_Mail_Transport_Smtp('mail.gandi.net', $config);
+                $transport = new Zend_Mail_Transport_Smtp('mail.gandi.net', $this->config);
                 Zend_Mail::setDefaultTransport($transport);
                 
 		$mailToAdmin = new Zend_Mail('utf-8');
-		$mailToAdmin->addTo('commaille@gmail.com');
-                $mailToAdmin->addBcc(array( 'dilin110@gmail.com'));
+		$mailToAdmin->addTo('registration@2013-jlrc-conference.com');
+                $mailToAdmin->addBcc(array('commaille@gmail.com', 'dilin110@gmail.com'));
 
-                $mailToAdmin->setFrom('registration@2013-jlrc-conference.com', '2013 JLR Conference');
+                $mailToAdmin->setFrom('registration@2013-jlrc-conference.com', '2013 JLRC');
 		$mailToAdmin->setSubject($data['first_name'] . ' ' . $data['last_name'] . ' Registered to the JLR Conference');
 		$mailToAdmin->setBodyHtml($this->view->render('users/mail/new-user-admin-notice.phtml'));
 		
                 $mailToNewUser = new Zend_Mail('utf-8');
 		$mailToNewUser->addTo($data['email']);
                 $mailToNewUser->addBcc(array('commaille@gmail.com', 'dilin110@gmail.com'));
-                $mailToNewUser->setFrom('registration@2013-jlrc-conference.com', '2013 JLR Conference');
-		$mailToNewUser->setSubject('Thank You for Registering at 2013-jlrc-conference.com');
+                $mailToNewUser->setFrom('registration@2013-jlrc-conference.com', '2013 JLRC');
+		$mailToNewUser->setSubject($this->translate->translate('welcome_email_subject'));
 		$mailToNewUser->setBodyHtml($this->view->render('users/mail/new-user.phtml'));
 		
                 if($mailToAdmin->send() && $mailToNewUser->send()) {
@@ -613,14 +527,13 @@ class UsersController extends Zend_Controller_Action
         {
                 $this->view->data = $data;
                  
-                $transport = new Zend_Mail_Transport_Smtp('mail.gandi.net', $this->config);
-                Zend_Mail::setDefaultTransport($transport);
+                
                 
 		$mailToAdmin = new Zend_Mail('utf-8');
-		$mailToAdmin->addTo('commaille@gmail.com');
-                $mailToAdmin->addBcc(array( 'dilin110@gmail.com'));
+                $mailToAdmin->addTo('registration@2013-jlrc-conference.com');
+                $mailToAdmin->addBcc(array( 'dilin110@gmail.com','commaille@gmail.com'));
                 
-                $mailToAdmin->setFrom('registration@2013-jlrc-conference.com', '2013 JLR Conference');
+                $mailToAdmin->setFrom('registration@2013-jlrc-conference.com', '2013 JLRC');
 		$mailToAdmin->setSubject($data['first_name'] . ' ' . $data['last_name'] . ' Updated the Profile');
 		$mailToAdmin->setBodyHtml($this->view->render('users/mail/profile-update-notice.phtml'));
 		
