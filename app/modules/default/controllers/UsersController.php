@@ -66,9 +66,10 @@ class UsersController extends Zend_Controller_Action
                 
                 if ($this->getRequest()->isPost()) {
                     
-                    if ($form->isValid($this->_request->getPost())) {
+                    $data = $this->_request->getPost();
+                    if ($form->isValid($data)) {
                         
-                        $this->_authenticate($form);
+                        $this->_authenticate($data);
                         
                     } else {
                         $this->view->errors = $form->getErrors();
@@ -101,7 +102,84 @@ class UsersController extends Zend_Controller_Action
         public function forgotPwdAction()
         {
                 $forgotPasswordForm = $this->_getForgotPasswordForm();
+                /*
+                $captcha = new Zend_Captcha_Image();
+		$captcha->setImgDir(APP_PATH . '/medias/images/captcha');
+		$captcha->setFont(APP_PATH . '/medias/images/captcha/font.ttf');
+		$captcha->setWordlen(5);
+		$captcha->setFontSize(28);
+		$captcha->setWidth(90);
+		$captcha->setHeight(64);
+		$captcha->generate();
+		$this->view->captcha = $captcha;
+                */
+       
         }
+        
+        public function resetPasswordAction() 
+        {
+                
+            
+                // check parameters are valid; 
+                $email = $this->_request->getParam('email');
+                $token = $this->_request->getParam('token');
+                
+                if ($email && $token) {
+                    
+                    $user_temp_login_table = new Model_DbTable_UserTempLogins();
+                    $temp_login = $user_temp_login_table->getTempLogin(array('email'=>$email, 'password' => md5($token)));
+                    
+                    if ($temp_login) {
+                        $valid_timestamp = strtotime("+1 day", strtotime($temp_login['create_ts']));
+                        if ($valid_timestamp > strtotime("now")) {
+                            
+                            
+                            // valid token and valid session, show reset-password form 
+                            $resetPasswordForm = new Form_User_ResetPassword();
+                            $resetPasswordForm->populate(array('uid' => $temp_login['uid']));
+                            $this->view->resetPasswordForm = $resetPasswordForm;
+                            
+                        } else {
+                            // expired token, remove it.
+                            $this->_helper->redirector('index', 'index');
+                        }
+                    } else {
+                        // false url 
+                        $this->_helper->redirector('index', 'index');
+                    }
+                        
+                } else {
+                    $this->_helper->redirector('index', 'index');
+                }
+                
+        }
+        
+        public function processResetPasswordAction()
+        {
+                
+                  if ($this->_request->isPost()) {   
+                      
+                    $data = $this->_request->getPost();
+                    
+                    $row_updated = $this->table->updateUserProfile($data['uid'], array('password' => md5($data['password'])));
+                    $user = $this->table->getUserByIdNoJoin($data['uid']);
+                    // user profile successfully updated
+                    if ($row_updated) {
+                        
+                        // remove temp login
+                        $temp_login_table = new Model_DbTable_UserTempLogins();
+                        $temp_login_table->deleteTempLogin($user->uid);
+                        
+                    } else {
+                        // the new password identical to the old one.
+                    }
+                    $this->_authenticate(array('email'=>$user->email, 'password' => $data['password']));
+                    return $this->_helper->redirector('index');
+                }
+        }
+                
+        
+        
         /**
 	 * Logout user
 	 * 
@@ -210,8 +288,9 @@ class UsersController extends Zend_Controller_Action
                             $user_table->addUser($data);
                             
                             // Authenticate user
-                            $this->_authenticate($form);
-
+                            //$this->_authenticate($form);
+                            $this->_authenticate(array('email'=>$data, 'password'=>$password));
+                            
                             $data['password'] = $password;
                             // Send admin and the new user emails.
                             $this->_sendMail($data);
@@ -337,6 +416,24 @@ class UsersController extends Zend_Controller_Action
                 }
         }
         
+        public function validatePasswordAction()
+        {
+                $this->_helper->getHelper('layout')->disableLayout();
+                $this->_helper->viewRenderer->setNoRender();
+                
+                if ($this->_request->isXmlHttpRequest()) {
+                    
+                    $data = $this->_request->getPost();
+                    $form = new Form_User_ResetPassword();
+                    
+                    if ($form->isValid($data)) {
+                        echo json_encode(array('success' => true));
+                    } else {
+                        echo $form->processAjax($data);
+                    }
+                }
+        }
+        
         
         public function validateProfileAction()
         {
@@ -389,7 +486,7 @@ class UsersController extends Zend_Controller_Action
                     $form = new Form_User_Login();
                     
                     if ($form->isValid($data)) {  
-                        if ($this->_authenticate($form)) {
+                        if ($this->_authenticate($data)) {
                             echo json_encode(array('success' => true));
                         } else {
                             echo json_encode(array(
@@ -425,8 +522,11 @@ class UsersController extends Zend_Controller_Action
         
         
         
-        private function _authenticate($form)
+        private function _authenticate($data)
         {
+                $email = $data['email'];
+                $password = $data['password'];
+                
                 $db = Zend_Db_Table::getDefaultAdapter();
                     $authAdapter = new Zend_Auth_Adapter_DbTable($db);
 
@@ -435,8 +535,8 @@ class UsersController extends Zend_Controller_Action
                     $authAdapter->setCredentialColumn('password');
                     $authAdapter->setCredentialTreatment('MD5(?)');
 
-                    $authAdapter->setIdentity($form->getValue('email'));
-                    $authAdapter->setCredential($form->getValue('password'));
+                    $authAdapter->setIdentity($email);
+                    $authAdapter->setCredential($password);
 
                     $auth = Zend_Auth::getInstance();
                     $result = $auth->authenticate($authAdapter);
@@ -446,7 +546,7 @@ class UsersController extends Zend_Controller_Action
 
                         $user_table = new Model_DbTable_Users();
 
-                        $user = $user_table->getUserByEmailNoJoin($form->getValue('email'));
+                        $user = $user_table->getUserByEmailNoJoin($email);
 
                         $user->last_login_ts = date('Y-m-d H:i:s');
 
@@ -466,38 +566,6 @@ class UsersController extends Zend_Controller_Action
                     }
         }
         
-        private function _authenticateVip($user) 
-        {
-                $db = Zend_Db_Table::getDefaultAdapter();
-                $authAdapter = new Zend_Auth_Adapter_DbTable($db);
-
-                $authAdapter->setTableName('user');
-                $authAdapter->setIdentityColumn('uid');
-                $authAdapter->setCredentialColumn('code');
-                $authAdapter->setIdentity($user->uid);
-                $authAdapter->setCredential($user->code);
-
-                $auth = Zend_Auth::getInstance();
-                $result = $auth->authenticate($authAdapter);
-
-                    // Did the user successfully login?
-                    if ($result->isValid()) {
-
-                        $user->last_login_ts = date('Y-m-d H:i:s');
-
-                        $user->save();
-
-                        $storage = $auth->getStorage();
-                        $storage->write($authAdapter->getResultRowObject(array('uid', 'first_name', 'last_name', 'email', 'last_login_ts')));
-
-                        Zend_Session::rememberMe(1209600);
-
-                        $this->_helper->redirector('agenda', 'event');
-                    } else {
-                        //$this->view->error['form'] = array('Login failed');
-                        return false;
-                    }
-        }
         
         private function _sendMail($data)
         {
@@ -571,32 +639,18 @@ class UsersController extends Zend_Controller_Action
         private function _sendResetAccountEmail($data)
         {
                 
-                
-                
-                $data['link'] = 'http://localhost/users/password-reset/email/' . $data['email'] . '/token/' . $data['temp_password'];
+                $data['link'] = 'http://2013-jlrc-conference.com/users/reset-password/email/' . $data['email'] . '/token/' . $data['temp_password'] . '/fwihsl/vmii-ec';
                 $this->view->data = $data;
-                
 
-                $config = array(
-                    'ssl' => 'ssl',
-                    'port' => 465,
-                    'auth' => 'login',
-                    'username' => 'registration@2013-jlrc-conference.com',
-                    'password' => 'jlrc0nf2013',
-                );
-                
-                $transport = new Zend_Mail_Transport_Smtp('mail.gandi.net', $config);
+                $transport = new Zend_Mail_Transport_Smtp('mail.gandi.net', $this->config);
                 Zend_Mail::setDefaultTransport($transport);
                 
 		$mailToUser = new Zend_Mail('utf-8');
-	//	$mailToAdmin->addTo('commaille@gmail.com');
-          //      $mailToAdmin->addBcc(array( 'dilin110@gmail.com'));
-                $mailToUser->addTo(array( 'dilin110@gmail.com'));
-                
+                $mailToUser->addTo(array($data['email']));
                 $mailToUser->setFrom('registration@2013-jlrc-conference.com', '2013 JLR Conference');
 		$mailToUser->setSubject('Reset Your 2013 JLR Conference Account');
 		$mailToUser->setBodyHtml($this->view->render('users/mail/forgot-password.phtml'));
-		
+                
                 if($mailToUser->send()) {
 			return true;
 		} else {

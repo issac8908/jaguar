@@ -10,14 +10,18 @@ class Model_DbTable_UserTempLogins extends Zend_Db_Table_Abstract
         public function addTempLogin($data)
         {
             
-           // die($data['temp_password']);
             if ($data && is_array($data)) {
-                if ($this->updateTempLogin(array('uid' =>$data['uid'], 'password' => $data['password']), $data['uid'])) {
+                
+                if ($this->updateTempLogin(array('uid' =>$data['uid'], 'password' => $data['password']), $data['uid']))
+
                     return true;
-                } else {
+                
+                else
+                    
                     return $this->insert(array('uid' =>$data['uid'], 'password' => $data['password']));
-                }
+            
             } 
+            
             return false;
         }
         
@@ -28,4 +32,23 @@ class Model_DbTable_UserTempLogins extends Zend_Db_Table_Abstract
             
             return $this->update($data, $where);
         }
+        
+        public function getTempLogin($data = array()) 
+        {
+            
+            $select = $this->select()->setIntegrityCheck(false);
+            $select->from('user_temp_login', 'user_temp_login.*')->joinLeft('user', 'user.uid = user_temp_login.uid', 'user.email');
+            
+            $select->where('email' . ' = ?', $data['email']);
+            $select->where('user_temp_login.' . 'password' . ' = ?', $data['password']);
+            
+            return $this->fetchRow($select);
+
+        }
+        
+        public function deleteTempLogin($id)
+        {
+            return $this->delete('uid = ' . $id);
+        }
+        
 }

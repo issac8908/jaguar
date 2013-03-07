@@ -48,6 +48,12 @@ class Model_DbTable_Users extends Zend_Db_Table_Abstract
             return $this->fetchRow($select);
         }
         
+        public function getUserByIdNoJoin($id)
+        {
+            $select = $this->select()->where('uid = ?', $id);
+            return $this->fetchRow($select);
+        }
+        
         public function getUserByEmailExcludeUid($data) 
         {
             $uid = $data['uid'];

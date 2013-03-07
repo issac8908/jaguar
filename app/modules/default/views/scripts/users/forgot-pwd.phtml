@@ -7,19 +7,24 @@
             <div id="forgotpassword">
                 
                 <div id="forgotpassword-wrapper">
-                
+                    
                     <div class="form">
-                        <div>Please enter an email address to help us locate your account.</div>
+                        <div class="bigger"><?php echo $this->translate('i_forgot_my_password') ?></div>
+                        <div class="normal"><?php echo $this->translate('fill_in_email_to_reset') ?></div>
 
-                        <form action="<?php echo $this->url(array('controller' => 'users', 'action' => 'forgotpassword'), 'default'); ?>" method="post" enctype="application/x-www-form-urlencoded" name="forgotpassword">
+                        <form action="#" method="post" enctype="application/x-www-form-urlencoded" name="forgotpassword">
 
                             <div class="row"><?php echo $this->forgotPasswordForm->email; ?></div>
-                            <div class="row submit"><a href="#" id="btnForgotPassword" class="btn"><?php echo $this->translate('submit') ?></a></div>
+                            <div class="normal"><?php echo $this->translate('please_click_to_reset_pwd') ?></div>
+                            <div class="row submit">
+                                <input type="submit" id="btnForgotPassword" class="btn" name="submit" style="float: left; cursor: pointer;" valud="<?php echo $this->translate('submit') ?>">
+                                <div class="ajax-loader" style="display: none; margin: 10px;"></div>
+                            </div>
 
                         </form>
                     </div>
                     <div id="forgot-pwd-form-submitted-notice" style="display:none;">
-                        <div><?php echo $this->translate('forgot-pwd-form-submitted-notice') ?></div>
+                        <div class="normal"><?php echo $this->translate('forgot-pwd-form-submitted-notice') ?></div>
                     </div>
                 
                 </div>
@@ -35,7 +40,9 @@
 $(document).ready(function(){
     $("#form-errors").hide().fadeIn(4000);
     $('#btnForgotPassword').click(function(e) {
-        
+
+        $(this).attr("disabled", "disabled"); 
+        $('.ajax-loader').show();
         var validEmail = false;
         $.ajax({
             type: "post",
@@ -43,12 +50,15 @@ $(document).ready(function(){
             url: "/users/validate-existing-email", 
             data: {'email': $('#email').val() },
             success: function(res) {
+                $('.ajax-loader').hide();
+                
                 if (res.success == true) {
                     validEmail = true;
                     $('#forgotpassword-wrapper .form').hide();
                     $('#forgot-pwd-form-submitted-notice').show();
                 } else {
                     validEmail = false;
+                    $('#btnForgotPassword').removeAttr('disabled');
                     outputFormErrorMessages(res);
                 }
             }

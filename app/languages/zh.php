@@ -176,5 +176,11 @@ return array(
     'Zhuhai' => '珠海',
     'Zibo' => '淄博',
     'Other' => '其他',
+    'i_forgot_my_password' => '我忘记密码了',
     'forgot-pwd-form-submitted-notice' => '我们已经把重置密码的信息发送至您的邮箱。请查收。',
+    'please_click_to_reset_pwd' => '一条网络链接将会立即发送至您的邮箱，点击即可重设您的密码。',
+    'fill_in_email_to_reset' => '请在此输入邮箱地址以便重设密码',
+    'reset_password' => '重置密码',
+    'new_password' => '新密码',
+    'confirm_new_password' => '确认新密码',
 );
