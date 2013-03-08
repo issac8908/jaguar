@@ -46,6 +46,7 @@ class UsersController extends Zend_Controller_Action
                 
                 if ($auth->getIdentity()->email) {
                     $this->view->user = $users_table->getUserByEmailUsingSQL($auth->getIdentity()->email);
+                  //  die(print_r($this->view->user));
                     //$this->view->form = $users_table->getUserByEmail($auth->getIdentity()->email);
                 } else {
                 }

@@ -1,6 +1,7 @@
 <?php 
 
 return array(
+    '' => '',
     '1' => 'Yes',
     '0' => 'No',
     'f' => 'Female',
@@ -19,6 +20,10 @@ return array(
     'register' => 'REGISTER',
     'yao' => 'Yes',
     'bu_yao' => 'No',
+    'hui' => 'Yes',
+    'bu_hui' => 'No',
+    'xu_yao' => 'Yes',
+    'bu_xu_yao' => 'No',
     'menu_bar_guest_information' => 'GUEST INFORMATION (Mandatory)',
     'menu_bar_transportation' => 'TRANSPORTATION',
     'menu_bar_accomodation' => 'ACCOMODATION',
@@ -47,6 +52,8 @@ return array(
     'general_manager' => 'General Manager',
     'manager' => 'General Manager',
     'partner' => 'Partner',
+    'jlr_internals' => 'JLR Internals',
+    'internals' => 'JLR Internals',
     'group_name' => 'GROUP NAME',
     'title' => 'TITLE',
     'dms_code' => 'DMS CODE',
@@ -141,5 +148,9 @@ return array(
             <li>Privacy Statement: Your bank account information is ONLY for this hotel book and JLR will definitely not put them on the website or apply for any other intentions.</li></ul>',
                                 
     'important_notice' => 'IMPORTANT NOTICES',
-    
+   
+    'need_room_booking_help' => 'Do you need our RSVP team to help you for booking your room?',
+    'non_smoking' => 'Do you prefer non-smoking accomodation?',
+    'check_in_date' => 'Check-in date',
+    'check_out_date'=> 'Check-out date',
         );

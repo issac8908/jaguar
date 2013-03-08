@@ -86,9 +86,13 @@
                 <div class="form">
                         <div class="left">
                             <div class="row"><label><?php echo $this->translate('is_staying') ?></label><div class="field"><?php echo $this->stepThreeForm->is_staying ?></div></div>
+                            <div class="row"><label><?php echo $this->translate('need_room_booking_help') ?></label><div class="field"><?php echo $this->stepThreeForm->need_room_booking_help ?></div></div>
                             <div class="row"><label><?php echo $this->translate('is_joining_lunch') ?></label><div class="field"><?php echo $this->stepThreeForm->is_joining_lunch; ?></div></div>
                         </div>
                     <div class="right staying_at_hotel" style="display:none;">
+                        <div class="row"><label><?php echo $this->translate('check_in_date') ?></label><div class="field"><?php echo $this->stepThreeForm->check_in_date; ?></div></div>
+                        <div class="row"><label><?php echo $this->translate('check_out_date') ?></label><div class="field"><?php echo $this->stepThreeForm->check_out_date; ?></div></div>
+                        <div class="row"><label><?php echo $this->translate('non_smoking') ?></label><div class="field"><?php echo $this->stepThreeForm->non_smoking; ?></div></div>
                         <div class="row"><label><?php echo $this->translate('room_type') ?></label><div class="field"><?php echo $this->stepThreeForm->room_type; ?></div></div>
                         <div class="row"><label><?php echo $this->translate('guest_name') ?></label><div class="field"><?php echo $this->stepThreeForm->guest_name; ?></div></div>
                     </div>
@@ -117,6 +121,7 @@
 $(function() {
     $('#email').attr('disabled', 'disabled');
     var existing_acct = false;
+    var hotel_notes_has_shown = false;
     
     $('#stepOneNextBtn').click(function() {
         var gender = $('input[name="gender"]:checked').val();
@@ -221,16 +226,23 @@ $(function() {
         $('.staying_at_hotel').show();
         $('.not_staying_at_hotel').hide();
         
-        $('#room_type-single').parent().parent().click(function(){
-             initPopupImportantNotice('<?php echo $this->translate('important_notice') ?>', '<?php echo $this->translate('important-notice-for-room-type') ?>');
-        });
+      //  $('#room_type-single').parent().parent().click(function(){
+             
+      //  });
     }); 
 
     $('#arrival_date').datepicker({ dateFormat: 'yy-mm-dd', minDate: new Date(2013, 4 - 1, 1), maxDate: new Date(2013, 4 - 1, 8)});
     $('#departure_date').datepicker({ dateFormat: 'yy-mm-dd', minDate: new Date(2013, 4 - 1, 9)});
+    $('#check_in_date, #check_out_date').datepicker({ dateFormat: 'yy-mm-dd', minDate: new Date(2013, 4 - 1, 1)});
     
     $('#arrival_time, #departure_time').timepicker({'timeFormat': 'H:i' });
 
+    $('#check_in_date, #check_out_date, input[name="non_smoking"], input[name="room_type"], #guest_name').click(function(e) {
+        if (hotel_notes_has_shown == false) {
+            initPopupImportantNotice('<?php echo $this->translate('important_notice') ?>', '<?php echo $this->translate('important-notice-for-room-type') ?>');
+            hotel_notes_has_shown = true;
+        }
+    }); 
 });
 
 function outputFormErrorMessages(response) {

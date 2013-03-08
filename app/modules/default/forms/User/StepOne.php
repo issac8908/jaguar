@@ -38,7 +38,7 @@ class Form_User_StepOne extends Zend_Form
                                 ->addValidator('identical', true, array('token' => 'password'));
                 
                 $tel = new Zend_Form_Element_Text('tel');
-                $tel->setRequired(true);;
+                $tel->setRequired(true);
                 
                 $mobile = new Zend_Form_Element_Text('mobile');
                 $mobile->setRequired(true);;
@@ -48,6 +48,7 @@ class Form_User_StepOne extends Zend_Form
                     'group_head' => $this->getView()->translate('group_head'),
                     'manager' => $this->getView()->translate('general_manager'),
                     'partner' => $this->getView()->translate('partner'),
+                    'internals' => $this->getView()->translate('jlr_internals')
                 ))->setSeparator('  ')->setRequired(true);
 
                 

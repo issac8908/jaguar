@@ -19,22 +19,25 @@
         <div id="profile">
             
             <table style="margin-top: 20px;">
-                <tr><td><?php echo $this->translate('last_name') ?></td><td><?php echo $this->translate($this->user['last_name']); ?></td></tr>
-                <tr><td><?php echo $this->translate('first_name') ?></td><td><?php echo $this->translate($this->user['first_name']); ?></td></tr>
+                <tr><td><?php echo $this->translate('last_name') ?></td><td><?php echo $this->user['last_name']; ?></td></tr>
+                <tr><td><?php echo $this->translate('first_name') ?></td><td><?php echo $this->user['first_name']; ?></td></tr>
                 <tr><td><?php echo $this->translate('gender') ?></td><td><?php echo $this->translate($this->user['gender']); ?></td></tr>
-                <tr><td><?php echo $this->translate('id_passport_number') ?></td><td><?php echo $this->translate($this->user['id_passport_number']); ?></td></tr>
-                <tr><td><?php echo $this->translate('email') ?></td><td><?php echo $this->translate($this->user['email']); ?></td></tr>
-                <tr><td><?php echo $this->translate('is_attending') ?></td><td><?php echo $this->translate($this->user['is_attending']); ?></td></tr>
-                <tr><td><?php echo $this->translate('tel') ?></td><td><?php echo $this->translate($this->user['tel']); ?></td></tr>
-                <tr><td><?php echo $this->translate('mobile') ?></td><td><?php echo $this->translate($this->user['mobile']); ?></td></tr>
-                
-                
-                <tr><td><?php echo $this->translate('position') ?></td><td><?php echo $this->translate($this->user['position']); ?></td></tr>
+                <tr><td><?php echo $this->translate('id_passport_number') ?></td><td><?php echo $this->user['id_passport_number']; ?></td></tr>
+   
+         
+                <tr><td><?php echo $this->translate('position') ?></td><td><?php  echo $this->translate($this->user['position']); ?></td></tr>
                        <?php if ($this->user['position'] == 'partner') { ?>
                     <tr><td><?php echo $this->translate('company_name') ?></td><td><?php echo $this->translate($this->user['last_name']); ?></td></tr>
                     <tr><td><?php echo $this->translate('title') ?></td><td><?php echo $this->translate($this->user['last_name']); ?></td></tr>
                 <?php } else if ($this->user['position'] == 'manager') { ?>
-                    <tr><td><?php echo $this->translate('dms_code') ?></td><td><?php echo $this->translate($this->user['dms']);?></td></tr>
+                    <tr><td><?php echo $this->translate('dms_code') ?></td>
+                        <td>
+                            <?php 
+                                if ($this->user['dms']) {
+                                    echo $this->translate($this->user['dms']);
+                                }
+                            ?>
+                        </td></tr>
                 <?php } else if ($this->user['position'] == 'partner') { ?>
                     <tr><td><?php echo $this->translate('group_name') ?></td><td><?php echo $this->translate($this->user['last_name']); ?></td></tr>
                     <tr><td><?php echo $this->translate('title') ?></td><td><?php echo $this->translate($this->user['last_name']);?></td></tr>
@@ -44,7 +47,7 @@
                 <tr><td>&nbsp;</td></tr>
                 <tr><td>&nbsp;</td><td></td></tr>
                 <tr>
-                    <td><?php echo $this->translate('arrival_date') ?></td><td><?php echo $this->translate($this->user['arrival_date']); ?></td></tr>
+                    <td><?php echo $this->translate('arrival_date') ?></td><td><?php echo $this->user['arrival_date']; ?></td></tr>
                     <tr><td><?php echo $this->translate('mean_of_transportation') ?></td><td><?php echo $this->translate($this->user['arrival_transportation']); ?></td></tr>
                     <tr><td><?php echo $this->translate('from') ?></td><td><?php echo $this->translate(trim($this->user['arrival_from_city'])) ?></td></tr>
                     <tr><td><?php echo $this->translate('to') ?></td><td><?php echo $this->translate('shanghai') ?></td></tr>

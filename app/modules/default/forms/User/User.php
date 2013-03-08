@@ -48,7 +48,8 @@ class Form_User_User extends Zend_Form
                 $position->addMultiOptions(array(
                     'group_head' => $this->getView()->translate('group_head'),
                     'manager' => $this->getView()->translate('general_manager'),
-                    'partner' => $this->getView()->translate('partner')
+                    'partner' => $this->getView()->translate('partner'),
+                    'internals' => $this->getView()->translate('jlr_internals')
                 ))->setSeparator('  ')->setRequired(true);
 
                 $group_one_table = new Model_DbTable_GroupOne();

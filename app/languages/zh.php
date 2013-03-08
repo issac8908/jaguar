@@ -1,5 +1,6 @@
 <?php 
 return array(
+    '' => '',
     '1' => '是的',
     '0' => '不是',
     'f' => '女',
@@ -12,12 +13,16 @@ return array(
     'password' => '密码',
     'registration_code' => '注册码',
     'will_you_attend_event' => '您确认出席这次会议吗？',
-    'will_you_attend_event_reminder' => '提示：<br/>每位经销商最多限2人参加此次大会和晚宴。如果你想邀请更多人员，请向捷豹路虎中国相关人员申请。',
+    'will_you_attend_event_reminder' => '提示：<br/>每位经销商最多限2人参加此次大会和晚宴。<br>如果你想邀请更多人员，请向捷豹路虎中国相关人员申请。',
     'registration_code_is_required' => '注册码不能为空。',
     'do_not_recognzie_code' => '您的注册码无效。您不能注册捷豹路虎经销商大会。请联系我们: registration@2013-jlrc-conference.com',
     'register' => '注册',
-    'yao' => '是',
-    'bu_yao' => '不是',
+    'yao' => '要',
+    'bu_yao' => '不要',
+    'hui' => '会',
+    'bu_hui' => '不会',
+    'xu_yao' => '需要',
+    'bu_xu_yao' => '不需要',
     'menu_bar_guest_information' => '宾客信息(必填)',
     'menu_bar_transportation' => '交通',
     'menu_bar_accomodation' => '住宿',
@@ -43,6 +48,8 @@ return array(
     'general_manager' => '总经理',
     'manager' => '总经理',
     'partner' => '商业合作伙伴',
+    'jlr_internals' => '捷豹路虎内部员工',
+    'internals' => '捷豹路虎内部员工',
     'group_name' => '集团名称',
     'title' => '职位',
     'dms_code' => '经销商编号',
@@ -213,4 +220,8 @@ return array(
                                 
     'important_notice' => '重要提醒',
     
+    'need_room_booking_help' => '您需要我们的RSVP人员帮您预订房间吗？',
+    'non_smoking' => "需要非吸烟房吗？",
+    'check_in_date' => '入住日期',
+    'check_out_date'=> '退房日期',
 );
