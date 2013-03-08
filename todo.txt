@@ -8,27 +8,35 @@
 (done)
 
 - STEP 3 :
-
         . ON THE LEFT in the middle (between both question) ADD Radiobox :
-
             Do you need our RSVP team to help you for booking your room?  Yes/No
-您需要我们的RSVP人员帮您预订房间吗？ 需要 ／ 不需要
+            您需要我们的RSVP人员帮您预订房间吗？ 需要 ／ 不需要
 
         . ON THE RIGHT (Question 1) ADD Radiobox :
-
-Do you prefer non-smoking accomodation: Yes/No
-需要非吸烟房吗？需要 ／ 不需要
-
+            Do you prefer non-smoking accomodation: Yes/No
+            需要非吸烟房吗？需要 ／ 不需要
 
         . ON THE RIGHT (Question 1) ADD  date pickers for :
 
-Check-in date:
-入住日期：
-(added)
+        Check-in date:
+        入住日期：
 
-Check-out date:
-退房日期：
-(added)
+        Check-out date:
+        退房日期：
 
 - When Login and My profile. The ZH does not appear , only English
-(fixed)
+
+
+==========================================================================================<br/>
+
+2013-03-09
+
+- /users/index
+    departure_time, arrival_time:   format XX:XX:00 . 
+                                                 :00 <- hide
+    departure_date, arrival_date.   if (0000-00-00) hide
+
+- /user/edit
+    
+    * check date. if invalid, remove it by js. 
+                                                 

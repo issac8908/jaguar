@@ -18,49 +18,145 @@
         <div id="main-content-title"><?php echo $this->translate('my_profile') ?><a href="<?php echo $this->url(array('controller'=>'users', 'action'=>'edit', 'id' => $this->user['uid'])) ?> " id="edit-profile" class="small-btn"><?php echo $this->translate('edit_profile') ?></a></div>
         <div id="profile">
             
+
             <table style="margin-top: 20px;">
+                
                 <tr><td><?php echo $this->translate('last_name') ?></td><td><?php echo $this->user['last_name']; ?></td></tr>
+                
                 <tr><td><?php echo $this->translate('first_name') ?></td><td><?php echo $this->user['first_name']; ?></td></tr>
+                
                 <tr><td><?php echo $this->translate('gender') ?></td><td><?php echo $this->translate($this->user['gender']); ?></td></tr>
+                
                 <tr><td><?php echo $this->translate('id_passport_number') ?></td><td><?php echo $this->user['id_passport_number']; ?></td></tr>
    
-         
                 <tr><td><?php echo $this->translate('position') ?></td><td><?php  echo $this->translate($this->user['position']); ?></td></tr>
-                       <?php if ($this->user['position'] == 'partner') { ?>
-                    <tr><td><?php echo $this->translate('company_name') ?></td><td><?php echo $this->translate($this->user['last_name']); ?></td></tr>
-                    <tr><td><?php echo $this->translate('title') ?></td><td><?php echo $this->translate($this->user['last_name']); ?></td></tr>
+                
+                
+                <?php if ($this->user['position'] == 'partner') { ?>
+                
+                    <tr>
+                        <td><?php echo $this->translate('company_name') ?></td>
+                        <td><?php echo $this->translate($this->user['company_name']); ?></td>
+                    </tr>
+                    
+                    <tr>
+                        <td><?php echo $this->translate('company') ?></td>
+                        <td><?php echo $this->translate($this->user['company_title']); ?></td>
+                    </tr>
+                    
                 <?php } else if ($this->user['position'] == 'manager') { ?>
-                    <tr><td><?php echo $this->translate('dms_code') ?></td>
+                    
+                    <tr>
+                        <td><?php echo $this->translate('dms_code') ?></td>
                         <td>
                             <?php 
+                                // received from left join. this value might be null, which will cause an VIEW HELPER exception
                                 if ($this->user['dms']) {
                                     echo $this->translate($this->user['dms']);
                                 }
                             ?>
-                        </td></tr>
+                        </td>
+                    </tr>
                 <?php } else if ($this->user['position'] == 'partner') { ?>
-                    <tr><td><?php echo $this->translate('group_name') ?></td><td><?php echo $this->translate($this->user['last_name']); ?></td></tr>
-                    <tr><td><?php echo $this->translate('title') ?></td><td><?php echo $this->translate($this->user['last_name']);?></td></tr>
+                    
+                    <tr>
+                        <td><?php echo $this->translate('group_name') ?></td>
+                        <td><?php echo $this->translate($this->user['group_name']); ?></td>
+                    </tr>
+                    
+                    <tr>
+                        <td><?php echo $this->translate('title') ?></td>
+                        <td><?php echo $this->translate($this->user['title']);?></td>
+                    </tr>
+                    
                 <?php } ?>
-                <tr><td><?php echo $this->translate('city') ?></td><td><?php echo $this->translate(trim($this->user['city'])); ?></td></tr>
+            </table>
+            
+            <table width="100%">
+                <tr>
+                    <td><?php echo $this->translate('city') ?></td>
+                    <td><?php echo $this->translate(trim($this->user['city'])); ?></td>
+                </tr>
                 
                 <tr><td>&nbsp;</td></tr>
-                <tr><td>&nbsp;</td><td></td></tr>
+                <tr><td>&nbsp;</td></tr>
+                
                 <tr>
-                    <td><?php echo $this->translate('arrival_date') ?></td><td><?php echo $this->user['arrival_date']; ?></td></tr>
-                    <tr><td><?php echo $this->translate('mean_of_transportation') ?></td><td><?php echo $this->translate($this->user['arrival_transportation']); ?></td></tr>
-                    <tr><td><?php echo $this->translate('from') ?></td><td><?php echo $this->translate(trim($this->user['arrival_from_city'])) ?></td></tr>
-                    <tr><td><?php echo $this->translate('to') ?></td><td><?php echo $this->translate('shanghai') ?></td></tr>
-                    <tr><td><?php echo $this->translate('estimated_arrival_time') ?></td><td><?php echo $this->user['arrival_time'] ?></td>
+                    <td><?php echo $this->translate('arrival_date') ?></td>
+                    <td>
+                        <?php
+                        $arr_date = $this->user['arrival_date'];
+                        if ($arr_date) {
+                            if ($arr_date != '0000-00-00') {
+                                echo $arr_date;
+                            }
+                        }
+                        ?>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><?php echo $this->translate('mean_of_transportation') ?></td>
+                    <td><?php echo $this->translate($this->user['arrival_transportation']); ?></td>
+                </tr>
+                
+                <tr>
+                    <td><?php echo $this->translate('from') ?></td>
+                    <td><?php echo $this->translate(trim($this->user['arrival_from_city'])) ?></td>
+                </tr>
+                
+                <tr>
+                    <td><?php echo $this->translate('to') ?></td>
+                    <td><?php echo $this->translate('shanghai') ?></td>
+                </tr>
+                
+                <tr>
+                    <td><?php echo $this->translate('estimated_arrival_time') ?></td>
+                    <td>
+                        <?php $arr_time = $this->user['arrival_time'];
+                        if ($arr_time) {
+                            echo substr($arr_time, 0, -3);
+                         } ?>
+                    </td>
                 </tr>
                 
                 <tr><td>&nbsp;</td></tr>
                 <tr><td>&nbsp;</td><td></td></tr>
-                <tr><td><?php echo $this->translate('departure_date') ?></td><td><?php echo $this->user['departure_date'] ?></td></tr>
-                <tr><td><?php echo $this->translate('mean_of_transportation') ?></td><td><?php echo $this->translate($this->user['departure_transportation']) ?></td></tr>
-                <tr><td><?php echo $this->translate('from') ?></td><td><?php echo $this->translate('shanghai') ?></td></tr>
+                
+                <tr>
+                    <td><?php echo $this->translate('departure_date') ?></td>
+                    <td>
+                        <?php
+                        $dept_date = $this->user['departure_date'];
+                        if ($dept_date) {
+                            if ($dept_date != '0000-00-00') {
+                                echo $dept_date;
+                            }
+                        }
+                        ?>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><?php echo $this->translate('mean_of_transportation') ?></td>
+                    <td><?php echo $this->translate($this->user['departure_transportation']) ?></td>
+                </tr>
+                
+                <tr>
+                    <td><?php echo $this->translate('from') ?></td>
+                    <td><?php echo $this->translate('shanghai') ?></td>
+                </tr>
+                
                 <tr><td><?php echo $this->translate('to') ?></td><td><?php echo $this->translate(trim($this->user['departure_to_city'])) ?></td></tr>
-                <tr><td><?php echo $this->translate('estimated_departure_time') ?></td><td><?php echo $this->user['departure_time'] ?></td></tr>
+                <tr>
+                    <td><?php echo $this->translate('estimated_departure_time') ?></td>
+                    <td>
+                        <?php $dept_time = $this->user['departure_time'];
+                        if ($dept_time) {
+                            echo substr($dept_time, 0, -3);
+                         } ?>
+                    </td>
+                </tr>
                 
                 <tr><td>&nbsp;</td><td></td></tr>
                 <tr><td>&nbsp;</td><td></td></tr>
@@ -69,22 +165,70 @@
                     <td><?php echo $this->translate('is_staying') ?></td>
                     <td>
                         <?php 
-                        if ($this->user['is_staying'] == null || $this->user['is_staying'] == '') {  
-                        
-                        } else { echo $this->user['is_staying'] ? $this->translate('yes') : $this->translate('no'); } 
+                        if ($this->user['is_staying']) { 
+                            echo $this->user['is_staying'] ? $this->translate('yes') : $this->translate('no');
+                        } 
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td><?php echo $this->translate('need_room_booking_help') ?></td>
+                    <td>
+                        <?php 
+                        if ($this->user['need_room_booking_help']) { 
+                            echo $this->user['need_room_booking_help'] ? $this->translate('xu_yao') : $this->translate('bu_xu_yao');
+                        } 
                         ?>
                     </td>
                 </tr>
                 
                 <?php if ($this->user['is_staying']) { ?>
                     
-                <tr><td><?php echo $this->translate('room_type') ?></td><?php if ($this->user['room_type']) { ?><td><?php echo $this->translate($this->user['room_type']) ?></td><?php } ?></tr>
-                    
-                <tr><td><?php echo $this->translate('guest_name') ?></td><td><?php echo $this->user['guest_name'] ?></td></tr>
+                <tr>
+                    <td><?php echo $this->translate('check_in_date') ?></td><td><?php echo $this->user['check_in_date'] ?></td>
+                </tr>
+                
+                <tr>
+                    <td><?php echo $this->translate('check_out_date') ?></td><td><?php echo $this->user['check_out_date'] ?></td>
+                </tr>
+                
+                <tr>
+                    <td><?php echo $this->translate('room_type') ?></td>
+                    <td><?php 
+                        if (isset($this->user['room_type']) && $this->user['room_type']) { 
+                            echo $this->translate($this->user['room_type']);
+                        } 
+                        ?>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><?php echo $this->translate('non-smoking') ?></td>
+                    <td><?php if (isset($this->user['non-smoking']) && $this->user['non-smoking']) {
+                    echo $this->user['non-smoking'] ? $this->translate('xu_yao') : $this->translater['bu_xu_yao'];
+                    } ?>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><?php echo $this->translate('guest_name') ?></td><td><?php echo $this->user['guest_name'] ?></td>
+                </tr>
+                
                 <?php } else { ?>
                     <tr><td><?php echo $this->translate('not_staying_reason') ?></td><td><?php echo $this->user['not_staying_reason'] ?></td></tr>
+                
                 <?php } ?>
-                <tr><td><?php echo $this->translate('is_joining_lunch') ?></td><td><?php echo $this->user['is_joining_lunch'] ?></td></tr>
+                    
+                <tr>
+                    <td><?php echo $this->translate('is_joining_lunch') ?></td>
+                    <td>
+                        <?php 
+                        if ($this->user['is_joining_lunch']) {
+                            echo $this->user['is_joining_lunch'] ? $this->translate('yes') : $this->translate('no');
+                        }
+                        ?>
+                    </td>
+                </tr>
          
             </table>
             <div class="clear"></div>

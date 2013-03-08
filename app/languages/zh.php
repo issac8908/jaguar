@@ -224,4 +224,6 @@ return array(
     'non_smoking' => "需要非吸烟房吗？",
     'check_in_date' => '入住日期',
     'check_out_date'=> '退房日期',
+    
+    'profile_updated_successfully' => '您的个人资料已经成功更新。',
 );

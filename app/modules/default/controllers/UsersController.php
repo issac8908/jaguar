@@ -152,6 +152,7 @@ class UsersController extends Zend_Controller_Action
         
         public function editAction()
         {
+                $id = $this->_request->getParam('id', false);
                 
                 $form = new Form_User_User(array('method' => 'post'));
                 
@@ -171,16 +172,28 @@ class UsersController extends Zend_Controller_Action
                                 $data['dms_code'] = '';
                                 $data['company_name'] = '';
                                 $data['company_title'] = '';
-                            } else {
-                                $data['group_name'] = '';
+                            } else if ($data['position'] == 'partner'){
+                                $data['group_name'] = ''; 
                                 $data['group_title'] = '';
                                 $data['dms_code'] = '';
+                            } else if ($data['position'] == 'internals') {
+                                $data['group_name'] = ''; 
+                                $data['group_title'] = '';
+                                $data['dms_code'] = '';
+                                $data['company_name'] = '';
+                                $data['company_title'] = '';
                             }
+                            
                             $data['password'] = md5($data['password']);
                             $this->table->updateUserProfile($data['uid'], $data);
-                            $this->_authenticate($data);
+                            //  $this->_authenticate($data);
+                            
                             // Nofity admin the changes of the user profile.
-                            $this->_notifyAdminUserProfileUpdated($data);
+                            $this->_notifyAdminUserProfileUpdated($id);
+
+                            // Set the flash message
+                            $this->_helper->flashMessenger->addMessage($this->translate->translate('profile_updated_successfully'));
+
                             $this->_redirect('/event/agenda');
                         } else {
                             $this->view->errors = $form->getErrors();
@@ -189,7 +202,7 @@ class UsersController extends Zend_Controller_Action
                         
                     } else {
                         
-                        $id = $this->_request->getParam('id');
+                        
                         $data = $this->table->getUserById($id)->toArray();
                         // format time
                         $arrival_time = $data['arrival_time'];
@@ -476,7 +489,7 @@ class UsersController extends Zend_Controller_Action
                         $user->save();
 
                         $storage = $auth->getStorage();
-                        $storage->write($authAdapter->getResultRowObject(array('uid', 'first_name', 'last_name', 'email', 'last_login_ts')));
+                        $storage->write($authAdapter->getResultRowObject(array('uid',  'email', 'last_login_ts')));
 
                         Zend_Session::rememberMe(1209600);
 
@@ -524,13 +537,14 @@ class UsersController extends Zend_Controller_Action
          * @param type $data
          * @return boolean
          */
-        private function _notifyAdminUserProfileUpdated($data)
+        private function _notifyAdminUserProfileUpdated($id)
         {
+                $data = $this->table->getUserByIdUsingSQL($id);
+                
                 $this->view->data = $data;
                  
-                
-                
 		$mailToAdmin = new Zend_Mail('utf-8');
+                //$mailToAdmin->addTo('dilin110@gmail.com');
                 $mailToAdmin->addTo('registration@2013-jlrc-conference.com');
                 $mailToAdmin->addBcc(array( 'dilin110@gmail.com','commaille@gmail.com'));
                 

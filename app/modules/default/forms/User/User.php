@@ -30,13 +30,13 @@ class Form_User_User extends Zend_Form
                 $mobile->setRequired(true);
                 
                 $email = new Zend_Form_Element_Text('email');
-                $email->setRequired(true)
-                        ->addValidator('EmailAddress', true, array('mx' => true, 'deep' => true));
+              //  $email->setRequired(true)
+               //         ->addValidator('EmailAddress', true, array('mx' => true, 'deep' => true));
                         //->addValidator('Db_NoRecordExists', true, array('table' => 'user', 'field' => 'email'));//->addErrorMessages(array('Email address cannot be empty'));
 
-                $password = new Zend_Form_Element_Password('password');
-                $password->setAttrib('size', '30')->setRequired(true)
-                                ->addValidator('StringLength', true, array('min' => 6));
+              //  $password = new Zend_Form_Element_Password('password');
+             //   $password->setAttrib('size', '30')->setRequired(true)
+                //                                ->addValidator('StringLength', true, array('min' => 6));
 
                 $is_attending = new Zend_Form_Element_Radio('is_attending');
                 $is_attending->addMultiOptions(array(
@@ -81,10 +81,10 @@ class Form_User_User extends Zend_Form
                 $city_id = new Zend_Form_Element_Select('city_id');
                 
                 $arrival_date = new Zend_Form_Element_Text('arrival_date');
-                $arrival_date->setRequired(true)->addValidator('Date', true,'Y/m/d');
+           //     $arrival_date->setRequired(true)->addValidator('Date', true,'Y/m/d');
                 
                 $departure_date = new Zend_Form_Element_Text('departure_date');
-                $departure_date->setRequired(true)->addValidator('Date', true,'Y/m/d');
+          //      $departure_date->setRequired(true)->addValidator('Date', true,'Y/m/d');
                 
                 $arrival_transportation = new Zend_Form_Element_Select('arrival_transportation');
                 $arrival_transportation->addMultiOptions(array(
@@ -148,7 +148,7 @@ class Form_User_User extends Zend_Form
         
                 $this->addElements(array(
                     $uid, $first_name, $last_name, $gender, $id_passport_number, $tel, $mobile, 
-                    $email, $password, $is_attending,
+                    $email,$is_attending,
                     $position, $group_name, $group_title, $dms_code, $company_name, $company_title, 
                     $city_id,
                     $arrival_date, $departure_date, 

@@ -465,7 +465,7 @@ div#profile table tr td, div#venue table tr td
 
 div#profile table tr td:first-child, div#venue table tr td:first-child
 {
-    width: 30%;
+    width: 35%;
     font-weight: bold;
 }
 

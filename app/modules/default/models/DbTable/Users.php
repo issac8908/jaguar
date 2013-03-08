@@ -24,6 +24,22 @@ class Model_DbTable_Users extends Zend_Db_Table_Abstract
             return $this->fetchRow($select);       
         }
 
+        public function getUserByIdUsingSQL($id) 
+        {
+            $sql = "SELECT c1.en_name as city, 
+                    c2.en_name as arrival_from_city, 
+                    c3.en_name as departure_to_city, 
+                    g2.title as dms,  
+                    u.* from user as u
+                    left join city as c1 on u.city_id = c1.cid 
+                    left join city as c2 on u.arrival_from = c2.cid
+                    left join city as c3 on u.departure_to = c3.cid 
+                    left join group_one as g2 on u.dms_code = g2.gid 
+                    where `u`.`uid` = '" . $id . "'";
+            
+            return $this->_db->query($sql)->fetch();
+        }
+        
         /**
          * Get people by address email
          * 

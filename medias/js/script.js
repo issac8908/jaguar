@@ -95,7 +95,7 @@ function showPosition()
         $('#dms_code').parent().parent().hide();
         $('#company_name').parent().parent().show();
         $('#company_title').parent().parent().show();
-    } else if (value === 'jlr_internals') {
+    } else if (value === 'internals') {
         $('#group_name').parent().parent().hide();
         $('#group_title').parent().parent().hide();
         $('#dms_code').parent().parent().hide();

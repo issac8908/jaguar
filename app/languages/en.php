@@ -153,4 +153,5 @@ return array(
     'non_smoking' => 'Do you prefer non-smoking accomodation?',
     'check_in_date' => 'Check-in date',
     'check_out_date'=> 'Check-out date',
+    'profile_updated_successfully' => 'Your profile has been successfully updated',
         );
