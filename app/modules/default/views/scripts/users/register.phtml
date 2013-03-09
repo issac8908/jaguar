@@ -171,12 +171,14 @@ $(function() {
     });
     
     $('#stepThreeSubmitBtn').click(function() {
-        
+        /*
         if ($('#popup-reminder').html() === '') {
-            initPopupReminder('<?php echo $this->translate('popup_reminder') ?>', '<?php echo $this->translate('popup_reminder_text') ?>');
+            initPopupReminder('<?php //echo $this->translate('popup_reminder') ?>', '<?php //echo $this->translate('popup_reminder_text') ?>');
         } else {
             $('#popup-reminder').dialog('open');
         }
+          */  
+          $('#register-form form').submit();
     });
     
     $('#skip-step').dialog({
@@ -193,11 +195,16 @@ $(function() {
                         //$('ul li#trans').removeClass('active');
                         //$('ul li#accomodation').addClass('active');
                         //$('#step-three').show();
+                        //
+                        // remove popup-reminder at the end of the registraiton process. 
+                        /*
                         if ($('#popup-reminder').html() === '') {
-                            initPopupReminder('<?php echo $this->translate('popup_reminder') ?>', '<?php echo $this->translate('popup_reminder_text') ?>');
+                            initPopupReminder('<?php //echo $this->translate('popup_reminder') ?>', '<?php //echo $this->translate('popup_reminder_text') ?>');
                         } else {
                             $('#popup-reminder').dialog('open');
                         }
+                        */
+                        $('#register-form form').submit();
                     },
                     '<?php echo $this->translate('no') ?>': function(){
                         $(this).dialog("close");

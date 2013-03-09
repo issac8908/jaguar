@@ -11,10 +11,10 @@ class Carburant_Controller_Plugin_LangSelector extends Zend_Controller_Plugin_Ab
                 
 		if (isset($_COOKIE['locale']) && Zend_Locale::isLocale($_COOKIE['locale'], true, false)) {
                     $locale->setLocale($_COOKIE['locale']);
-		} else {
-                    $brower_lang_arr = explode(',', $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
-                    $locale->setLocale($brower_lang_arr[0]);
-                    $_COOKIE['locale'] = $brower_lang_arr[0];
+		} else if (isset($_SERVER["HTTP_ACCEPT_LANGUAGE"])) {
+                        $brower_lang_arr = explode(',', $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
+                        $locale->setLocale($brower_lang_arr[0]);
+                        $_COOKIE['locale'] = $brower_lang_arr[0];
 		}
 
 		if ($locale == 'en_US') {
