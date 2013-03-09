@@ -563,7 +563,7 @@ div#register .one-fourth
     clear: both;
 }
 
-.event 
+.event, .users
 {
     font-size: 12px; color: #4c4c4c;
 }
