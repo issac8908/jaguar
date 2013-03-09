@@ -166,7 +166,7 @@
                     <td>
                         <?php 
                         if ($this->user['is_staying']) { 
-                            echo $this->user['is_staying'] ? $this->translate('yes') : $this->translate('no');
+                            echo $this->user['is_staying'] ? $this->translate('hui') : $this->translate('bu_hui');
                         } 
                         ?>
                     </td>
@@ -203,9 +203,9 @@
                 </tr>
                 
                 <tr>
-                    <td><?php echo $this->translate('non-smoking') ?></td>
-                    <td><?php if (isset($this->user['non-smoking']) && $this->user['non-smoking']) {
-                    echo $this->user['non-smoking'] ? $this->translate('xu_yao') : $this->translater['bu_xu_yao'];
+                    <td><?php echo $this->translate('non_smoking') ?></td>
+                    <td><?php if (isset($this->user['non_smoking']) && $this->user['non_smoking']) {
+                    echo $this->user['non_smoking'] ? $this->translate('xu_yao') : $this->translater['bu_xu_yao'];
                     } ?>
                     </td>
                 </tr>
