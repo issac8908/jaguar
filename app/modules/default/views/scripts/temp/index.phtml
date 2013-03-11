@@ -1,0 +1,7 @@
+<?php 
+
+$buff = file_get_contents("F:/wamp/www/jaguar/medias/files/list-import.xlsx", true);
+mb_convert_encoding( $buff, 'UTF-8', 'UTF-8,GBK,GB2312,BIG5,latin' );
+
+
+die(print_r($buff));
