@@ -2,12 +2,15 @@
 
 class IndexController extends Zend_Controller_Action
 {	
+    
 	public function init()
 	{	
 	}
 	
+        
 	public function indexAction()
 	{
+            
             $auth = Zend_Auth::getInstance();
             if ($auth->hasIdentity()) {
                 $identity = $auth->getIdentity();
@@ -16,11 +19,25 @@ class IndexController extends Zend_Controller_Action
                 }
             }
 
-            if ($this->_getParam('code')) {
-                $this->view->code = $this->_getParam('code');
+            $code = $this->_request->getParam('code', '');
+            
+            
+            $session = Zend_Registry::get('session');
+            if (isset($session->code) && $session->code) {
+                $code = $session->code;
             } else {
-                $this->view->code = '';
+                $invitee_table = new Model_DbTable_Invitees();
+                $invitee = $invitee_table->getInviteeByCodeNoJoin($code);
+                if ($invitee) {
+                    $session->code = $code;
+                } else {
+                    // invalid code
+                    $code = '';
+                }
             }
+            
+            $this->view->code = $code;
+            
             $loginForm = $this->_getLoginForm();
 	}
         

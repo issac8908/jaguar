@@ -11,7 +11,7 @@
                 <div class="form">
                         <form id="signup-form" action="<?php echo $this->url(array('controller' => 'users', 'action' => 'register'), 'default'); ?>" method="post" enctype="application/x-www-form-urlencoded" name="signup">
                             <div class="section clearfix">
-                                <div class="row"><label><?php echo $this->translate('registration_code'); ?></label><div class="field"><input type="text" value="<?php echo $this->code; ?>" name="rcode" id="rcode" ></div></div>
+                                <div class="row"><label><?php echo $this->translate('registration_code'); ?></label><div class="field"><input type="text" value="<?php echo $this->code; ?>" name="rcode" id="rcode" disabled="disabled"></div></div>
                                 <div class="row submit"><input type="submit" name="submit2" id="btnSubmitCode" value="<?php echo $this->translate('sign_up') ?>"></div>
                                 <div id="popupDiag" style="display:none;">
                                     <div style="font-size: 16px;"><?php echo $this->translate('will_you_attend_event') ?></div>

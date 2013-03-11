@@ -7,7 +7,7 @@ class Carburant_Controller_Plugin_UserLogged extends Zend_Controller_Plugin_Abst
         $module = $request->getModuleName();
         $controller = $request->getControllerName();
         $action = $request->getActionName();
-        
+       
         $auth = Zend_Auth::getInstance();
         $layout = Zend_Layout::getMvcInstance();
         $view = $layout->getView();

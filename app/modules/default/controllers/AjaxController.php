@@ -78,9 +78,8 @@ class AjaxController extends Zend_Controller_Action
             $inviteeTable = new Model_DbTable_Invitees();
             
             $invitee = $inviteeTable->getInviteeByCodeNoJoin($code);
-            
             if ($invitee) {
-                $this->_saveRegistrationCodeAction($invitee->email);
+                $this->_saveRegistrationCodeAction($invitee->email, $code);
                 $this->_helper->json(array('email' => $invitee->email));
             } else {
                 $this->_helper->json(array('error' => 500));
@@ -92,11 +91,12 @@ class AjaxController extends Zend_Controller_Action
 
     }
     
-    private function _saveRegistrationCodeAction($email)
+    private function _saveRegistrationCodeAction($email, $code)
     {
         $session = Zend_Registry::get('session');
 		
         $session->email = $email;
+        $session->code = $code;
     }
 	
 }
