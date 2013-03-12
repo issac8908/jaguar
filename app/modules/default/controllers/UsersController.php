@@ -126,6 +126,24 @@ class UsersController extends Zend_Controller_Action
             $email = $auth->getIdentity()->email;
             if ($email == 'admin@2013-jlrc-conference.com') {
                 $users = $this->table->getUsersUsingSQL();
+                foreach ($users as &$user) {
+                    
+                    foreach ($user as $k => $v) {
+                        if ($v == null) {
+                            $user[$k] = '';
+                        }
+                        if ($k == 'arrival_date' || $k == 'departure_date' || $k == 'check_in_date' || $k == 'check_out_date') {
+                             if ($v == '0000-00-00') {
+                                 $user[$k] = '';
+                             }
+                        }
+                        if ($k == 'arrival_time' || $k == 'departure_time') {
+                            $user[$k] = substr($v, 0, -3);
+                        }
+                        
+                    }
+                    
+                }
                 $this->view->users = $users;
                 
             } else {
@@ -144,54 +162,28 @@ class UsersController extends Zend_Controller_Action
             if ($email == 'admin@2013-jlrc-conference.com') {
                 
                 $users = $this->table->getUsersUsingSQL();
-                $output = fopen('php://output', 'w');
+                $output = fopen('php://output', 'w+');
                 header('Content-Type: application/csv; charset=utf-8');
-                header("Content-Disposition: inline; filename=\"export.csv\"");
+                header("Content-Disposition: filename=\"export.csv\"");
                 
-                fputcsv($output, array('Name','Surname','Gender','ID/Passport','Tel',
-                    'Mobile','Email','City','Position','Group Name','Group Title','DMS','Company Name','Company Title', 
-                    'Arrival Date', 'Transportation', 'From', 'Arrival Time',
-                    'Departure Date','Transportation', 'To', 'Departure Time', 
-                    'Stay At Intercontinental', 
-                    'Check-in Date','Check-out Date','Room Type','Room Guest','RSVP Team Help', 'Non Smoking',
-                    'Not Staying Reasons',
-                    'Lunch'));
+                $fields = array('Name','Surname','Gender','ID/Passport','Tel',
+                    'Mobile','Email','City','Position','Group','Title','DMS','Company','Title', 
+                    'Arrival_Date', 'Transportation', 'From', 'Arrival_Time',
+                    'Departure_Date','Transportation', 'To', 'Departure_Time', 
+                    'Stay_At_Intercontinental', 
+                    'Check-in_Date','Check-out_Date','Room_Type','Room_Guest','RSVP_Team_Help', 'Non-smoking',
+                    'Not_Staying_Reasons', 'Lunch' );
+                
+                $buff = '';
+                foreach ($fields as $field) {
+                    $buff .= $field . ', ';
+                }
+                fwrite($output, $buff . "\r\n");
+                
+                
                 foreach($users as $user) {
                         $line = array();
                         
-                        array_push($line, $user['first_name']);
-                        array_push($line, $user['last_name']);
-                        array_push($line, $user['gender']);
-                        array_push($line, $user['id_passport_number']);
-                        array_push($line, $user['tel']);
-                        array_push($line, $user['mobile']);
-                        array_push($line, $user['email']);
-                        array_push($line, $user['city']);
-                        array_push($line, $user['position']);
-                        array_push($line, $user['group_name']);
-                        array_push($line, $user['group_title']);
-                        array_push($line, $user['dms_code']);
-                        array_push($line, $user['company_name']);
-                        array_push($line, $user['company_title']);
-                        array_push($line, $user['arrival_date']);
-                        array_push($line, $user['arrival_transportation']);
-                        
-                        array_push($line, $user['arrival_from']);
-                        array_push($line, $user['arrival_date']);
-                        array_push($line, $user['arrival_time']);
-                        array_push($line, $user['departure_transportation']);
-                        array_push($line, $user['departure_to']);
-                        array_push($line, $user['departure_time']);
-                        array_push($line, $user['is_staying']);
-                        array_push($line, $user['check_in_date']);
-                        array_push($line, $user['check_out_date']);
-                        array_push($line, $user['room_type']);
-                        array_push($line, $user['guest_name']);
-                        array_push($line, $user['need_room_booking_help']);
-                        array_push($line, $user['non_smoking']);
-                        array_push($line, $user['not_staying_reason']);
-                        array_push($line, $user['is_joining_lunch']);
-                        /*
                         array_push($line, iconv('utf-8','utf-8', $user['first_name']));
                         array_push($line, iconv('utf-8','utf-8', $user['last_name']));
                         array_push($line, iconv('utf-8','utf-8', $user['gender']));
@@ -199,7 +191,8 @@ class UsersController extends Zend_Controller_Action
                         array_push($line, iconv('utf-8','gb2312', $user['tel']));
                         array_push($line, iconv('utf-8','gb2312', $user['mobile']));
                         array_push($line, iconv('utf-8','gb2312', $user['email']));
-                        array_push($line, iconv('utf-8','gb2312', $user['city']));
+                        str_replace('\n','',$user['city']);
+                        array_push($line, iconv('utf-8','gb2312', trim($user['city'])));
                         array_push($line, iconv('utf-8','gb2312', $user['position']));
                         array_push($line, iconv('utf-8','gb2312', $user['group_name']));
                         array_push($line, iconv('utf-8','gb2312', $user['group_title']));
@@ -209,23 +202,26 @@ class UsersController extends Zend_Controller_Action
                         array_push($line, iconv('utf-8','gb2312', $user['arrival_date']));
                         array_push($line, iconv('utf-8','gb2312', $user['arrival_transportation']));
                         
-                        array_push($line, iconv('utf-8','gb2312', $user['arrival_from']));
-                        array_push($line, iconv('utf-8','gb2312', $user['arrival_date']));
-                        array_push($line, iconv('utf-8','gb2312', $user['arrival_time']));
-                        array_push($line, iconv('utf-8','gb2312', $user['departure_transportation']));
-                        array_push($line, iconv('utf-8','gb2312', $user['departure_to']));
-                        array_push($line, iconv('utf-8','gb2312', $user['departure_time']));
-                        array_push($line, iconv('utf-8','gb2312', $user['is_staying']));
-                        array_push($line, iconv('utf-8','gb2312', $user['check_in_date']));
-                        array_push($line, iconv('utf-8','gb2312', $user['check_out_date']));
-                        array_push($line, iconv('utf-8','gb2312', $user['room_type']));
-                        array_push($line, iconv('utf-8','gb2312', $user['guest_name']));
-                        array_push($line, iconv('utf-8','gb2312', $user['need_room_booking_help']));
-                        array_push($line, iconv('utf-8','gb2312', $user['non_smoking']));
-                        array_push($line, iconv('utf-8','gb2312', $user['not_staying_reason']));
-                        array_push($line, iconv('utf-8','gb2312', $user['is_joining_lunch']));
-                        */
-                        fputcsv($output, $line);
+                        array_push($line, iconv('utf-8','utf-8', $user['arrival_from']));
+                        array_push($line, iconv('utf-8','utf-8', $user['arrival_date']));
+                        array_push($line, iconv('utf-8','utf-8', $user['arrival_time']));
+                        array_push($line, iconv('utf-8','utf-8', $user['departure_transportation']));
+                        array_push($line, iconv('utf-8','utf-8', $user['departure_to']));
+                        array_push($line, iconv('utf-8','utf-8', $user['departure_time']));
+                        array_push($line, iconv('utf-8','utf-8', $user['is_staying']));
+                        array_push($line, iconv('utf-8','utf-8', $user['check_in_date']));
+                        array_push($line, iconv('utf-8','utf-8', $user['check_out_date']));
+                        array_push($line, iconv('utf-8','utf-8', $user['room_type']));
+                        array_push($line, iconv('utf-8','utf-8', $user['guest_name']));
+                        array_push($line, iconv('utf-8','utf-8', $user['need_room_booking_help']));
+                        array_push($line, iconv('utf-8','utf-8', $user['non_smoking']));
+                        array_push($line, iconv('utf-8','utf-8', $user['not_staying_reason']));
+                        array_push($line, iconv('utf-8','utf-8', $user['is_joining_lunch']));
+                        $new_line = '';
+                        foreach ($line as $l) {
+                            $new_line .= $l . ', '; 
+                        }
+                        fwrite($output, $new_line . "\r\n");
                 }
                 fclose($output);
                 exit();

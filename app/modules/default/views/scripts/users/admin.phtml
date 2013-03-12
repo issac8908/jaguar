@@ -20,8 +20,8 @@
             
             <table cellspacing="0">
                 <tr>
-                    <th>Name</th>
                     <th>Surname</th>
+                    <th>Name</th>
                     <th>Gender</th>
                     <th>ID/Passport</th>
                     <th>Tel</th>
@@ -57,32 +57,32 @@
                 </tr>
                 <?php foreach ($this->users as $user) { ?>
                 <tr>
-                    <td><?php echo $user['first_name'] ?></td>
                     <td><?php echo $user['last_name'] ?></td>
-                    <td><?php echo $user['gender'] ?></td>
+                    <td><?php echo $user['first_name'] ?></td>
+                    <td><?php echo $this->translate($user['gender']); ?></td>
                     <td><?php echo $user['id_passport_number'] ?></td>
                     <td><?php echo $user['tel'] ?></td>
                     <td><?php echo $user['mobile'] ?></td>
-                    <td><?php echo $user['email'] ?></td>
-                    <td><?php echo $user['city'] ?></td>
-                    <td><?php echo $user['position'] ?></td>
-                    <td><?php echo $user['group_name'] ?></td>
+                    <td nowrap><?php echo $user['email'] ?></td>
+                    <td nowrap><?php echo $this->translate(trim($user['city'])) ?></td>
+                    <td nowrap><?php echo $this->translate($user['position']) ?></td>
+                    <td nowrap><?php echo $user['group_head_name'] ?></td>
                     <td><?php echo $user['group_title'] ?></td>
-                    <td><?php echo $user['dms_code'] ?></td>
+                    <td><?php echo $user['dms'] ?></td>
                     <td><?php echo $user['company_name'] ?></td>
                     <td><?php echo $user['company_title'] ?></td>
-                    <td><?php if (isset($user['arrival_date']) && $user['arrival_date'] == '0000-00-00') {} else { echo $user['arrival_date']; } ?></td>
+                    <td nowrap><?php echo $user['arrival_date']; ?></td>
                     <td><?php echo $user['arrival_transportation'] ?></td>
-                    <td><?php echo $user['arrival_from'] ?></td>
+                    <td><?php echo $user['arrival_from_city'] ?></td>
                     <td><?php echo $user['arrival_time'] ?></td>
-                    <td><?php if (isset($user['departure_date']) && $user['departure_date'] == '0000-00-00') {} else { echo $user['departure_date']; } ?></td>
+                    <td nowrap><?php echo $user['departure_date'];  ?></td>
                     <td><?php echo $user['departure_transportation'] ?></td>
-                    <td><?php echo $user['departure_to'] ?></td>
+                    <td><?php echo $user['departure_to_city'] ?></td>
                     <td><?php echo $user['departure_time'] ?></td>
                     
                     <td><?php echo $user['is_staying'] ?></td>
-                    <td><?php echo $user['check_in_date'] ?></td>
-                    <td><?php echo $user['check_out_date'] ?></td>
+                    <td nowrap><?php echo $user['check_in_date'] ?></td>
+                    <td nowrap><?php echo $user['check_out_date'] ?></td>
                     <td><?php echo $user['room_type'] ?></td>
                     <td><?php echo $user['guest_name'] ?></td>
                     
@@ -94,8 +94,9 @@
                 </tr>
                 <?php } ?>
             </table>
-            
+            <div class="clear"></div>
         </div>
+        <div class="clear"></div>
     </div>
 </div>
 
@@ -111,7 +112,7 @@
    
     table tr th, table tr td {
         border: 1px solid #ccc;
-        padding: 3px;
+        padding: 8px;
     }
     
 </style>
