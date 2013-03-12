@@ -131,6 +131,75 @@ class UsersController extends Zend_Controller_Action
             }            
         }
         
+        public function exportAction()
+        {
+           // $this->_helper->getHelper('layout')->disableLayout();
+           // $this->_helper->viewRenderer->setNoRender();
+            
+            // check if admin account is presented.
+            $auth = Zend_Auth::getInstance();
+            $email = $auth->getIdentity()->email;
+            if ($email == 'admin@2013-jlrc-conference.com') {
+                
+                $users = $this->table->getUsersUsingSQL();
+                $output = fopen('php://output', 'w');
+                header('Content-Type: application/csv; charset=utf-8');
+                header("Content-Disposition: inline; filename=\"export.csv\"");
+                
+                fputcsv($output, array('Name','Surname','Gender','ID/Passport','Tel',
+                    'Mobile','Email','City','Position','Group Name','Group Title','DMS','Company Name','Company Title', 
+                    'Arrival Date', 'Transportation', 'From', 'Arrival Time',
+                    'Departure Date','Transportation', 'To', 'Departure Time', 
+                    'Stay At Intercontinental', 
+                    'Check-in Date','Check-out Date','Room Type','Room Guest','RSVP Team Help', 'Non Smoking',
+                    'Not Staying Reasons',
+                    'Lunch'));
+                foreach($users as $user) {
+                        $line = array();
+                        
+                        array_push($line, iconv('utf-8','gb2312', $user['first_name']));
+                        array_push($line, iconv('utf-8','gb2312', $user['last_name']));
+                        array_push($line, iconv('utf-8','gb2312', $user['gender']));
+                        array_push($line, iconv('utf-8','gb2312', $user['id_passport_number']));
+                        array_push($line, iconv('utf-8','gb2312', $user['tel']));
+                        array_push($line, iconv('utf-8','gb2312', $user['mobile']));
+                        array_push($line, iconv('utf-8','gb2312', $user['email']));
+                        array_push($line, iconv('utf-8','gb2312', $user['city']));
+                        array_push($line, iconv('utf-8','gb2312', $user['position']));
+                        array_push($line, iconv('utf-8','gb2312', $user['group_name']));
+                        array_push($line, iconv('utf-8','gb2312', $user['group_title']));
+                        array_push($line, iconv('utf-8','gb2312', $user['dms_code']));
+                        array_push($line, iconv('utf-8','gb2312', $user['company_name']));
+                        array_push($line, iconv('utf-8','gb2312', $user['company_title']));
+                        array_push($line, iconv('utf-8','gb2312', $user['arrival_date']));
+                        array_push($line, iconv('utf-8','gb2312', $user['arrival_transportation']));
+                        
+                        array_push($line, iconv('utf-8','gb2312', $user['arrival_from']));
+                        array_push($line, iconv('utf-8','gb2312', $user['arrival_date']));
+                        array_push($line, iconv('utf-8','gb2312', $user['arrival_time']));
+                        array_push($line, iconv('utf-8','gb2312', $user['departure_transportation']));
+                        array_push($line, iconv('utf-8','gb2312', $user['departure_to']));
+                        array_push($line, iconv('utf-8','gb2312', $user['departure_time']));
+                        array_push($line, iconv('utf-8','gb2312', $user['is_staying']));
+                        array_push($line, iconv('utf-8','gb2312', $user['check_in_date']));
+                        array_push($line, iconv('utf-8','gb2312', $user['check_out_date']));
+                        array_push($line, iconv('utf-8','gb2312', $user['room_type']));
+                        array_push($line, iconv('utf-8','gb2312', $user['guest_name']));
+                        array_push($line, iconv('utf-8','gb2312', $user['need_room_booking_help']));
+                        array_push($line, iconv('utf-8','gb2312', $user['non_smoking']));
+                        array_push($line, iconv('utf-8','gb2312', $user['not_staying_reason']));
+                        array_push($line, iconv('utf-8','gb2312', $user['is_joining_lunch']));
+                        
+                        fputcsv($output, $line);
+                }
+                fclose($output);
+                exit();
+                
+            } else {
+                $this->_helper->reidrector('index', 'users');
+            }      
+        }
+        
         public function processResetPasswordAction()
         {
                 

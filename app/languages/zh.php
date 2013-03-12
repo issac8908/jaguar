@@ -226,4 +226,5 @@ return array(
     'check_out_date'=> '退房日期',
     
     'profile_updated_successfully' => '您的个人资料已经成功更新。',
+    'users' => '用户列表',
 );
