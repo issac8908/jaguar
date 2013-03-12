@@ -125,7 +125,9 @@ class UsersController extends Zend_Controller_Action
             $auth = Zend_Auth::getInstance();
             $email = $auth->getIdentity()->email;
             if ($email == 'admin@2013-jlrc-conference.com') {
-                $this->view->users = $this->table->getUsersUsingSQL();
+                $users = $this->table->getUsersUsingSQL();
+                $this->view->users = $users;
+                
             } else {
                 $this->_helper->reidrector('index', 'users');
             }            
@@ -157,9 +159,42 @@ class UsersController extends Zend_Controller_Action
                 foreach($users as $user) {
                         $line = array();
                         
-                        array_push($line, iconv('utf-8','gb2312', $user['first_name']));
-                        array_push($line, iconv('utf-8','gb2312', $user['last_name']));
-                        array_push($line, iconv('utf-8','gb2312', $user['gender']));
+                        array_push($line, $user['first_name']);
+                        array_push($line, $user['last_name']);
+                        array_push($line, $user['gender']);
+                        array_push($line, $user['id_passport_number']);
+                        array_push($line, $user['tel']);
+                        array_push($line, $user['mobile']);
+                        array_push($line, $user['email']);
+                        array_push($line, $user['city']);
+                        array_push($line, $user['position']);
+                        array_push($line, $user['group_name']);
+                        array_push($line, $user['group_title']);
+                        array_push($line, $user['dms_code']);
+                        array_push($line, $user['company_name']);
+                        array_push($line, $user['company_title']);
+                        array_push($line, $user['arrival_date']);
+                        array_push($line, $user['arrival_transportation']);
+                        
+                        array_push($line, $user['arrival_from']);
+                        array_push($line, $user['arrival_date']);
+                        array_push($line, $user['arrival_time']);
+                        array_push($line, $user['departure_transportation']);
+                        array_push($line, $user['departure_to']);
+                        array_push($line, $user['departure_time']);
+                        array_push($line, $user['is_staying']);
+                        array_push($line, $user['check_in_date']);
+                        array_push($line, $user['check_out_date']);
+                        array_push($line, $user['room_type']);
+                        array_push($line, $user['guest_name']);
+                        array_push($line, $user['need_room_booking_help']);
+                        array_push($line, $user['non_smoking']);
+                        array_push($line, $user['not_staying_reason']);
+                        array_push($line, $user['is_joining_lunch']);
+                        /*
+                        array_push($line, iconv('utf-8','utf-8', $user['first_name']));
+                        array_push($line, iconv('utf-8','utf-8', $user['last_name']));
+                        array_push($line, iconv('utf-8','utf-8', $user['gender']));
                         array_push($line, iconv('utf-8','gb2312', $user['id_passport_number']));
                         array_push($line, iconv('utf-8','gb2312', $user['tel']));
                         array_push($line, iconv('utf-8','gb2312', $user['mobile']));
@@ -189,7 +224,7 @@ class UsersController extends Zend_Controller_Action
                         array_push($line, iconv('utf-8','gb2312', $user['non_smoking']));
                         array_push($line, iconv('utf-8','gb2312', $user['not_staying_reason']));
                         array_push($line, iconv('utf-8','gb2312', $user['is_joining_lunch']));
-                        
+                        */
                         fputcsv($output, $line);
                 }
                 fclose($output);

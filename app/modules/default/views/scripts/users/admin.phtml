@@ -14,46 +14,46 @@
         </div>
     </div>
     
-    <div id="main-content" style="width: 90%; ">
+    <div id="main-content" style="width: 90%; margin: 10px auto;">
         <div id="main-content-title"><?php echo $this->translate('users') ?><a href="<?php echo $this->url(array('controller'=>'users', 'action' => 'export')) ?> " id="export-csv" class="small-btn" style="float: right; padding: 3px 10px;"><?php echo $this->translate('export') ?></a></div>
         <div id="users-list">
             
-            <table style="width: 100%;" cellspacing="0">
+            <table cellspacing="0">
                 <tr>
-                    <th><?php echo $this->translate('first_name') ?></th>
-                    <th><?php echo $this->translate('last_name') ?></th>
-                    <th><?php echo $this->translate('gender') ?></th>
-                    <th><?php echo $this->translate('id_passport_number') ?></th>
-                    <th><?php echo $this->translate('tel') ?></th>
-                    <th><?php echo $this->translate('mobile') ?></th>
-                    <th><?php echo $this->translate('email') ?></th>
-                    <th><?php echo $this->translate('city') ?></th>
-                    <th><?php echo $this->translate('position') ?></th>
-                    <th><?php echo $this->translate('group_name') ?></th>
-                    <th><?php echo $this->translate('group_title') ?></th>
-                    <th><?php echo $this->translate('dms_code') ?></th>
-                    <th><?php echo $this->translate('company_name') ?></th>
-                    <th><?php echo $this->translate('company_title') ?></th>
-                    <th><?php echo $this->translate('arrival_date') ?></th>
-                    <th><?php echo $this->translate('mean_of_transportation') ?></th>
-                    <th><?php echo $this->translate('from') ?></th>
-                    <th><?php echo $this->translate('estimated_arrival_time') ?></th>
-                    <th><?php echo $this->translate('departure_date') ?></th>
-                    <th><?php echo $this->translate('mean_of_transportation') ?></th>
-                    <th><?php echo $this->translate('to') ?></th>
-                    <th><?php echo $this->translate('estimated_departure_time') ?></th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Gender</th>
+                    <th>ID/Passport</th>
+                    <th>Tel</th>
+                    <th>Mobile</th>
+                    <th>Email</th>
+                    <th>City</th>
+                    <th>Position</th>
+                    <th>Group Name</th>
+                    <th>Group Title</th>
+                    <th>DMS</th>
+                    <th>Company Name</th>
+                    <th>Company Title</th>
+                    <th>Arrival Date</th>
+                    <th>Transportation</th>
+                    <th>From</th>
+                    <th>Arrival Time</th>
+                    <th>Departure Date</th>
+                    <th>Transportation</th>
+                    <th>To</th>
+                    <th>Departure Time</th>
                     
-                    <th><?php echo $this->translate('stay_at_intercontinental') ?></th>
-                    <th><?php echo $this->translate('check_in_date') ?></th>
-                    <th><?php echo $this->translate('check_out_date') ?></th>
-                    <th><?php echo $this->translate('room_type') ?></th>
-                    <th><?php echo $this->translate('room_guest') ?></th>
+                    <th>Stay at Intercontinental</th>
+                    <th>Check-in Date</th>
+                    <th>Check-out Date</th>
+                    <th>Room Type</th>
+                    <th>Guest Name</th>
                     
-                    <th><?php echo $this->translate('rsvp_team_help') ?></th>
-                    <th><?php echo $this->translate('non_smoking') ?></th>
+                    <th>RSVP Team Help</th>
+                    <th>Non Smoking</th>
                     
-                    <th><?php echo $this->translate('not_staying_reasons') ?></th>
-                    <th><?php echo $this->translate('lunch') ?></th>
+                    <th>Not Staying Reasons</th>
+                    <th>Lunch</th>
                 </tr>
                 <?php foreach ($this->users as $user) { ?>
                 <tr>
@@ -71,11 +71,11 @@
                     <td><?php echo $user['dms_code'] ?></td>
                     <td><?php echo $user['company_name'] ?></td>
                     <td><?php echo $user['company_title'] ?></td>
-                    <td><?php echo $user['arrival_date'] ?></td>
+                    <td><?php if (isset($user['arrival_date']) && $user['arrival_date'] == '0000-00-00') {} else { echo $user['arrival_date']; } ?></td>
                     <td><?php echo $user['arrival_transportation'] ?></td>
                     <td><?php echo $user['arrival_from'] ?></td>
-                    <td><?php echo $user['arrival_date'] ?></td>
                     <td><?php echo $user['arrival_time'] ?></td>
+                    <td><?php if (isset($user['departure_date']) && $user['departure_date'] == '0000-00-00') {} else { echo $user['departure_date']; } ?></td>
                     <td><?php echo $user['departure_transportation'] ?></td>
                     <td><?php echo $user['departure_to'] ?></td>
                     <td><?php echo $user['departure_time'] ?></td>
@@ -90,6 +90,7 @@
                     <td><?php echo $user['non_smoking'] ?></td>
                     <td><?php echo $user['not_staying_reason'] ?></td>
                     <td><?php echo $user['is_joining_lunch'] ?></td>
+                    
                 </tr>
                 <?php } ?>
             </table>
@@ -101,6 +102,8 @@
 <style type="text/css">
     
     table {
+        width: 90%;
+        padding-right: 10px;
     }
     table tr {
         width: 100%;
