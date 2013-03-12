@@ -1,0 +1,58 @@
+<div class="users">
+    
+    <div id="menu">
+        <div id="menu-wrapper">
+            <ul>
+                <li><a href="/users"><?php echo $this->translate('my_profile') ?></a></li>
+                <li><a href="/event/agenda"><?php echo $this->translate('agenda') ?></a></li>
+                <li><a href="/event/conf"><?php echo $this->translate('conference_speakers') ?></a></li>
+                <li><a href="/event/venue"><?php echo $this->translate('venue') ?></a></li>
+                <li><a href="/event/hospitality"><?php echo $this->translate('hospitality') ?></a></li>
+                <li><a href="/event/contact"><?php echo $this->translate('contact_rsvp') ?></a></li>
+                <li class="logout"><a href="<?php echo $this->url(array('controller' => 'users','action' => 'logout'), 'default', true); ?>"><?php echo $this->translate('logout') ?></a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div id="main-content" style="width: 100%;">
+        <div id="main-content-title"><?php echo $this->translate('users') ?><a href="<?php echo $this->url(array('controller'=>'users', 'action' => 'export')) ?> " id="export-csv" class="small-btn" style="float: right; padding: 3px 10px;"><?php echo $this->translate('export') ?></a></div>
+        <div id="users-list">
+            
+            <table>
+                <tr>
+                    <th><?php echo $this->translate('first_name') ?></th>
+                    <th><?php echo $this->translate('last_name') ?></th>
+                    <th><?php echo $this->translate('gender') ?></th>
+                    <th><?php echo $this->translate('id/passprot') ?></th>
+                    <th><?php echo $this->translate('phone') ?></th>
+                    <th><?php echo $this->translate('mobile') ?></th>
+                    <th><?php echo $this->translate('name') ?></th>
+                    <th><?php echo $this->translate('email') ?></th>
+                    <th><?php echo $this->translate('city') ?></th>
+                    <th><?php echo $this->translate('position') ?></th>
+                    <th><?php echo $this->translate('group_name') ?></th>
+                    <th><?php echo $this->translate('group_title') ?></th>
+                    <th><?php echo $this->translate('dms_code') ?></th>
+                    <th><?php echo $this->translate('company_name') ?></th>
+                    <th><?php echo $this->translate('company_title') ?></th>
+                    <th><?php echo $this->translate('arrival_date') ?></th>
+                    <th><?php echo $this->translate('mean_of_transportation') ?></th>
+                    <th><?php echo $this->translate('from') ?></th>
+                    <th><?php echo $this->translate('estimated_arrival_time') ?></th>
+                    <th><?php echo $this->translate('departure_date') ?></th>
+                    <th><?php echo $this->translate('mean_of_transportation') ?></th>
+                    <th><?php echo $this->translate('to') ?></th>
+                    <th><?php echo $this->translate('estimated_departure_time') ?></th>
+                    <th><?php echo $this->translate('stay_at_intercontinental') ?></th>
+                    <th><?php echo $this->translate('check_out_date') ?></th>
+                    <th><?php echo $this->translate('non_smoking') ?></th>
+                    <th><?php echo $this->translate('room_type') ?></th>
+                    <th><?php echo $this->translate('room_guest') ?></th>
+                    <th><?php echo $this->translate('rsvp_team_help') ?></th>
+                    <th><?php echo $this->translate('lunch') ?></th>
+                </tr>
+            </table>
+            
+        </div>
+    </div>
+</div>

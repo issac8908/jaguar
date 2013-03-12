@@ -118,6 +118,19 @@ class UsersController extends Zend_Controller_Action
                 
         }
         
+        public function adminAction()
+        {
+                
+            // check if admin account is presented.
+            $auth = Zend_Auth::getInstance();
+            $email = $auth->getIdentity()->email;
+            if ($email == 'admin@2013-jlrc-conference.com') {
+                $this->view->users = $this->table->getUsersUsingSQL();
+            } else {
+                $this->_helper->reidrector('index', 'users');
+            }            
+        }
+        
         public function processResetPasswordAction()
         {
                 
@@ -276,7 +289,6 @@ class UsersController extends Zend_Controller_Action
                         
                         try {
                             
-                            
                             $user_table = new Model_DbTable_Users();
                             unset($data['confirm_password']);
                             $password = $data['password'];
@@ -285,14 +297,12 @@ class UsersController extends Zend_Controller_Action
                             $user = $user_table->addDataAndGetUser($data);
                             
                             // Authenticate user
-                            //$this->_authenticate($form);
                             $this->_authenticate(array('email'=>$data['email'], 'password'=>$password));
                             
-                            $data = $user->toArray();
-                            $data['password'] = $password;
+                            $user['password'] = $password;
  
                             // Send admin and the new user emails.
-                            $this->_sendMail($data);
+                            $this->_sendMail($user);
 
                             // Set the flash message
                             $this->_helper->flashMessenger->addMessage($this->translate->translate('registered_successfully_msg_1') . $this->translate->translate('registered_successfully_msg_2'));
@@ -530,19 +540,19 @@ class UsersController extends Zend_Controller_Action
         
         private function _sendMail($data)
         {
-                $this->view->data = $data;
+                $this->view->user = $data;
 		
                 $transport = new Zend_Mail_Transport_Smtp('mail.gandi.net', $this->config);
                 Zend_Mail::setDefaultTransport($transport);
                 
 		$mailToAdmin = new Zend_Mail('utf-8');
-		$mailToAdmin->addTo('registration@2013-jlrc-conference.com');
+                $mailToAdmin->addTo('registration@2013-jlrc-conference.com');
                 $mailToAdmin->addBcc(array('commaille@gmail.com', 'dilin110@gmail.com'));
 
                 $mailToAdmin->setFrom('registration@2013-jlrc-conference.com', '2013 JLRC');
 		$mailToAdmin->setSubject($data['first_name'] . ' ' . $data['last_name'] . ' Registered to the JLR Conference');
 		$mailToAdmin->setBodyHtml($this->view->render('users/mail/new-user-admin-notice.phtml'));
-		
+                
                 $mailToNewUser = new Zend_Mail('utf-8');
 		$mailToNewUser->addTo($data['email']);
                 $mailToNewUser->addBcc(array('commaille@gmail.com', 'dilin110@gmail.com'));
@@ -569,7 +579,6 @@ class UsersController extends Zend_Controller_Action
                 $this->view->data = $data;
                  
 		$mailToAdmin = new Zend_Mail('utf-8');
-                //$mailToAdmin->addTo('dilin110@gmail.com');
                 $mailToAdmin->addTo('registration@2013-jlrc-conference.com');
                 $mailToAdmin->addBcc(array( 'dilin110@gmail.com','commaille@gmail.com'));
                 

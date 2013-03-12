@@ -77,6 +77,24 @@ class Model_DbTable_Users extends Zend_Db_Table_Abstract
             return $this->_db->query($sql)->fetch();
         }
         
+
+        public function getUsersUsingSQL()
+        {
+            $sql = "SELECT c1.en_name as city, 
+                    c2.en_name as arrival_from_city, 
+                    c3.en_name as departure_to_city, 
+                    g2.title as dms,  
+                    g3.title as group_head_name,
+                    u.* from user as u
+                    left join city as c1 on u.city_id = c1.cid 
+                    left join city as c2 on u.arrival_from = c2.cid
+                    left join city as c3 on u.departure_to = c3.cid 
+                    left join group_one as g2 on u.dms_code = g2.gid 
+                    left join group_one as g3 on u.group_name = g3.gid";
+            
+            return $this->_db->query($sql)->fetchAll();
+        }
+        
         public function getUserByEmailNoJoin($email)
         {
             $select = $this->select()->where('email = ?', $email);
@@ -114,7 +132,7 @@ class Model_DbTable_Users extends Zend_Db_Table_Abstract
         {
             $id = $this->addUser($data);
             if ($id) {
-                return $this->getUserById($id);
+                return $this->getUserByIdUsingSQL($id);
             }
             return null;
         }
