@@ -73,12 +73,18 @@
                 <div id="step-three">
                     <div class="left">
                         <div class="row"><label><?php echo $this->translate('is_staying') ?></label><div class="field"><?php echo $this->form->is_staying ?></div></div>
+                        <div class="row staying_at_hotel" style="display: none;"><label><?php echo $this->translate('need_room_booking_help') ?></label><div class="field"><?php echo $this->form->need_room_booking_help ?></div></div>
                         <div class="row"><label><?php echo $this->translate('is_joining_lunch') ?></label><div class="field"><?php echo $this->form->is_joining_lunch; ?></div></div>
                     </div>
-                    <div class="right">
-                        <div class="row" style="display:none;"><label><?php echo $this->translate('room_type') ?></label><div class="field"><?php echo $this->form->room_type; ?></div></div>
-                        <div class="row" style="display:none;"><label><?php echo $this->translate('guest_name') ?></label><div class="field"><?php echo $this->form->guest_name; ?></div></div>
-                        <div class="row" style="display:none;"><label class="small"><?php echo $this->translate('please explain why') ?></label><div class="field"><?php echo $this->form->not_staying_reason ?></div></div>
+                    <div class="right staying_at_hotel" style="display: none;">
+                        <div class="row"><label><?php echo $this->translate('check_in_date') ?></label><div class="field"><?php echo $this->form->check_in_date; ?></div></div>
+                        <div class="row"><label><?php echo $this->translate('check_out_date') ?></label><div class="field"><?php echo $this->form->check_out_date; ?></div></div>
+                        <div class="row"><label><?php echo $this->translate('non_smoking') ?></label><div class="field"><?php echo $this->form->non_smoking; ?></div></div>
+                        <div class="row"><label><?php echo $this->translate('room_type') ?></label><div class="field"><?php echo $this->form->room_type; ?></div></div>
+                        <div class="row"><label><?php echo $this->translate('guest_name') ?></label><div class="field"><?php echo $this->form->guest_name; ?></div></div>
+                    </div>
+                    <div class="right not_staying_at_hotel" style="display: none;">
+                        <div class="row"><label class="small"><?php echo $this->translate('please explain why') ?></label><div class="field"><?php echo $this->form->not_staying_reason ?></div></div>
                     </div>
                 </div>
                 
@@ -89,6 +95,7 @@
                 
                 <div class="clear"></div>
             </form>
+            <div class="clear"></div>
         </div>
     </div>
 </div>
@@ -149,6 +156,7 @@ $(function() {
         $('.not_staying_at_hotel').show();
     });
 
+    $('#check_in_date, #check_out_date').datepicker({ dateFormat: 'yy-mm-dd', minDate: new Date(2013, 4 - 1, 1)});
 });
 
 function showPosition()
@@ -185,15 +193,12 @@ function showIsStaying()
 {
     var value = $('input[name="is_staying"]:checked').val();
     if (value === '1') {
-        $('input[name="room_type"]').parent().parent().parent().show();
-        $('#guest_name').parent().parent().show();
-        $('#not_staying_reason').parent().parent().hide();
+        $('.staying_at_hotel').show();
+        $('.not_staying_at_hotel').hide();
     } else if (value === '0') {
-        $('input[name="room_type"]').parent().parent().parent().hide();
-        $('#guest_name').parent().parent().hide();
-        $('#not_staying_reason').parent().parent().show();
-    } else {
-    }
+        $('.not_staying_at_hotel').show();
+        $('.staying_at_hotel').hide();
+    } 
 
 }
 

@@ -45,11 +45,24 @@ class UsersController extends Zend_Controller_Action
                 }
                 
                 if ($auth->getIdentity()->email) {
-                    $this->view->user = $users_table->getUserByEmailUsingSQL($auth->getIdentity()->email);
-                  //  die(print_r($this->view->user));
-                    //$this->view->form = $users_table->getUserByEmail($auth->getIdentity()->email);
-                } else {
-                }
+                    $user = $users_table->getUserByEmailUsingSQL($auth->getIdentity()->email);
+                    
+                    foreach ($user as $k => $v) {
+                        if ($v == null) {
+                            $user[$k] = '';
+                        }
+                        if ($k == 'arrival_date' || $k == 'departure_date' || $k == 'check_in_date' || $k == 'check_out_date') {
+                             if ($v == '0000-00-00') {
+                                 $user[$k] = '';
+                             }
+                        }
+                        if ($k == 'arrival_time' || $k == 'departure_time') {
+                            $user[$k] = substr($v, 0, -3);
+                        }
+                        
+                    }
+                    $this->view->user = $user;
+                } 
          }
             
 	/**
@@ -183,6 +196,18 @@ class UsersController extends Zend_Controller_Action
                                 $data['company_name'] = '';
                                 $data['company_title'] = '';
                             }
+                            
+                            if ($data['is_staying'] == 1) {
+                                $data['not_staying_reason'] = '';
+                            } else if ($data['is_staying'] == 0) {
+                                $data['check_in_date'] = '0000-00-00';
+                                $data['check_out_date'] = '0000-00-00';
+                                $data['non_smoking'] = '';
+                                $data['room_type'] = '';
+                                $data['guest_name'] = '';
+                                $data['need_room_booking_help'] = '';
+                            }
+                            
                             
                             $data['password'] = md5($data['password']);
                             $this->table->updateUserProfile($data['uid'], $data);

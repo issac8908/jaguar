@@ -446,16 +446,17 @@ input[type='submit'], .btn
 }
 
 
-div#profile table, div#venue table
+div#profile table
 {
-    width: 100%;
+    margin-top: 20px; margin-bottom: 10px;
+    width: 50%;
 }
 
-div#profile table tr, div#venue table tr
+div#profile table tr
 {
 }
 
-div#profile table tr td, div#venue table tr td
+div#profile table tr td
 {
     font-size: 12px;
     font-weight: normal;
@@ -463,10 +464,11 @@ div#profile table tr td, div#venue table tr td
     padding-right: 30px;
 }
 
-div#profile table tr td:first-child, div#venue table tr td:first-child
+div#profile table tr td:first-child
 {
     width: 35%;
     font-weight: bold;
+    width: 60%;
 }
 
 div#conf-lib
