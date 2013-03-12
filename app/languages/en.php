@@ -20,6 +20,8 @@ return array(
     'register' => 'REGISTER',
     'yao' => 'Yes',
     'bu_yao' => 'No',
+    'shi' => 'Yes',
+    'bu_shi' => 'No',
     'hui' => 'Yes',
     'bu_hui' => 'No',
     'xu_yao' => 'Yes',
@@ -155,4 +157,13 @@ return array(
     'check_out_date'=> 'Check-out date',
     'profile_updated_successfully' => 'Your profile has been successfully updated',
     'users' => 'USERS',
+    'transportation' => 'TRANSPORTATION',
+    'guest' => 'GUEST',
+    'stay_at_intercontinental' => 'STAY AT INTERCONTINENTAL',
+    'room_type_2' => 'ROOM TYPE',
+    'non_smoking_room' => 'NON SMOKING ROOM',
+    'rsvp_team_help' => 'RSVP Team Help',
+    'not_staying_reasons' => 'NOT STAYING REASONS',
+    'lunch' => 'LUNCH',
+    
         );

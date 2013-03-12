@@ -20,40 +20,40 @@
             
             <table cellspacing="0">
                 <tr>
-                    <th>Surname</th>
-                    <th>Name</th>
-                    <th>Gender</th>
-                    <th>ID/Passport</th>
-                    <th>Tel</th>
-                    <th>Mobile</th>
-                    <th>Email</th>
-                    <th>City</th>
-                    <th>Position</th>
-                    <th>Group Name</th>
-                    <th>Group Title</th>
+                    <th><?php echo $this->translate('last_name') ?></th>
+                    <th><?php echo $this->translate('first_name') ?></th>
+                    <th><?php echo $this->translate('gender') ?></th>
+                    <th><?php echo $this->translate('id_passport_number') ?></th>
+                    <th><?php echo $this->translate('tel') ?></th>
+                    <th><?php echo $this->translate('mobile') ?></th>
+                    <th><?php echo $this->translate('email') ?></th>
+                    <th><?php echo $this->translate('city') ?></th>
+                    <th><?php echo $this->translate('position') ?></th>
+                    <th><?php echo $this->translate('group_name') ?></th>
+                    <th><?php echo $this->translate('title') ?></th>
                     <th>DMS</th>
-                    <th>Company Name</th>
-                    <th>Company Title</th>
-                    <th>Arrival Date</th>
-                    <th>Transportation</th>
-                    <th>From</th>
-                    <th>Arrival Time</th>
-                    <th>Departure Date</th>
-                    <th>Transportation</th>
-                    <th>To</th>
-                    <th>Departure Time</th>
+                    <th><?php echo $this->translate('company_name') ?></th>
+                    <th><?php echo $this->translate('company_title') ?></th>
+                    <th><?php echo $this->translate('arrival_date') ?></th>
+                    <th><?php echo $this->translate('transportation') ?></th>
+                    <th><?php echo $this->translate('from') ?></th>
+                    <th><?php echo $this->translate('estimated_arrival_time') ?></th>
+                    <th><?php echo $this->translate('departure_date') ?></th>
+                    <th><?php echo $this->translate('transportation') ?></th>
+                    <th><?php echo $this->translate('to') ?></th>
+                    <th><?php echo $this->translate('estimated_departure_time') ?></th>
                     
-                    <th>Stay at Intercontinental</th>
-                    <th>Check-in Date</th>
-                    <th>Check-out Date</th>
-                    <th>Room Type</th>
-                    <th>Guest Name</th>
+                    <th><?php echo $this->translate('stay_at_intercontinental') ?></th>
+                    <th><?php echo $this->translate('check_in_date') ?></th>
+                    <th><?php echo $this->translate('check_out_date') ?></th>
+                    <th><?php echo $this->translate('room_type_2') ?></th>
+                    <th><?php echo $this->translate('guest') ?></th>
                     
-                    <th>RSVP Team Help</th>
-                    <th>Non Smoking</th>
+                    <th><?php echo $this->translate('rsvp_team_help') ?></th>
+                    <th><?php echo $this->translate('non_smoking_room') ?></th>
                     
-                    <th>Not Staying Reasons</th>
-                    <th>Lunch</th>
+                    <th><?php echo $this->translate('not_staying_reasons') ?></th>
+                    <th><?php echo $this->translate('lunch') ?></th>
                 </tr>
                 <?php foreach ($this->users as $user) { ?>
                 <tr>
@@ -63,34 +63,33 @@
                     <td><?php echo $user['id_passport_number'] ?></td>
                     <td><?php echo $user['tel'] ?></td>
                     <td><?php echo $user['mobile'] ?></td>
-                    <td nowrap><?php echo $user['email'] ?></td>
-                    <td nowrap><?php echo $this->translate(trim($user['city'])) ?></td>
-                    <td nowrap><?php echo $this->translate($user['position']) ?></td>
-                    <td nowrap><?php echo $user['group_head_name'] ?></td>
+                    <td><?php echo $user['email'] ?></td>
+                    <td><?php echo $this->translate(trim($user['city'])) ?></td>
+                    <td><?php echo $this->translate($user['position']) ?></td>
+                    <td><?php echo $user['group_head_name'] ?></td>
                     <td><?php echo $user['group_title'] ?></td>
                     <td><?php echo $user['dms'] ?></td>
                     <td><?php echo $user['company_name'] ?></td>
                     <td><?php echo $user['company_title'] ?></td>
-                    <td nowrap><?php echo $user['arrival_date']; ?></td>
-                    <td><?php echo $user['arrival_transportation'] ?></td>
-                    <td><?php echo $user['arrival_from_city'] ?></td>
+                    <td><?php echo $user['arrival_date']; ?></td>
+                    <td><?php echo $this->translate($user['arrival_transportation']) ?></td>
+                    <td><?php echo $this->translate(trim($user['arrival_from_city'])) ?></td>
                     <td><?php echo $user['arrival_time'] ?></td>
-                    <td nowrap><?php echo $user['departure_date'];  ?></td>
-                    <td><?php echo $user['departure_transportation'] ?></td>
-                    <td><?php echo $user['departure_to_city'] ?></td>
+                    <td><?php echo $user['departure_date'];  ?></td>
+                    <td><?php echo $this->translate($user['departure_transportation']) ?></td>
+                    <td><?php echo $this->translate(trim($user['departure_to_city'])); ?></td>
                     <td><?php echo $user['departure_time'] ?></td>
                     
-                    <td><?php echo $user['is_staying'] ?></td>
-                    <td nowrap><?php echo $user['check_in_date'] ?></td>
-                    <td nowrap><?php echo $user['check_out_date'] ?></td>
-                    <td><?php echo $user['room_type'] ?></td>
+                    <td><?php if ($user['is_staying'] != '') { echo $user['is_staying'] ? $this->translate('shi') : $this->translate('bu_shi'); } ?></td>
+                    <td><?php echo $user['check_in_date'] ?></td>
+                    <td><?php echo $user['check_out_date'] ?></td>
+                    <td><?php echo $this->translate($user['room_type']) ?></td>
                     <td><?php echo $user['guest_name'] ?></td>
                     
-                    <td><?php echo $user['need_room_booking_help'] ?></td>
-                    <td><?php echo $user['non_smoking'] ?></td>
+                    <td><?php if ($user['need_room_booking_help'] != '') { echo $user['need_room_booking_help'] ? $this->translate('xu_yao') : $this->translate('bu_xu_yao'); } ?></td>
+                    <td><?php if ($user['non_smoking'] != '') { echo $user['non_smoking'] ? $this->translate('xu_yao') : $this->translate('bu_xu_yao'); } ?></td>
                     <td><?php echo $user['not_staying_reason'] ?></td>
-                    <td><?php echo $user['is_joining_lunch'] ?></td>
-                    
+                    <td><?php if ($user['is_joining_lunch'] != '') { echo $user['is_joining_lunch'] ? $this->translate('yes') : $this->translate('no'); } ?></td>
                 </tr>
                 <?php } ?>
             </table>
@@ -112,7 +111,11 @@
    
     table tr th, table tr td {
         border: 1px solid #ccc;
-        padding: 8px;
+        padding: 10px;
+        white-space: nowrap;
+    }
+    table tr th {
+        white-space: normal;
     }
     
 </style>

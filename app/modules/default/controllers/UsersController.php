@@ -123,6 +123,10 @@ class UsersController extends Zend_Controller_Action
                 
             // check if admin account is presented.
             $auth = Zend_Auth::getInstance();
+            if (!$auth->hasIdentity()) {
+                $this->_helper->redirector('login', 'index');
+            }
+            
             $email = $auth->getIdentity()->email;
             if ($email == 'admin@2013-jlrc-conference.com') {
                 $users = $this->table->getUsersUsingSQL();
@@ -138,7 +142,11 @@ class UsersController extends Zend_Controller_Action
                              }
                         }
                         if ($k == 'arrival_time' || $k == 'departure_time') {
-                            $user[$k] = substr($v, 0, -3);
+                            if ($v == '00:00:00') {
+                                $user[$k] = '';
+                            } else {
+                                $user[$k] = substr($v, 0, -3);
+                            }
                         }
                         
                     }
@@ -153,27 +161,30 @@ class UsersController extends Zend_Controller_Action
         
         public function exportAction()
         {
-           // $this->_helper->getHelper('layout')->disableLayout();
-           // $this->_helper->viewRenderer->setNoRender();
             
             // check if admin account is presented.
             $auth = Zend_Auth::getInstance();
+            if (!$auth->hasIdentity()) {
+                $this->_helper->redirector('login', 'index');
+            }
+            
             $email = $auth->getIdentity()->email;
             if ($email == 'admin@2013-jlrc-conference.com') {
                 
                 $users = $this->table->getUsersUsingSQL();
                 $output = fopen('php://output', 'w+');
-                header('Content-Type: application/csv; charset=utf-8');
-                header("Content-Disposition: filename=\"export.csv\"");
+                header('Content-Encoding: UTF-8');
+                header('Content-type: text/csv; charset=UTF-8');
+                header('Content-Disposition: attachment; filename=Export.csv');
                 
-                $fields = array('Name','Surname','Gender','ID/Passport','Tel',
+                $fields = array('Last Name', 'First Name','Gender','ID/Passport','Tel',
                     'Mobile','Email','City','Position','Group','Title','DMS','Company','Title', 
-                    'Arrival_Date', 'Transportation', 'From', 'Arrival_Time',
-                    'Departure_Date','Transportation', 'To', 'Departure_Time', 
-                    'Stay_At_Intercontinental', 
-                    'Check-in_Date','Check-out_Date','Room_Type','Room_Guest','RSVP_Team_Help', 'Non-smoking',
-                    'Not_Staying_Reasons', 'Lunch' );
-                
+                    'Arrival Date', 'Transportation', 'Arrival From', 'Arrival Time',
+                    'Departure Date','Transportation', 'Departure To', 'Departure Time', 
+                    'Stay At Intercontinental', 
+                    'Check-in Date','Check-out Date','Room Type','Room Guest','RSVP Team Help', 'Non-smoking Room',
+                    'Not Staying Reasons', 'Lunch' );
+                               
                 $buff = '';
                 foreach ($fields as $field) {
                     $buff .= $field . ', ';
@@ -184,39 +195,39 @@ class UsersController extends Zend_Controller_Action
                 foreach($users as $user) {
                         $line = array();
                         
-                        array_push($line, iconv('utf-8','utf-8', $user['first_name']));
-                        array_push($line, iconv('utf-8','utf-8', $user['last_name']));
-                        array_push($line, iconv('utf-8','utf-8', $user['gender']));
-                        array_push($line, iconv('utf-8','gb2312', $user['id_passport_number']));
-                        array_push($line, iconv('utf-8','gb2312', $user['tel']));
-                        array_push($line, iconv('utf-8','gb2312', $user['mobile']));
-                        array_push($line, iconv('utf-8','gb2312', $user['email']));
+                        array_push($line, iconv('utf-8','gbk', $user['last_name']));
+                        array_push($line, iconv('utf-8','gbk', $user['first_name']));
+                        array_push($line, iconv('utf-8','gbk', $user['gender']));
+                        array_push($line, iconv('utf-8','gbk', $user['id_passport_number']));
+                        array_push($line, iconv('utf-8','gbk', $user['tel']));
+                        array_push($line, iconv('utf-8','gbk', $user['mobile']));
+                        array_push($line, iconv('utf-8','gbk', $user['email']));
                         str_replace('\n','',$user['city']);
-                        array_push($line, iconv('utf-8','gb2312', trim($user['city'])));
-                        array_push($line, iconv('utf-8','gb2312', $user['position']));
-                        array_push($line, iconv('utf-8','gb2312', $user['group_name']));
-                        array_push($line, iconv('utf-8','gb2312', $user['group_title']));
-                        array_push($line, iconv('utf-8','gb2312', $user['dms_code']));
-                        array_push($line, iconv('utf-8','gb2312', $user['company_name']));
-                        array_push($line, iconv('utf-8','gb2312', $user['company_title']));
-                        array_push($line, iconv('utf-8','gb2312', $user['arrival_date']));
-                        array_push($line, iconv('utf-8','gb2312', $user['arrival_transportation']));
+                        array_push($line, iconv('utf-8','gbk', trim($user['city'])));
+                        array_push($line, iconv('utf-8','gbk', $user['position']));
+                        array_push($line, iconv('utf-8','gbk', $user['group_head_name']));
+                        array_push($line, iconv('utf-8','gbk', $user['group_title']));
+                        array_push($line, iconv('utf-8','gbk', trim($user['dms'])));
+                        array_push($line, iconv('utf-8','gbk', $user['company_name']));
+                        array_push($line, iconv('utf-8','gbk', $user['company_title']));
+                        array_push($line, iconv('utf-8','gbk', $user['arrival_date']));
+                        array_push($line, iconv('utf-8','gbk', $user['arrival_transportation']));
                         
-                        array_push($line, iconv('utf-8','utf-8', $user['arrival_from']));
-                        array_push($line, iconv('utf-8','utf-8', $user['arrival_date']));
-                        array_push($line, iconv('utf-8','utf-8', $user['arrival_time']));
-                        array_push($line, iconv('utf-8','utf-8', $user['departure_transportation']));
-                        array_push($line, iconv('utf-8','utf-8', $user['departure_to']));
-                        array_push($line, iconv('utf-8','utf-8', $user['departure_time']));
-                        array_push($line, iconv('utf-8','utf-8', $user['is_staying']));
-                        array_push($line, iconv('utf-8','utf-8', $user['check_in_date']));
-                        array_push($line, iconv('utf-8','utf-8', $user['check_out_date']));
-                        array_push($line, iconv('utf-8','utf-8', $user['room_type']));
-                        array_push($line, iconv('utf-8','utf-8', $user['guest_name']));
-                        array_push($line, iconv('utf-8','utf-8', $user['need_room_booking_help']));
-                        array_push($line, iconv('utf-8','utf-8', $user['non_smoking']));
-                        array_push($line, iconv('utf-8','utf-8', $user['not_staying_reason']));
-                        array_push($line, iconv('utf-8','utf-8', $user['is_joining_lunch']));
+                        array_push($line, iconv('utf-8','gbk', trim($user['arrival_from_city'])));
+                        array_push($line, iconv('utf-8','gbk', $user['arrival_date']));
+                        array_push($line, iconv('utf-8','gbk', $user['arrival_time']));
+                        array_push($line, iconv('utf-8','gbk', $user['departure_transportation']));
+                        array_push($line, iconv('utf-8','gbk', trim($user['departure_to_city'])));
+                        array_push($line, iconv('utf-8','gbk', $user['departure_time']));
+                        array_push($line, iconv('utf-8','gbk', $user['is_staying']));
+                        array_push($line, iconv('utf-8','gbk', $user['check_in_date']));
+                        array_push($line, iconv('utf-8','gbk', $user['check_out_date']));
+                        array_push($line, iconv('utf-8','gbk', $user['room_type']));
+                        array_push($line, iconv('utf-8','gbk', $user['guest_name']));
+                        array_push($line, iconv('utf-8','gbk', $user['need_room_booking_help']));
+                        array_push($line, iconv('utf-8','gbk', $user['non_smoking']));
+                        array_push($line, iconv('utf-8','gbk', $user['not_staying_reason']));
+                        array_push($line, iconv('utf-8','gbk', $user['is_joining_lunch']));
                         $new_line = '';
                         foreach ($line as $l) {
                             $new_line .= $l . ', '; 

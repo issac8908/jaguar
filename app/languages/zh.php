@@ -79,6 +79,8 @@ return array(
     'not_staying_reason' => '请解释原因',
     'yes' => '要',
     'no' => '不要',
+    'shi' => '是',
+    'bu_shi' => '不是',
     'room_type' => '上海世博会酒店房间类型',
     'guest_name' => '若需与其他宾客共享双人房，请提供对方姓名',
     'single' => '单人房',
@@ -227,4 +229,12 @@ return array(
     
     'profile_updated_successfully' => '您的个人资料已经成功更新。',
     'users' => '用户列表',
+    'transportation' => '交通',
+    'guest' => '宾客',
+    'stay_at_intercontinental' => '酒店留宿',
+    'room_type_2' => '房间类型',
+    'non_smoking_room' => '不抽烟房间',
+    'rsvp_team_help' => 'RSVP团队帮忙',
+    'not_staying_reasons' => '不留宿原因',
+    'lunch' => '午餐',
 );
