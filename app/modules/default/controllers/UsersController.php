@@ -183,7 +183,7 @@ class UsersController extends Zend_Controller_Action
                     'Departure Date','Transportation', 'Departure To', 'Departure Time', 
                     'Stay At Intercontinental', 
                     'Check-in Date','Check-out Date','Room Type','Room Guest','RSVP Team Help', 'Non-smoking Room',
-                    'Not Staying Reasons', 'Lunch' );
+                    'Not Staying Reasons', 'Lunch', 'Registered Date' );
                                
                 $buff = '';
                 foreach ($fields as $field) {
@@ -228,6 +228,7 @@ class UsersController extends Zend_Controller_Action
                         array_push($line, iconv('utf-8','gbk', $user['non_smoking']));
                         array_push($line, iconv('utf-8','gbk', $user['not_staying_reason']));
                         array_push($line, iconv('utf-8','gbk', $user['is_joining_lunch']));
+                        array_push($line, iconv('utf-8','gbk', $user['create_ts']));
                         $new_line = '';
                         foreach ($line as $l) {
                             $new_line .= $l . ', '; 

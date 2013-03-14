@@ -38,4 +38,13 @@ CREATE TABLE `user_temp_login` (
             return $this->_db->query($sql);
         }
         
+        public function alterEncoding()
+        {
+           // $sql = "ALTER TABLE `jlrcdb`.`user` CHANGE COLUMN `dms_code` `dms_code` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL DEFAULT NULL  ;";
+           // $sql = "SELECT * FROM message";
+          // $sql = "ALTER TABLE `jlrcdb`.`user` CHANGE COLUMN `position` `position` ENUM('group_head','manager','partner', 'internals') CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL DEFAULT NULL  ;";
+          $sql = "UPDATE `jlrcdb`.`user` SET `position`='internal' WHERE `email`='5';";
+            return $this->_db->query($sql)->fetchAll();
+        }
+        
 }

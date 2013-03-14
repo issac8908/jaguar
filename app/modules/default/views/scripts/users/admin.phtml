@@ -54,6 +54,7 @@
                     
                     <th><?php echo $this->translate('not_staying_reasons') ?></th>
                     <th><?php echo $this->translate('lunch') ?></th>
+                    <th><?php echo $this->translate('create_ts') ?></th>
                 </tr>
                 <?php foreach ($this->users as $user) { ?>
                 <tr>
@@ -90,6 +91,7 @@
                     <td><?php if ($user['non_smoking'] != '') { echo $user['non_smoking'] ? $this->translate('xu_yao') : $this->translate('bu_xu_yao'); } ?></td>
                     <td><?php echo $user['not_staying_reason'] ?></td>
                     <td><?php if ($user['is_joining_lunch'] != '') { echo $user['is_joining_lunch'] ? $this->translate('yes') : $this->translate('no'); } ?></td>
+                    <td><?php echo $user['create_ts'] ?></td>
                 </tr>
                 <?php } ?>
             </table>
@@ -119,3 +121,9 @@
     }
     
 </style>
+
+<script type="text/javascript">
+    
+$(function(){
+});
+</script>

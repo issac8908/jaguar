@@ -91,7 +91,7 @@ class Model_DbTable_Users extends Zend_Db_Table_Abstract
                     left join city as c3 on u.departure_to = c3.cid 
                     left join group_one as g2 on u.dms_code = g2.gid 
                     left join group_one as g3 on u.group_name = g3.gid
-                    order by u.last_name asc, u.first_name asc";
+                    order by u.create_ts desc;";
             
             return $this->_db->query($sql)->fetchAll();
         }

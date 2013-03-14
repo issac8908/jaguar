@@ -237,4 +237,5 @@ return array(
     'rsvp_team_help' => 'RSVP团队帮忙',
     'not_staying_reasons' => '不留宿原因',
     'lunch' => '午餐',
+    'create_ts' => '注册日期'
 );
