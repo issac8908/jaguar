@@ -116,14 +116,17 @@ class Model_DbTable_Users extends Zend_Db_Table_Abstract
             return $this->_db->query($sql)->fetchAll();
         }
         
-        public function getUserByCode($data) 
+        public function getUserByCode($code) 
         {
-            $select = $this->select()
-                    ->where('code = ?', $data['code'])
-                    ->where('uid = ?', $data['uid']);
-            return $this->fetchRow($select);
+            
+            $sql = "SELECT code_email.email, user.uid 
+                    FROM code_email 
+                    LEFT JOIN user ON code_email.email = user.email
+                    WHERE code_email.code = '$code'";
+
+            return $this->_db->query($sql)->fetch();
         }
-        
+            
         public function addUser($data)
         {
             return $data && is_array($data) ? $this->insert($data) : false;

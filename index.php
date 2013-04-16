@@ -13,8 +13,8 @@ if (is_dir('/srv/d_CARBURANT6/www/Zend-Framework/ZendFramework-1.11.12/library')
 else // For local environments
 {
     define('APP_ENV', 'development');
-    set_include_path(implode(PATH_SEPARATOR, array(realpath('/Applications/MAMP/htdocs/ZendFramework-1.11.12/library'), realpath('F:\wamp\www\ZendFramework-1.12.0\library'), realpath('C:\wamp\www\ZendFramework-1.12.0\library'), get_include_path())));
-    define('RESOURCES_LANGUAGES', realpath('F:\wamp\www\ZendFramework-1.12.0\resources\languages'));
+    set_include_path(implode(PATH_SEPARATOR, array(realpath('/Applications/MAMP/htdocs/ZendFramework-1.12.3/library'), realpath('F:\wamp\www\ZendFramework-1.12.0\library'), realpath('C:\wamp\www\ZendFramework-1.12.0\library'), get_include_path())));
+    define('RESOURCES_LANGUAGES', realpath('/Applications/MAMP/htdocs/ZendFramework-1.12.3/resources/languages'));
 }
 require_once 'Zend/Application.php';
 

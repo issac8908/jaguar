@@ -158,9 +158,9 @@ body
     float: left;
     font-size: 12px;
     font-weight: normal;
-    margin: 0 50px 0 0;
-		height:23px;
-		padding:7px 10px 0 10px;
+    margin: 0 14px 0 0;
+    height:23px;
+    padding:7px 10px 0 10px;
 }
 
 #menu #menu-wrapper ul li a { text-decoration: none; color: #ededed; text-transform: uppercase; font-weight: bold; font-size: 12px; }
@@ -402,6 +402,7 @@ input[type='submit'], .btn
    float:right;
    margin-left: 8px;
    cursor: pointer;
+   display: inline-block;
 }
 
 .small-btn
@@ -760,4 +761,136 @@ padding-bottom: 3px;
 #forgotpassword-wrapper .btn {
     margin: 10px 0 0 0;
     float: left;
+}
+
+#survey .btn {
+    color: white;
+}
+
+#survey .block{
+    width: 100%;
+    float: left;
+}
+
+#survey .block > label {
+    width: 100%;
+    float: left;
+}
+
+#survey .block > label > span {
+    padding-right: 5px;
+}
+
+#survey .block > .rating, 
+#survey .block > .choice {
+    margin-left: 25px;
+}
+
+#survey .block > .choice span {
+    float: left;
+    display: block;
+    width: 100%;
+}
+
+#survey .block textarea {
+    width: 50%;
+}
+
+#survey .block input[type='text'] {
+    width: 75%;
+}
+
+#survey .sub-block {
+    float:left;
+    clear: both;
+    padding: 20px 0 0 0;
+}
+
+#survey .sub-block > label {
+    width: 400px;
+    padding-left: 50px;
+    display: inline-block;
+}
+
+#survey .sub-block > .rating {
+    display: inline-block;
+}
+
+#main-content-tabs {
+    display: block;
+    width: 1000px;
+    float: left;
+    z-index: 999;
+    position: absolute;
+    
+}
+
+#main-content-tabs > ul {
+    position: absolute;
+    z-index: 999;
+}
+
+#main-content-tabs > ul > li {
+    display: block;
+    float: left;
+    width: 300px;
+    height: 25px;
+    text-align: center;
+    text-transform: uppercase;
+    
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    /*-webkit-border-radius: 3px 3px 0px 0px;
+    -moz-border-radius: 3px 3px 0px 0px;
+    border-radius: 3px 3px 0px 0px;*/
+    /*margin: 0px 20px 0px auto;*/
+    padding-top: 10px;
+    z-index: 1;
+}
+#main-content-tabs > ul > li > a {
+    padding-top: 10px;
+    text-decoration: none;
+}
+#main-content-tabs > ul > li.active {
+    height: 24px;
+    border-bottom: 2px solid grey;
+    margin-top: 2px;
+    z-index: 999;
+    background-color: rgb(247, 247, 247);
+}
+
+#main-content-tab-content {
+    width: 100%;
+    /*border: 1px solid grey;*/
+    margin-top: 48px;
+    z-index: -999;
+    position: absolute;
+}
+
+#main-content-tab-content .thumbs {}
+
+#main-content-tab-content .thumbs ul {
+    float: left;
+    margin-top: 30px;
+    display: block;
+}
+
+#main-content-tab-content .thumbs ul li {
+    width: 150px;
+    height: 150px;
+    float: left;
+    display: table-cell;
+}
+
+#main-content-tab-content .thumbs img {
+    width: 85px;
+    vertical-align: middle;
+    margin: auto;
+}
+
+#survey-submitted-bf-notice {
+    font-size: 14px;
+    padding: 30px 10px;
 }

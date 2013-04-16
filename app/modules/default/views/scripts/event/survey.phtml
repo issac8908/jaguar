@@ -1,0 +1,191 @@
+<div class="event">
+    
+    <div id="menu">
+        <div id="menu-wrapper">
+            <ul>
+                <li><a href="/users"><?php echo $this->translate('my_profile') ?></a></li>
+                <li><a href="/event/agenda"><?php echo $this->translate('agenda') ?></a></li>
+                <li><a href="/event/conf"><?php echo $this->translate('conference_speakers') ?></a></li>
+                <li><a href="/event/venue"><?php echo $this->translate('venue') ?></a></li>
+                <li><a href="/event/hospitality"><?php echo $this->translate('hospitality') ?></a></li>
+                <li class="active"><a href="/event/survey"><?php echo $this->translate('survey') ?></a></li>
+                <li><a href="/event/photowall"><?php echo $this->translate('photowall') ?></a></li>
+                <li><a href="/event/contact"><?php echo $this->translate('contact_rsvp') ?></a></li>
+                <li class="logout"><a href="<?php echo $this->url(array('controller' => 'users','action' => 'logout'), 'default', true); ?>"><?php echo $this->translate('logout') ?></a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div id="main-content">
+        <div id="main-content-title"><?php echo $this->translate('survey') ?></div>
+        <div id="survey">
+            <?php if ($this->surveySubmittedBefore) { ?>
+                <div class="survey-submitted-bf">
+                    <div id="survey-submitted-bf-notice"><?php echo $this->translate('survey_submitted_before') ?></div>
+                    <div><a href="/event/photowall" class="btn" style="float: left; text-decoration: none;">Go to PHOTOWALL</a></div>
+                </div>
+            <?php } else { ?>
+            <form action="<?php echo $this->url(array('controller' => 'event', 'action' => 'survey'), 'default'); ?>" method="post" enctype="application/x-www-form-urlencoded" >
+                <div class="block">
+                    <label><span>1. </span><?php echo $this->translate('s1_overall') ?></label>
+                    <div class="rating"><?php echo $this->survey_form->s1_overall; ?></div>
+                </div>
+                <div class="block">
+                    <label><span>2. </span><?php echo $this->translate('s2_hospitality') ?></label>
+                    <div class="rating"><?php echo $this->survey_form->s2_hospitality; ?></div>
+                </div>
+                <div class="block">
+                    <label><span>3. </span><?php echo $this->translate('s3_venue') ?></label>
+                    <div class="rating"><?php echo $this->survey_form->s3_venue; ?></div>
+                </div>
+                <div class="block">
+                    <label><span>4. </span><?php echo $this->translate('s4_food') ?></label>
+                    <div class="rating"><?php echo $this->survey_form->s4_food; ?></div>
+                </div>
+                <div class="block">
+                    <label><span>5. </span><?php echo $this->translate('s5_dinner') ?></label>
+                    <div class="rating"><?php echo $this->survey_form->s5_dinner; ?></div>
+                </div>
+                <div class="block">
+                    <label><span>6. </span><?php echo $this->translate('s6_msg_clarity') ?></label>
+                    <div class="sub-block">
+                        <label><span>1. </span><?php echo $this->translate('s6_1_cust_adv') ?></label>
+                        <div class="rating"><?php echo $this->survey_form->s6_1_cust_adv; ?></div>
+                    </div>
+                    <div class="sub-block">
+                        <label><span>2. </span><?php echo $this->translate('s6_2_jnt_venture') ?></label>
+                        <div class="rating"><?php echo $this->survey_form->s6_2_jnt_venture; ?></div>
+                    </div>
+                    <div class="sub-block">
+                        <label><span>3. </span><?php echo $this->translate('s6_3_buss_int') ?></label>
+                        <div class="rating"><?php echo $this->survey_form->s6_3_buss_int; ?></div>
+                    </div>
+                    <div class="sub-block">
+                        <label><span>4. </span><?php echo $this->translate('s6_4_sales_obj') ?></label>
+                        <div class="rating"><?php echo $this->survey_form->s6_4_sales_obj; ?></div>
+                    </div>
+                    <div class="sub-block">
+                        <label><span>5. </span><?php echo $this->translate('s6_5_network_dev') ?></label>
+                        <div class="rating"><?php echo $this->survey_form->s6_5_network_dev; ?></div>
+                    </div>
+                    <div class="sub-block">
+                        <label><span>6. </span><?php echo $this->translate('s6_6_deal_struct') ?></label>
+                        <div class="rating"><?php echo $this->survey_form->s6_6_deal_struct; ?></div>
+                    </div>
+                    <div class="sub-block">
+                        <label><span>7. </span><?php echo $this->translate('s6_7_cs_org') ?></label>
+                        <div class="rating"><?php echo $this->survey_form->s6_7_cs_org; ?></div>
+                    </div>
+                    <div class="sub-block">
+                        <label><span>8. </span><?php echo $this->translate('s6_8_nps') ?></label>
+                        <div class="rating"><?php echo $this->survey_form->s6_8_nps; ?></div>
+                    </div>
+                    <div class="sub-block">
+                        <label><span>9. </span><?php echo $this->translate('s6_9_3g') ?></label>
+                        <div class="rating"><?php echo $this->survey_form->s6_9_3g; ?></div>
+                    </div>
+                    <div class="sub-block">
+                        <label><span>10. </span><?php echo $this->translate('s6_10_it') ?></label>
+                        <div class="rating"><?php echo $this->survey_form->s6_10_it; ?></div>
+                    </div>
+                    <div class="sub-block">
+                        <label><span>11. </span><?php echo $this->translate('s6_11_fin_model') ?></label>
+                        <div class="rating"><?php echo $this->survey_form->s6_11_fin_model; ?></div>
+                    </div>
+                    <div class="sub-block">
+                        <label><span>12. </span><?php echo $this->translate('s6_12_pr_comm') ?></label>
+                        <div class="rating"><?php echo $this->survey_form->s6_12_pr_comm; ?></div>
+                    </div>
+                    <div class="sub-block">
+                        <label><span>13. </span><?php echo $this->translate('s6_13_brand_health') ?></label>
+                        <div class="rating"><?php echo $this->survey_form->s6_13_brand_health; ?></div>
+                    </div>
+                    <div class="sub-block">
+                        <label><span>14. </span><?php echo $this->translate('s6_14_mkt_plan') ?></label>
+                        <div class="rating"><?php echo $this->survey_form->s6_14_mkt_plan; ?></div>
+                    </div>
+                    <div class="sub-block">
+                        <label><span>15. </span><?php echo $this->translate('s6_15_mkt_support') ?></label>
+                        <div class="rating"><?php echo $this->survey_form->s6_15_mkt_support; ?></div>
+                    </div>
+                    <div class="sub-block">
+                        <label><span>16. </span><?php echo $this->translate('s6_16_mkt_vision') ?></label>
+                        <div class="rating"><?php echo $this->survey_form->s6_16_mkt_vision; ?></div>
+                    </div>
+                    <div class="sub-block">
+                        <label><span>17. </span><?php echo $this->translate('s6_17_evoque_plan') ?></label>
+                        <div class="rating"><?php echo $this->survey_form->s6_17_evoque_plan; ?></div>
+                        
+                    </div>
+                    <div class="sub-block">
+                        <label><span>18. </span><?php echo $this->translate('s6_18_new_prod') ?></label>
+                        <div class="rating"><?php echo $this->survey_form->s6_18_new_prod; ?></div>
+                    </div>
+                    <div class="sub-block">
+                        <label><span>19. </span><?php echo $this->translate('s6_19_other') ?> <?php echo $this->survey_form->s6_19_topic ?></label>
+                        <div class="rating"><?php echo $this->survey_form->s6_19_other; ?></div>
+                    </div>
+                </div>
+                <div class="block">
+                    <label><span>7. </span><?php echo $this->translate('s7_best_speaker') ?></label>
+                    <div class="rating"><?php echo $this->survey_form->s7_best_speaker; ?></div>
+                </div>
+                <div class="block">
+                    <label><span>8. </span><?php echo $this->translate('s8_strategies') ?></label>
+                    <div class="rating"><?php echo $this->survey_form->s8_strategies; ?></div>
+                </div>
+                <div class="block">
+                    <label><span>9. </span><?php echo $this->translate('s9_faith_jaguar') ?></label>
+                    <div class="rating"><?php echo $this->survey_form->s9_faith_jaguar; ?></div>
+                </div>
+                <div class="block">
+                    <label><span>10. </span><?php echo $this->translate('s10_faith_jlr') ?></label>
+                    <div class="rating"><?php echo $this->survey_form->s10_faith_jlr; ?></div>
+                </div>
+                <div class="block">
+                    <label><span>11. </span><?php echo $this->translate('s11_advice') ?></label>
+                    <div class="choice">
+                        <span><?php echo $this->survey_form->s11_advice; ?></span>
+                        <span><?php echo $this->survey_form->s11_advice_details ?></span>
+                    </div>
+                </div>
+                <div class="block">
+                    <label><span>12. </span><?php echo $this->translate('s12_expectations') ?></label>
+                    <div class="choice">
+                        <span><?php echo $this->survey_form->s12_expectations; ?></span>
+                        <span><?php echo $this->survey_form->s12_expectation_details ?></span>
+                    </div>
+                </div>
+                
+                <div class="block">
+                    <input type="submit" value="<?php echo $this->translate('submit') ?>">
+                </div>
+                </div>
+            </form>
+            <?php } ?>
+        </div>
+        <div class="clear" style="height: 25px; margin-top: 10px;"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $('#s11_advice_details, #s12_expectation_details').hide();
+    
+    $('input[name="s11_advice"]').change(function(e) {
+        if ($(this + ':checked').val() == 'yes') {
+            $('#s11_advice_details').show();
+        } else {
+            $('#s11_advice_details').hide();
+        }
+    });
+    
+    $('input[name="s12_expectations"]').change(function(e) {
+        if ($(this + ':checked').val() == 'yes') {
+            $('#s12_expectation_details').show();
+        } else {
+            $('#s12_expectation_details').hide();
+        }
+    });
+});
+</script>

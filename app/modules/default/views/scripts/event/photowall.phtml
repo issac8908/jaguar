@@ -1,0 +1,62 @@
+<div class="event">
+    
+    <div id="menu">
+        <div id="menu-wrapper">
+            <ul>
+                <li><a href="/users"><?php echo $this->translate('my_profile') ?></a></li>
+                <li><a href="/event/agenda"><?php echo $this->translate('agenda') ?></a></li>
+                <li><a href="/event/conf"><?php echo $this->translate('conference_speakers') ?></a></li>
+                <li><a href="/event/venue"><?php echo $this->translate('venue') ?></a></li>
+                <li><a href="/event/hospitality"><?php echo $this->translate('hospitality') ?></a></li>
+                <li><a href="/event/survey"><?php echo $this->translate('survey') ?></a></li>
+                <li class="active"><a href="/event/photowall"><?php echo $this->translate('photowall') ?></a></li>
+                <li><a href="/event/contact"><?php echo $this->translate('contact_rsvp') ?></a></li>
+                <li class="logout"><a href="<?php echo $this->url(array('controller' => 'users','action' => 'logout'), 'default', true); ?>"><?php echo $this->translate('logout') ?></a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div id="main-content">
+        <div id="main-content-title">
+            <div><?php echo $this->translate('photowall') ?></div>
+        </div>
+        <div id="main-content-tabs">
+            <ul>
+                <li <?php if ($this->isConferenceSelected) { ?>class="active" <?php } ?>><a href="/event/photowall/tab/conference"><?php echo $this->translate('conference') ?></a></li>
+                <li <?php if ($this->isDinnerSelected) { ?> class="active" <?php } ?>><a href="/event/photowall/tab/dinner"><?php echo $this->translate('dinner') ?></a></li>
+                <li <?php if ($this->isAwardsSelected) { ?>class="active" <?php } ?>><a href="/event/photowall/tab/awards"><?php echo $this->translate('awards') ?></a></li>
+            </ul>
+            <div id="main-content-tab-content">
+                <div class="thumbs">
+                <?php if ($this->thumbs) { ?>
+                    <ul>
+                        <?php foreach ($this->thumbs as $thumb) { ?>
+                        <li class="thumb"> 
+                            <?php $arr = explode('/', $thumb) ?>
+                            <a class="fancybox" rel="group" href="/medias/uploads/<?php echo $this->tab ?>/larges/<?php echo $arr[sizeof($arr)-1] ?>">
+                                <img src="/medias/uploads/<?php echo $this->tab ?>/thumbs/<?php echo $arr[sizeof($arr)-1] ?>">
+                            </a>
+                        </li>
+                        <?php } ?>
+                    </ul>
+                <?php } ?>
+                </div>
+            </div>
+        </div>
+        <div id="photowall">
+            
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" type="text/css" href="<?php echo $this->baseUrl(); ?>/medias/admin/components/fancybox/jquery.fancybox.css"/>
+<script src="<?php echo $this->baseUrl() ?>/medias/admin/components/fancybox/jquery.fancybox.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $(".fancybox").fancybox();
+
+    <?php if (count($this->success_messages)) { ?>
+            alert('<?php echo $this->success_messages['0'] ?>');
+            <?php } ?>
+});
+</script>

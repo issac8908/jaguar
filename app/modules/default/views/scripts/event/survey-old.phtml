@@ -1,0 +1,26 @@
+$('#s11_advice_details, #s12_expectation_details').hide())
+    $('#s11_advice_details, #s12_expectation_details').css('background-color', '#efefef');
+    
+    $('input[name="s11_advice"]').change(function(e) {
+        if ($(this + ':checked').val() == 'yes') {
+            $('#s11_advice_details').removeAttr('disabled');
+            $('#s11_advice_details').attr('placeholder', '<?php echo $this->translate("please_specify") ?>');
+            $('#s11_advice_details').css('background-color', 'white');
+        } else {
+            $('#s11_advice_details').attr('disabled', 'disabled');
+            $('#s11_advice_details').removeAttr('placeholder');
+            $('#s11_advice_details').css('background-color', '#efefef');
+        }
+    });
+    
+    $('input[name="s12_expectations"]').change(function(e) {
+        if ($(this + ':checked').val() == 'yes') {
+            $('#s12_expectation_details').removeAttr('disabled');
+            $('#s12_expectation_details').attr('placeholder', '<?php echo $this->translate("please_specify") ?>');
+            $('#s12_expectation_details').css('background-color', 'white');
+        } else {
+            $('#s12_expectation_details').attr('disabled', 'disabled');
+            $('#s12_expectation_details').removeAttr('placeholder');
+            $('#s12_expectation_details').css('background-color', '#efefef');
+        }
+    });
