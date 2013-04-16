@@ -111,8 +111,8 @@ class Form_Survey extends Zend_Form
                 ))->setSeparator('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');//->setRequired(true);
                 
                 $s11_advice_details = new Zend_Form_Element_Textarea('s11_advice_details');
-                $s11_advice_details->setAttrib('rows', '3');
-                        //->setAttrib('placeholder', $this->getView()->translate('if_yes'));
+                $s11_advice_details->setAttrib('rows', '3')
+                        ->setAttrib('placeholder', $this->getView()->translate('if_yes'));
                         
                 
                 $s12 = new Zend_Form_Element_Radio('s12_expectations');
@@ -122,8 +122,8 @@ class Form_Survey extends Zend_Form
                 ))->setSeparator('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');//->setRequired(true);
                 
                 $s12_expectation_details = new Zend_Form_Element_Textarea('s12_expectation_details');
-                $s12_expectation_details->setAttrib('rows', '3');
-                        //->setAttrib('placeholder', $this->getView()->translate('if_yes'));
+                $s12_expectation_details->setAttrib('rows', '3')
+                        ->setAttrib('placeholder', $this->getView()->translate('if_yes'));
                 
                 $this->addElements(array(
                     $s1, $s2, $s3, $s3, $s4, $s5, 
@@ -134,8 +134,12 @@ class Form_Survey extends Zend_Form
                 ));
 
                 foreach($this->getElements() as $element) {
-                        $element->removeDecorator('DtDdWrapper')->removeDecorator('HtmlTag')->removeDecorator('Label')->setRequired(false);
+                        $element->removeDecorator('DtDdWrapper')->removeDecorator('HtmlTag')->removeDecorator('Label')->setRequired(true);
                 }
+                $s6_19->setRequired(false);
+                $s6_19_topic->setRequired(false);
+                $s11_advice_details->setRequired(false);
+                $s12_expectation_details->setRequired(false);
         }
         
         private function _addMultiOptions($s) 

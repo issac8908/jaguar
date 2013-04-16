@@ -22,7 +22,7 @@
             <?php if ($this->surveySubmittedBefore) { ?>
                 <div class="survey-submitted-bf">
                     <div id="survey-submitted-bf-notice"><?php echo $this->translate('survey_submitted_before') ?></div>
-                    <div><a href="/event/photowall" class="btn" style="float: left; text-decoration: none;">Go to PHOTOWALL</a></div>
+                    <div><a href="/event/photowall" class="btn" style="float: left; text-decoration: none;"><?php echo $this->translate('go_to_photowall') ?></a></div>
                 </div>
             <?php } else { ?>
             <form action="<?php echo $this->url(array('controller' => 'event', 'action' => 'survey'), 'default'); ?>" method="post" enctype="application/x-www-form-urlencoded" >
@@ -158,8 +158,10 @@
                 </div>
                 
                 <div class="block">
-                    <input type="submit" value="<?php echo $this->translate('submit') ?>">
+                 <!--   <div class="btn" id="btnSubmitSurvey"><?php //echo $this->translate('submit') ?></div>-->
+                    
                 </div>
+                <div><input type="submit" value="<?php echo $this->translate('submit') ?>"></div>
                 </div>
             </form>
             <?php } ?>
@@ -172,8 +174,17 @@
 $(document).ready(function () {
     $('#s11_advice_details, #s12_expectation_details').hide();
     
+    
+    if ($('input[name="s11_advice"]:checked').val() == 'yes') {
+        $('#s11_advice_details').show();
+    }
+    if ($('input[name="s12_expectations"]:checked').val() == 'yes') {
+        $('#s12_expectation_details').show();
+    }
+    
+        
     $('input[name="s11_advice"]').change(function(e) {
-        if ($(this + ':checked').val() == 'yes') {
+        if ($('input[name="s11_advice"]:checked').val() == 'yes') {
             $('#s11_advice_details').show();
         } else {
             $('#s11_advice_details').hide();
@@ -181,11 +192,15 @@ $(document).ready(function () {
     });
     
     $('input[name="s12_expectations"]').change(function(e) {
-        if ($(this + ':checked').val() == 'yes') {
+        if ($('input[name="s12_expectations"]:checked').val() == 'yes') {
             $('#s12_expectation_details').show();
         } else {
             $('#s12_expectation_details').hide();
         }
+    });
+    
+    $('#btnSubmitSurvey').click(function(e) {
+   //     alert('11');
     });
 });
 </script>

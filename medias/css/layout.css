@@ -357,7 +357,7 @@ div#step-three input[type='text']
 }
 div#step-one input[type='text'], div#step-one input[type='password'],
 div#step-two input[type='text'], 
-div#step-three input[type='text']
+div#step-three input[type='text']or
 { 
     width: 200px; 
 }
@@ -894,3 +894,17 @@ padding-bottom: 3px;
     font-size: 14px;
     padding: 30px 10px;
 }
+
+#survey ul.errors {
+    float: none;
+    display: inline-block;
+    width: auto;
+    color: #cc0000;
+    font-style: italic;
+    margin: 0 0 0 10px;
+}
+
+#survey ul.errors li {
+    margin: 0px;
+    padding: 0px;
+}    

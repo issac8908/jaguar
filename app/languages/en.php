@@ -201,7 +201,7 @@ return array(
     's10_faith_jlr' => 'Do you have faith in the growth and improvement of the Land Rover Brand in China? Please comment.',
     's11_advice' => 'Do you have any advice or opinions for the conference this time?',
     's12_expectations' => 'Do you have any expectations for the 2014 JLR Conference?',
-    'if_yes' => 'If yes, please specify',
+    'if_yes' => 'Please specify',
     'yes_i_have' => 'Yes, I have',
     'no_i_dont_have' => 'No, I don\'t have',
     'very strong' => 'Very strong',
@@ -216,4 +216,6 @@ return array(
     'conference' => 'Conference',
     'dinner' => 'Dinner',
     'awards' => 'Awards',
+    'go_to_photowall' => 'GO TO PHOTOWALL',
+    'thanks_for_submitting_survey' => 'Thanks for submitting your survey.',
         );
